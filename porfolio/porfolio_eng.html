@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugo Calvo García</title>
+    <link rel="stylesheet" href="css/porfolio_Hugo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <header>
+        <nav>
+            <div class="logo"> 
+                <div class="traductor">
+                    <b>HCG</b>
+                    <div class="espacio"></div>
+                    <i>English:</i><a href="porfolio_eng.html" target="_blank"><img src="img/English.svg" alt="English" class="bandera"></a>
+                    <div class="espacio"></div>
+                    <i>Spanish:</i><a href="porfolio.html" target="_blank"><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
+                </div> 
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="parallax">
+            <div class="content">
+                <img src="img/porfile.jpg" alt="Hugo Calvo García" class="profile-image">
+                <h1>Hugo Calvo García</h1>
+                <h2>Higher Technician in Multiplatform Application Development</h2>
+                <a href="#contact" class="cta-button">Contact Me</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a passionate developer with experience in Java and HTML. I love creating efficient and elegant solutions to complex problems.</p>
+                    <p>My goal is to combine creativity and technology to develop innovative applications that improve people's lives.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>Java</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>Databases</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <div class="project">
+                    <div class="project-info">
+                        <h3>First Year University Final Project</h3>
+                        <p>This is a project where I created a real estate agency. Technologies used: Java.</p>
+                        <a href="https://codeboard.io/projects/420011" target="_blank" class="project-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-info">
+                        <h3>This Portfolio</h3>
+                        <p>This project is this portfolio, as it was created by me. Technologies used: Html, Css, Javascript and php.</p>
+                        <a href="porfolio_eng.html" target="_blank" class="project-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-info">
+                        <h3>Project 3</h3>
+                        <p>There are no projects yet, but more and better ones will come.</p>
+                        <a href="#" class="project-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <form action="php/Correo.php" method="post" id="contact-form">
+                <input type="text" name="nombre" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="mensaje" placeholder="Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Hugocalvo545" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Hugo Calvo García. All rights reserved.</p>
+    </footer>
+
+    <script src="js/menu.js"></script>
+    <script src="js/porfolio_Hugo.js"></script>
+    <script src="js/background.js"></script>
+</body>
+</html>
