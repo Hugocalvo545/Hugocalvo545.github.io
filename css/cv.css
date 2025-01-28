@@ -43,10 +43,11 @@ body {
 }
 
 .profile {
-    width: 100%;
+    width: 95%;
     height: 280px;
     border-radius: 20%;
     margin-bottom: 20px;
+    margin-left: 5px;
 }
 
 /* Proyectos */
