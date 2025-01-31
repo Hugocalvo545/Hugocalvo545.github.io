@@ -17,13 +17,13 @@ body {
     width: 270px;
     background-color: #2c3e50;
     color: #fff;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
 }
 
 .right-column {
     width: 680px;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
 }
 
