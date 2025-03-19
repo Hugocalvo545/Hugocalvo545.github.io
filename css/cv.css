@@ -41,7 +41,7 @@ body {
 .idioma :hover{
     background-color: lightblue;
     color: #000000;
-    transform: translateY(-5);
+    transform: translateY(-5px);
     border-radius: 5px;
 }
 
