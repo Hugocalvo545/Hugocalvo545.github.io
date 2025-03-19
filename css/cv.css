@@ -38,7 +38,7 @@ body {
     flex-direction: right;
 }
 
-.traductor :hover{
+.idioma :hover{
     background-color: lightblue;
     color: #000000;
 }
