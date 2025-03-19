@@ -41,6 +41,8 @@ body {
 .idioma :hover{
     background-color: lightblue;
     color: #000000;
+    transform: translateY(-5);
+    border-radius: 5px;
 }
 
 .espacio {
