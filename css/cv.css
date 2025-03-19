@@ -142,27 +142,6 @@ body {
     background-color: #1abc9c;
     height: 100%;
 }
-
-/*.dots {
-    display: flex;
-    flex-direction: right;
-    gap: 5px;
-    margin-top: 5px;
-}
-
-.dot {
-    margin-top: 5px;
-    width: 10px;
-    height: 10px;
-    border: 1px solid white;
-    border-radius: 50%;
-    background-color: #34495e;
-}
-
-.dot.filled {
-    background-color: #1abc9c;
-}*/
-
 .section ul {
     list-style: none;
     padding: 0;
