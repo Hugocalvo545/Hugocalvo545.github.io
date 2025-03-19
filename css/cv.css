@@ -39,7 +39,8 @@ body {
 }
 
 .traductor :hover{
-    background: ;
+    background-color: lightblue;
+    color: #000000;
 }
 
 .espacio {
@@ -92,7 +93,6 @@ body {
 .project h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
 }
 
 .project p {
@@ -102,7 +102,7 @@ body {
 .project-link {
     display: inline-block;
     background-color: lightseagreen;
-    color: var(--white);
+    color: #fff;
     padding: 0.5rem 1rem;
     text-decoration: none;
     border-radius: 5px;
