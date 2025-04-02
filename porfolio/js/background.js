@@ -22,7 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     maxParticles: 30,
                     connectParticles: false
                 }
-            }
+            },{
+             interactivity: {
+                 events: {
+                     onhover: {
+                         enable: true,
+                         mode: 'repulse'
+                     }
+                 }
+             }
+             }
         ]
     });
 });
