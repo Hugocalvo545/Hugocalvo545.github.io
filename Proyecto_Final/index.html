@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alquiler de Coches Ford</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"> 
+                <div class="traductor">
+                    <b>Alquiler de Coches Ford</b>
+                </div> 
+            </div>
+            <ul class="nav-links">
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Focus.html">Focus Info</a></li>
+                    <li><a href="Kuga.html">Kuga Info</a></li>
+                    <li><a href="Bronco.html">Bronco Info</a></li>
+                    <li><a href="PruebaConducciónFocus.html">Prueba Focus</a></li>
+                    <li><a href="PruebaConducciónKuga.html">Prueba Kuga</a></li>
+                    <li><a href="PruebaConducciónBronco.html">Prueba Bronco</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                </ul>   
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+    <div id="cookie-popup" class="cookie-overlay">
+        <div id="cookie-banner" class="cookie-popup">
+            <div class="cookie-box">
+                <h2>🍪 Política de Cookies</h2>
+                <p>Este sitio usa cookies para mejorar la experiencia. ¿Aceptas el uso de cookies?</p>
+                <a href="cookies.html" target="_blank"><u>Más Información</u></a>
+                <button id="accept-banner">Aceptar</button>
+                <button id="reject-banner">Rechazar</button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section id="inicio" class="parallax">
+            <div class="contenido">
+                <img src="img/logo_ford.png" alt="Alquiler de Coches Ford" class="perfil-image">
+                <h1>Alquiler de Coches Ford</h1>
+                <h1>Alquila el auto Ford perfecto para tu próxima aventura</h1>
+                <a href="Contacto.html" class="cta-button" target="_blank">Reserva Ahora</a>
+            </div>
+        </section>
+        
+        <section id="info">
+            <h2>Acerca de Nosotros</h2>
+            <div class="info-contenido">
+                <div class="info-text">
+                    <p>Bienvenido al Alquiler de Coches Ford, donde ofrecemos una amplia gama de coches de lujo y económicos de Ford. Nuestro equipo de personal capacitado te guiará a través del proceso de seleccionar el vehículo perfecto y asegurar una experiencia de alquiler tranquila.</p>
+                    <p>Nuestro compromiso de proporcionar un excelente servicio al cliente y la satisfacción nos distingue de las demás empresas de alquiler de coches. Con nuestra amplia flota de vehículos, podemos adaptarnos a cualquier presupuesto y preferencias de conducción.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="coches">
+            <h2>Coches Disponibles:</h2>
+            <div class="coches-container">
+                <div class="coche">
+                    <img id="Bronco" src="img/Bronco1.jpg" alt="Ford Bronco">
+                    <h3>Ford Bronco</h3>
+                    <p>Desde 80€/dia</p>
+                    <a href="Bronco.html" class="coche-link" target="_blank">Ver Detalles</a>
+                </div>
+                <div class="coche">
+                    <img id="Kuga" src="img/Kuga1.jpg" alt="Ford Kuga">
+                    <h3>Ford Kuga</h3>
+                    <p>Desde 50€/dia</p>
+                    <a href="Kuga.html" class="coche-link" target="_blank">Ver Detalles</a>
+                </div>
+                
+                <div class="coche">
+                    <img id="Focus" src="img/Focus1.jpg" alt="Ford Focus">
+                    <h3>Ford Focus</h3>
+                    <p>Desde 40€/dia</p>
+                    <a href="Focus.html" class="coche-link" target="_blank">Ver Detalles</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div><a href="cookies.html" target="_blank"><u>Cookies</u></a></div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/company/ford-motor-company/" target="_blank" aria-label="LinkedIn"><u>Linkedin Ford</u><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ford" target="_blank" aria-label="GitHub"><u>Github Ford</u><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/ford?igsh=YjVka2xpYWJ3ZjV2" target="_blank" aria-label="Instagram"><u>Instagram Ford</u><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Alquiler de Coches Ford. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script src="js/FocusCambio.js"></script>
+    <script src="js/KugaCambio.js"></script>
+    <script src="js/BroncoCambio.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/menu.js"></script>
+    
+</body>
+</html>

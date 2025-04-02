@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"> 
+                <div class="traductor">
+                    <b>Alquiler de Coches Ford</b>
+                </div> 
+            </div>
+            <ul class="nav-links">
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Focus.html">Focus Info</a></li>
+                    <li><a href="Kuga.html">Kuga Info</a></li>
+                    <li><a href="Bronco.html">Bronco Info</a></li>
+                    <li><a href="PruebaConducciónFocus.html">Prueba Focus</a></li>
+                    <li><a href="PruebaConducciónKuga.html">Prueba Kuga</a></li>
+                    <li><a href="PruebaConducciónBronco.html">Prueba Bronco</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                </ul>   
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+    <section id="contact">  
+        <form id="contacto-form" action="https://formsubmit.co/hugocalvogarcia123@gmail.com" method="POST" class="contenido">
+            <h2>Contáctanos</h2>
+            <p>Para cualquier consulta, no dudes en contactar con nosotros.</p>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+                <span id="error-nombre" style="color:red;"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo:</label>
+                <input type="text" id="email" name="email">
+                <span id="error-email" style="color:red;"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="opciones">Coche que quieres:</label>
+                <select id="opciones" name="opciones">
+                    <option value="Focus">Focus</option>
+                    <option value="Kuga">Kuga</option>
+                    <option value="Bronco">Bronco</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Alguna duda?</label>
+                <textarea id="mensaje" name="mensaje"></textarea>
+                <span id="error-mensaje" style="color:red;"></span>
+            </div>
+
+            <div class="form-group">
+                <p>Extras:</p>
+                <input type="checkbox" name="check1"> Techo de cristal
+                <input type="checkbox" name="check2"> Aparcamiento Automático
+                <input type="checkbox" name="check3"> Modos extra de conducción
+            </div>
+
+            <div class="form-group">
+                <p>Motor:</p>
+                <input type="radio" name="radio" value="1"> Diesel
+                <input type="radio" name="radio" value="2"> Eléctrico
+                <input type="radio" name="radio" value="3"> Gasolina
+            </div>
+            <button type="submit" class="cta-button">Enviar</button>
+            <button type="reset" class="cta-button">Reset</button>
+
+            <input type="hidden" name="_next" value="">
+        </form>
+
+        <footer>
+            <div><a href="cookies.html" type="blank"><u>Cookies</u></a></div>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/ford-motor-company/" target="_blank" aria-label="LinkedIn"><u>Linkedin Ford</u><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ford" target="_blank" aria-label="GitHub"><u>Github Ford</u><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ford?igsh=YjVka2xpYWJ3ZjV2" target="_blank" aria-label="Instagram"><u>Instagram Ford</u><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 Alquiler de Coches Ford. Todos los derechos reservados.</p>
+        </footer>
+    </section>
+
+    <script src="js/menu.js"></script>
+    <script src="js/CamposObligatorios.js"></script>
+
+</body>
+</html>

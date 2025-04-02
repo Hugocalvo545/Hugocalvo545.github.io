@@ -1,0 +1,465 @@
+body { 
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+}
+
+.logo {
+    display: flex;
+    align-items: left;
+}
+
+.traductor {
+    display: flex;
+    flex-direction: right;
+    justify-content: left;
+    align-items: center;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.espacio {
+    margin-right: 10px;
+}
+
+.bandera{
+    margin-left: 10px;
+    width: 30px;
+    height: 20px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: right;
+    list-style-type: none;
+    justify-content: right;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 4px 0px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    padding: 5px 5px;
+    transition: 0.3s;
+}
+
+.menu li :hover {
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-links li {
+    margin-right: 10px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.idiomas{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    width: 20px;
+    height: 15px;
+}
+
+header {
+    background-color: #003399;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-30deg);
+    transition: left 0.5s ease-in-out;
+}
+
+header:hover::after {
+    left: 100%;
+}
+    /*Header lo de arriba*/
+
+main {
+    margin: 15px;
+}
+
+h1{
+    color: #34495e;
+}
+
+h2 {
+    color: #061b92;
+}
+
+h3 {
+    color: #00177c;
+}
+
+p {
+    color: #061b92;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+}
+
+.parallax {
+    background-image: url('img/logo_ford.png');
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 2px solid #061b92;
+    font-size: 20px;
+}
+
+#coches {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.perfil-image{
+    width: 230.2px;
+    height: 88.3px;
+}
+
+.contenido, .info-contenido, .coches-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.info-text, .coche {
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#coches{
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #061b92;
+}
+
+.coches-container{
+    display: flex;
+    flex-direction: right;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.coche-link{
+    display: inline-block;
+    background-color: #0a8b8b;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.coche-link:hover {
+    background-color: #45b363;
+}
+
+.coche {
+    width: 410px;
+    height: 400px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 5px;
+}
+
+
+#Bronco{
+    width: 400px;
+    height: 225px;
+    border: 2px solid #003399;
+    border-radius: 5px;
+}
+
+#Kuga {
+    width: 400px;
+    height: 225px;
+    border: 2px solid #003399;
+    border-radius: 5px;
+}
+
+#Focus {
+    width: 400px;
+    height: 225px;
+    border: 2px solid #003399;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #003399;
+    padding: 10px;
+    text-align: center;
+}
+
+footer a{
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+footer p {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.social-icons i {
+    color: #fff;
+    margin: 0 5px;
+    font-size: 24px;
+}
+
+.cookie-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cookie-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+}
+
+.cookie-box h2 {
+    color: blue;
+}
+
+.cookie-box button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#accept-banner {
+    background-color: #28a745;
+    color: white;
+}
+
+#reject-banner {
+    background-color: #dc3545;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 1300px) {
+    .coches-container {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .coche {
+        margin-bottom: 20px;
+    }
+
+    .info-contenido {
+        flex-direction: column;
+    }
+
+    .info-text {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    body{
+        padding: 10px;
+    }
+    header nav {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        position: static;
+        right: 0px;
+        height: 450px;
+        margin-top: 10px;
+        background-color: #003399;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .coches-container {
+        align-items: center;
+        width: 80%;
+        flex-direction: column;
+    }
+
+    .contenido h1 {
+        font-size: 1.5em;
+    }
+
+    .cta-button {
+        font-size: 0.9em;
+    }
+
+    #cookie-banner {
+        width: 90%;
+    }
+
+    .burger {
+        margin-top: 10px;
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+}
+
+.nav-active {
+    display: flex;
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.active .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.active .line2 {
+    opacity: 0;
+}
+
+.active .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}

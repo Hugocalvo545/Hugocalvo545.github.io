@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ford Focus - Prueba de Conducción</title>
+    <link rel="stylesheet" href="css/PruebaConducción.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"> 
+                <div class="traductor">
+                    <b>Alquiler de Coches Ford</b>
+                </div> 
+            </div>
+            <ul class="nav-links">
+                <ul class="menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Focus.html">Focus Info</a></li>
+                    <li><a href="Kuga.html">Kuga Info</a></li>
+                    <li><a href="Bronco.html">Bronco Info</a></li>
+                    <li><a href="PruebaConducciónFocus.html">Prueba Focus</a></li>
+                    <li><a href="PruebaConducciónKuga.html">Prueba Kuga</a></li>
+                    <li><a href="PruebaConducciónBronco.html">Prueba Bronco</a></li>
+                    <li><a href="contacto.html">Contáctanos</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                </ul>   
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h1>Ford Focus</h1>
+            <p class="tagline">Experimenta la emoción de conducir</p>
+            <div class="cta-container">
+                <p class="cta-text">¿Listo para sentir la potencia del Ford Focus?</p>
+                <a href="#prueba-conduccion" class="cta-button">
+                    <span class="button-text">Reserva tu prueba de conducción</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="prueba-conduccion">
+            <h2>Prueba de Conducción</h2>
+            <div class="prueba-info">
+                <div class="prueba-detalle">
+                    <i class="fas fa-road"></i>
+                    <h3>Recorrido Personalizado</h3>
+                    <p>Diseña tu ruta ideal para experimentar el Ford Focus en diferentes condiciones.</p>
+                </div>
+                <div class="prueba-detalle">
+                    <i class="fas fa-clock"></i>
+                    <h3>Duración Flexible</h3>
+                    <p>Elige entre pruebas de 30 minutos a 2 horas para conocer a fondo el vehículo.</p>
+                </div>
+                <div class="prueba-detalle">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Asesor Experto</h3>
+                    <p>Te acompañará un especialista para resolver todas tus dudas durante la prueba.</p>
+                </div>
+            </div>
+            <div class="prueba-reserva">
+                <h3>Reserva tu prueba ahora</h3>
+                <form action="php/Reserva_Conduccion.php" id="reserva-form" method="POST">
+                    <input type="text" name="nombre" placeholder="Nombre completo" required>
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                    <input type="tel" name="telefono" placeholder="Teléfono" required>
+                    <input type="date" name="fecha" required>
+                    <select name="hora" required>
+                        <option value="">Selecciona una hora</option>
+                        <option value="10:00">10:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="18:00">18:00</option>
+                    </select>
+                    <button type="submit">Reservar prueba</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div><a href="cookies.html" target="_blank"><u>Cookies</u></a></div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/company/ford-motor-company/" target="_blank" aria-label="LinkedIn"><u>Linkedin Ford</u><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ford" target="_blank" aria-label="GitHub"><u>Github Ford</u><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/ford?igsh=YjVka2xpYWJ3ZjV2" target="_blank" aria-label="Instagram"><u>Instagram Ford</u><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Alquiler de Coches Ford. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/menu.js"></script>
+    
+</body>
+</html>
