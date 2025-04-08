@@ -49,6 +49,11 @@ body {
     margin-left: 10px;
 }
 
+.espacioHT{
+    margin-top:2px;
+    margin-bottom:2px;
+}
+
 .bandera{
     margin-left: 10px;
     width: 30px;
