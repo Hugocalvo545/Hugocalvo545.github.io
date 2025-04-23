@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +10,6 @@ body {
     line-height: 1.6;
 }
 
-/* Contenedor principal */
 .cv-container {
     display: flex;
     flex-direction: column;
@@ -22,7 +20,6 @@ body {
     position: relative;
 }
 
-/* Columnas */
 .left-column {
     background: #2c3e50;
     color: #fff;
@@ -33,7 +30,6 @@ body {
     padding: 20px;
 }
 
-/* Botón de descarga mejorado */
 .descarga {
     position: absolute;
     top: 15px;
@@ -56,7 +52,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Sección Traductor */
 .traductor {
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +79,6 @@ body {
     object-fit: cover;
 }
 
-/* Imagen de perfil responsive */
 .profile {
     width: 100%;
     max-width: 200px;
@@ -94,7 +88,6 @@ body {
     margin: 0 auto 20px;
 }
 
-/* Contacto */
 .contact-info {
     margin: 20px 0;
 }
@@ -111,7 +104,6 @@ body {
     text-align: center;
 }
 
-/* Secciones generales */
 .section {
     margin: 20px 0;
     padding: 15px;
@@ -127,7 +119,6 @@ body {
     color: #fff;
 }
 
-/* Proyectos */
 .projects-container {
     display: grid;
     gap: 1.5rem;
@@ -151,7 +142,6 @@ body {
     margin-top: 10px;
 }
 
-/* Media Queries */
 @media (min-width: 768px) {
     .cv-container {
         flex-direction: row;
@@ -229,14 +219,12 @@ body {
     }
 }
 
-/* Mejoras de accesibilidad */
 a:focus,
 button:focus {
     outline: 2px solid #2c3e50;
     outline-offset: 2px;
 }
 
-/* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
