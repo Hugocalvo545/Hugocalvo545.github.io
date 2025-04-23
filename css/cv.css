@@ -38,7 +38,11 @@ body {
     flex-direction: right;
 }
 
-.descarga {
+.descarga{
+    position: right;
+}
+
+.descarga button{
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -50,7 +54,6 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
-    position: right;
   }
 
 .idioma :hover{
