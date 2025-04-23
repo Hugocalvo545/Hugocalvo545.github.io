@@ -191,6 +191,49 @@ body {
 .right-column p {
     margin-bottom: 10px;
 }
+
+@media (max-width: 839px) {
+    .descarga button {
+        width: 40px; 
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        overflow: hidden;
+        position: fixed;
+        right: 15px;
+        top: 15px;
+    }
+
+    .descarga button::before {
+        content: "↓";
+        font-size: 24px;
+        line-height: 40px;
+        display: block;
+        text-align: center;
+    }
+
+    .descarga button span {
+        display: none;
+    }
+}
+
+@media (min-width: 840px) {
+    .descarga button {
+        width: auto;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .descarga button::before {
+        content: "";
+        display: none;
+    }
+
+    .descarga button span {
+        display: inline;
+    }
+}
+
 @media (min-width: 768px) {
     .cv-container {
         flex-direction: row;
