@@ -194,7 +194,7 @@ body {
 }
 
 @media (max-width: 839px) {
-    .descarga button {
+    .descarga a {
         width: 20px; 
         height: 20px;
         padding: 0;
@@ -204,7 +204,7 @@ body {
         top: 15px;
     }
 
-    .descarga button::before {
+    .descarga a::before {
         content: "↓";
         font-size: 24px;
         line-height: 40px;
@@ -212,24 +212,24 @@ body {
         text-align: center;
     }
 
-    .descarga button span {
+    .descarga a span {
         display: none;
     }
 }
 
 @media (min-width: 840px) {
-    .descarga button {
+    .descarga a {
         width: auto;
         padding: 10px 20px;
         border-radius: 5px;
     }
 
-    .descarga button::before {
+    .descarga a::before {
         content: "";
         display: none;
     }
 
-    .descarga button span {
+    .descarga a span {
         display: inline;
     }
 }
@@ -288,14 +288,14 @@ body {
         box-shadow: none;
     }
     
-    .descarga button {
+    .descarga a {
         width: 35px;
         height: 35px;
         right: 10px;
         top: 10px;
     }
     
-    .descarga button::before {
+    .descarga a::before {
         font-size: 20px;
         line-height: 35px;
     }
