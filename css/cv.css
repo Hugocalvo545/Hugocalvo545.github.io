@@ -39,7 +39,7 @@ body {
     flex-direction: right;
 }
 
-.descarga button {
+.descarga a {
     position: absolute;
     right: 20px;
     background-color: #4CAF50;
