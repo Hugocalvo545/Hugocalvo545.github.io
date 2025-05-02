@@ -39,7 +39,7 @@ body {
     flex-direction: right;
 }
 
-.descarga a {
+.descarga button {
     position: absolute;
     right: 20px;
     background-color: #4CAF50;
@@ -194,7 +194,7 @@ body {
 }
 
 @media (max-width: 839px) {
-    .descarga a {
+    .descarga button {
         width: 20px; 
         height: 20px;
         padding: 0;
@@ -204,7 +204,7 @@ body {
         top: 15px;
     }
 
-    .descarga a::before {
+    .descarga button::before {
         content: "↓";
         font-size: 24px;
         line-height: 40px;
@@ -212,24 +212,24 @@ body {
         text-align: center;
     }
 
-    .descarga a span {
+    .descarga button span {
         display: none;
     }
 }
 
 @media (min-width: 840px) {
-    .descarga a {
+    .descarga button {
         width: auto;
         padding: 10px 20px;
         border-radius: 5px;
     }
 
-    .descarga a::before {
+    .descarga button::before {
         content: "";
         display: none;
     }
 
-    .descarga a span {
+    .descarga button span {
         display: inline;
     }
 }
@@ -288,14 +288,14 @@ body {
         box-shadow: none;
     }
     
-    .descarga a {
+    .descarga button {
         width: 35px;
         height: 35px;
         right: 10px;
         top: 10px;
     }
     
-    .descarga a::before {
+    .descarga button::before {
         font-size: 20px;
         line-height: 35px;
     }
