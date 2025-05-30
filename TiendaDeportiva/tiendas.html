@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Nuestras Tiendas Físicas | DeporteTotal</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/estilo.css">
+  <style>
+
+    gmpx-store-locator {
+      width: 1400px;
+      height: 550px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin: 2rem auto;
+    }
+  </style>
+  <!-- Google Maps Extended Component Library -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+  <script>
+    // Configuración de tus tiendas
+    const CONFIGURATION = {
+      "locations": [
+        {"title":"3º","address1":"3º","address2":"Gran Vía, 45, Centro, 28013 Madrid, España","coords":{"lat":40.42084644450892,"lng":-3.7073319190143583},"placeId":"ChIJI2uQj3woQg0RaNw3r5bIZcc"},
+        {"title":"C. de Luis de Salazar, 9","address1":"C. de Luis de Salazar","address2":"9, Chamartín, 28002 Madrid, España","coords":{"lat":40.44769630684048,"lng":-3.6655822852500863},"placeId":"ChIJ1cELutMoQg0R7zapcgBPrXw"},
+        {"title":"Las Rozas Village","address1":"C. Juan Ramón Jiménez","address2":"3, 28232 Las Rozas de Madrid, Madrid, España","coords":{"lat":40.518041230246425,"lng":-3.9011149374343868},"placeId":"ChIJHVR9LSyDQQ0R9wAC4MKnAL0"},
+        {"title":"Calle de la Paz","address1":"C/ de la Pau","address2":"Ciutat Vella, València, Valencia, España","coords":{"lat":39.473306645440886,"lng":-0.3727492300247204},"placeId":"EjZDLyBkZSBsYSBQYXUsIENpdXRhdCBWZWxsYSwgVmFsw6huY2lhLCBWYWxlbmNpYSwgU3BhaW4iLiosChQKEgmVhW_7skhgDRFQcinLyXD72RIUChIJb7Dv8ExPYA0ROR1_HwFRo7Q"},
+        {"title":"Paseo de la Explanada de España","address1":"Passeig Esplanada d\u0027Espanya","address2":"Alacant, Alicante, España","coords":{"lat":38.34342250289018,"lng":-0.48316839140166934},"placeId":"EjVQYXNzZWlnIEVzcGxhbmFkYSBkJ0VzcGFueWEsIEFsYWNhbnQsIEFsaWNhbnRlLCBTcGFpbiIuKiwKFAoSCceMrWGxN2INEUj1C76fUG2_EhQKEglLq5072jViDRHjgQuscqh9HQ"},
+        {"title":"C. Mlle. Ribera, 17","address1":"C. Mlle. Ribera","address2":"17, Nueva Andalucía, 29660 Marbella, Málaga, España","coords":{"lat":36.48669097779623,"lng":-4.953382264418034},"placeId":"EkVDLiBNbGxlLiBSaWJlcmEsIDE3LCBOdWV2YSBBbmRhbHVjw61hLCAyOTY2MCBNYXJiZWxsYSwgTcOhbGFnYSwgU3BhaW4iMBIuChQKEgmzYD1nwClzDRGF7Vg_ixlh0RARKhQKEglrnhZnwClzDRE4ydj-Mw_Vzg"},
+        {"title":"Gran Via de les Corts Catalanes","address1":"Gran Via de les Corts Catalanes","address2":"Barcelona, España","coords":{"lat":41.394079371235684,"lng":2.1746418797622757},"placeId":"EjFHcmFuIFZpYSBkZSBsZXMgQ29ydHMgQ2F0YWxhbmVzLCBCYXJjZWxvbmEsIFNwYWluIi4qLAoUChIJb29Epe-ipBIRxno88XYLRoISFAoSCeUwjnEWmKQSEQpmR089-7BE"},
+        {"title":"Mataporquera","address1":"39410 Mataporquera","address2":"Cantabria, España","coords":{"lat":42.874796805703575,"lng":-4.16410102593384},"placeId":"ChIJZXcN3qTuSA0RauVDe9hyTKI"}
+      ],
+      "mapOptions": {"center":{"lat":40.416775,"lng":-3.703790},"fullscreenControl":true,"mapTypeControl":true,"streetViewControl":true,"zoom":5,"zoomControl":true,"maxZoom":17,"mapId":""},
+      "mapsApiKey": "AIzaSyBjDhqZSqMQtjYHrxKGY67WzngpP7kDVfE",
+      "capabilities": {"input":true,"autocomplete":true,"directions":false,"distanceMatrix":true,"details":false,"actions":false}
+    };
+    document.addEventListener('DOMContentLoaded', async () => {
+      await customElements.whenDefined('gmpx-store-locator');
+      const locator = document.querySelector('gmpx-store-locator');
+      locator.configureFromQuickBuilder(CONFIGURATION);
+    });
+  </script>
+</head>
+<body>
+  <header class="header-principal">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">👟⚽</span>
+                <span class="logo-text">
+                  <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+                </span>
+              </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="carrito-icono">
+          <img src="img/carrito.jpg" alt="Carrito">
+          <span id="carrito-contador">0</span>
+        </div>
+          <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+            <img src="img/user.png" alt="Usuario" />
+          </a>
+      </div>
+        
+        <!-- Modal Carrito -->
+        <div id="carrito-modal" class="carrito-modal">
+          <div class="carrito-contenido">
+            <span class="cerrar-carrito">&times;</span>
+            <h2>Tu carrito</h2>
+            <div id="carrito-lista"></div>
+            <div class="cart-totals">
+              <div class="cart-total-line">
+                <span>Subtotal:</span>
+                <span id="carrito-subtotal">0,00 €</span>
+              </div>
+              <div class="cart-total-line">
+                <span>IVA (21%):</span>
+                <span id="carrito-iva">0,00 €</span>
+              </div>
+              <div class="cart-total-line total">
+                <span>Total:</span>
+                <span id="carrito-total">0,00 €</span>
+              </div>
+            </div>
+            <div class="cart-actions">
+              <button id="vaciar-carrito">Vaciar carrito</button>
+              <button id="tramitar-pedido">Tramitar pedido</button>
+            </div>
+          </div>
+        </div>
+  </header>
+
+   <main class="contenedor">
+    <section class="tiendas-section">
+      <h1>Nuestras Tiendas Físicas</h1>
+      <p class="subtitulo">Visítanos en cualquiera de nuestras ubicaciones</p>
+      <gmpx-api-loader key="AIzaSyBjDhqZSqMQtjYHrxKGY67WzngpP7kDVfE" solution-channel="GMP_QB_locatorplus_v11_cABD"></gmpx-api-loader>
+      <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Sobre DeporteTotal</h4>
+        <p>Tu tienda online de confianza para ropa, calzado y accesorios deportivos. Envíos rápidos, atención personalizada y las mejores marcas del mercado.</p>
+      </div>
+      <div>
+        <h4>Atención al cliente</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="devoluciones.html">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <div class="redes">
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="img/facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://github.com/HugoYNicolas" target="_blank">
+            <img src="img/github.webp" alt="Github"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 DeporteTotal. Todos los derechos reservados.
+    </div>
+  </footer>
+  <script src="js/tienda.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+</body>
+</html>

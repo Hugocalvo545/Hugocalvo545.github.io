@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ofertas y Promociones | DeporteTotal</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header class="header-principal">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">👟⚽</span>
+                <span class="logo-text">
+                  <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+                </span>
+              </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="carrito-icono">
+          <img src="img/carrito.jpg" alt="Carrito">
+          <span id="carrito-contador">0</span>
+        </div>
+          <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+            <img src="img/user.png" alt="Usuario" />
+          </a>
+      </div>
+        <!-- Modal Carrito -->
+        <div id="carrito-modal" class="carrito-modal">
+          <div class="carrito-contenido">
+            <span class="cerrar-carrito">&times;</span>
+            <h2>Tu carrito</h2>
+            <div id="carrito-lista"></div>
+            <div class="cart-totals">
+              <div class="cart-total-line">
+                <span>Subtotal:</span>
+                <span id="carrito-subtotal">0,00 €</span>
+              </div>
+              <div class="cart-total-line">
+                <span>IVA (21%):</span>
+                <span id="carrito-iva">0,00 €</span>
+              </div>
+              <div class="cart-total-line total">
+                <span>Total:</span>
+                <span id="carrito-total">0,00 €</span>
+              </div>
+            </div>
+            <div class="cart-actions">
+              <button id="vaciar-carrito">Vaciar carrito</button>
+              <button id="tramitar-pedido">Tramitar pedido</button>
+            </div>
+          </div>
+        </div>
+  </header>
+
+  <main>
+    <section class="ofertas-hero">
+      <h1>Ofertas y promociones exclusivas</h1>
+      <p>Aprovecha descuentos por tiempo limitado, packs especiales y lanzamientos exclusivos solo en DeporteTotal.</p>
+    </section>
+    <section class="ofertas-grid">
+
+      <article class="oferta-card">
+        <img src="img/botasblancasadidas.jpg" alt="ZBota adidas Predator Accuracy+ FG">
+        <div class="oferta-info">
+          <h3>ZBota adidas Predator Accuracy+ FG</h3>
+          <p class="precio-original">299,99 €</p>
+          <p class="precio-oferta">59,99 €</p>
+          <span class="etiqueta-oferta">-80%</span>
+          <p class="descripcion">La bota adidas Predator Accuracy+ FG combina diseño sin cordones, ajuste preciso y materiales sintéticos de alta gama para un rendimiento óptimo en campos de hierba natural.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('ZBota adidas Predator Accuracy+ FG', 59.99, 'img/botasblancasadidas.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/balonnike.jpg" alt="Balón Nike Premier League Academy">
+        <div class="oferta-info">
+          <h3>Balón Nike Premier League Academy</h3>
+          <p class="precio-original">27,99 €</p>
+          <p class="precio-oferta">5,99 €</p>
+          <span class="etiqueta-oferta">-79%</span>
+          <p class="descripcion">El balón Premier League Academy ofrece una rotación uniforme gracias a sus ranuras innovadoras y estampados de alto contraste para máxima visibilidad y control en el juego.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Balón Nike Premier League Academy', 5.99, 'img/balonnike.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/camisetaarsenal.jpg" alt="Camiseta adidas Arsenal FC Primera Equipación Authentic 2023-2024">
+        <div class="oferta-info">
+          <h3>Camiseta adidas Arsenal FC Primera Equipación Authentic 2023-2024</h3>
+          <p class="precio-original">149,99 €</p>
+          <p class="precio-oferta">29,99 €</p>
+          <span class="etiqueta-oferta">-80%</span>
+          <p class="descripcion">La camiseta Arsenal 24/25 revive el estilo de los 90 con cuello de polo y tecnología HEAT.RDY para frescura y rendimiento en el campo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Camiseta adidas Arsenal FC Primera Equipación Authentic 2023-2024', 29.99, 'img/camisetaarsenal.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/camisetanike.jpg" alt="Camiseta Nike Dri-Fit Academy m/c">
+        <div class="oferta-info">
+          <h3>Camiseta Nike Dri-Fit Academy m/c</h3>
+          <p class="precio-original">27,99 €</p>
+          <p class="precio-oferta">22,99 €</p>
+          <span class="etiqueta-oferta">-18%</span>
+          <p class="descripcion">La parte de arriba Nike Academy combina comodidad y tecnología de capilarización del sudor para entrenar con frescura y estilo desde el primer minuto.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Camiseta Nike Dri-Fit Academy m/c', 22.99, 'img/camisetanike.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/allstarjordan.jpg" alt="Camiseta Jordan NBA All-Star Weekend 2025 Team 3">
+        <div class="oferta-info">
+          <h3>Camiseta Jordan NBA All-Star Weekend 2025 Team 3</h3>
+          <p class="precio-original">99,99 €</p>
+          <p class="precio-oferta">79,99 €</p>
+          <span class="etiqueta-oferta">-20%</span>
+          <p class="descripcion">La camiseta All-Star Weekend 2025 rinde homenaje a San Francisco con detalles del icónico teleférico, uniendo estilo y tradición como símbolo de ambos lados de la Bahía.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Camiseta Jordan NBA All-Star Weekend 2025 Team 3', 79.99, 'img/allstarjordan.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/botas2nike.jpg" alt="Bota Nike Phantom Luna II Elite FG">
+        <div class="oferta-info">
+          <h3>Bota Nike Phantom Luna II Elite FG</h3>
+          <p class="precio-original">279,99 €</p>
+          <p class="precio-oferta">139,99 €</p>
+          <span class="etiqueta-oferta">-50%</span>
+          <p class="descripcion">La bota Nike Phantom Luna II Elite FG ofrece control y precisión en cada jugada, con diseño de hilo y calcetín para ajuste perfecto en campos de hierba natural, en un vibrante color Sunset Pulse-Black.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Bota Nike Phantom Luna II Elite FG', 139.99, 'img/botas2nike.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/pantalonesjordan.jpg" alt="Pantalón largo Jordan Dri-Fit Sport Woven">
+        <div class="oferta-info">
+          <h3>Pantalón largo Jordan Dri-Fit Sport Woven</h3>
+          <p class="precio-original">59,99 €</p>
+          <p class="precio-oferta">41,99 €</p>
+          <span class="etiqueta-oferta">-30%</span>
+          <p class="descripcion">El pantalón Dri-FIT Sport Woven combina libertad de movimiento y estilo, con paneles Knit en las pantorrillas y costuras Wings para un look moderno y funcional.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Pantalón largo Jordan Dri-Fit Sport Woven', 41.99, 'img/pantalonesjordan.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/bandasnike.jpg" alt="Cinta Nike Skinny Pack (8 Unidades)">
+        <div class="oferta-info">
+          <h3>Cinta Nike Skinny Pack (8 Unidades)</h3>
+          <p class="precio-original">22,99 €</p>
+          <p class="precio-oferta">13,79 €</p>
+          <span class="etiqueta-oferta">-30%</span>
+          <p class="descripcion">Bandas Nike. Banda elástica SKINNY para un ajuste cómodo y fijo. Las cintas agarran tu cabello y mantiene la banda en su lugar.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Cinta Nike Skinny Pack (8 Unidades)', 13.79, 'img/bandasnike.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="oferta-card">
+        <img src="img/sudaderapuma.jpg" alt="Sudadera Puma Essentials Big Logo">
+        <div class="oferta-info">
+          <h3>Sudadera Puma Essentials Big Logo</h3>
+          <p class="precio-original">50,99 €</p>
+          <p class="precio-oferta">32,99 €</p>
+          <span class="etiqueta-oferta">-35%</span>
+          <p class="descripcion">Sudadera Essentials Big Logo con capucha de Puma. Cuenta con con cordón en la capucha para ajustarlo al gusto. Puños y dobladillo acanalados. Bolsillo canguro para guardar tus pertenencias.
+        </p>
+          <button class="btn-primario" onclick="agregarAlCarrito('Sudadera Puma Essentials Big Logo', 13.79, 'img/sudaderapuma.jpg')">Añadir al carrito</button>
+        </div>
+      </article>
+      
+      <!-- Más ofertas... -->
+
+    </section>
+    <section class="banner-promocional">
+      <h2>¡Envío gratis en pedidos superiores a 60€!</h2>
+      <a href="productos.html" class="btn-cta">Ver catálogo completo</a>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Sobre DeporteTotal</h4>
+        <p>Tu tienda online de confianza para ropa, calzado y accesorios deportivos. Envíos rápidos, atención personalizada y las mejores marcas del mercado.</p>
+      </div>
+      <div>
+        <h4>Atención al cliente</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="devoluciones.html">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <div class="redes">
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="img/facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://github.com/HugoYNicolas" target="_blank">
+            <img src="img/github.webp" alt="Github"></a>
+        </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 DeporteTotal. Todos los derechos reservados.
+    </div>
+  </footer>
+  
+  <script src="js/tienda.js"></script>
+  <script src="js/filtro.js"></script>
+
+  
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+</body>
+</html>
