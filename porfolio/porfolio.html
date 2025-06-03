@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js"></script>
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -17,9 +18,9 @@
                 <div class="traductor">
                     <b>HCG</b>
                     <div class="espacio"></div>
-                    <i>Inglés:</i><a href="porfolio_eng.html" target="_blank"><img src="img/English.svg" alt="English" class="bandera"></a>
+                    <i>Inglés:</i><a href="porfolio_eng.html"><img src="img/English.svg" alt="English" class="bandera"></a>
                     <div class="espacio"></div>
-                    <i>Español:</i><a href="porfolio.html" target="_blank"><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
+                    <i>Español:</i><a href="porfolio.html"><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
                 </div> 
             </div>
             <ul class="nav-links">
@@ -43,6 +44,7 @@
                 <img src="img/porfile.jpg" alt="Hugo Calvo García" class="profile-image">
                 <h1>Hugo Calvo García</h1>
                 <h2>Técnico superior en Desarrollo  de Aplicaciones Multiplataforma</h2>
+                <p><span id="typed"></span></p>
                 <a href="#contact" class="cta-button">Contáctame</a>
             </div>
         </section>
@@ -68,7 +70,7 @@
                 <div class="skill">
                     <i class="fab fa-html5"></i>
                     <h3>HTML</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+                    <div class="progress-bar"><div class="progress" style="width: 99%;"></div></div>
                 </div>
                 <div class="skill">
                     <i class="fab fa-css3-alt"></i>
@@ -79,6 +81,61 @@
                     <i class="fab fa-js"></i>
                     <h3>Base de Datos</h3>
                     <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>Phython</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>Php</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 87%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>JavaScript</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>SQL</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>XML</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 93%;"></div></div>
+                </div>
+                <div class="skill"> 
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>Inteligencia Artificial</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>Odoo</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>Android</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>Cisco</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>Excel</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>Word</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
                 </div>
             </div>
         </section>
@@ -94,9 +151,10 @@
                 </div>
                 <div class="project">
                     <div class="project-info">
-                        <h3>Este porfolio</h3>
-                        <p>Este proyecto es este porfolio, ya que ha sido creado por mi. Tecnologías utilizadas: Html, Css, Javascript y php.</p>
-                        <a href="porfolio.html" target="_blank" class="project-link">Ver más</a>
+                        <h3>Mi Proyecto Final (Html)</h3>
+                        <p>Este proyecto es una página web sobre una tienda deportiva. Tecnologías utilizadas: Html, Css, Javascript y php.</p>
+                        <a href="TiendaDeportiva/index.html" target="_blank" class="project-link">Ver más</a>
+                        <a href="TiendaDeportiva/img/PresentacionDigiDeporte.mkv" target="_blank" class="project-link">Presentación</a>
                     </div>
                 </div>
                 <div class="project">
@@ -116,7 +174,8 @@
                 <input type="email" name="email" placeholder="Email" required>
                 <textarea name="mensaje" placeholder="Mensaje" required></textarea>
                 <button type="submit">Enviar</button>
-                <input type="hidden" name="_next" value="">
+                <input type="hidden" name="_next" value="https://hugoynicolas.github.io/contacto.html">
+                <input type="hidden" name="_captcha" value="false">
             </form>
         </section>
     </main>
@@ -127,11 +186,11 @@
             <a href="https://github.com/Hugocalvo545" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>&copy; 2024 Hugo Calvo García. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Hugo Calvo García. Todos los derechos reservados.</p>
     </footer>
 
     <script src="js/menu.js"></script>
     <script src="js/background.js"></script>
-    <script src="js/porfolio_Hugo.js"></script>
+    <script src="js/typed.js"></script>
 </body>
 </html>

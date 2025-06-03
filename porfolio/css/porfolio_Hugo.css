@@ -1,7 +1,8 @@
 
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #23dddd;
+    --primary-color: #0863da;
+    --h2-color:#126f72;
+    --secondary-color: #00aaaa;
     --accent-color: #e74c3c;
     --text-color: #34495e;
     --background-color: #ecf0f1;
@@ -36,7 +37,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    background: linear-gradient(45deg, #a7a7a7, #0099ff);
 }
 
 main {
@@ -89,7 +90,7 @@ nav {
 /* Inicio */
 #home {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('path/to/your/background-image.jpg');
+    background-image: linear-gradient(rgba(34, 3, 212, 0.5), rgba(4, 89, 168, 0.5)), url('path/to/your/background-image.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -150,7 +151,7 @@ h2 {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2.5rem;
-    color: var(--primary-color);
+    color: var(--h2-color);
     font-family: 'Poppins', sans-serif;
 }
 
