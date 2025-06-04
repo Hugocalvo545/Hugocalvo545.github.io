@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hugo Calvo García</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="css/porfolio_Hugo.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js"></script>
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -17,9 +19,9 @@
                 <div class="traductor">
                     <b>HCG</b>
                     <div class="espacio"></div>
-                    <i>Inglés:</i><a href="porfolio_eng.html"><img src="img/English.svg" alt="English" class="bandera"></a>
+                    <i>English:</i><a href="porfolio_eng.html"><img src="img/English.svg" alt="English" class="bandera"></a>
                     <div class="espacio"></div>
-                    <i>Español:</i><a href="porfolio.html"><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
+                    <i>Spanish:</i><a href="porfolio.html"><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
                 </div> 
             </div>
             <ul class="nav-links">
@@ -36,15 +38,18 @@
             </div>
         </nav>
     </header>
+
     <main>
         <section id="home" class="parallax">
             <div class="content">
                 <img src="img/porfile.jpg" alt="Hugo Calvo García" class="profile-image">
                 <h1>Hugo Calvo García</h1>
                 <h2>Senior Technician in Multiplatform Application Development</h2>
+                <p><span id="typed"></span></p>
                 <a href="#contact" class="cta-button">Contact Me</a>
             </div>
         </section>
+
         <section id="about">
             <h2>About Me</h2>
             <div class="about-content">
@@ -54,6 +59,7 @@
                 </div>
             </div>
         </section>
+
         <section id="skills">
             <h2>Skills</h2>
             <div class="skills-container">
@@ -65,7 +71,7 @@
                 <div class="skill">
                     <i class="fab fa-html5"></i>
                     <h3>HTML</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+                    <div class="progress-bar"><div class="progress" style="width: 99%;"></div></div>
                 </div>
                 <div class="skill">
                     <i class="fab fa-css3-alt"></i>
@@ -77,6 +83,61 @@
                     <h3>Database</h3>
                     <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
                 </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>Python</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>PHP</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 87%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>JavaScript</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>SQL</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>XML</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 93%;"></div></div>
+                </div>
+                <div class="skill"> 
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>Artificial Intelligence</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-js"></i>
+                    <h3>Odoo</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <h3>Android</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>Cisco</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>Excel</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <h3>Word</h3>
+                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+                </div>
             </div>
         </section>
         <section id="projects">
@@ -85,22 +146,26 @@
                 <div class="project">
                     <div class="project-info">
                         <h3>First Year University Final Project</h3>
-                        <p>This is a project where I created a real estate agency. Technologies used: Java.</p>
-                        <a href="https://codeboard.io/projects/420011" target="_blank" class="project-link">See More</a>
+                        <img src="img/Proyecto_Java.png" alt="Demo Real Estate">
+                        <p>This is a project in which I created a real estate agency. Technologies used: Java. (To view the demo, once you click, compile and then click run for it to work. It will appear in the terminal)</p>
+                        <a href="https://codeboard.io/projects/420011" target="_blank" class="project-link">View demo</a>
                     </div>
                 </div>
                 <div class="project">
                     <div class="project-info">
-                        <h3>This Portfolio</h3>
-                        <p>This project is this portfolio, as it was created by me. Technologies used: HTML, CSS, JavaScript, and PHP.</p>
-                        <a href="porfolio.html" target="_blank" class="project-link">See More</a>
+                        <h3>My Final Project (Html)</h3>
+                        <img src="img/Proyecto_Tienda.png" alt="Demo DigiDeporte">
+                        <p>This project is a web page about a sports store. Technologies used: Html, Css, Javascript and php.</p>
+                        <a href="../TiendaDeportiva/index.html" target="_blank" class="project-link">View demo</a>
+                        <a href="../TiendaDeportiva/img/PresentacionDigiDeporte.mkv" target="_blank" class="project-link">Presentation</a>
                     </div>
                 </div>
                 <div class="project">
                     <div class="project-info">
-                        <h3>Final Project</h3>
-                        <p>This was my final HTML project. It is about a simulation of a renting page. Technologies used: HTML, CSS, and JavaScript.</p>
-                        <a href="../Proyecto_Final/index.html" class="project-link">See More</a>
+                        <h3>Android Studio App</h3>
+                        <img src="img/Proyecto_Android.png" alt="Demo Android">
+                        <p>An Android application created by me. It was made using the Android Studio program. Technologies used: Java and XML</p>
+                        <a href="https://appetize.io/app/b_yxxqfclwreoxozlctguxijfile" target="_blank" class="project-link">Play Demo</a>
                     </div>
                 </div>
             </div>
@@ -108,24 +173,27 @@
         <section id="contact">
             <h2>Contact</h2>
             <form action="https://formsubmit.co/hugocalvogarcia123@gmail.com" method="POST" id="contact-form">
-                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="nombre" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Message" required></textarea>
+                <textarea name="mensaje" placeholder="Message" required></textarea>
                 <button type="submit">Send</button>
-                <input type="hidden" name="_next" value="">
+                <input type="hidden" name="_next" value="https://hugocalvo545.github.io/porfolio/porfolio.html#contact">
+                <input type="hidden" name="_captcha" value="false">
             </form>
         </section>
     </main>
+
     <footer>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/Hugocalvo545" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>© 2025 Hugo Calvo García. All rights reserved.</p>
+        <p>&copy; 2025 Hugo Calvo García. All rights reserved.</p>
     </footer>
+
     <script src="js/menu.js"></script>
     <script src="js/background.js"></script>
-    <script src="js/typed.js"></script>
+    <script src="js/typed_Eng.js"></script>
 </body>
 </html>
