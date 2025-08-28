@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorpresa de Cumpleaños ✨</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>✨ Una sorpresa para ti ✨</header>
+  <p class="subtitulo">Elige nuestro refugio romántico en Barcelona 💕</p>
+
+  <!-- Contador de corazones -->
+  <div id="contador-corazones">❤ 0</div>
+
+  <!-- Botón general para Booking -->
+  <div class="buscar-booking">
+    <a href="https://www.booking.com/city/es/barcelona.es.html" target="_blank" class="boton secundario">
+      🔍 Buscar más hoteles en Booking
+    </a>
+  </div>
+
+  <section class="contenedor-hoteles">
+    <div class="hotel" onclick="mostrarModal('Hotel Barcelona Princess','Princess.jpg','https://www.hotelbarcelonaprincess.com/es')">
+      <img src="Princess.jpg" alt="Hotel Barcelona Princess">
+      <h3>Hotel Barcelona Princess</h3>
+      <p>Moderno 4⭐ en Avenida Diagonal, con dos piscinas, vistas espectaculares y a 10 minutos de la playa.</p>
+      <a href="#" class="boton">Ver más</a>
+    </div>
+
+    <div class="hotel" onclick="mostrarModal('Best 4 Barcelona','Best 4 Barcelona.jpeg=s1900','https://www.besthotels.es/destinos-y-hoteles/best-4-barcelona.html')">
+      <img src="Best 4 Barcelona.jpeg=s1900" alt="Best 4 Barcelona">
+      <h3>Best 4 Barcelona</h3>
+      <p>Hotel práctico y cercano a la playa. Funcional, moderno y con buena relación calidad-precio.</p>
+      <a href="#" class="boton">Ver más</a>
+    </div>
+
+    <div class="hotel" onclick="mostrarModal('NH Sants Barcelona','NH Sants Barcelona.webp','https://www.nh-hotels.com/en/hotel/nh-sants-barcelona')">
+      <img src="NH Sants Barcelona.webp" alt="NH Sants Barcelona">
+      <h3>NH Sants Barcelona</h3>
+      <p>Ubicado junto a la estación de Sants, ideal para moverse por la ciudad. Habitaciones modernas, gimnasio y restaurante.</p>
+      <a href="#" class="boton">Ver más</a>
+    </div>
+
+    <div class="hotel" onclick="mostrarModal('Hotel Condal Barcelona','Hotel Condal Barcelona.jpg','https://www.hotelcondal.es/es/reserva-hotel-barcelona?checkin=2025-08-29&checkout=2025-09-01&rooms=1&room1_adults=2&cpromo=')">
+      <img src="Hotel Condal Barcelona.jpg" alt="Hotel Condal Barcelona">
+      <h3>Hotel Condal Barcelona</h3>
+      <p>Hotel sencillo en pleno centro histórico, al lado de Las Ramblas. Económico y con ambiente local.</p>
+      <a href="#" class="boton">Ver más</a>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-contenido">
+      <img id="modalImg" src="" alt="Hotel" class="modal-img">
+      <h2 id="modalTitulo">Hotel</h2>
+      <p>¿Quieres que este sea nuestro destino romántico? ❤️</p>
+      <div class="modal-botones">
+        <a id="linkHotel" href="#" target="_blank" class="boton">Ver información</a>
+        <button onclick="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
