@@ -250,10 +250,11 @@ header {
     width: 90%;
     max-width: 400px;
     min-width: 250px;
+    animation: flotar-tablet 6s linear infinite !important;
   }
   @keyframes flotar-tablet {
     0%   { transform: translateY(100px) scale(1); opacity: 1; }
-    100% { transform: translateY(-800px) scale(0.6); opacity: 0.8; }
+    100% { transform: translateY(-1500px) scale(0.6); opacity: 0.8; }
   }
 }
 
@@ -264,9 +265,10 @@ header {
   }
   @keyframes flotar-movil {
     0%   { transform: translateY(100px) scale(1); opacity: 1; }
-    100% { transform: translateY(-800px) scale(0.6); opacity: 0.8; }
+    100% { transform: translateY(-2000px) scale(0.6); opacity: 0.8; }
   }
 }
+
 
 
 
