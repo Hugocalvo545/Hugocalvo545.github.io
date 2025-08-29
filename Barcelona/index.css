@@ -253,6 +253,18 @@ header {
   }
 }
 
+@media (max-width: 900px) {
+  .corazon {
+    font-size: 14px !important;
+    animation: flotar-movil 6s linear infinite !important;
+  }
+  @keyframes flotar-movil {
+    0%   { transform: translateY(100vh) scale(1); opacity: 1; }
+    100% { transform: translateY(-80vh) scale(0.6); opacity: 0.8; }
+  }
+}
+
+
 
 
 
