@@ -24,7 +24,7 @@ function crearCorazon(){
 
   const corazon = document.createElement("div");
   corazon.classList.add("corazon");
-  corazon.innerHTML = "❤";
+  corazon.innerHTML = "&#x2764;&#xFE0E;";
 
   // Posición y tamaño aleatorios
   corazon.style.left = Math.random() * window.innerWidth + "px";
@@ -38,7 +38,7 @@ function crearCorazon(){
 
   // AUMENTAMOS SIEMPRE el contador total
   totalCorazones++;
-  document.getElementById("contador-corazones").innerText = "❤ " + totalCorazones;
+  document.getElementById("contador-corazones").innerText = "&#x2764;&#xFE0E; " + totalCorazones;
 
   // Eliminarlo al terminar la animación
   corazon.addEventListener("animationend", () => {
@@ -51,5 +51,6 @@ crearCorazon();
 
 // Seguir lanzando corazones cada 800ms
 setInterval(crearCorazon, 800);
+
 
 
