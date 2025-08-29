@@ -181,3 +181,59 @@ header {
   z-index: 2000;
   font-family: 'Poppins', sans-serif;
 }
+
+/* Responsive Design */
+
+@media (max-width: 900px) {
+  .contenedor-hoteles {
+    max-width: 98vw;
+    gap: 1rem;
+  }
+  .hotel {
+    width: 80vw;
+    min-width: 220px;
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 2rem;
+    padding: 2rem 0.5rem 1rem;
+  }
+  .subtitulo {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+  }
+  .contenedor-hoteles {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem;
+  }
+  .hotel {
+    width: 95vw;
+    min-width: unset;
+    max-width: 350px;
+    margin-bottom: 1rem;
+  }
+  .buscar-booking {
+    margin: 0.8rem 0;
+  }
+  .modal-contenido {
+    max-width: 95vw;
+    padding: 1rem;
+  }
+  #contador-corazones {
+    top: 10px;
+    right: 10px;
+    font-size: 1rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Ajusta el tamaño de los corazones en pantallas pequeñas */
+@media (max-width: 600px) {
+  .corazon {
+    font-size: 14px !important;
+  }
+}
