@@ -238,10 +238,21 @@ header {
   }
 }
 
-@media (max-width: 900px) {
-  .corazon {
-    color: #222 !important; /* negro en móviles y tablets */
+@media (max-width: 1255px) and (min-width: 953px) {
+  .contenedor-hoteles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    justify-items: center;
+    align-items: stretch;
+  }
+  .hotel {
+    width: 90%;
+    max-width: 400px;
+    min-width: 250px;
   }
 }
+
+
 
 
