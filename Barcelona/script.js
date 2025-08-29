@@ -38,7 +38,7 @@ function crearCorazon(){
 
   // AUMENTAMOS SIEMPRE el contador total
   totalCorazones++;
-  document.getElementById("contador-corazones").innerText = "&#x2764;&#xFE0E; " + totalCorazones;
+  document.getElementById("contador-corazones").innerText = "❤ " + totalCorazones;
 
   // Eliminarlo al terminar la animación
   corazon.addEventListener("animationend", () => {
@@ -51,6 +51,7 @@ crearCorazon();
 
 // Seguir lanzando corazones cada 800ms
 setInterval(crearCorazon, 800);
+
 
 
 
