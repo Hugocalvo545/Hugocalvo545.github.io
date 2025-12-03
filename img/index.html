@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Sistema Completo - Versión Final Robusta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Logo-JLA.jpg">
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-column">
+      <!-- LOGIN SCREEN -->
+      <div class="login-screen active" id="loginScreen">
+        <div class="login-header">
+          <h1>Bienvenido</h1>
+          <p>Sistema de Reservas - Calendario en Tiempo Real ✓</p>
+        </div>
+
+        <div class="login-tabs">
+          <button class="login-tab active" onclick="switchTab('login')">Iniciar Sesión</button>
+          <button class="login-tab" onclick="switchTab('register')">Registrarse</button>
+        </div>
+
+        <div id="loginTab" class="login-form active">
+          <form id="loginForm">
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" id="loginEmail" required placeholder="tu@email.com">
+            </div>
+            <div class="form-group">
+              <label>Contraseña <span class="required">*</span></label>
+              <input type="password" id="loginPassword" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Iniciar Sesión</button>
+            <div id="loginMessage"></div>
+          </form>
+        </div>
+
+        <div id="registerTab" class="login-form">
+          <div class="step-indicator">
+            <div class="step active" id="regStep1">1</div>
+            <div class="step-line active" id="regLine"></div>
+            <div class="step inactive" id="regStep2">2</div>
+          </div>
+
+          <div id="regStep1Form" class="step-content active">
+            <h2>Crea tu Cuenta</h2>
+            <form>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nombre <span class="required">*</span></label>
+                  <input type="text" id="regName" required placeholder="Juan">
+                </div>
+                <div class="form-group">
+                  <label>Apellidos <span class="required">*</span></label>
+                  <input type="text" id="regSurname" required placeholder="García López">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" id="regEmail" required placeholder="tu@email.com">
+              </div>
+              <div class="form-group">
+                <label>Teléfono <span class="required">*</span></label>
+                <input type="tel" id="regPhone" required placeholder="+34 612 345 678">
+              </div>
+              <div class="form-group">
+                <label>Contraseña <span class="required">*</span></label>
+                <input type="password" id="regPassword" required placeholder="Mínimo 8 caracteres">
+              </div>
+              <div class="form-group">
+                <label>Confirmar Contraseña <span class="required">*</span></label>
+                <input type="password" id="regPasswordConfirm" required placeholder="Confirma">
+              </div>
+              <button type="button" class="btn-primary" style="width: 100%;" onclick="regNextStep()">Continuar →</button>
+              <div id="regStep1Message"></div>
+            </form>
+          </div>
+
+          <div id="regStep2Form" class="step-content">
+            <h2>Completa tus Datos</h2>
+            <form id="registerForm">
+              <h3>Datos de Identidad</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Tipo de Documento <span class="required">*</span></label>
+                  <select id="docType" required>
+                    <option value="">Selecciona</option>
+                    <option value="DNI">DNI</option>
+                    <option value="NIE">NIE</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Número <span class="required">*</span></label>
+                  <input type="text" id="docNumber" required placeholder="12345678A">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Nacionalidad <span class="required">*</span></label>
+                <select id="nationality" required>
+                  <option value="">Selecciona</option>
+                  <option value="Española">Española</option>
+                  <option value="Otra">Otra</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Fecha de Nacimiento <span class="required">*</span></label>
+                <div class="date-group">
+                  <div>
+                    <input type="number" id="birthDay" min="1" max="31" required placeholder="Día">
+                    <div class="date-label">Día</div>
+                  </div>
+                  <div>
+                    <select id="birthMonth" required>
+                      <option value="">Mes</option>
+                      <option value="01">Enero</option>
+                      <option value="02">Febrero</option>
+                      <option value="03">Marzo</option>
+                      <option value="04">Abril</option>
+                      <option value="05">Mayo</option>
+                      <option value="06">Junio</option>
+                      <option value="07">Julio</option>
+                      <option value="08">Agosto</option>
+                      <option value="09">Septiembre</option>
+                      <option value="10">Octubre</option>
+                      <option value="11">Noviembre</option>
+                      <option value="12">Diciembre</option>
+                    </select>
+                    <div class="date-label">Mes</div>
+                  </div>
+                  <div>
+                    <input type="number" id="birthYear" min="1900" max="2025" required placeholder="2000">
+                    <div class="date-label">Año</div>
+                  </div>
+                </div>
+              </div>
+
+              <h3>Dirección</h3>
+              <div class="form-group">
+                <label>País <span class="required">*</span></label>
+                <select id="country" required>
+                  <option value="">Selecciona</option>
+                  <option value="España">España</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div class="form-group autocomplete-container">
+                <label>Dirección <span class="required">*</span></label>
+                <input type="text" id="address" required placeholder="Ej: Calle Gran Vía, 123" autocomplete="off">
+                <div class="autocomplete-list" id="addressList"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Ciudad <span class="required">*</span></label>
+                  <input type="text" id="city" required placeholder="Madrid">
+                </div>
+                <div class="form-group">
+                  <label>CP <span class="required">*</span></label>
+                  <input type="text" id="zipcode" required placeholder="28001">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Provincia</label>
+                <input type="text" id="province" placeholder="Madrid">
+              </div>
+
+              <div class="form-group">
+                <input type="checkbox" id="regTerms" required style="width: auto; margin-right: 8px;">
+                <label for="regTerms" style="display: inline; margin: 0;">Acepto términos</label>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="regPrevStep()">← Volver</button>
+                <button type="submit" class="btn-primary">Crear Cuenta</button>
+              </div>
+              <div id="registerMessage"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE SCREEN -->
+      <div class="profile-screen" id="profileScreen">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <h2>Mi Perfil</h2>
+          <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+        </div>
+
+        <div class="profile-header">
+          <h1 id="profileFullName"><span class="loading-spinner"></span>Cargando...</h1>
+          <p id="profileEmail">Cargando...</p>
+          <div class="level-badge">
+            <span id="levelBadge">Nivel 1</span>
+          </div>
+        </div>
+
+        <div class="level-card">
+          <h3>🏆 Tu Nivel</h3>
+          <div class="level-number" id="levelNumber">1</div>
+          <div class="level-name" id="levelName">Viajero Novato</div>
+          <div class="level-progress">
+            <div class="level-progress-bar" id="levelProgressBar"></div>
+          </div>
+          <div class="level-reward" id="levelReward">Bienvenida al club</div>
+          <div class="discount-badge" id="discountBadge">Sin descuento</div>
+        </div>
+
+        <div class="points-card">
+          <h3>Mis Puntos ⭐</h3>
+          <div class="points-number" id="pointsDisplay">0</div>
+          <p style="margin: 0; font-size: 0.9rem;">1 punto = 1€ gastado</p>
+        </div>
+
+        <div class="profile-card">
+          <h3>👥 Mis Huéspedes Frecuentes</h3>
+          <p style="color: #666; font-size: 0.9rem; margin-bottom: 12px;">Guarda tus compañeros de viaje favoritos</p>
+          <div id="frecuentGuestsList"></div>
+          <button class="btn-primary" style="width: 100%; margin-top: 12px;" onclick="openAddGuestModal()">+ Añadir Huésped Frecuente</button>
+        </div>
+
+        <div class="profile-card">
+          <h3>Información Personal</h3>
+          <div class="profile-row"><span class="profile-label">Email:</span><span class="profile-value" id="pEmail">-</span></div>
+          <div class="profile-row"><span class="profile-label">Teléfono:</span><span class="profile-value" id="pPhone">-</span></div>
+          <div class="profile-row"><span class="profile-label">Documento:</span><span class="profile-value"><span id="pDocType">-</span> <span id="pDocNumber">-</span></span></div>
+          <div class="profile-row"><span class="profile-label">Nacionalidad:</span><span class="profile-value" id="pNationality">-</span></div>
+          <div class="profile-row"><span class="profile-label">Nacimiento:</span><span class="profile-value" id="pBirthDate">-</span></div>
+        </div>
+
+        <div class="profile-card">
+          <h3>Dirección</h3>
+          <div class="profile-row"><span class="profile-label">País:</span><span class="profile-value" id="pCountry">-</span></div>
+          <div class="profile-row"><span class="profile-label">Dirección:</span><span class="profile-value" id="pAddress">-</span></div>
+          <div class="profile-row"><span class="profile-label">Ciudad:</span><span class="profile-value" id="pCity">-</span></div>
+          <div class="profile-row"><span class="profile-label">CP:</span><span class="profile-value" id="pZipcode">-</span></div>
+          <div class="profile-row"><span class="profile-label">Provincia:</span><span class="profile-value" id="pProvince">-</span></div>
+        </div>
+
+        <!-- Reservas con desplegable -->
+        <div class="profile-card">
+            <div class="bookings-header-toggle" onclick="toggleBookingsVisibility()">
+                <span>📅 Mis Reservas</span>
+                <small id="bookingsToggleLabel">(Ocultar)</small>
+            </div>
+
+            <!-- Próxima reserva destacada (si existe) -->
+            <div id="nextBookingHighlight" class="next-booking"></div>
+
+            <!-- Buscador -->
+            <div class="bookings-search">
+                <input
+                type="text"
+                id="bookingsSearchInput"
+                placeholder="Buscar por fecha o alojamiento..."
+                oninput="filterBookings()"
+                >
+            </div>
+
+            <!-- Lista de reservas -->
+            <div id="bookingsList" class="bookings-history">
+                <p style="color:#999; text-align:center;">Cargando reservas...</p>
+            </div>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; margin-top: 24px;" onclick="startNewBooking()">Hacer Nueva Reserva</button>
+      </div>
+
+      <!-- BOOKING SCREEN -->
+      <div id="bookingScreen" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <h2>Nueva Reserva</h2>
+          <button class="btn-logout" onclick="cancelBooking()">Cancelar</button>
+        </div>
+
+        <div class="step-indicator">
+          <div class="step active" id="bStep1">1</div>
+          <div class="step-line" id="bLine"></div>
+          <div class="step inactive" id="bStep2">2</div>
+          <div class="step-line" id="bLine2"></div>
+          <div class="step inactive" id="bStep3">3</div>
+        </div>
+
+        <!-- STEP 1: CALENDARIO VISUAL -->
+        <div class="step-content active" id="bookStep1">
+          <div class="booking-screen-cal">
+            <div class="booking-form-cal">
+              <h2>Selecciona tus Fechas</h2>
+              <div class="info-box">
+                📅 Haz clic en el calendario para seleccionar Check-in y Check-out
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Check-in seleccionado</label>
+                  <input type="text" id="bookCheckInDisplay" disabled placeholder="Haz clic en el calendario">
+                  <input type="hidden" id="bookCheckIn">
+                </div>
+                <div class="form-group">
+                  <label>Check-out seleccionado</label>
+                  <input type="text" id="bookCheckOutDisplay" disabled placeholder="Haz clic en el calendario">
+                  <input type="hidden" id="bookCheckOut">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Adultos (>16 años) <span class="required">*</span></label>
+                  <select id="bookAdults" required onchange="updateGuestForms(); calculatePrice();">
+                    <option value="">Selecciona</option>
+                    <option value="1">1 Adulto</option>
+                    <option value="2">2 Adultos</option>
+                    <option value="3">3 Adultos</option>
+                    <option value="4">4 Adultos</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Niños (<16 años)</label>
+                  <select id="bookChildren" onchange="updateGuestForms(); calculatePrice();">
+                    <option value="0">0 Niños</option>
+                    <option value="1">1 Niño</option>
+                    <option value="2">2 Niños</option>
+                    <option value="3">3 Niños</option>
+                    <option value="4">4 Niños</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="button" class="btn-primary" style="width: 100%;" onclick="validateAndGoToStep2()">Continuar →</button>
+            </div>
+
+            <!-- CALENDARIO VISUAL -->
+            <div class="booking-calendar-col">
+              <div class="calendar-box">
+                <div class="calendar-header">
+                  <h3 id="calendarMonth">Mes actual</h3>
+                  <div class="calendar-nav">
+                    <button onclick="previousMonth()">← Anterior</button>
+                    <button onclick="nextMonth()">Siguiente →</button>
+                  </div>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid"></div>
+
+                <div class="calendar-legend">
+                  <div class="legend-item"><div class="legend-color available"></div><span>Disponible</span></div>
+                  <div class="legend-item"><div class="legend-color occupied"></div><span>Ocupado</span></div>
+                  <div class="legend-item"><div class="legend-color hold"></div><span>En proceso</span></div>
+                </div>
+
+                <div id="calendarInfo"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: DATOS ADULTOS -->
+        <div class="step-content" id="bookStep2">
+          <h2>Datos de Adultos</h2>
+          <div class="info-box police">
+            🚔 <strong>Importante para la Policía:</strong> Solo se requieren datos de mayores de 16 años
+          </div>
+          <div id="guestFormsContainer"></div>
+          <div class="form-actions" style="margin-top: 20px;">
+            <button type="button" class="btn-secondary" onclick="bookGoToStep(1)">← Volver</button>
+            <button type="button" class="btn-primary" onclick="bookGoToStep(3)">Continuar →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: CONFIRMACIÓN -->
+        <div class="step-content" id="bookStep3">
+          <h2>Confirmar Reserva</h2>
+          <form id="bookingForm">
+            <div class="profile-card">
+              <h3>Resumen</h3>
+              <div class="profile-row"><span class="profile-label">Check-in:</span><span class="profile-value" id="confirmCheckIn">-</span></div>
+              <div class="profile-row"><span class="profile-label">Check-out:</span><span class="profile-value" id="confirmCheckOut">-</span></div>
+              <div class="profile-row"><span class="profile-label">Noches:</span><span class="profile-value" id="confirmNights">-</span></div>
+              <div class="profile-row"><span class="profile-label">Huéspedes:</span><span class="profile-value" id="confirmGuests">-</span></div>
+              <div class="profile-row" style="border-top: 2px solid #ddd; margin-top: 12px; padding-top: 12px;">
+                <span class="profile-label"><strong>Subtotal:</strong></span>
+                <span class="profile-value"><strong id="confirmSubtotal">-</strong></span>
+              </div>
+              <div class="profile-row" id="discountRow" style="display: none; color: #27ae60;">
+                <span class="profile-label"><strong>Descuento:</strong></span>
+                <span class="profile-value" id="confirmDiscount"><strong>-</strong></span>
+              </div>
+              <div class="profile-row" style="border-top: 2px solid #ddd; margin-top: 12px; padding-top: 12px;">
+                <span class="profile-label"><strong>Total:</strong></span>
+                <span class="profile-value"><strong id="confirmPrice">-</strong></span>
+              </div>
+              <div class="profile-row" style="color: #f3c669;">
+                <span class="profile-label"><strong>Puntos a ganar:</strong></span>
+                <span class="profile-value" id="confirmPoints"><strong>0</strong></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Observaciones</label>
+              <textarea id="bookObservations" placeholder="(Opcional)" rows="3" style="resize: vertical;"></textarea>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="bookTerms" required style="width: auto; margin-right: 8px;">
+              <label for="bookTerms" style="display: inline; margin: 0;">Acepto los términos</label>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-secondary" onclick="bookGoToStep(2)">← Volver</button>
+              <button type="submit" class="btn-primary" id="submitBookingBtn">Finalizar Reserva</button>
+            </div>
+            <div id="bookingMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY COLUMN -->
+    <div class="summary-column" id="summaryColumn">
+        <div class="summary-box">
+            <h3 class="summary-title">Tu Reserva</h3>
+            <div class="property-card">
+            <img src="https://l.icdbcdn.com/oh82997477-4b45-4cbe-a6c4-3db4f9f5e2a3.jpg?w=300" alt="Ático">
+            <div class="property-info">
+                <p><strong>ÁTICO DUPLEX EN JEREZ</strong></p>
+                <p>Casa de vacaciones · 4 Huéspedes máx</p>
+                <p style="margin-top: 8px; color: #1a8b7d;">
+                <strong>€68 por adulto/noche</strong>
+                </p>
+            </div>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-item"><span>Entrada:</span><span id="summaryCheckIn">-</span></div>
+            <div class="summary-item"><span>Salida:</span><span id="summaryCheckOut">-</span></div>
+            <div class="summary-item"><span>Noches:</span><span id="nightsCount">-</span></div>
+            <div class="summary-item"><span>Huéspedes:</span><span id="guestsCount">-</span></div>
+            <div class="summary-divider"></div>
+            <div class="summary-item"><span>Por noche:</span><span id="pricePerNight">-</span></div>
+            <div class="summary-item"><span>Servicio (10%):</span><span id="serviceFee">-</span></div>
+            <div class="summary-item"><span>IVA (21%):</span><span id="taxFee">-</span></div>
+            <div class="summary-item summary-discount" id="discountItem" style="display: none;">
+                <span>Descuento:</span><span id="discountAmount">-</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-total"><span>Total:</span><span id="totalPrice">-</span></div>
+        </div>
+    </div>
+
+
+  <!-- MODAL SELECCIONAR HUÉSPED FRECUENTE -->
+  <div class="modal" id="selectFrequentGuestModal">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 style="margin: 0;">Usar Huésped Frecuente</h3>
+        <button style="background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0;" onclick="closeSelectGuestModal()">×</button>
+      </div>
+      <p style="color: #666; margin-bottom: 16px;">Selecciona un huésped para cargar sus datos automáticamente:</p>
+      <div id="frequentGuestsSelectList" style="max-height: 300px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: Éxito -->
+  <div class="modal" id="successModal">
+    <div class="modal-content" style="text-align:center;max-width:520px;">
+      <h3>🎉 ¡Reserva confirmada!</h3>
+      <p style="margin:10px 0 6px 0;">Hemos guardado tu reserva correctamente.</p>
+      <p id="pointsGained" style="margin:0 0 16px 0;color:#f3c669;font-weight:700;">+0 ⭐</p>
+      <div class="form-actions" style="justify-content:center;">
+        <!-- Grande, principal -->
+        <button class="btn-primary btn-lg btn-nowrap" onclick="goToProfile()">Ir a mi perfil</button>
+        <!-- Más pequeño: ver detalles -->
+        <button class="btn-secondary btn-sm btn-nowrap" onclick="viewLastBookingDetails()">
+          Ver detalles de la reserva
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DETALLE RESERVA -->
+    <div class="modal" id="bookingDetailsModal">
+        <div class="modal-content">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <h3 style="margin:0;color:#1a8b7d;font-size:1.05rem;">Detalle de la reserva</h3>
+            <button
+                onclick="closeBookingDetails()"
+                style="background:none;border:none;font-size:1.4rem;cursor:pointer;line-height:1;color:#888;padding:0 0 2px 0;">
+                ×
+            </button>
+            </div>
+
+            <div id="bookingDetailsContent"></div>
+
+            <div style="text-align:right;margin-top:14px;">
+            <button
+                onclick="closeBookingDetails()"
+                style="padding:7px 14px;border:none;border-radius:8px;font-size:0.85rem;font-weight:500;cursor:pointer;background:#1a8b7d;color:#fff;">
+                Cerrar
+            </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Firebase compat -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Google Places -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_0Nq9y4SbKlKYYuNR7gXJqzFfJHpRbPQ&libraries=places"></script>
+
+    <!-- Entrada única -->
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
