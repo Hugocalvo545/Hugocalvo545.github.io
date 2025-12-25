@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Intranet · Gestión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#003580" />
+  <link rel="apple-touch-icon" href="../img/Logo-JLA.jpg" />
+
+  <link rel="stylesheet" href="../css/intranet.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo">Intranet Alojamientos</span>
+    </div>
+    <div class="topbar-right">
+      <span id="userEmail"></span>
+      <button id="logoutBtn" class="btn-secondary" style="display:none;">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- LOGIN -->
+    <section id="loginView" class="centered">
+      <div class="card card-tight">
+        <h1>Acceso</h1>
+        <p class="muted">Solo usuarios autorizados</p>
+        <form id="loginForm">
+          <label>
+            Email
+            <input type="email" id="loginEmail" required />
+          </label>
+          <label>
+            Contraseña
+            <input type="password" id="loginPassword" required />
+          </label>
+          <button type="submit" class="btn-primary full">Entrar</button>
+          <p id="loginError" class="error-msg"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- SIN PERMISOS -->
+    <section id="noAccessView" class="centered" style="display:none;">
+      <div class="card card-tight">
+        <h1>Sin acceso</h1>
+        <p class="muted">
+          Tu usuario no tiene permisos de administrador para entrar en la intranet.
+        </p>
+        <button id="noAccessLogoutBtn" class="btn-secondary full">Cerrar sesión</button>
+      </div>
+    </section>
+
+    <!-- INTRANET -->
+    <section id="mainView" style="display:none;">
+      <!-- Tabs -->
+      <nav class="tabs">
+        <button class="tab active" data-tab="alojamientos">Alojamientos</button>
+        <button class="tab" data-tab="precios">Precios especiales</button>
+        <button class="tab" data-tab="reservas">
+          Reservas
+          <span id="hostMsgBadge" class="nav-badge" style="display:none"></span>
+        </button>
+        <button class="tab" data-tab="packs">Packs</button>
+      </nav>
+
+      <!-- Contenido -->
+      <section id="tab-alojamientos" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <h2>Alojamientos</h2>
+            <button id="newPropertyBtn" class="btn-primary">+ Nuevo alojamiento</button>
+          </div>
+
+          <div class="split">
+            <!-- Lista -->
+            <div class="panel">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Orden</th>
+                    <th>Nombre</th>
+                    <th>Ciudad</th>
+                    <th>Cap.</th>
+                    <th>Precio base</th>
+                    <th>Activo</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="propertiesBody">
+                  <!-- Relleno por JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Formulario -->
+            <div class="panel">
+              <h3 id="formTitle">Nuevo alojamiento</h3>
+              <form id="propertyForm">
+                <input type="hidden" id="propertyId" />
+
+                <label>
+                  Nombre
+                  <input type="text" id="nombre" required />
+                </label>
+
+                <label>
+                  Dirección
+                  <input type="text" id="direccion" />
+                </label>
+
+                <label>
+                  Ciudad
+                  <input type="text" id="ciudad" />
+                </label>
+
+                <div class="row">
+                  <label>
+                    Capacidad
+                    <input type="number" id="capacidad" min="1" />
+                  </label>
+                  <label>
+                    Dormitorios
+                    <input type="number" id="dormitorios" min="0" />
+                  </label>
+                  <label>
+                    Baños
+                    <input type="number" id="banos" min="0" />
+                  </label>
+                </div>
+
+                <label>
+                  Descripción corta
+                  <textarea id="descripcion" rows="2"></textarea>
+                </label>
+
+                <label>
+                  Descripción larga
+                  <textarea id="descripcionLarga" rows="4"></textarea>
+                </label>
+
+                <div class="row">
+                  <label>
+                    Precio base / noche (€)
+                    <input type="number" id="precioBase" min="0" step="1" />
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="activa" />
+                    Activo
+                  </label>
+                </div>
+
+                <label>
+                  Servicios (separados por comas)
+                  <input
+                    type="text"
+                    id="servicios"
+                    placeholder="Wi-Fi, Aire acondicionado, Cocina equipada..."
+                  />
+                </label>
+
+                <div class="row">
+                  <label>
+                    Latitud
+                    <input type="number" id="lat" step="0.000001" placeholder="40.416775" />
+                  </label>
+                  <label>
+                    Longitud
+                    <input type="number" id="lng" step="0.000001" placeholder="-3.703790" />
+                  </label>
+                </div>
+
+                <label>
+                  Tagline (frase corta)
+                  <input type="text" id="tagline" placeholder="Tu base perfecta para descubrir la zona" />
+                </label>
+
+                <label>
+                  Highlights (uno por línea)
+                  <textarea id="highlights" rows="4" placeholder="Céntrico\nCama cómoda\nCocina equipada"></textarea>
+                </label>
+
+                <div class="row">
+                  <label>
+                    Check-in (hora)
+                    <input type="text" id="checkInTime" placeholder="15:00" />
+                  </label>
+                  <label>
+                    Check-out (hora)
+                    <input type="text" id="checkOutTime" placeholder="11:00" />
+                  </label>
+                </div>
+
+                <label>
+                  Normas del alojamiento
+                  <textarea id="normas" rows="4" placeholder="No fumar. No mascotas. Silencio a partir de..."></textarea>
+                </label>
+
+                <hr style="margin: 0.75rem 0;" />
+
+                <label>
+                  Fotos del alojamiento
+                  <input type="file" id="propertyPhotos" accept="image/*" multiple />
+                </label>
+
+                <div id="photoPreview" class="photo-grid"></div>
+
+                <p class="muted" id="photoHint">
+                  Puedes subir varias imágenes. Se guardan al pulsar “Guardar”.
+                </p>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-primary">Guardar</button>
+                  <button type="button" id="resetFormBtn" class="btn-secondary">Nuevo</button>
+                </div>
+
+                <p id="formMessage" class="info-msg"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pestañas vacías por ahora (estructura preparada) -->
+      <section id="tab-precios" class="tab-content">
+        <div class="card">
+          <h2>Precios especiales</h2>
+          <p class="muted">
+            Aquí podrás definir precios por rango de fechas (alta, baja, eventos...).
+          </p>
+        </div>
+      </section>
+
+      <section id="tab-reservas" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h2>Reservas</h2>
+            <span id="reservasBadge" class="badge" style="display:none;">Nueva reserva</span>
+          </div>
+
+          <div class="split">
+            <!-- LISTADO -->
+            <div class="panel">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Alojamiento</th>
+                    <th>Huésped</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="reservasBody">
+                  <!-- se rellena con JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- DETALLE + CHAT -->
+            <div class="panel">
+              <h3>Detalle de la reserva</h3>
+              <div id="reservaDetail" class="reserva-detail muted">
+                Selecciona una reserva de la lista.
+              </div>
+
+              <hr style="margin: 0.75rem 0;" />
+
+              <h3>Chat con el cliente</h3>
+              <div id="chatMessages" class="chat-messages">
+                <p class="muted">Selecciona una reserva para ver el chat.</p>
+              </div>
+
+              <form id="chatForm" class="chat-form">
+                <input
+                  type="text"
+                  id="chatInput"
+                  placeholder="Escribe un mensaje al cliente..."
+                  autocomplete="off"
+                />
+                <button type="submit" class="btn-primary">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="tab-packs" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h2>Packs</h2>
+            <button id="newPackBtn" class="btn-primary">+ Nuevo pack</button>
+          </div>
+
+          <div class="split">
+            <!-- LISTA PACKS -->
+            <div class="panel">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Orden</th>
+                    <th>Nombre</th>
+                    <th>Grupo</th>
+                    <th>Cap.</th>
+                    <th>Precio base</th>
+                    <th>Activo</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="packsBody">
+                  <!-- Relleno por JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- FORM PACK -->
+            <div class="panel">
+              <h3 id="packFormTitle">Nuevo pack</h3>
+              <form id="packForm">
+                <input type="hidden" id="packId" />
+
+                <label>
+                  Nombre
+                  <input type="text" id="packNombre" required />
+                </label>
+
+                <label>
+                  Grupo / etiqueta
+                  <input type="text" id="packGroupKey" placeholder="Ej. Rendona 17" />
+                </label>
+
+                <label>
+                  Descripción corta
+                  <textarea id="packDescripcion" rows="2"></textarea>
+                </label>
+
+                <label>
+                  Descripción larga
+                  <textarea id="packDescripcionLarga" rows="4"></textarea>
+                </label>
+
+                <div class="row">
+                  <label>
+                    Capacidad total
+                    <input type="number" id="packCapacidad" min="1" />
+                  </label>
+                  <label>
+                    Precio base / noche (€)
+                    <input type="number" id="packPrecioBase" min="0" step="1" />
+                  </label>
+                </div>
+
+                <label class="checkbox-label">
+                  <input type="checkbox" id="packActiva" />
+                  Activo
+                </label>
+
+                <label>
+                  Servicios (separados por comas)
+                  <input
+                    type="text"
+                    id="packServicios"
+                    placeholder="Wi-Fi, Parking, Desayuno..."
+                  />
+                </label>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn-primary">Guardar</button>
+                  <button type="button" id="resetPackFormBtn" class="btn-secondary">Nuevo</button>
+                </div>
+
+                <p id="packFormMessage" class="info-msg"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+  <!-- Tu config Firebase -->
+  <script type="module" src="../registro/firebase.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

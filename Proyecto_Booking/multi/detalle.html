@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle del alojamiento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../registro/styles.css">
+  <style>
+    .detail-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .detail-header h1 {
+      margin-bottom: 8px;
+    }
+    .detail-meta {
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #555;
+    }
+    .detail-actions {
+      margin-top: 24px;
+    }
+    .btn-primary {
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #f5f5f5;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="detail-container">
+    <button id="backBtn" class="btn-secondary">← Volver al listado</button>
+
+    <!-- Cabecera + confianza -->
+    <header class="detail-header">
+      <p class="detail-breadcrumb">Alojamientos · Detalle</p>
+      <div class="detail-header-main">
+        <div>
+          <h1 id="detailTitle">Alojamiento</h1>
+          <p id="detailTagline" class="detail-tagline">
+            Tu base perfecta para descubrir la zona.
+          </p>
+        </div>
+        <div class="detail-trust">
+          <span>✔ Reserva directa</span>
+          <span>✔ Sin intermediarios</span>
+          <span>✔ Confirmación por email</span>
+        </div>
+      </div>
+    </header>
+
+    <div id="detailContent">
+      <p>Cargando alojamiento...</p>
+    </div>
+
+    <section id="detailCalendarSection" class="detail-calendar">
+      <h2>Elige tus fechas</h2>
+      <p class="calendar-intro">
+        La disponibilidad se actualiza en tiempo real. Selecciona las fechas que mejor te encajen
+        y después pulsa <strong>“Reservar ahora”</strong> para completar tu reserva.
+      </p>
+
+      <div class="calendar-box">
+        <div class="calendar-header">
+          <h3 id="calendarMonth">Mes actual</h3>
+          <div class="calendar-nav">
+            <button onclick="previousMonth()">← Anterior</button>
+            <button onclick="nextMonth()">Siguiente →</button>
+          </div>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid"></div>
+
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <div class="legend-color available"></div><span>Disponible</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color occupied"></div><span>No disponible</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color hold"></div><span>En proceso</span>
+          </div>
+        </div>
+
+        <div id="calendarInfo" class="calendar-info-extra"></div>
+
+        <p class="calendar-hold-note">
+          Cuando avances a la reserva, bloquearemos tus fechas durante unos minutos mientras
+          completas tus datos. Así nadie más puede reservarlas en ese tiempo.
+        </p>
+      </div>
+    </section>
+
+    <div class="detail-actions" id="detailActions" style="display:none;">
+      <button id="reserveBtn" class="btn-primary">Reservar ahora</button>
+      <p class="secure-note">
+        ✅ Reserva segura, sin cargos ocultos. Tus datos están protegidos.
+      </p>
+    </div>
+  </div>
+
+  <!-- Firebase compat -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <!-- App detalle -->
+  <script type="module" src="./detalle-app.js"></script>
+</body>
+</html>
