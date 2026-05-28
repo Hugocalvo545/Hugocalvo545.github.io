@@ -3,197 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hugo Calvo García</title>
+    <meta name="description" content="Portfolio de Hugo Calvo García: proyectos web, Java y Android con foco en frontend, diseño responsive y código mantenible.">
+    <meta name="theme-color" content="#0d0f12">
+    <title>Hugo Calvo García | Portfolio frontend</title>
     <link rel="stylesheet" href="css/porfolio_Hugo.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js"></script>
+    <script src="js/portfolio.js?v=2" defer></script>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <header>
-        <nav>
-            <div class="logo"> 
-                <div class="traductor">
-                    <b>HCG</b>
-                    <div class="espacio"></div>
-                    <i>Inglés:</i><a href="porfolio_eng.html"><img src="img/English.svg" alt="English" class="bandera"></a>
-                    <div class="espacio"></div>
-                    <i>Español:</i><a href="porfolio.html"><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
-                </div> 
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#contact">Contacto</a></li>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="#inicio" class="brand" aria-label="Ir al inicio">
+                <span>HCG</span>
+                <small>Frontend portfolio</small>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="nav-menu">
+                <li><a class="nav-link" href="#sobre-mi">Perfil</a></li>
+                <li><a class="nav-link" href="#stack">Stack</a></li>
+                <li><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                <li><a class="nav-link" href="#proceso">Proceso</a></li>
+                <li><a class="nav-link" href="#contacto">Contacto</a></li>
             </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+
+            <div class="nav-actions">
+                <a href="porfolio_eng.html" class="language-link" aria-label="Open English version">EN</a>
+                <button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+                    <span aria-hidden="true"></span>
+                </button>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section id="home" class="parallax">
-            <div class="content">
-                <img src="img/porfile.jpg" alt="Hugo Calvo García" class="profile-image">
+    <main id="contenido">
+        <section id="inicio" class="hero section-observed">
+            <div class="hero-content reveal-section">
+                <p class="eyebrow">Portfolio de desarrollo web</p>
                 <h1>Hugo Calvo García</h1>
-                <h2>Técnico superior en Desarrollo  de Aplicaciones Multiplataforma</h2>
-                <p><span id="typed"></span></p>
-                <a href="#contact" class="cta-button">Contáctame</a>
+                <p class="hero-subtitle">Desarrollador en formación DAM con foco en interfaces limpias, responsive y bien estructuradas.</p>
+                <p class="hero-rotator" aria-live="polite">
+                    <span id="role-rotator" data-phrases="HTML semántico y accesible|CSS moderno y responsive|JavaScript sin dependencias innecesarias|Proyectos con narrativa técnica">HTML semántico y accesible</span>
+                </p>
+                <div class="hero-actions">
+                    <a href="#proyectos" class="button button-primary">Ver proyectos</a>
+                    <a href="../index.html" class="button button-secondary">Ver CV</a>
+                </div>
+                <dl class="hero-facts" aria-label="Resumen">
+                    <div><dt>Base</dt><dd>Madrid</dd></div>
+                    <div><dt>Idiomas</dt><dd>ES / EN C1</dd></div>
+                    <div><dt>Disponible</dt><dd>Prácticas y junior</dd></div>
+                </dl>
             </div>
         </section>
 
-        <section id="about">
-            <h2>Sobre mí</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Soy un apasionado desarrollador con experiencia en Java y HTML. Me encanta crear soluciones eficientes y elegantes para problemas complejos.</p>
-                    <p>Mi objetivo es combinar creatividad y tecnología para desarrollar aplicaciones innovadoras que mejoren la vida de las personas.</p>
-                </div>
+        <section id="sobre-mi" class="section section-observed">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Perfil</p>
+                <h2>Me interesa el frontend que se nota en los detalles.</h2>
             </div>
-        </section>
-
-        <section id="skills">
-            <h2>Habilidades</h2>
-            <div class="skills-container">
-                <div class="skill">
-                    <i class="fab fa-java"></i>
-                    <h3>Java</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+            <div class="about-grid">
+                <div class="about-copy reveal-section">
+                    <p>
+                        Construyo páginas y aplicaciones estáticas cuidando estructura semántica, responsive, jerarquía visual e interacción. Mi objetivo es que cada proyecto se entienda rápido, cargue sin fricción y transmita intención técnica.
+                    </p>
+                    <p>
+                        Actualmente estudio Desarrollo de Aplicaciones Multiplataforma. Combino esa base de programación con práctica web, Java, SQL, Android y proyectos donde puedo demostrar criterio visual y capacidad de ejecución.
+                    </p>
                 </div>
-                <div class="skill">
-                    <i class="fab fa-html5"></i>
-                    <h3>HTML</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 99%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>CSS</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-js"></i>
-                    <h3>Base de Datos</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-java"></i>
-                    <h3>Phython</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-html5"></i>
-                    <h3>Php</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 87%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>JavaScript</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-js"></i>
-                    <h3>SQL</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 96%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-java"></i>
-                    <h3>XML</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 93%;"></div></div>
-                </div>
-                <div class="skill"> 
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>Inteligencia Artificial</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-js"></i>
-                    <h3>Odoo</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-java"></i>
-                    <h3>Android</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>Cisco</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-html5"></i>
-                    <h3>Excel</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fab fa-html5"></i>
-                    <h3>Word</h3>
-                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
-                </div>
-            </div>
-        </section>
-        <section id="projects">
-            <h2>Proyectos</h2>
-            <div class="projects-container">
-                <div class="project">
-                    <div class="project-info">
-                        <h3>Proyecto final de primer año universidad</h3>
-                        <img src="img/Proyecto_Java.png" alt="Demo Inmobiliaria">
-                        <p>Es un proyecto en el cual he creado una agencia de inmuebles. Tecnologías utilizadas: Java. (Para ver la demo, una vez hagas click, compila y dale a run para que funcione, Aparece en la terminal)</p>
-                        <a href="https://codeboard.io/projects/420011" target="_blank" class="project-link">Ver demo</a>
-                    </div>
-                </div>
-                <div class="project">
-                    <div class="project-info">
-                        <h3>Mi Proyecto Final (Html)</h3>
-                        <img src="img/Proyecto_Tienda.png" alt="Demo DigiDeporte">
-                        <p>Este proyecto es una página web sobre una tienda deportiva. Tecnologías utilizadas: Html, Css, Javascript y php.</p>
-                        <a href="../TiendaDeportiva/index.html" target="_blank" class="project-link">Ver demo</a>
-                        <a href="../TiendaDeportiva/img/PresentacionDigiDeporte.mkv" target="_blank" class="project-link">Presentación</a>
-                    </div>
-                </div>
-                <div class="project">
-                    <div class="project-info">
-                        <h3>App Android Studio</h3>
-                        <img src="img/Proyecto_Android.png" alt="Demo Android">
-                        <p>Una aplicación de Android creada por mi. Ha sido realizada a través del programa Android Studio. Tecnologías usadas: Java y XML</p>
-                        <a href="https://appetize.io/app/b_yxxqfclwreoxozlctguxijfile" target="_blank" class="project-link">Jugar Demo</a>
-                    </div>
+                <div class="impact-list reveal-section">
+                    <article>
+                        <span>01</span>
+                        <h3>Claridad primero</h3>
+                        <p>Arquitectura de contenido, navegación reconocible y textos orientados a valor.</p>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <h3>Interacción medida</h3>
+                        <p>Animaciones suaves, estados de hover/focus y feedback sin ruido visual.</p>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <h3>Código mantenible</h3>
+                        <p>CSS organizado con variables, componentes reutilizables y JavaScript progresivo.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2>Contacto</h2>
-            <form action="https://formsubmit.co/hugocalvogarcia123@gmail.com" method="POST" id="contact-form">
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="mensaje" placeholder="Mensaje" required></textarea>
-                <button type="submit">Enviar</button>
-                <input type="hidden" name="_next" value="https://hugocalvo545.github.io/porfolio/porfolio.html#contact">
-                <input type="hidden" name="_captcha" value="false">
-            </form>
+        <section id="stack" class="section section-observed surface-band">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Stack</p>
+                <h2>Herramientas organizadas por el tipo de problema que resuelven.</h2>
+            </div>
+            <div class="stack-grid">
+                <article class="stack-card reveal-section">
+                    <h3>Frontend</h3>
+                    <p>Maquetación, responsive, accesibilidad, composición visual y microinteracciones.</p>
+                    <div class="tag-list"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>UI responsive</span><span>SEO básico</span></div>
+                </article>
+                <article class="stack-card reveal-section">
+                    <h3>Programación</h3>
+                    <p>Lógica, programación orientada a objetos y estructura de aplicaciones académicas.</p>
+                    <div class="tag-list"><span>Java</span><span>Python</span><span>C++</span><span>C#</span><span>PHP</span></div>
+                </article>
+                <article class="stack-card reveal-section">
+                    <h3>Datos y backend</h3>
+                    <p>Modelado, consultas y persistencia para aplicaciones web y de escritorio.</p>
+                    <div class="tag-list"><span>SQL</span><span>XML</span><span>Bases de datos</span><span>Odoo</span></div>
+                </article>
+                <article class="stack-card reveal-section">
+                    <h3>Mobile y sistemas</h3>
+                    <p>Desarrollo Android, entornos Linux, redes Cisco y despliegue de proyectos estáticos.</p>
+                    <div class="tag-list"><span>Android Studio</span><span>Linux</span><span>Cisco</span><span>GitHub Pages</span></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="proyectos" class="section section-observed">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Proyectos</p>
+                <h2>Casos seleccionados con intención técnica y visual.</h2>
+            </div>
+
+            <div class="project-toolbar reveal-section" aria-label="Filtrar proyectos">
+                <button type="button" class="filter-button is-active" data-filter="all">Todos</button>
+                <button type="button" class="filter-button" data-filter="frontend">Frontend</button>
+                <button type="button" class="filter-button" data-filter="java">Java</button>
+                <button type="button" class="filter-button" data-filter="mobile">Mobile</button>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card reveal-section" data-tags="frontend php ecommerce">
+                    <figure>
+                        <img src="img/Proyecto_Tienda.png" alt="Captura del proyecto DigiDeporte" loading="lazy">
+                    </figure>
+                    <div class="project-content">
+                        <p class="project-meta">E-commerce multipágina</p>
+                        <h3>DigiDeporte</h3>
+                        <p>Tienda deportiva con catálogo, secciones de soporte, páginas informativas, login y navegación completa. El foco está en estructurar un flujo comercial real con muchas pantallas.</p>
+                        <ul class="project-points">
+                            <li>Arquitectura multipágina con rutas y contenido consistente.</li>
+                            <li>Catálogo con filtros y páginas de producto.</li>
+                            <li>Uso combinado de HTML, CSS, JavaScript y PHP.</li>
+                        </ul>
+                        <div class="project-footer">
+                            <div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+                            <div class="project-links">
+                                <a href="../TiendaDeportiva/index.html" target="_blank" rel="noopener noreferrer">Demo</a>
+                                <a href="../TiendaDeportiva/img/PresentacionDigiDeporte.mkv" target="_blank" rel="noopener noreferrer">Presentación</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-section" data-tags="frontend">
+                    <figure>
+                        <img src="../Proyecto_Final/img/logo_ford.png" alt="Imagen del proyecto de concesionario Ford" loading="lazy">
+                    </figure>
+                    <div class="project-content">
+                        <p class="project-meta">Web corporativa</p>
+                        <h3>Concesionario Ford</h3>
+                        <p>Sitio web de concesionario con fichas de modelos, formularios de contacto, reserva de prueba de conducción y páginas legales.</p>
+                        <ul class="project-points">
+                            <li>Separación por páginas y hojas de estilo por contexto.</li>
+                            <li>Formularios con validación de campos obligatorios.</li>
+                            <li>Galerías y navegación entre modelos.</li>
+                        </ul>
+                        <div class="project-footer">
+                            <div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                            <div class="project-links">
+                                <a href="../Proyecto_Final/index.html" target="_blank" rel="noopener noreferrer">Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-section" data-tags="java">
+                    <figure>
+                        <img src="img/Proyecto_Java.png" alt="Captura del proyecto Java de inmobiliaria" loading="lazy">
+                    </figure>
+                    <div class="project-content">
+                        <p class="project-meta">Aplicación Java</p>
+                        <h3>Agencia inmobiliaria</h3>
+                        <p>Proyecto académico orientado a objetos para representar una agencia inmobiliaria, sus entidades y sus operaciones desde terminal.</p>
+                        <ul class="project-points">
+                            <li>Modelo de clases para entidades y relaciones.</li>
+                            <li>Flujo de ejecución desde consola.</li>
+                            <li>Práctica de POO y estructura de datos.</li>
+                        </ul>
+                        <div class="project-footer">
+                            <div class="tag-list"><span>Java</span><span>POO</span><span>Terminal</span></div>
+                            <div class="project-links">
+                                <a href="https://codeboard.io/projects/420011" target="_blank" rel="noopener noreferrer">Código</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-section" data-tags="mobile java">
+                    <figure>
+                        <img src="img/Proyecto_Android.png" alt="Captura del proyecto Android" loading="lazy">
+                    </figure>
+                    <div class="project-content">
+                        <p class="project-meta">Aplicación móvil</p>
+                        <h3>Demo Android Studio</h3>
+                        <p>Aplicación Android construida con Java y XML, disponible en un entorno de prueba para validar interacción y navegación.</p>
+                        <ul class="project-points">
+                            <li>Interfaz móvil con vistas XML.</li>
+                            <li>Lógica implementada en Java.</li>
+                            <li>Demo ejecutable desde navegador.</li>
+                        </ul>
+                        <div class="project-footer">
+                            <div class="tag-list"><span>Android</span><span>Java</span><span>XML</span></div>
+                            <div class="project-links">
+                                <a href="https://appetize.io/app/b_yxxqfclwreoxozlctguxijfile" target="_blank" rel="noopener noreferrer">Probar</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-section" data-tags="frontend">
+                    <figure>
+                        <img src="../Junk%20Removal%20Company%20Homepage/logo-cleansweepli.png" alt="Logo del proyecto CleanSweepLI" loading="lazy">
+                    </figure>
+                    <div class="project-content">
+                        <p class="project-meta">Landing de servicio</p>
+                        <h3>CleanSweepLI</h3>
+                        <p>Homepage para una empresa de retirada de residuos, pensada para explicar el servicio, generar confianza y conducir al contacto.</p>
+                        <ul class="project-points">
+                            <li>Estructura de marketing con CTA claros.</li>
+                            <li>Secciones de servicios, beneficios y contacto.</li>
+                            <li>Diseño adaptable para negocio local.</li>
+                        </ul>
+                        <div class="project-footer">
+                            <div class="tag-list"><span>HTML</span><span>CSS</span><span>Responsive</span></div>
+                            <div class="project-links">
+                                <a href="../Junk%20Removal%20Company%20Homepage/index.html" target="_blank" rel="noopener noreferrer">Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-section" data-tags="frontend">
+                    <figure>
+                        <img src="../Barcelona/NH%20Sants%20Barcelona.webp" alt="Imagen del proyecto de hoteles en Barcelona" loading="lazy">
+                    </figure>
+                    <div class="project-content">
+                        <p class="project-meta">Exploración UI</p>
+                        <h3>Barcelona Hotels</h3>
+                        <p>Prototipo web para presentar alojamientos en Barcelona, con imágenes, tarjetas informativas y comportamiento interactivo básico.</p>
+                        <ul class="project-points">
+                            <li>Diseño visual orientado a turismo.</li>
+                            <li>Uso de imágenes reales y cards de producto.</li>
+                            <li>Práctica de interacción con JavaScript.</li>
+                        </ul>
+                        <div class="project-footer">
+                            <div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                            <div class="project-links">
+                                <a href="../Barcelona/index.html" target="_blank" rel="noopener noreferrer">Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="proceso" class="section section-observed surface-band">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Proceso</p>
+                <h2>Cómo planteo una interfaz antes de escribir estilos.</h2>
+            </div>
+            <div class="process-grid">
+                <article class="process-step reveal-section">
+                    <span>01</span>
+                    <h3>Contenido</h3>
+                    <p>Ordeno mensajes, jerarquía y llamadas a la acción para que la página tenga una lectura natural.</p>
+                </article>
+                <article class="process-step reveal-section">
+                    <span>02</span>
+                    <h3>Estructura</h3>
+                    <p>Maqueto con HTML semántico, nombres de clase claros y componentes que puedan crecer.</p>
+                </article>
+                <article class="process-step reveal-section">
+                    <span>03</span>
+                    <h3>Interacción</h3>
+                    <p>Añado estados, transiciones y JavaScript progresivo solo cuando aportan feedback real.</p>
+                </article>
+                <article class="process-step reveal-section">
+                    <span>04</span>
+                    <h3>Validación</h3>
+                    <p>Compruebo responsive, contraste, foco, rendimiento visual y que los enlaces principales funcionen.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="section section-observed contact-section">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Contacto</p>
+                <h2>Hablemos de frontend, prácticas o proyectos donde pueda aportar.</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-copy reveal-section">
+                    <p>Estoy abierto a oportunidades junior, prácticas y proyectos web donde pueda seguir creciendo con un equipo técnico exigente.</p>
+                    <div class="contact-actions">
+                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary">Enviar email</a>
+                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com">Copiar email</button>
+                    </div>
+                    <ul class="social-list">
+                        <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="../Curriculum_Hugo_Calvo.pdf" download="Curriculum_Hugo_Calvo.pdf" data-theme-pdf data-pdf-light="../Curriculum_Hugo_Calvo.pdf" data-pdf-dark="../Curriculum_Hugo_Calvo_Dark.pdf">CV PDF</a></li>
+                    </ul>
+                </div>
+                <form class="contact-form reveal-section" action="https://formsubmit.co/hugocalvogarcia123@gmail.com" method="POST">
+                    <label>
+                        <span>Nombre</span>
+                        <input type="text" name="nombre" autocomplete="name" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" autocomplete="email" required>
+                    </label>
+                    <label>
+                        <span>Mensaje</span>
+                        <textarea name="mensaje" rows="5" required></textarea>
+                    </label>
+                    <button type="submit" class="button button-primary">Enviar mensaje</button>
+                    <input type="hidden" name="_next" value="https://hugocalvo545.github.io/porfolio/porfolio.html#contacto">
+                    <input type="hidden" name="_captcha" value="false">
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Hugocalvo545" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2025 Hugo Calvo García. Todos los derechos reservados.</p>
+    <footer class="site-footer">
+        <p>Hugo Calvo García</p>
+        <p>Portfolio actualizado con HTML, CSS y JavaScript propio. <span data-current-year>2026</span></p>
     </footer>
-
-    <script src="js/menu.js"></script>
-    <script src="js/background.js"></script>
-    <script src="js/typed.js"></script>
 </body>
 </html>

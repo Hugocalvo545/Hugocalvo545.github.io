@@ -3,112 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hugo Calvo García's Resume</title>
+    <meta name="description" content="Web resume for Hugo Calvo García, web developer and Higher Technician student in Multiplatform Application Development.">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>Hugo Calvo García | Web Resume</title>
     <link rel="stylesheet" href="css/cv.css">
+    <script src="js/cv.js?v=2" defer></script>
 </head>
 <body>
-    <div class="cv-container">
-        <div class="left-column">
-            <img src="img/porfile.jpg" alt="Profile photo" class="profile">
-            <div class="contact-info">
-                <p><i class="fas fa-phone"></i> +34 638 091 795</p>
-                <p><i class="fas fa-envelope"></i> hugocgarciat@gmail.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Madrid, 28032</p>
-                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i><u>LinkedIn</u></i></a></p>
-                <p><i class="fas fa-globe"></i> <a href="porfolio/porfolio.html" target="_blank"><i><u>Portfolio</u></i></a></p>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <div class="page-shell">
+        <aside class="profile-panel reveal">
+            <div class="profile-card">
+                <img src="img/porfile.jpg" alt="Portrait of Hugo Calvo García" class="profile-photo">
+                <p class="eyebrow">Open to internships and junior projects</p>
+                <h1>Hugo Calvo García</h1>
+                <p class="role">Web developer with a foundation in HTML, CSS, JavaScript, Java and SQL.</p>
+
+                <div class="quick-actions" aria-label="Main actions">
+                    <a href="porfolio/porfolio_eng.html" class="button button-primary">View portfolio</a>
+                    <a href="Resume_Hugo_Calvo_Eng.pdf" class="button button-ghost" download="Resume_Hugo_Calvo_Eng.pdf" data-theme-pdf data-pdf-light="Resume_Hugo_Calvo_Eng.pdf" data-pdf-dark="Resume_Hugo_Calvo_Eng_Dark.pdf">Download PDF</a>
+                </div>
             </div>
-            <div class="section">
-                <h3>Languages</h3>
-                <p>English: C1 and one year studying in Canada.</p>
-            </div>
-            <div class="section">
-                <h3>Extracurricular Courses</h3>
-                <p>Programming course (150 hours)</p>
-                <p>Psychology course (150 hours)</p>
-            </div>
-            <div class="section">
-                <h3>Additional Information</h3>
-                <ul>
-                    <li>Wide availability.</li>
-                    <li>Holder of driving license (B) and own car.</li>
+
+            <section class="panel-section" aria-labelledby="contact-title">
+                <h2 id="contact-title">Contact</h2>
+                <ul class="contact-list">
+                    <li><span>Phone</span><a href="tel:+34638091795">+34 638 091 795</a></li>
+                    <li><span>Email</span><button class="copy-link" type="button" data-copy="hugocgarciat@gmail.com">hugocgarciat@gmail.com</button></li>
+                    <li><span>Location</span><p>Madrid, Spain</p></li>
+                    <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">Professional profile</a></li>
+                    <li><span>GitHub</span><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">Hugocalvo545</a></li>
                 </ul>
-                <h3>Skills</h3>
-                <div class="skill">
-                    <ul>
-                        <li>Detail-oriented and careful</li>
-                        <li>Creative</li>
-                        <li>Fast learner</li>
-                        <li>Eager to learn</li>
-                        <li>Good interpersonal skills</li>
-                        <li>Problem solving</li>
-                        <li>Pleasant and attentive</li>
-                        <li>Good advisor</li>
-                        <li>People skills</li>
-                        <li>Teamwork</li>
-                        <li>Good colleague</li>
-                    </ul>
+            </section>
+
+            <section class="panel-section" aria-labelledby="languages-title">
+                <h2 id="languages-title">Languages</h2>
+                <div class="language-item">
+                    <span>Spanish</span>
+                    <strong>Native</strong>
                 </div>
-            </div>
-        </div>
-        <div class="right-column">
-            <div class="traductor">
-                <a href="curriculum_english.html"><u class="idioma"><i><b>English :</b></i></u><img src="img/English.svg" alt="English" class="bandera"></a>
-                <div class="espacio"></div>
-                <a href="index.html"><u class="idioma"><i><b>Spanish :</b></i></u><img src="img/Spanish.jpg" alt="Spanish" class="bandera"></a>
-                <div class="descarga">
-                    <a href="Resume_Hugo_Calvo_Eng.pdf" download="Resume_Hugo_Calvo_Eng">
-                        <button>Download Resume (PDF)</button>
-                    </a>
+                <div class="language-item">
+                    <span>English</span>
+                    <strong>C1 - academic year in Canada</strong>
                 </div>
-            </div>
-            <h1>Hugo Calvo García</h1>
-            <h2>Higher Technician in Multiplatform Application Development</h2>
-            <div class="section">
-                <h3>About Me</h3>
-                <p>Hardworking professional interested in technology and web development. I am a patient and proactive person oriented towards teamwork. In fact, I was captain of an IT team during my first year at university.</p>
-            </div>
-            <div class="section">
-                <h3>Technical Skills</h3>
-                <ul>
-                        <p><b>Programming Languages:</b> Java, Python, C++, C#, Php, SQL, XML </p>
-                        <p><b>Web Development:</b> Html(4 and 5), Wordpress, Css, JavaScript, Php, Web application development</p>
-                        <p><b>Mobile Development:</b> Android, Mobile and system application development</p>
-                        <p><b>Databases:</b> SQL, Databases, Data access</p>
-                        <p><b>ERP and Business:</b> Odoo</p>
-                        <p><b>Office Suite:</b> Word, Excel, Microsoft</p>
-                        <p><b>Operating Systems and Networks:</b> Linux, Cisco</p>
-                        <p><b>Paradigms and Architecture:</b> Object-oriented programming, Software architecture</p>
-                </ul>
-            </div>
-            <div class="section">
-                <h3>Academic Background</h3>
-                <p>Dual Higher Degree in Multiplatform Application Design (2024/Present)</p>
-                <p>Rey Juan Carlos University - Bachelor's in Science, Management and Service Engineering (2023/2024)</p>
-                <p>Salmon Arm Secondary (Canada) - Scientific Baccalaureate (second year)(2022/2023)</p>
-                <p>Colegio el Valle (Madrid) - ESO, Baccalaureate (first year)(2021/2022)</p>
-            </div>
-            
-            <div class="section">
-                <h3>Projects</h3>
-                <div class="skill">
-                <div class="projects-container">
-                    <div class="project">
-                        <div class="project-info">
-                            <h3>First Year University Final Project (Java)</h3>
-                            <p>This project involved creating a real estate agency. Technologies used: Java. To view the demo, once you click, compile and then click run for it to work. It will appear in the terminal.</p>
-                            <a href="https://codeboard.io/projects/420011" target="_blank" class="project-link">See more</a>
+            </section>
+        </aside>
+
+        <main id="content" class="cv-main">
+            <header class="topbar reveal">
+                <nav class="language-switch" aria-label="Language selector">
+                    <a href="index.html">ES</a>
+                    <a href="curriculum_english.html" aria-current="page">EN</a>
+                </nav>
+                <button class="theme-toggle" type="button" aria-label="Change theme" aria-pressed="false">
+                    <span class="theme-toggle__track" aria-hidden="true"></span>
+                    <span class="theme-toggle__label">Theme</span>
+                </button>
+            </header>
+
+            <section class="intro-section reveal" aria-labelledby="intro-title">
+                <p class="section-kicker">Web resume</p>
+                <h2 id="intro-title">Frontend with visual judgment, clean structure and attention to detail.</h2>
+                <p class="lead">
+                    I am studying Multiplatform Application Development and I focus my work on clear, responsive and maintainable interfaces. I enjoy building web experiences that work well, read quickly and feel cared for both visually and technically.
+                </p>
+                <div class="hero-metrics" aria-label="Professional summary">
+                    <article>
+                        <strong>6+</strong>
+                        <span>published web and software projects</span>
+                    </article>
+                    <article>
+                        <strong>C1</strong>
+                        <span>English with international academic experience</span>
+                    </article>
+                    <article>
+                        <strong>2024</strong>
+                        <span>dual DAM program start</span>
+                    </article>
+                </div>
+            </section>
+
+            <section class="content-section reveal" aria-labelledby="stack-title">
+                <div class="section-heading">
+                    <p class="section-kicker">Technical stack</p>
+                    <h2 id="stack-title">Technologies I use with a practical mindset.</h2>
+                </div>
+                <div class="skill-groups">
+                    <article class="skill-group">
+                        <h3>Frontend</h3>
+                        <div class="tag-list">
+                            <span>Semantic HTML5</span>
+                            <span>Responsive CSS</span>
+                            <span>JavaScript</span>
+                            <span>Accessibility</span>
+                            <span>CSS animations</span>
                         </div>
-                    </div>
-                    <div class="project">
-                        <div class="project-info">
-                            <h3>My Final Project (Html)</h3>
-                            <p>This project is a website about a sports store. Technologies used: Html, Css, Javascript, and PHP.</p>
-                            <a href="TiendaDeportiva/index.html" target="_blank" class="project-link">See more</a>
+                    </article>
+                    <article class="skill-group">
+                        <h3>Programming</h3>
+                        <div class="tag-list">
+                            <span>Java</span>
+                            <span>Python</span>
+                            <span>C++</span>
+                            <span>C#</span>
+                            <span>PHP</span>
+                            <span>OOP</span>
                         </div>
-                    </div>
+                    </article>
+                    <article class="skill-group">
+                        <h3>Data and systems</h3>
+                        <div class="tag-list">
+                            <span>SQL</span>
+                            <span>XML</span>
+                            <span>Linux</span>
+                            <span>Cisco</span>
+                            <span>Odoo</span>
+                        </div>
+                    </article>
+                    <article class="skill-group">
+                        <h3>Product</h3>
+                        <div class="tag-list">
+                            <span>Responsive UI</span>
+                            <span>Visual design</span>
+                            <span>Teamwork</span>
+                            <span>Problem solving</span>
+                        </div>
+                    </article>
                 </div>
-            </div>
-        </div>
+            </section>
+
+            <section class="content-section reveal" aria-labelledby="projects-title">
+                <div class="section-heading">
+                    <p class="section-kicker">Selected projects</p>
+                    <h2 id="projects-title">Not just demos: interfaces with structure, flow and technical decisions.</h2>
+                </div>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div>
+                            <p class="project-type">Web e-commerce</p>
+                            <h3>DigiDeporte</h3>
+                            <p>Multi-page sports store with catalog navigation, product views, support pages and a commercial presentation.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="mini-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+                            <a href="TiendaDeportiva/index.html" target="_blank" rel="noopener noreferrer">Open demo</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div>
+                            <p class="project-type">Java application</p>
+                            <h3>Real estate agency</h3>
+                            <p>Academic object-oriented application for managing properties, entities and query flows from the terminal.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="mini-tags"><span>Java</span><span>OOP</span><span>Data model</span></div>
+                            <a href="https://codeboard.io/projects/420011" target="_blank" rel="noopener noreferrer">View code</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div>
+                            <p class="project-type">Android</p>
+                            <h3>Android Studio demo</h3>
+                            <p>Mobile app built with Java and XML, published in a testing environment to validate interaction and navigation.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="mini-tags"><span>Java</span><span>XML</span><span>Android Studio</span></div>
+                            <a href="https://appetize.io/app/b_yxxqfclwreoxozlctguxijfile" target="_blank" rel="noopener noreferrer">Try demo</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="content-section reveal" aria-labelledby="education-title">
+                <div class="section-heading">
+                    <p class="section-kicker">Education</p>
+                    <h2 id="education-title">Technical academic base and international experience.</h2>
+                </div>
+                <ol class="timeline">
+                    <li>
+                        <span>2024 - Present</span>
+                        <h3>Dual Higher Degree in Multiplatform Application Development</h3>
+                        <p>Training focused on programming, databases, web development, mobile development and systems.</p>
+                    </li>
+                    <li>
+                        <span>2023 - 2024</span>
+                        <h3>Rey Juan Carlos University</h3>
+                        <p>Degree in Science, Management and Service Engineering. Early university experience with technology, management and teamwork.</p>
+                    </li>
+                    <li>
+                        <span>2022 - 2023</span>
+                        <h3>Salmon Arm Secondary, Canada</h3>
+                        <p>Scientific baccalaureate studied in English, with academic and cultural immersion.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="content-section reveal" aria-labelledby="fit-title">
+                <div class="section-heading">
+                    <p class="section-kicker">Working style</p>
+                    <h2 id="fit-title">Detail-oriented, fast to learn and comfortable collaborating.</h2>
+                </div>
+                <div class="traits-grid">
+                    <article>
+                        <h3>Visual care</h3>
+                        <p>I pay attention to hierarchy, spacing, contrast and consistency so the interface feels intentional, not improvised.</p>
+                    </article>
+                    <article>
+                        <h3>Active learning</h3>
+                        <p>I try to understand why each technology is useful and apply what I learn in concrete projects.</p>
+                    </article>
+                    <article>
+                        <h3>Communication</h3>
+                        <p>I work well in teams, ask when needed and make an effort to explain solutions clearly.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>
