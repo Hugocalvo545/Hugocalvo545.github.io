@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Contacto | DigiDeporte</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <header class="header-principal">
+    <div class="container">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">👟⚽</span>
+            <span class="logo-text">
+              <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+            </span>
+          </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="iconos-header">
+        <div class="carrito-icono" tabindex="0">
+          <img src="img/carrito.jpg" alt="Carrito">
+          <span id="carrito-contador">0</span>
+        </div>
+        <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+          <img src="img/user.png" alt="Usuario" />
+        </a>
+      </div>
+        <!-- Modal Carrito -->
+        <div id="carrito-modal" class="carrito-modal">
+          <div class="carrito-contenido">
+            <span class="cerrar-carrito">&times;</span>
+            <h2>Tu carrito</h2>
+            <div id="carrito-lista"></div>
+            <div class="cart-totals">
+              <div class="cart-total-line">
+                <span>Subtotal:</span>
+                <span id="carrito-subtotal">0,00 €</span>
+              </div>
+              <div class="cart-total-line">
+                <span>IVA (21%):</span>
+                <span id="carrito-iva">0,00 €</span>
+              </div>
+              <div class="cart-total-line total">
+                <span>Total:</span>
+                <span id="carrito-total">0,00 €</span>
+              </div>
+            </div>
+            <div class="cart-actions">
+              <button id="vaciar-carrito">Vaciar carrito</button>
+              <button id="tramitar-pedido">Tramitar pedido</button>
+            </div>
+          </div>
+        </div>
+  </header>
+
+  <main>
+    <section class="contacto-hero">
+      <h1>¿Necesitas ayuda? ¡Contáctanos!</h1>
+      <p>Estamos aquí para resolver tus dudas, asesorarte y ayudarte en tu experiencia de compra deportiva.</p>
+    </section>
+    <section class="contacto-formulario">
+      <form id="contacto-form" action="https://formsubmit.co/digiperplexity@gmail.com" method="POST">
+        <input type="text" name="Nombre" id="nombre-contacto" placeholder="Nombre completo" required>
+        <input type="email" name="Email" id="email-contacto" placeholder="Correo electrónico" required>
+        <input type="text" name="Asunto" id="asunto-contacto" placeholder="Asunto" required>
+        <textarea name="Mensaje" id="mensaje" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+        <button type="submit" class="btn-cta">Enviar mensaje</button>
+
+        <input type="hidden" name="_next" value="https://hugoynicolas.github.io/contacto.html">
+        <input type="hidden" name="_captcha" value="false">
+      </form>
+      <div class="contacto-info">
+        <h3>Atención al cliente</h3>
+        <ul>
+          <li><strong>Email:</strong> soporte@digideporte.com</li>
+          <li><strong>Teléfono:</strong> 900 123 456</li>
+          <li><strong>Horario:</strong> Lunes a viernes, 9:00 - 20:00</li>
+        </ul>
+        <div class="redes">
+        <div class="redes">
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="img/facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://github.com/HugoYNicolas" target="_blank">
+            <img src="img/github.webp" alt="Github"></a>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Sobre DigiDeporte</h4>
+        <p>Tu tienda online de confianza para ropa, calzado y accesorios deportivos. Envíos rápidos, atención personalizada y las mejores marcas del mercado.</p>
+      </div>
+      <div>
+        <h4>Atención al cliente</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="devoluciones.html">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <div class="redes">
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="img/facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://github.com/HugoYNicolas" target="_blank">
+            <img src="img/github.webp" alt="Github"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 DigiDeporte. Todos los derechos reservados.
+    </div>
+  </footer>
+  <script src="js/tienda.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+</body>
+</html>

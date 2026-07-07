@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>DigiDeporte | Tu tienda deportiva online</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <header class="header-principal">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">👟⚽</span>
+                <span class="logo-text">
+                  <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+                </span>
+              </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="carrito-icono">
+          <img src="img/carrito.jpg" alt="Carrito">
+          <span id="carrito-contador">0</span>
+        </div>
+          <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+            <img src="img/user.png" alt="Usuario" />
+          </a>
+      </div>
+        <!-- Modal Carrito -->
+        <div id="carrito-modal" class="carrito-modal">
+          <div class="carrito-contenido">
+            <span class="cerrar-carrito">&times;</span>
+            <h2>Tu carrito</h2>
+            <div id="carrito-lista"></div>
+            <div class="cart-totals">
+              <div class="cart-total-line">
+                <span>Subtotal:</span>
+                <span id="carrito-subtotal">0,00 €</span>
+              </div>
+              <div class="cart-total-line">
+                <span>IVA (21%):</span>
+                <span id="carrito-iva">0,00 €</span>
+              </div>
+              <div class="cart-total-line total">
+                <span>Total:</span>
+                <span id="carrito-total">0,00 €</span>
+              </div>
+            </div>
+            <div class="cart-actions">
+              <button id="vaciar-carrito">Vaciar carrito</button>
+              <button id="tramitar-pedido">Tramitar pedido</button>
+            </div>
+          </div>
+        </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-content">
+      <h1>
+        <span class="hero-highlight">NUEVA TEMPORADA</span><br>
+        Equípate como un <span class="gradient-text">profesional</span>
+      </h1>
+      <p>
+        Descubre las últimas novedades en <b>calzado, ropa y accesorios</b> de las mejores marcas.<br>
+        Vive el deporte al máximo con envío 24h, asesoría experta y ofertas exclusivas.
+      </p>
+      <a href="productos.html" class="btn-cta">Ver catálogo</a>
+    </div>
+    <div class="hero-img">
+      <img src="img/index.png" alt="Deportista en acción">
+      <div class="hero-badge" id="top-ventas-badge" style="cursor:pointer;">
+        <img src="img/nikeIndex.png" alt="Nike">
+        <span>Top ventas</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="destacados">
+    <h2>Productos destacados</h2>
+    <div class="productos-grid">
+
+        <article class="producto-card">
+            <img src="img/botasnike.jpg" alt="Nike Mercurial Speed 009">
+            <div class="producto-info">
+              <h3>Nike Mercurial Speed 009</h3>
+              <span class="marca">Nike</span>
+              <span class="categoria">Calzado</span>
+              <span class="deporte">Fútbol</span>
+              <p class="precio">289,99 €</p>
+              <p class="descripcion">Las Nike Mercurial Dream Speed 009 ofrecen velocidad, amortiguación Air Zoom y tracción dinámica para superar a la defensa con facilidad.</p>
+              <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </article>
+
+        <article class="producto-card">
+            <img src="img/lakersnike.jpg" alt="Camiseta Nike Los Angeles Lakers Icon Edition Lebron James">
+            <div class="producto-info">
+              <h3>Camiseta Nike Los Angeles Lakers Icon Edition Lebron James</h3>
+              <span class="marca">Nike</span>
+              <span class="categoria">Equipos</span>
+              <span class="deporte">Baloncesto</span>
+              <p class="precio">104,99 €</p>
+              <p class="descripcion">La camiseta Los Angeles Lakers Icon Edition LeBron James combina tradición y estilo profesional con tejido transpirable, ideal para apoyar a tu equipo y jugar con comodidad.</p>
+              <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+            </div>
+          </article>
+
+      <article class="producto-card">
+        <img src="img/psgjordan.jpg" alt="Camiseta Jordan Paris Saint-Germain x Jordan Tercera Equipación 2023-2024">
+        <div class="producto-info">
+          <h3>Camiseta Jordan Paris Saint-Germain x Jordan Tercera Equipación 2023-2024</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">59,99 €</p>
+          <p class="descripcion">La camiseta tercera equipación PSG 2023/24 fusiona el estilo urbano con el fútbol de élite, con el icónico Jordan Elephant Print y tecnología Nike Match para máximo rendimiento y frescura.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/balonjordan.jpg" alt="Balón Jordan Basketball 8P Energy Hyper Pink-Black-Black-White">
+        <div class="producto-info">
+          <h3>Balón Jordan Basketball 8P Energy Hyper Pink-Black-Black-White</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">69,99 €</p>
+          <p class="descripcion">El balón Jordan Basketball 8P Energy destaca por su diseño en Hyper Pink y detalles en negro y blanco, ofreciendo agarre, durabilidad y estilo para dominar la cancha con energía y precisión.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzadojordan.jpg" alt="Zapatilla Jordan Air Jordan 1 Retro High OG UNC Reimagined Preescolar">
+        <div class="producto-info">
+          <h3>Zapatilla Jordan Air Jordan 1 Retro High OG UNC Reimagined Preescolar</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">89,99 €</p>
+          <p class="descripcion">Las Air Jordan 1 rinden homenaje a los inicios de MJ en la University of North Carolina, con colores clásicos que celebran el origen de su leyenda.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/botasadidas.jpg" alt="Botas adidas F50 Elite FG Two Horizons">
+        <div class="producto-info">
+          <h3>Botas adidas F50 Elite FG Two Horizons</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">259,99 €</p>
+          <p class="descripcion">Las botas adidas F50 Elite edición limitada rinde homenaje a Mohamed Salah con diseño en rojo, empeine Fibertouch y suela Sprintframe 360 para velocidad y sujeción explosiva.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="ventajas">
+    <div class="ventaja">
+      <img src="img/camion.png" alt="Envío rápido">
+      <h4>Envío rápido</h4>
+      <p>Recibe tu pedido en 24/48h en toda la península.</p>
+    </div>
+    <div class="ventaja">
+      <img src="img/soporte.png" alt="Soporte experto">
+      <h4>Soporte experto</h4>
+      <p>Asesoría personalizada para elegir el producto perfecto.</p>
+    </div>
+    <div class="ventaja">
+      <img src="img/devolucion.png" alt="Devolución fácil">
+      <h4>Devolución fácil</h4>
+      <p>30 días para cambios y devoluciones sin complicaciones.</p>
+    </div>
+    <div class="ventaja">
+      <img src="img/pago.png" alt="Pago seguro">
+      <h4>Pago seguro</h4>
+      <p>Transacciones protegidas y múltiples métodos de pago.</p>
+    </div>
+  </section>
+
+  <section class="marcas-destacadas">
+    <h2>Nuestras marcas</h2>
+    <div class="marcas-slider">
+      <a href="productos.html?marca=nike"><img src="img/nikeIndex.png" alt="Nike"></a>
+      <a href="productos.html?marca=adidas"><img src="img/adidasIndex.png" alt="Adidas"></a>
+      <a href="productos.html?marca=jordan"><img src="img/jordan.png" alt="Jordan"></a>
+      <a href="productos.html?marca=puma"><img src="img/pumaIndex.png" alt="Puma"></a>
+      <a href="productos.html?marca=underarmour"><img src="img/underarmourIndex.png" alt="Under Armour"></a>
+      <a href="productos.html?marca=asics"><img src="img/asics.png" alt="Asics"></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Sobre DigiDeporte</h4>
+        <p>Tu tienda online de confianza para ropa, calzado y accesorios deportivos. Envíos rápidos, atención personalizada y las mejores marcas del mercado.</p>
+      </div>
+      <div>
+        <h4>Atención al cliente</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="devoluciones.html">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <div class="redes">
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="img/facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://github.com/HugoYNicolas" target="_blank">
+            <img src="img/github.webp" alt="Github"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 DigiDeporte. Todos los derechos reservados.
+    </div>
+  </footer>
+  <script src="js/tienda.js"></script>
+  <script src="js/filtroDestacados.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+</body>
+</html>

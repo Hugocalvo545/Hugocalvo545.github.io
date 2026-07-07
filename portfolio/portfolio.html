@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Hugo Calvo García: productos SaaS propios (GEOPilot, Gestolio) y plataformas a medida para clientes reales, con pagos, IA y despliegue en producción.">
+    <meta name="theme-color" content="#0d0f12">
+    <title>Hugo Calvo García | Portfolio de productos</title>
+    <script>
+      (function () {
+        try {
+          document.documentElement.dataset.theme = localStorage.getItem("hugo-portfolio-theme") || "dark";
+        } catch (e) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/porfolio_Hugo.css">
+    <script src="js/portfolio.js?v=3" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="#inicio" class="brand" aria-label="Ir al inicio">
+                <span>HCG</span>
+                <small>Producto &amp; desarrollo</small>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="nav-menu">
+                <li><a class="nav-link" href="#productos">Productos</a></li>
+                <li><a class="nav-link" href="#sobre-mi">Perfil</a></li>
+                <li><a class="nav-link" href="#stack">Stack</a></li>
+                <li><a class="nav-link" href="#academicos">Proyectos</a></li>
+                <li><a class="nav-link" href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="portfolio_eng.html" class="language-link" aria-label="Open English version">EN</a>
+                <button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <section id="inicio" class="hero section-observed">
+            <div class="hero-content reveal-section">
+                <p class="eyebrow">Desarrollador full-stack · Fundador de productos SaaS</p>
+                <h1>Hugo Calvo García</h1>
+                <p class="hero-subtitle">Construyo y comercializo productos SaaS propios y plataformas a medida para clientes reales, del producto al soporte.</p>
+                <p class="hero-rotator" aria-live="polite">
+                    <span id="role-rotator" data-phrases="SaaS propios en producción|Pagos y suscripciones con Stripe|Integración de IA y LLMs|Del producto al soporte">SaaS propios en producción</span>
+                </p>
+                <div class="hero-actions">
+                    <a href="#productos" class="button button-primary">Ver productos</a>
+                    <a href="../index.html" class="button button-secondary">Ver CV</a>
+                </div>
+                <dl class="hero-facts" aria-label="Resumen">
+                    <div><dt>Base</dt><dd>Madrid</dd></div>
+                    <div><dt>Idiomas</dt><dd>ES / EN C1</dd></div>
+                    <div><dt>Foco</dt><dd>Productos SaaS propios</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section id="productos" class="section section-observed">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Productos</p>
+                <h2>Tres productos en producción, con usuarios y pagos reales.</h2>
+            </div>
+            <div class="products-grid">
+                <article class="product-card reveal-section">
+                    <span class="product-badge">SaaS propio · En producción</span>
+                    <h3>GEOPilot</h3>
+                    <p>Plataforma SaaS de generación de contenido optimizado para SEO y GEO (Generative Engine Optimization). Pipeline de generación de artículos con IA, calculadora de costes real basada en tokens, calendario editorial con publicación programada y módulo de visibilidad en motores de IA.</p>
+                    <div class="tag-list"><span>Next.js</span><span>Firebase</span><span>Gemini + Claude</span><span>Stripe</span><span>Vercel</span></div>
+                    <div class="product-links"><a href="https://geopilot.es" target="_blank" rel="noopener noreferrer">Ver en producción ↗</a></div>
+                </article>
+
+                <article class="product-card reveal-section">
+                    <span class="product-badge">SaaS propio · En producción</span>
+                    <h3>Gestolio</h3>
+                    <p>PWA de gestión fiscal para autónomos españoles: facturación, gastos, cálculo de IVA e IRPF, resúmenes trimestrales (Modelos 303 y 130), calendario fiscal y asistente con IA. Modelo freemium con suscripciones Stripe.</p>
+                    <div class="tag-list"><span>Next.js 14</span><span>Supabase</span><span>Stripe</span><span>WebAuthn</span><span>PWA</span></div>
+                    <div class="product-links"><a href="https://gestolio.com" target="_blank" rel="noopener noreferrer">Ver en producción ↗</a></div>
+                </article>
+
+                <article class="product-card reveal-section">
+                    <span class="product-badge">Plataforma a medida · Cliente real</span>
+                    <h3>Tu Casa en Jerez</h3>
+                    <p>Plataforma completa de reservas vacacionales multi-propiedad para un cliente real: motor de reservas con pagos Stripe, cumplimiento del registro de viajeros (SES Hospedajes), chat cliente-anfitrión, sistema de fidelización y reseñas, y panel de administración. Entregada y en producción.</p>
+                    <div class="tag-list"><span>JavaScript</span><span>Firebase</span><span>Stripe</span><span>Google Maps</span><span>WordPress</span></div>
+                    <div class="product-links"><a href="https://jla-demo.web.app/multi/" target="_blank" rel="noopener noreferrer">Ver demo ↗</a></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="sobre-mi" class="section section-observed">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Perfil</p>
+                <h2>No hago demos: construyo software que se usa y se cobra.</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-copy reveal-section">
+                    <p>
+                        Soy desarrollador full-stack y autónomo. Diseño, desarrollo y comercializo mis propios productos SaaS y plataformas a medida para clientes reales, asumiendo el ciclo completo: producto, código, pasarela de pagos, despliegue, facturación y soporte.
+                    </p>
+                    <p>
+                        Trabajo con Next.js, Firebase, Supabase y Stripe, e integro modelos de lenguaje (LLMs) en flujos de producto reales. Compagino este trabajo con el Grado Superior Dual en Desarrollo de Aplicaciones Multiplataforma.
+                    </p>
+                </div>
+                <div class="impact-list reveal-section">
+                    <article>
+                        <span>01</span>
+                        <h3>Ownership completo</h3>
+                        <p>De la idea a usuarios que pagan: producto, desarrollo, pagos, despliegue y soporte.</p>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <h3>Pagos reales</h3>
+                        <p>Suscripciones y cobros con Stripe, modelos freemium y facturación en producción.</p>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <h3>IA aplicada</h3>
+                        <p>Integración de LLMs y pipelines de generación de contenido con criterio de coste y calidad.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="section section-observed surface-band">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Stack</p>
+                <h2>Herramientas organizadas por el tipo de problema que resuelven.</h2>
+            </div>
+            <div class="stack-grid">
+                <article class="stack-card reveal-section">
+                    <h3>Frontend</h3>
+                    <p>Interfaces responsive y accesibles con arquitectura de componentes moderna.</p>
+                    <div class="tag-list"><span>HTML5</span><span>CSS responsive</span><span>JavaScript</span><span>React</span><span>Next.js</span></div>
+                </article>
+                <article class="stack-card reveal-section">
+                    <h3>Backend y datos</h3>
+                    <p>APIs, autenticación y persistencia sobre servicios gestionados y SQL.</p>
+                    <div class="tag-list"><span>Node.js</span><span>Firebase</span><span>Supabase</span><span>SQL</span><span>APIs REST</span></div>
+                </article>
+                <article class="stack-card reveal-section">
+                    <h3>Producto y negocio</h3>
+                    <p>Pagos, despliegue, PWA y visibilidad para que el producto llegue y se cobre.</p>
+                    <div class="tag-list"><span>Stripe</span><span>Vercel</span><span>PWA</span><span>SEO/GEO</span><span>Analítica</span></div>
+                </article>
+                <article class="stack-card reveal-section">
+                    <h3>IA</h3>
+                    <p>Integración de LLMs y pipelines de generación de contenido en producto real.</p>
+                    <div class="tag-list"><span>API de Anthropic</span><span>Gemini</span><span>Pipelines de contenido</span><span>Prompt engineering</span></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="academicos" class="section section-observed">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Proyectos</p>
+                <h2>Proyectos académicos y prácticas anteriores.</h2>
+            </div>
+            <details class="academic-projects reveal-section">
+                <summary>Ver proyectos académicos (formación DAM)</summary>
+                <ul class="academic-list">
+                    <li>
+                        <h3>DigiDeporte</h3>
+                        <p>Tienda deportiva multipágina en HTML, CSS, JavaScript y PHP.</p>
+                        <a href="../TiendaDeportiva/index.html" target="_blank" rel="noopener noreferrer">Demo ↗</a>
+                    </li>
+                    <li>
+                        <h3>Concesionario Ford</h3>
+                        <p>Web corporativa con fichas de modelos y formularios de contacto.</p>
+                        <a href="../Proyecto_Final/index.html" target="_blank" rel="noopener noreferrer">Demo ↗</a>
+                    </li>
+                    <li>
+                        <h3>Agencia inmobiliaria</h3>
+                        <p>Aplicación Java orientada a objetos ejecutada desde terminal.</p>
+                        <a href="https://codeboard.io/projects/420011" target="_blank" rel="noopener noreferrer">Código ↗</a>
+                    </li>
+                    <li>
+                        <h3>Demo Android</h3>
+                        <p>Aplicación móvil en Java y XML sobre entorno de prueba.</p>
+                        <a href="https://appetize.io/app/b_yxxqfclwreoxozlctguxijfile" target="_blank" rel="noopener noreferrer">Probar ↗</a>
+                    </li>
+                </ul>
+            </details>
+        </section>
+
+        <section id="proceso" class="section section-observed surface-band">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Proceso</p>
+                <h2>Cómo llevo un producto de la idea al cobro.</h2>
+            </div>
+            <div class="process-grid">
+                <article class="process-step reveal-section">
+                    <span>01</span>
+                    <h3>Producto</h3>
+                    <p>Defino el problema, el alcance y el modelo de negocio antes de escribir código.</p>
+                </article>
+                <article class="process-step reveal-section">
+                    <span>02</span>
+                    <h3>Desarrollo</h3>
+                    <p>Construyo con Next.js, Firebase/Supabase y APIs, integrando IA cuando aporta valor.</p>
+                </article>
+                <article class="process-step reveal-section">
+                    <span>03</span>
+                    <h3>Pagos</h3>
+                    <p>Implemento suscripciones y cobros con Stripe, con planes freemium y facturación.</p>
+                </article>
+                <article class="process-step reveal-section">
+                    <span>04</span>
+                    <h3>Despliegue y soporte</h3>
+                    <p>Publico en Vercel, mido con analítica y mantengo el producto con usuarios reales.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="section section-observed contact-section">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Contacto</p>
+                <h2>Hablemos de productos, plataformas a medida o colaboraciones.</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-copy reveal-section">
+                    <p>Estoy abierto a proyectos freelance, plataformas a medida y colaboraciones donde pueda aportar producto, desarrollo full-stack e integración de IA.</p>
+                    <div class="contact-actions">
+                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary">Enviar email</a>
+                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com">Copiar email</button>
+                    </div>
+                    <ul class="social-list">
+                        <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="../Curriculum_Hugo_Calvo.pdf" download="Curriculum_Hugo_Calvo.pdf" data-theme-pdf data-pdf-light="../Curriculum_Hugo_Calvo.pdf" data-pdf-dark="../Curriculum_Hugo_Calvo_Dark.pdf">CV PDF</a></li>
+                    </ul>
+                </div>
+                <form class="contact-form reveal-section" action="https://formsubmit.co/hugocgarciat@gmail.com" method="POST">
+                    <label>
+                        <span>Nombre</span>
+                        <input type="text" name="nombre" autocomplete="name" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" autocomplete="email" required>
+                    </label>
+                    <label>
+                        <span>Mensaje</span>
+                        <textarea name="mensaje" rows="5" required></textarea>
+                    </label>
+                    <button type="submit" class="button button-primary">Enviar mensaje</button>
+                    <input type="hidden" name="_next" value="https://hugocalvo.dev/portfolio/portfolio.html#contacto">
+                    <input type="hidden" name="_captcha" value="false">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Hugo Calvo García</p>
+        <p>Desarrollador full-stack y fundador de productos SaaS. <span data-current-year>2026</span></p>
+    </footer>
+</body>
+</html>

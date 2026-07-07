@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Perfil | DigiDeporte</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <header class="header-principal">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">👟⚽</span>
+        <span class="logo-text">
+          <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+        </span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="carrito-icono">
+        <img src="img/carrito.jpg" alt="Carrito">
+        <span id="carrito-contador">0</span>
+      </div>
+      <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+        <img src="img/user.png" alt="Usuario" />
+      </a>
+    </div>
+    <!-- Modal Carrito -->
+    <div id="carrito-modal" class="carrito-modal">
+      <div class="carrito-contenido">
+        <span class="cerrar-carrito">&times;</span>
+        <h2>Tu carrito</h2>
+        <div id="carrito-lista"></div>
+        <div class="cart-totals">
+          <div class="cart-total-line">
+            <span>Subtotal:</span>
+            <span id="carrito-subtotal">0,00 €</span>
+          </div>
+          <div class="cart-total-line">
+            <span>IVA (21%):</span>
+            <span id="carrito-iva">0,00 €</span>
+          </div>
+          <div class="cart-total-line total">
+            <span>Total:</span>
+            <span id="carrito-total">0,00 €</span>
+          </div>
+        </div>
+        <div class="cart-actions">
+          <button id="vaciar-carrito">Vaciar carrito</button>
+          <button id="tramitar-pedido">Tramitar pedido</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="perfil-section">
+      <div class="perfil-header">
+        <img src="img/user.png" alt="Avatar" class="perfil-avatar">
+        <h1>Mi Perfil</h1>
+      </div>
+      <div class="perfil-info">
+        <div class="perfil-info-item">
+          <span>Nombre:</span>
+          <strong id="perfil-nombre"></strong>
+        </div>
+        <div class="perfil-info-item">
+          <span>Email:</span>
+          <strong id="perfil-email"></strong>
+        </div>
+        <div class="perfil-info-item">
+          <span>Miembro desde:</span>
+          <strong id="perfil-fecha"></strong>
+        </div>
+      </div>
+      <form id="form-editar-perfil">
+        <label for="nuevo-nombre">Nuevo nombre</label>
+        <input type="text" id="nuevo-nombre" placeholder="Nuevo nombre">
+        <label for="nueva-password">Nueva contraseña</label>
+        <input type="password" id="nueva-password" placeholder="Nueva contraseña">
+        <button type="submit" class="btn-guardar">Guardar cambios</button>
+        <div id="perfil-error" class="login-error" style="display:none"></div>
+      </form>
+      <button id="btn-cerrar-sesion" class="btn-cerrar-sesion">Cerrar sesión</button>
+    </section>
+  </main>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/perfil.js"></script>
+  <script src="js/tienda.js"></script>
+</body>
+</html>

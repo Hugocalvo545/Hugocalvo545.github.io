@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Acceso | DigiDeporte</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <header class="header-principal">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">👟⚽</span>
+        <span class="logo-text">
+          <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+        </span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="carrito-icono">
+        <img src="img/carrito.jpg" alt="Carrito">
+        <span id="carrito-contador">0</span>
+      </div>
+      <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+        <img src="img/user.png" alt="Usuario" />
+      </a>
+    </div>
+    <!-- Modal Carrito (igual que antes) -->
+    <div id="carrito-modal" class="carrito-modal">
+      <div class="carrito-contenido">
+        <span class="cerrar-carrito">&times;</span>
+        <h2>Tu carrito</h2>
+        <div id="carrito-lista"></div>
+        <div class="cart-totals">
+          <div class="cart-total-line">
+            <span>Subtotal:</span>
+            <span id="carrito-subtotal">0,00 €</span>
+          </div>
+          <div class="cart-total-line">
+            <span>IVA (21%):</span>
+            <span id="carrito-iva">0,00 €</span>
+          </div>
+          <div class="cart-total-line total">
+            <span>Total:</span>
+            <span id="carrito-total">0,00 €</span>
+          </div>
+        </div>
+        <div class="cart-actions">
+          <button id="vaciar-carrito">Vaciar carrito</button>
+          <button id="tramitar-pedido">Tramitar pedido</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="login-container">
+      <div class="login-img">
+        <img src="img/user.png" alt="Avatar usuario">
+      </div>
+      <div class="login-forms">
+        <div class="form-switcher">
+          <button id="btn-login" class="active" onclick="switchForm('login')">Iniciar sesión</button>
+          <button id="btn-registro" onclick="switchForm('registro')">Registrarse</button>
+        </div>
+        <form id="form-login" class="login-form active">
+          <h2>Iniciar sesión</h2>
+          <input type="email" id="login-email" placeholder="Email" required>
+          <input type="password" id="login-password" placeholder="Contraseña" required>
+          <button type="submit" class="login-btn">Entrar</button>
+          <div id="login-error" class="login-error" style="display:none"></div>
+          <div class="extra-links">
+            ¿No tienes cuenta? <a href="#" onclick="switchForm('registro'); return false;">Regístrate</a>
+          </div>
+        </form>
+        <form id="form-registro" class="login-form">
+          <h2>Registro</h2>
+          <input type="text" id="registro-nombre" placeholder="Nombre" required>
+          <input type="email" id="registro-email" placeholder="Email" required>
+          <input type="password" id="registro-password" placeholder="Contraseña" required>
+          <button type="submit" class="login-btn">Registrarse</button>
+          <div id="registro-error" class="login-error" style="display:none"></div>
+          <div class="extra-links">
+            ¿Ya tienes cuenta? <a href="#" onclick="switchForm('login'); return false;">Inicia sesión</a>
+          </div>
+        </form>
+        </form>
+      </div>
+    </div>
+  </main>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+  <script src="js/firebase-init.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/tienda.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Reserva tu actividad | DeporteTotal</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header class="header-principal">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">👟⚽</span>
+                <span class="logo-text">
+                  <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+                </span>
+              </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+     <div class="carrito-icono">
+          <img src="img/carrito.jpg" alt="Carrito">
+          <span id="carrito-contador">0</span>
+        </div>
+          <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+            <img src="img/user.png" alt="Usuario" />
+          </a>
+      </div>
+        <!-- Modal Carrito -->
+        <div id="carrito-modal" class="carrito-modal">
+          <div class="carrito-contenido">
+            <span class="cerrar-carrito">&times;</span>
+            <h2>Tu carrito</h2>
+            <div id="carrito-lista"></div>
+            <div class="cart-totals">
+              <div class="cart-total-line">
+                <span>Subtotal:</span>
+                <span id="carrito-subtotal">0,00 €</span>
+              </div>
+              <div class="cart-total-line">
+                <span>IVA (21%):</span>
+                <span id="carrito-iva">0,00 €</span>
+              </div>
+              <div class="cart-total-line total">
+                <span>Total:</span>
+                <span id="carrito-total">0,00 €</span>
+              </div>
+            </div>
+            <div class="cart-actions">
+              <button id="vaciar-carrito">Vaciar carrito</button>
+              <button id="tramitar-pedido">Tramitar pedido</button>
+            </div>
+          </div>
+        </div>
+  </header>
+
+  <main>
+    <section class="reserva-hero">
+      <h1>Reserva tu experiencia deportiva</h1>
+      <p>¿Quieres probar el último material, reservar una clase personalizada o vivir una actividad diferente? Elige tu experiencia y déjanos el resto a nosotros.</p>
+    </section>
+    <section class="reserva-formulario">
+      <form id="reserva-form">
+        <div class="form-row">
+          <input type="text" id="nombre" placeholder="Nombre completo" required>
+          <input type="email" id="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-row">
+          <input type="tel" id="telefono" placeholder="Teléfono" required>
+          <input type="date" id="fecha" required>
+          <input type="time" id="hora" required>
+        </div>
+        <div class="form-row">
+          <select id="actividad" required>
+            <option value="">Selecciona una actividad</option>
+            <option value="clase-futbol">Clase de Fútbol</option>
+            <option value="clase-tenis">Clase de Tenis</option>
+            <option value="prueba-zapatillas">Prueba de Zapatillas</option>
+            <option value="entrenamiento-personal">Entrenamiento Personal</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <textarea id="comentarios" placeholder="¿Algún detalle o preferencia?"></textarea>
+        </div>
+        <button type="submit" class="btn-cta">Reservar ahora</button>
+      </form>
+      <div class="reserva-info">
+        <h3>¿Por qué reservar con nosotros?</h3>
+        <ul>
+          <li>Asesoría personalizada y gratuita</li>
+          <li>Material de última generación</li>
+          <li>Entrenadores certificados</li>
+          <li>Flexibilidad de horarios</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Sobre DeporteTotal</h4>
+        <p>Tu tienda online de confianza para ropa, calzado y accesorios deportivos. Envíos rápidos, atención personalizada y las mejores marcas del mercado.</p>
+      </div>
+      <div>
+        <h4>Atención al cliente</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="devoluciones.html">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <div class="redes">
+          <a href="#"><img src="img/facebook.svg" alt="Facebook"></a>
+          <a href="#"><img src="img/instagram.svg" alt="Instagram"></a>
+          <a href="#"><img src="img/twitter.svg" alt="Twitter"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 DeporteTotal. Todos los derechos reservados.
+    </div>
+  </footer>
+  <script src="tienda.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+</body>
+</html>

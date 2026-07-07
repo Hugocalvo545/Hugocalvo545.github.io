@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Catálogo de Productos | DigiDeporte</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <header class="header-principal">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">👟⚽</span>
+                <span class="logo-text">
+                  <span class="logo-digi">Digi</span><span class="logo-deporte">Deporte</span>
+                </span>
+              </a>
+      <nav>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="ofertas.html"><span class="oferta-color">Ofertas</span></a></li>
+          <li><a href="tiendas.html">Tiendas</a></li>
+          <li><a href="atencionalcliente.html">At. Cliente</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="carrito-icono">
+          <img src="img/carrito.jpg" alt="Carrito">
+          <span id="carrito-contador">0</span>
+        </div>
+          <a href="login.html" class="usuario-icono" title="Accede o regístrate">
+            <img src="img/user.png" alt="Usuario" />
+          </a>
+      </div>
+        <!-- Modal Carrito -->
+        <div id="carrito-modal" class="carrito-modal">
+          <div class="carrito-contenido">
+            <span class="cerrar-carrito">&times;</span>
+            <h2>Tu carrito</h2>
+            <div id="carrito-lista"></div>
+            <div class="cart-totals">
+              <div class="cart-total-line">
+                <span>Subtotal:</span>
+                <span id="carrito-subtotal">0,00 €</span>
+              </div>
+              <div class="cart-total-line">
+                <span>IVA (21%):</span>
+                <span id="carrito-iva">0,00 €</span>
+              </div>
+              <div class="cart-total-line total">
+                <span>Total:</span>
+                <span id="carrito-total">0,00 €</span>
+              </div>
+            </div>
+            <div class="cart-actions">
+              <button id="vaciar-carrito">Vaciar carrito</button>
+              <button id="tramitar-pedido">Tramitar pedido</button>
+            </div>
+          </div>
+        </div>
+  </header>
+
+  <main>
+    <section class="filtros">
+      <form>
+        <input type="text" placeholder="Buscar producto, marca o deporte...">
+        
+        <select>
+          <option value="">Marca</option>
+          <option value="nike">Nike</option>
+          <option value="adidas">Adidas</option>
+          <option value="jordan">Jordan</option>
+          <option value="puma">Puma</option>
+          <option value="underarmour">Under Armour</option>
+          <option value="asics">Asics</option>
+        </select>
+        <select>
+          <option value="">Categoría</option>
+          <option value="calzado">Calzado</option>
+          <option value="ropa">Ropa</option>
+          <option value="accesorios">Accesorios</option>
+          <option value="equipos">Equipos</option>
+        </select>
+        <select>
+          <option value="">Deporte</option>
+          <option value="futbol">Fútbol</option>
+          <option value="running">Running</option>
+          <option value="tenis">Tenis</option>
+          <option value="baloncesto">Baloncesto</option>
+        </select>
+        
+        <button type="submit" class="btn-filtrar">Filtrar</button>
+      </form>
+      <h4>Productos encontrados: <span id="contador-productos"></span></h4>
+    </section>
+
+    <section class="productos-grid">
+
+      <!-- Ejemplo de producto -->
+      <article class="producto-card">
+        <img src="img/botasnike.jpg" alt="Nike Mercurial Speed 009">
+        <div class="producto-info">
+          <h3>Nike Mercurial Speed 009</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">289,99 €</p>
+          <p class="descripcion">Las Nike Mercurial Dream Speed 009 ofrecen velocidad, amortiguación Air Zoom y tracción dinámica para superar a la defensa con facilidad.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/chaquetanike.jpg" alt="Chaqueta Nike Dri-Fit Form">
+        <div class="producto-info">
+          <h3>Chaqueta Nike Dri-Fit Form</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">12,99 €</p>
+          <p class="descripcion">Camiseta técnica con tecnología Dri-FIT, ideal para tus entrenamientos más exigentes.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/viseranike.webp" alt="Nike Dri-FIT ADV Ace">
+        <div class="producto-info">
+          <h3>Nike Dri-FIT ADV Ace</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">29,99 €</p>
+          <p class="descripcion">Visera ligera y transpirable, perfecta para el tenis, con tejido que capilariza el sudor y diseño AeroBill acortado para máxima concentración en el juego.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+      
+      <article class="producto-card">
+        <img src="img/lakersnike.jpg" alt="Camiseta Nike Los Angeles Lakers Icon Edition Lebron James">
+        <div class="producto-info">
+          <h3>Camiseta Nike Los Angeles Lakers Icon Edition Lebron James</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">104,99 €</p>
+          <p class="descripcion">La camiseta Los Angeles Lakers Icon Edition LeBron James combina tradición y estilo profesional con tejido transpirable, ideal para apoyar a tu equipo y jugar con comodidad.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/balonadidas.jpg" alt="Balón adidas Real Madrid 2024-2025">
+        <div class="producto-info">
+          <h3>Balón adidas Real Madrid 2024-2025</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">39,99 €</p>
+          <p class="descripcion">Mejora tu juego mientras representas al Real Madrid con este balón adidas 2024-2025, fabricado en caucho resistente y con un diseño que luce las 3 bandas y el escudo del equipo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/tenisadidas.jpg" alt=">Tenis Adidas Clásicas Swift Run">
+        <div class="producto-info">
+          <h3>Tenis Adidas Clásicas Swift Run</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">99,99 €</p>
+          <p class="descripcion">Diseñadas para dominar la pista, estas zapatillas de tenis adidas ofrecen sujeción, tracción y comodidad para rendir al máximo en cada punto.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/bayernadidas.jpg" alt="Camiseta adidas FC Bayern Primera Equipación Authentic 2024-2025">
+        <div class="producto-info">
+          <h3>Camiseta adidas FC Bayern Primera Equipación Authentic 2024-2025</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">119,99 €</p>
+          <p class="descripcion">La camiseta FC Bayern Authentic 2024-2025 combina tradición y rendimiento con un diseño en tonos rojos, detalles termotransferidos y tecnología HEAT.RDY para mantener la frescura en el campo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/runningadidas.jpg" alt="Pantalón largo adidas Essentials 3 Stripes">
+        <div class="producto-info">
+          <h3>Pantalón largo adidas Essentials 3 Stripes</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">29,99 €</p>
+          <p class="descripcion">Comodidad y estilo se unen en este pantalón adidas de corte clásico, con las icónicas 3 bandas y un diseño versátil ideal para tu día a día.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/mediasjordan.jpg" alt="Calcetines Jordan Everyday Cushioned Poly Ankle 144 (3 Pares)">
+        <div class="producto-info">
+          <h3>Calcetines Jordan Everyday Cushioned Poly Ankle 144 (3 Pares)</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">19,99 €</p>
+          <p class="descripcion">Estos calcetines Jordan tobilleros ofrecen transpirabilidad, sujeción y frescura gracias a su tejido que capilariza el sudor y se adapta al puente del pie.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/pantalonjordan.jpg" alt="Pantalón corto Jordan Minnesota Timberwolves Statement Edition">
+        <div class="producto-info">
+          <h3>Pantalón corto Jordan Minnesota Timberwolves Statement Edition</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">55,99 €</p>
+          <p class="descripcion">Luce los colores de los Timberwolves con este pantalón corto Statement Edition, con tejido de malla transpirable y detalles auténticos para rendir en la cancha o destacar en la calle.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/psgjordan.jpg" alt="Camiseta Jordan Paris Saint-Germain x Jordan Tercera Equipación 2023-2024">
+        <div class="producto-info">
+          <h3>Camiseta Jordan Paris Saint-Germain x Jordan Tercera Equipación 2023-2024</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">59,99 €</p>
+          <p class="descripcion">La camiseta tercera equipación PSG 2023/24 fusiona el estilo urbano con el fútbol de élite, con el icónico Jordan Elephant Print y tecnología Nike Match para máximo rendimiento y frescura.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzadojordan.jpg" alt="Zapatilla Jordan Air Jordan 1 Retro High OG UNC Reimagined Preescolar">
+        <div class="producto-info">
+          <h3>Zapatilla Jordan Air Jordan 1 Retro High OG UNC Reimagined Preescolar</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">89,99 €</p>
+          <p class="descripcion">Las Air Jordan 1 rinden homenaje a los inicios de MJ en la University of North Carolina, con colores clásicos que celebran el origen de su leyenda.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzadopuma.jpg" alt="Zapatilla Puma PWR Hybrid">
+        <div class="producto-info">
+          <h3>Zapatilla Puma PWR Hybrid</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Running</span>
+          <p class="precio">79,99 €</p>
+          <p class="descripcion">Las zapatillas PUMA combinan tracción, amortiguación y estabilidad con tecnologías como PUMAGRIP, ProFoam y PWRTAPE para un rendimiento potente y preciso en cada paso.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/pumaportugal.jpg" alt="Conjunto Puma Portugal Segunda Equipación 2024-2025">
+        <div class="producto-info">
+          <h3>Conjunto Puma Portugal Segunda Equipación 2024-2025</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">62,99 €</p>
+          <p class="descripcion">La segunda equipación de Portugal destaca con un diseño audaz y dinámico, fusionando arte, tecnología y fútbol en una camiseta ideal para el partido o el día a día.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/ropapuma.jpg" alt="Pantalón largo Puma teamRISE">
+        <div class="producto-info">
+          <h3>Pantalón largo Puma teamRISE</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">23,99 €</p>
+          <p class="descripcion">Estos pantalones de entrenamiento de fútbol para hombre están diseñados para ofrecer la máxima comodidad durante tus sesiones diarias, ya sea con calor o con frío.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camisetapuma.jpg" alt="Camiseta Puma Graphics Running Faster">
+        <div class="producto-info">
+          <h3>Camiseta Puma Graphics Running Faster</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">19,99 €</p>
+          <p class="descripcion">La camiseta Puma Graphics Running Faster combina comodidad y rendimiento, con un diseño dinámico y tejido transpirable para mantenerte fresco durante el entrenamiento.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/gorrounderarmour.jpg" alt="Gorra Under Armour UA Blitzing">
+        <div class="producto-info">
+          <h3>Gorra Under Armour UA Blitzing</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">22,99 €</p>
+          <p class="descripcion">La banda HeatGear® combina protección solar con tecnología que capilariza el sudor, manteniendo la frescura y comodidad gracias a su tejido transpirable y diseño elástico.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/sudaderaunderarmour.jpg" alt="Sudadera Under Armour Rival Fleece Logo Black">
+        <div class="producto-info">
+          <h3>Sudadera Under Armour Rival Fleece Logo Black</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">39,99 €</p>
+          <p class="descripcion">La sudadera Under Armour Rival Fleece Logo Black fusiona comodidad y estilo, con un tejido de felpa suave y un diseño clásico con logo bordado para un ajuste cómodo y versátil.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzadounderarmour.jpg" alt="Zapatillas Under Armour Jet 23">
+        <div class="producto-info">
+          <h3>Zapatillas Under Armour Jet 23</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">55,99 €</p>
+          <p class="descripcion">Ajustadas y listas para el despegue. La mediasuela de Micro G te proporciona la amortiguación que necesitas, mientras que la parte superior resistente resulta ideal dentro y fuera de la cancha.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/futbolunderarmour.jpg" alt="Bota Under Armour Magnetico Select 4 FG">
+        <div class="producto-info">
+          <h3>Bota Under Armour Magnetico Select 4 FG</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">69,99 €</p>
+          <p class="descripcion">Bota de fútbol Under Amour Magnético Select 4 FG. Botas de gama base elaboradas con piel sintética para campos de césped natural. </p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camisetaasics.jpg" alt="Asics tennis wear 24">
+        <div class="producto-info">
+          <h3>Asics Tennis Wear 24</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">89,99 €</p>
+          <p class="descripcion">La camiseta Asics Tennis Wear 24 ofrece ligereza y frescura con su diseño hueco y tejido de secado rápido, pensada para los entusiastas del tenis que buscan rendimiento y comodidad en la pista.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camiseta2asics.jpg" alt="Asics Wear Australian Open 2024">
+        <div class="producto-info">
+          <h3>Asics Wear Australian Open 2024</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">109,99 €</p>
+          <p class="descripcion">La camiseta Asics Wear Australian Open 2024 combina tecnología de secado rápido con un diseño ligero y transpirable, ideal para ofrecer máximo rendimiento y comodidad en los partidos más exigentes del torneo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/pantalonasics.jpg" alt="Pantalones cortos Australian Open">
+        <div class="producto-info">
+          <h3>Pantalones cortos Australian Open</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">84,99 €</p>
+          <p class="descripcion">La camiseta Asics Wear Australian Open 2024 combina tecnología de secado rápido con un diseño ligero y transpirable, ideal para ofrecer máximo rendimiento y comodidad en los partidos más exigentes del torneo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/muñequerasasics.jpg" alt="Pro Muñequeras Cortas">
+        <div class="producto-info">
+          <h3>Pro Muñequeras Cortas</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">8,99 €</p>
+          <p class="descripcion">Asics Pro son las muñequeras de tenis cortas que, gracias al tejido suave, absorben el sudor y garantizan una comodidad inigualable durante todo el partido.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/bullsnike.jpg" alt="Camiseta Nike Chicago Bulls Icon Swingman">
+        <div class="producto-info">
+          <h3>Camiseta Nike Chicago Bulls Icon Swingman</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">69,99 €</p>
+          <p class="descripcion">La camiseta Nike Chicago Bulls 2024 une tradición y rendimiento con tecnología Dri-FIT, malla transpirable y detalles oficiales para mantener la frescura dentro y fuera de la cancha.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzado2jordan.jpg" alt="Zapatilla Jordan Air Jordan 1 Retro High OG Black And Gold">
+        <div class="producto-info">
+          <h3>Zapatilla Jordan Air Jordan 1 Retro High OG Black And Gold</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">114,99 €</p>
+          <p class="descripcion">Las Air Jordan 1 reinventan el modelo original con una nueva combinación de colores, materiales premium y amortiguación suave, ofreciendo comodidad y homenajeando a las zapatillas que lo empezaron todo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/accesoriospuma.jpg" alt="Espinillera Puma Ultra Flex Sleeve">
+        <div class="producto-info">
+          <h3>Espinillera Puma Ultra Flex Sleeve</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">20,99 €</p>
+          <p class="descripcion">Las espinilleras PUMA x Fútbol Emotion ULTRA Flex combinan diseño exclusivo y vibrante con ligereza, flexibilidad y resistencia para ofrecerte confianza y protección en cada partido.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/botasadidas.jpg" alt="Botas adidas F50 Elite FG Two Horizons">
+        <div class="producto-info">
+          <h3>Botas adidas F50 Elite FG Two Horizons</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">259,99 €</p>
+          <p class="descripcion">Las botas adidas F50 Elite edición limitada rinde homenaje a Mohamed Salah con diseño en rojo, empeine Fibertouch y suela Sprintframe 360 para velocidad y sujeción explosiva.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/balonpuma.jpg" alt="Balón Puma Orbita Laliga 2024-2025 Quality Pro">
+        <div class="producto-info">
+          <h3>Balón Puma Orbita Laliga 2024-2025 Quality Pro</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Fútbol</span>
+          <p class="precio">99,99 €</p>
+          <p class="descripcion">PUMA y LaLiga presentan el balón 2024/25 con un diseño vibrante que fusiona colores corporativos, arte urbano y pop art, reflejando la pasión y esencia del fútbol en cada toque.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/balonjordan.jpg" alt="Balón Jordan Basketball 8P Energy Hyper Pink-Black-Black-White">
+        <div class="producto-info">
+          <h3>Balón Jordan Basketball 8P Energy Hyper Pink-Black-Black-White</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">69,99 €</p>
+          <p class="descripcion">El balón Jordan Basketball 8P Energy destaca por su diseño en Hyper Pink y detalles en negro y blanco, ofreciendo agarre, durabilidad y estilo para dominar la cancha con energía y precisión.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camiseta2nike.jpg" alt="Camiseta Nike Sportswear Just Do It Swoosh">
+        <div class="producto-info">
+          <h3>Camiseta Nike Sportswear Just Do It Swoosh</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">24,99 €</p>
+          <p class="descripcion">La camiseta Nike Sportswear está confeccionada con algodón para proporcionar comodidad durante todo el día.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/airforce.jpg" alt="Zapatilla Nike Air Force 1 07">
+        <div class="producto-info">
+          <h3>Zapatilla Nike Air Force 1 07</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Running</span>
+          <p class="precio">119,99 €</p>
+          <p class="descripcion">La Nike Air Force 1 de cuero moderniza un clásico con una unidad Air-Sole y entresuela de espuma para mayor confort y estilo urbano.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/gorranike.jpg" alt="Gorra Nike Club Metal Swoosh">
+        <div class="producto-info">
+          <h3>Gorra Nike Club Metal Swoosh</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">24,99 €</p>
+          <p class="descripcion">Estilo deportivo con el icónico Swoosh. Esta gorra Nike combina comodidad, frescura y un look impecable gracias a su diseño sin estructura y el logotipo metálico.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/chelsea.jpg" alt="Camiseta Nike Chelsea FC Primera Equipación Authentic 2024-2025">
+        <div class="producto-info">
+          <h3>Camiseta Nike Chelsea FC Primera Equipación Authentic 2024-2025</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Futbol</span>
+          <p class="precio">149,99 €</p>
+          <p class="descripcion">Inspirada en los profesionales, la camiseta del Chelsea 2024/25 combina tecnología Dri-FIT ADV y diseño auténtico para máxima comodidad y orgullo blue.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/interdemilan.jpg" alt="Camiseta Nike Inter Milan Primera Equipación Authentic 2024-2025">
+        <div class="producto-info">
+          <h3>Camiseta Nike Inter Milan Primera Equipación Authentic 2024-2025</h3>
+          <span class="marca">Nike</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Futbol</span>
+          <p class="precio">149,99 €</p>
+          <p class="descripcion">La camiseta del Inter 2024/25 ofrece el mismo diseño que usan los profesionales, con tecnología Dri-FIT ADV para máxima frescura, comodidad y orgullo nerazzurro.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/chanclasadidas.jpg" alt="Chanclas adidas Adilette">
+        <div class="producto-info">
+          <h3>Chanclas adidas Adilette</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">44,99 €</p>
+          <p class="descripcion">Icónicas desde 1972, las chanclas Adilette combinan estilo atemporal, comodidad total y un diseño ligero perfecto para el día a día o la piscina.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/guardaespinilleras.jpg" alt="Guardaespinilleras adidas Ankle Strap">
+        <div class="producto-info">
+          <h3>Guardaespinilleras adidas Ankle Strap</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">9,99 €</p>
+          <p class="descripcion">Cinta de cinta autoadherente. Incluye un par de cintas, una cinta para cada pierna ideal para prevenir deslizamientos de la espinillera, llevarla debajo o en la base de la espinillera. Cinta que sustituye al esparadrapo.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzadoadidas.jpg" alt="Zapatillas adidas Bounce Legends">
+        <div class="producto-info">
+          <h3>Zapatillas adidas Bounce Legends</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">69,99 €</p>
+          <p class="descripcion">Zapatilla de baloncesto Adidas Bounce Legends con mediasuela Bounce que ofrece amortiguación y impulso para movimientos rápidos. Diseño compacto con las 3 bandas clásicas para potenciar tu juego.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/sudaderaadidas.jpg" alt="Sudadera adidas Essentials Big Logo">
+        <div class="producto-info">
+          <h3>Sudadera adidas Essentials Big Logo</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">54,99 €</p>
+          <p class="descripcion">Sudadera adidas de felpa supersuave ideal para entrenar o relajarte, con puños y dobladillo de canalé que ofrecen comodidad y mantienen la temperatura.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/realmadrid.jpg" alt="Camiseta adidas Real Madrid CF Primera Equipación 2023-2024">
+        <div class="producto-info">
+          <h3>Sudadera adidas Essentials Big Logo</h3>
+          <span class="marca">Adidas</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Futbol</span>
+          <p class="precio">74,99 €</p>
+          <p class="descripcion">Camiseta adidas Real Madrid blanca con detalles dorados y "¡Hala Madrid!" en la nuca. Tejido AEROREADY que mantiene la piel seca y cómoda.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camisetajordan.jpg" alt="Camiseta Jordan Jumpman">
+        <div class="producto-info">
+          <h3>Camiseta Jordan Jumpman</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">29,99 €</p>
+          <p class="descripcion">Luce tu estilo con la camiseta Jordan Jumpman. Está confeccionada con un tejido suave y cómodo, y un ajuste holgado y desenfadado.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzado3jordan.jpg" alt="Zapatilla Jordan Air Jordan 1 Retro High OG Midnight Navy">
+        <div class="producto-info">
+          <h3>Zapatilla Jordan Air Jordan 1 Retro High OG Midnight Navy</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Baloncesto</span>
+          <p class="precio">114,99 €</p>
+          <p class="descripcion">Las Air Jordan 1 Retro High reinventan un clásico con materiales premium, nuevos colores y texturas, combinando modernidad y estilo atemporal.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/riñonerajordan.jpg" alt="Riñonera Jordan Monogram Camera Bag">
+        <div class="producto-info">
+          <h3>Riñonera Jordan Monogram Camera Bag</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">32,99 €</p>
+          <p class="descripcion">Riñonera Jordan con estampado de monograma Woven, compartimentos con cierre para objetos pequeños y correa regulable y extraíble para mayor versatilidad.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/pantalon2jordan.jpg" alt="Pantalón largo Jordan Paris Saint-Germain x Jordan Training 2023-2024">
+        <div class="producto-info">
+          <h3>Pantalón largo Jordan Paris Saint-Germain x Jordan Training 2023-2024</h3>
+          <span class="marca">Jordan</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">55,99 €</p>
+          <p class="descripcion">Pantalón largo Jordan Paris Saint-Germain Training 2023-2024, diseñado para comodidad y estilo durante el entrenamiento.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/botaspuma.jpg" alt="Zapatos de fútbol Puma Future Match FG/AG">
+        <div class="producto-info">
+          <h3>Zapatos de fútbol Puma Future Match FG/AG</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Futbol</span>
+          <p class="precio">155,99 €</p>
+          <p class="descripcion">Bota de fútbol Puma Future Match FG/AG para adultos. Botas sintéticas para utilizar en campos de hierba artificial y hierba natural. Botas de gama media en color Black-Silver.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/dortmund.jpg" alt="Puma Borussia Dortmund Third Kit 2024-2025 Jersey">
+        <div class="producto-info">
+          <h3>Puma Borussia Dortmund Third Kit 2024-2025 Jersey</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Equipos</span>
+          <span class="deporte">Futbol</span>
+          <p class="precio">94,99 €</p>
+          <p class="descripcion">Una camiseta con mucha historia. La tercera equipación BVB 24/25 combina elementos de los momentos más históricos del equipo, diseñada para los aficionados más apasionados.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/sudadera2puma.jpg" alt="Sudadera Puma Individualliga 1/4 Zip Top Jr">
+        <div class="producto-info">
+          <h3>Sudadera Puma Individualliga 1/4 Zip Top Jr</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">39,99 €</p>
+          <p class="descripcion">Sudadera Individualliga 1/4 Zip Top Jr, ideal para entrenar al máximo en frío gracias a su diseño llamativo y ajuste perfecto para tus sesiones diarias.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzado2puma.jpg" alt="Zapatillas Puma Court Pro">
+        <div class="producto-info">
+          <h3>Zapatillas Puma Court Pro</h3>
+          <span class="marca">Puma</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Running</span>
+          <p class="precio">89,99 €</p>
+          <p class="descripcion">Las Court Pro son zapatillas ideales para jóvenes jugadores, con malla transpirable para comodidad y cuello de tobillo que ofrece protección y estabilidad en la pista.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camisetaunderarmour.jpg" alt="Camiseta Under Armour HeatGear Compression LS">
+        <div class="producto-info">
+          <h3>Camiseta Under Armour HeatGear Compression LS</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">34,99 €</p>
+          <p class="descripcion">Camiseta de manga larga HG Comp SS de la marca Under Armour en color White-Black.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/sudadera2underarmour.jpg" alt="Sudadera Under Armour Rival">
+        <div class="producto-info">
+          <h3>Sudadera Under Armour Rival</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Running</span>
+          <p class="precio">59,99 €</p>
+          <p class="descripcion">Sudadera Under Amour Rival. Confeccionada con material que proporciona rendimiento, reemplaza las viejas sudaderas de algodón. Sorprendentemente ligero, pero a la vez te mantiene en calor.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzado2underarmour.jpg" alt="Zapatillas Under Armour Curry 12 Dark Energy">
+        <div class="producto-info">
+          <h3>Zapatillas Under Armour Curry 12 Dark Energy</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Running</span>
+          <p class="precio">59,99 €</p>
+          <p class="descripcion">Sudadera Under Amour Rival. Confeccionada con material que proporciona rendimiento, reemplaza las viejas sudaderas de algodón. Sorprendentemente ligero, pero a la vez te mantiene en calor.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/mochilaunderarmour.jpg" alt="Mochila Under Armour UA Hustle Lite Backpack (26,5 L)">
+        <div class="producto-info">
+          <h3>Mochila Under Armour UA Hustle Lite Backpack (26,5 L)</h3>
+          <span class="marca">Under Armour</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Running</span>
+          <p class="precio">34,99 €</p>
+          <p class="descripcion">Esta mochila Under Armour Hustle Lite de 26,5L cuenta con tecnología Storm que proporciona protección resistente al agua y a las manchas.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzadoasics.jpg" alt="Zapatilla ASICS Gel-1130">
+        <div class="producto-info">
+          <h3>Zapatilla ASICS Gel-1130</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Running</span>
+          <p class="precio">34,99 €</p>
+          <p class="descripcion">Zapatillas ASICS Gel-1130 con diseño noventero y tecnología GEL, combinan soporte y estilo retro ideal para el uso urbano diario.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzado2asics.jpg" alt="Zapatilla ASICS Gel-1130">
+        <div class="producto-info">
+          <h3>Zapatilla ASICS Gel-1130 beige</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Running</span>
+          <p class="precio">34,99 €</p>
+          <p class="descripcion">Las zapatillas GEL-NYC combinan estilo retro y moderno, inspiradas en modelos como las GEL-NIMBUS 3 y GEL-CUMULUS 16. Su diseño ofrece gran confort gracias a la tecnología GEL y espumas ligeras.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/camiseta3asics.jpg" alt="Camiseta Asics Seamless SS Top">
+        <div class="producto-info">
+          <h3>Camiseta Asics Seamless SS Top</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Ropa</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">49,99 €</p>
+          <p class="descripcion">Camiseta Asics Seamless SS Top para tenis, diseñada sin costuras para mayor comodidad y libertad de movimiento en la pista. Ideal para entrenamientos intensos.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/calzado3asics.jpg" alt="Asics Gel-Resolution X Zapatilla">
+        <div class="producto-info">
+          <h3>Asics Gel-Resolution X Zapatilla</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Calzado</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">119,99 €</p>
+          <p class="descripcion">Zapatilla Asics Gel-Resolution X, diseñada para tenis con gran estabilidad, sujeción y tecnología GEL que mejora la amortiguación en cada paso.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <img src="img/viseraasics.jpg" alt="Visera Asics performance visor">
+        <div class="producto-info">
+          <h3>Visera Asics performance visor</h3>
+          <span class="marca">Asics</span>
+          <span class="categoria">Accesorios</span>
+          <span class="deporte">Tenis</span>
+          <p class="precio">29,99 €</p>
+          <p class="descripcion">Zapatilla Asics Gel-Resolution X, diseñada para tenis con gran estabilidad, sujeción y tecnología GEL que mejora la amortiguación en cada paso.</p>
+          <button class="btn-primario" onclick="agregarAlCarrito(prod.nombre, prod.precio, prod.img)">Añadir al carrito</button>
+        </div>
+      </article>
+
+
+      <!-- Más productos... -->
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h4>Sobre DeporteTotal</h4>
+        <p>Tu tienda online de confianza para ropa, calzado y accesorios deportivos. Envíos rápidos, atención personalizada y las mejores marcas del mercado.</p>
+      </div>
+      <div>
+        <h4>Atención al cliente</h4>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="devoluciones.html">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <div class="redes">
+          <a href="https://www.facebook.com/" target="_blank">
+            <img src="img/facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://github.com/HugoYNicolas" target="_blank">
+            <img src="img/github.webp" alt="Github"></a>
+        </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 DeporteTotal. Todos los derechos reservados.
+    </div>
+  </footer>
+  
+  <script src="js/tienda.js"></script>
+  <script src="js/filtro.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+</body>
+</html>
