@@ -294,7 +294,8 @@ img {
         linear-gradient(90deg, rgba(13, 15, 18, 0.95) 0%, rgba(13, 15, 18, 0.82) 48%, rgba(13, 15, 18, 0.35) 72%, rgba(13, 15, 18, 0.18) 100%),
         url("../img/porfile.jpg");
     background-position: center, right center;
-    background-size: cover, min(50rem, 62vw) auto;
+    /* foto cuadrada 600x600: llena la altura del hero y recorta lados */
+    background-size: cover, auto 100%;
     background-repeat: no-repeat;
 }
 

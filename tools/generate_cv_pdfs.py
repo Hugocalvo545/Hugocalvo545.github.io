@@ -443,7 +443,7 @@ SPANISH = {
     "role": "Construyo y comercializo SaaS propios y plataformas a medida para clientes reales, del producto al soporte.",
     "cv_kicker": "Currículum web",
     "intro_title": "Construyo y lanzo software que se usa y se cobra.",
-    "intro": "Desarrollador full-stack y autónomo. Construyo y comercializo productos SaaS propios (GEOPilot, Gestolio) y plataformas a medida para clientes reales, cubriendo el ciclo completo: producto, desarrollo, pagos, despliegue y soporte. Actualmente cursando el Grado Superior Dual en DAM.",
+    "intro": "Desarrollador full-stack y autónomo. Construyo y comercializo productos SaaS propios (GEOPilot, Gestolio) y plataformas a medida para clientes reales, cubriendo el ciclo completo: producto, desarrollo, pagos, despliegue y soporte. Técnico Superior en DAM (2026).",
     "metrics": [
         ("3", "productos en producción con usuarios y pagos reales"),
         ("2", "SaaS propios (GEOPilot y Gestolio)"),
@@ -475,7 +475,7 @@ SPANISH = {
         {"title": "Tu Casa en Jerez", "body": "Plataforma de reservas multi-propiedad para cliente real: motor de reservas con Stripe, registro de viajeros (SES), chat, fidelización y panel de administración.", "tags": ["JavaScript", "Firebase", "Stripe", "Maps"], "button": ("Ver demo", LINKS["jerez"])},
     ],
     "education": [
-        ("2024 - Actualidad", "Grado Superior Dual en Desarrollo de Aplicaciones Multiplataforma", "Formación centrada en programación, bases de datos, desarrollo web, desarrollo móvil y sistemas."),
+        ("2024 - 2026", "Grado Superior Dual en Desarrollo de Aplicaciones Multiplataforma", "Título de Técnico Superior obtenido en 2026. Formación centrada en programación, bases de datos, desarrollo web, desarrollo móvil y sistemas."),
         ("2023 - 2024", "Universidad Rey Juan Carlos", "Grado en Ciencia, Gestión e Ingeniería de Servicios. Primer contacto universitario con tecnología, gestión y trabajo en equipo."),
         ("2022 - 2023", "Salmon Arm Secondary, Canadá", "Bachillerato científico cursado en inglés, con inmersión académica y cultural."),
     ],
@@ -500,7 +500,7 @@ ENGLISH = {
     "role": "I build and commercialize my own SaaS products and custom platforms for real clients, from product to support.",
     "cv_kicker": "Web resume",
     "intro_title": "I build and ship software that gets used and paid for.",
-    "intro": "Full-stack developer and freelancer. I build and commercialize my own SaaS products (GEOPilot, Gestolio) and custom platforms for real clients, covering the full cycle: product, development, payments, deployment and support. Currently studying the dual Higher Degree in Multiplatform Application Development (DAM).",
+    "intro": "Full-stack developer and freelancer. I build and commercialize my own SaaS products (GEOPilot, Gestolio) and custom platforms for real clients, covering the full cycle: product, development, payments, deployment and support. Higher Technician in Multiplatform Application Development, DAM (2026).",
     "metrics": [
         ("3", "products in production with real users and payments"),
         ("2", "own SaaS products (GEOPilot and Gestolio)"),
@@ -531,7 +531,7 @@ ENGLISH = {
         {"title": "Tu Casa en Jerez", "body": "Multi-property booking platform for a real client: booking engine with Stripe, guest registration (Spanish SES), chat, loyalty and admin panel.", "tags": ["JavaScript", "Firebase", "Stripe", "Maps"], "button": ("View demo", LINKS["jerez"])},
     ],
     "education": [
-        ("2024 - Present", "Dual Higher Degree in Multiplatform Application Development", "Training focused on programming, databases, web development, mobile development and systems."),
+        ("2024 - 2026", "Dual Higher Degree in Multiplatform Application Development", "Higher Technician degree completed in 2026. Training focused on programming, databases, web development, mobile development and systems."),
         ("2023 - 2024", "Rey Juan Carlos University", "Degree in Science, Management and Service Engineering. Early university experience with technology, management and teamwork."),
         ("2022 - 2023", "Salmon Arm Secondary, Canada", "Scientific baccalaureate studied in English, with academic and cultural immersion."),
     ],
