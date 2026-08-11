@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FENELS — Primer drop. Solo 50 unidades.</title>
+  <meta name="description" content="FENELS. Streetwear de calle. Primer drop: camiseta negra oversize, solo 50 unidades. Apúntate gratis a la lista y te avisamos cuando salga.">
+  <meta property="og:title" content="FENELS — Primer drop. Solo 50 unidades.">
+  <meta property="og:description" content="Reserva gratis tu aviso. Cuando salga el drop, te enteras el primero.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+
+      <p class="hero-tag">DROP 001 · MUY PRONTO</p>
+
+      <h1 class="logo" aria-label="FENELS">
+        <span class="logo-text">FENELS</span>
+        <span class="sparkle sparkle-1" aria-hidden="true">✦</span>
+        <span class="sparkle sparkle-2" aria-hidden="true">✦</span>
+        <span class="sparkle sparkle-3" aria-hidden="true">✧</span>
+        <svg class="logo-underline" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M6 14 C 60 6, 120 20, 170 12 S 270 8, 294 13" fill="none" stroke="#f5b520" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+      </h1>
+
+      <p class="hero-claim">Primer drop. <strong>Solo 50 unidades.</strong><br>Si no estás en la lista, te lo pierdes.</p>
+
+      <!-- Formulario de reserva -->
+      <form id="waitlist-form" class="form" novalidate>
+        <div class="form-row">
+          <label class="visually-hidden" for="f-nombre">Nombre</label>
+          <input type="text" id="f-nombre" name="nombre" placeholder="Tu nombre (opcional)" autocomplete="name" maxlength="80">
+        </div>
+
+        <div class="form-row">
+          <label class="visually-hidden" for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" placeholder="tu@email.com *" autocomplete="email" required maxlength="120">
+        </div>
+
+        <div class="form-row">
+          <label class="visually-hidden" for="f-talla">Talla que te interesa</label>
+          <select id="f-talla" name="talla">
+            <option value="">Talla que te interesa (opcional)</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+
+        <!-- Honeypot anti-spam: oculto para humanos -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="f-web">Deja este campo vacío</label>
+          <input type="text" id="f-web" name="web" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label class="check-row">
+          <input type="checkbox" id="f-consent" name="consent" required>
+          <span>Acepto recibir un aviso por email cuando salga el drop. *</span>
+        </label>
+
+        <button type="submit" class="btn" id="submit-btn">
+          APÚNTAME A LA LISTA
+        </button>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+
+        <p class="legal">
+          Reservar es gratis y no te obliga a nada. Solo usamos tus datos para avisarte del
+          lanzamiento. Puedes pedir que los borremos escribiendo a
+          <a href="mailto:hola@fenels.com">hola@fenels.com</a>.
+        </p>
+      </form>
+
+      <!-- Mensaje de éxito (oculto hasta enviar) -->
+      <div class="success" id="success-box" hidden>
+        <p class="success-title">¡ESTÁS DENTRO! <span aria-hidden="true">✦</span></p>
+        <p class="success-text">Te avisamos por email en cuanto caiga el drop.<br>Mientras tanto, corre la voz.</p>
+      </div>
+
+      <a class="scroll-hint" href="#camiseta" aria-label="Bajar para ver la camiseta">▼</a>
+    </div>
+  </header>
+
+  <!-- ============ LA CAMISETA ============ -->
+  <section class="section" id="camiseta">
+    <h2 class="section-title reveal">LA CAMISETA</h2>
+    <p class="section-sub reveal">Negra. Oversize. Sin tonterías.</p>
+
+    <div class="gallery reveal">
+      <figure class="shot">
+        <div class="shot-ph" data-label="FRONTAL"><span>Print pequeño<br>en el pecho</span></div>
+        <figcaption>Delante: logo pequeño</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="shot-ph" data-label="ESPALDA"><span>Print grande<br>FENELS spray</span></div>
+        <figcaption>Detrás: print a lo grande</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="shot-ph" data-label="DETALLE"><span>Lettering blanco<br>con goteo</span></div>
+        <figcaption>Detalle del lettering</figcaption>
+      </figure>
+    </div>
+
+    <ul class="specs reveal">
+      <li><span class="spec-k">Corte</span> Oversize de verdad, caída ancha</li>
+      <li><span class="spec-k">Color</span> Negro profundo</li>
+      <li><span class="spec-k">Print</span> Pequeño delante · grande en la espalda</li>
+      <li><span class="spec-k">Estilo</span> Lettering spray blanco con goteo, subrayado amarillo y destellos dorados</li>
+    </ul>
+
+    <p class="price-note reveal">PVP estimado: 25–30&nbsp;€ · lo confirmamos en el drop</p>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA ============ -->
+  <section class="section section-alt" id="como-funciona">
+    <h2 class="section-title reveal">CÓMO FUNCIONA</h2>
+    <p class="section-sub reveal">Cero compromiso. Cero pagos ahora.</p>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Reserva gratis</h3>
+        <p>Dejas tu email y listo. No cuesta nada y no te obliga a nada.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Te avisamos del drop</h3>
+        <p>Cuando salga la camiseta, te llega un email antes que a nadie.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Tú decides</h3>
+        <p>Si te mola, la pillas. Si no, no pasa nada. Sin letra pequeña.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ ESCASEZ ============ -->
+  <section class="section" id="lista">
+    <div class="scarcity reveal">
+      <p class="counter-line">
+        <span class="counter" id="counter" aria-live="polite">—</span>
+        <span class="counter-label">personas ya están en la lista</span>
+      </p>
+      <p class="scarcity-note">Y solo habrá <strong class="units">50 unidades</strong>.<br>Echa cuentas.</p>
+      <a href="#top" class="btn btn-ghost">QUIERO MI AVISO</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p class="footer-logo">FENELS</p>
+    <nav class="socials" aria-label="Redes sociales">
+      <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+    </nav>
+    <p class="footer-legal">
+      Tus datos solo se usan para avisarte del lanzamiento. Nada de spam.
+      Para borrarlos, escribe a <a href="mailto:hola@fenels.com">hola@fenels.com</a>.
+    </p>
+    <p class="footer-copy">© 2026 FENELS. Hecho en la calle.</p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
