@@ -60,7 +60,8 @@ de la foto con `object-fit: contain`, y el fondo es el mismo negro `#0a0a0a` de 
 foto, así que si el ratio no coincide exactamente las bandas no se notan.
 Si tu archivo se llama distinto, ajusta el `src` en `index.html`.
 
-## Pendiente de personalizar
+## Contacto y redes
 
-- Enlaces reales de Instagram y TikTok en el footer.
-- Email de contacto (`hola@fenels.com`) en el texto legal y el footer.
+- Instagram: [@fenels_oficial](https://instagram.com/fenels_oficial) — también es la vía
+  para pedir el borrado de datos (por DM), mientras no exista email ni dominio propio.
+- Canal de WhatsApp: enlazado en el footer.
