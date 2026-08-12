@@ -39,16 +39,16 @@ Si prefieres no tocar Redis:
 
 1. Crea un formulario en [formspree.io](https://formspree.io) y copia su ID (ej. `mqkvabcd`).
 2. En `js/main.js`, rellena `CONFIG.FORMSPREE_ID = 'mqkvabcd'`.
-3. Los envíos llegan a tu email/panel de Formspree. El contador pasa a usar
-   `CONFIG.FALLBACK_COUNT` (Formspree no expone un contador público).
+3. Los envíos llegan a tu email/panel de Formspree. Sin endpoint propio no hay
+   contador: la sección de objetivo muestra siempre el bloque de acceso prioritario.
 
 ## Configuración rápida (`js/main.js` → `CONFIG`)
 
 | Clave | Qué hace |
 |---|---|
 | `FORMSPREE_ID` | Si lo rellenas, se usa Formspree en vez del endpoint propio |
-| `BASE_COUNT` | Número que se suma al contador real (para arrancar con base) |
-| `FALLBACK_COUNT` | Contador mostrado si el endpoint no responde (vista local / Formspree) |
+| `GOAL` | Objetivo de reservas para fabricar el drop (300) |
+| `REVEAL_COUNT_AT` | La barra de progreso X/300 solo se enseña a partir de este número de reservas reales (25). Por debajo, o si el endpoint falla, se muestra el bloque de "acceso prioritario" — nunca cifras inventadas |
 
 ## Fotos del producto
 

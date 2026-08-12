@@ -7,8 +7,8 @@
 const CONFIG = {
   FORMSPREE_ID: '',            // ej. 'mqkvabcd' → https://formspree.io/f/mqkvabcd
   ENDPOINT: '/api/waitlist',
-  BASE_COUNT: 0,               // súmalo al contador si quieres arrancar con base
-  FALLBACK_COUNT: 17,          // lo que se enseña si el endpoint no responde
+  GOAL: 300,                   // objetivo de reservas para fabricar el drop
+  REVEAL_COUNT_AT: 25,         // la barra de progreso solo se enseña a partir de aquí
 };
 
 const form = document.getElementById('waitlist-form');
@@ -85,7 +85,7 @@ form.addEventListener('submit', async (e) => {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'endpoint');
-      if (typeof data.count === 'number') renderCount(data.count);
+      updateScarcity(data.count);
     }
 
     showSuccess();
@@ -102,11 +102,24 @@ function showSuccess() {
   successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// ---------- Contador de reservas ----------
+// ---------- Progreso hacia el objetivo (contador honesto) ----------
+// Solo se enseñan reservas REALES del endpoint. Por debajo del umbral
+// REVEAL_COUNT_AT (o si el endpoint falla) se queda el bloque de acceso
+// prioritario, nunca un número inventado.
 
-function renderCount(n) {
-  const total = n + CONFIG.BASE_COUNT;
-  animateCount(total);
+const progressBlock = document.getElementById('progress-block');
+const priorityBlock = document.getElementById('priority-block');
+const progressBar = document.getElementById('progress-bar');
+const progressFill = document.getElementById('progress-fill');
+
+function updateScarcity(count) {
+  if (typeof count !== 'number' || count < CONFIG.REVEAL_COUNT_AT) return;
+  priorityBlock.hidden = true;
+  progressBlock.hidden = false;
+  animateCount(count);
+  const pct = Math.min((count / CONFIG.GOAL) * 100, 100);
+  progressFill.style.width = `${pct}%`;
+  progressBar.setAttribute('aria-valuenow', Math.min(count, CONFIG.GOAL));
 }
 
 function animateCount(target) {
@@ -126,10 +139,9 @@ async function loadCount() {
     const res = await fetch(CONFIG.ENDPOINT);
     if (!res.ok) throw new Error();
     const data = await res.json();
-    renderCount(typeof data.count === 'number' ? data.count : CONFIG.FALLBACK_COUNT);
+    updateScarcity(data.count);
   } catch {
-    // Sin endpoint (Formspree o vista local): número base para no dejar un hueco.
-    renderCount(CONFIG.FALLBACK_COUNT);
+    // Sin endpoint o con error: se queda el bloque de acceso prioritario.
   }
 }
 
