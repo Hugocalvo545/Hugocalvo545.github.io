@@ -52,17 +52,16 @@ Si prefieres no tocar Redis:
 
 ## Fotos del producto
 
-La galería de `#camiseta` espera estos tres archivos en `img/`:
+La galería de `#camiseta` espera estos dos archivos en `img/`:
 
-| Archivo | Qué es |
-|---|---|
-| `img/fenels-espalda.jpg` | Espalda con el print grande (la destacada: primera en móvil, centro y más grande en escritorio) |
-| `img/fenels-frontal.jpg` | Frontal con el logo pequeño |
-| `img/fenels-detalle.jpg` | Detalle del lettering |
+| Archivo | Qué es | Ratio |
+|---|---|---|
+| `img/fenels-conjunto.jpg` | Las dos camisetas juntas, delantera y trasera (la protagonista, a ancho completo) | ~1402×1122 |
+| `img/fenels-detalle.jpg` | Detalle del lettering trasero (secundaria, más pequeña y centrada) | ~550×430 |
 
-Se muestran **siempre completas, sin recorte**: el contenedor usa el ratio natural
-vertical (~635×1000) con `object-fit: contain`, y el fondo es el mismo negro `#0a0a0a`
-de las fotos, así que si el ratio no coincide exactamente las bandas no se notan.
+Se muestran **siempre completas, sin recorte**: cada contenedor usa el ratio natural
+de su foto con `object-fit: contain`, y el fondo es el mismo negro `#0a0a0a` de las
+fotos, así que si el ratio no coincide exactamente las bandas no se notan.
 Si tus archivos se llaman distinto, ajusta los `src` en `index.html`.
 
 ## Pendiente de personalizar

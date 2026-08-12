@@ -356,26 +356,32 @@ input::placeholder { color: var(--gray); }
 
 .shot { text-align: center; }
 
-/* Fotos de producto: ratio natural vertical (~635/1000), SIEMPRE completas.
-   object-fit: contain nunca recorta; el fondo #0a0a0a es el mismo negro que
-   el de las fotos, así que si quedan bandas se funden y no se ven bordes. */
+/* Fotos de producto: SIEMPRE completas, sin recorte. object-fit: contain no
+   recorta nunca, y el fondo #0a0a0a es el mismo negro de las fotos: si el
+   ratio no clava, las bandas se funden con la web sin bordes visibles. */
 .shot img {
   width: 100%;
-  aspect-ratio: 635 / 1000;
   object-fit: contain;
   background: var(--bg);
-  border: 1px solid #262626;
   border-radius: 6px;
-  transition: transform 0.25s, border-color 0.25s;
+  transition: transform 0.25s;
+}
+
+/* Principal: las dos camisetas juntas, horizontal (~1402x1122) */
+.shot-main img { aspect-ratio: 1402 / 1122; }
+
+/* Secundaria: detalle del lettering (~550x430), más pequeña y centrada */
+.shot-detail img { aspect-ratio: 550 / 430; }
+
+.shot-detail {
+  width: 100%;
+  max-width: min(24rem, 85%);
+  margin: 0 auto;
 }
 
 .shot:hover img {
   transform: translateY(-4px) rotate(-0.5deg);
-  border-color: var(--yellow);
 }
-
-/* La foto de la espalda (print grande) es la protagonista */
-.shot-hero img { border-color: rgba(245, 181, 32, 0.45); }
 
 figcaption {
   margin-top: 0.6rem;
@@ -561,9 +567,6 @@ figcaption {
 /* ============ DESKTOP ============ */
 
 @media (min-width: 700px) {
-  /* La espalda (shot-hero) va al centro y más grande */
-  .gallery { grid-template-columns: 1fr 1.35fr 1fr; align-items: center; }
-  .gallery .shot:nth-child(2) { order: -1; }
   .steps { grid-template-columns: repeat(3, 1fr); }
   .hero-inner { max-width: 30rem; }
   .hero-claim { font-size: 1.2rem; }
