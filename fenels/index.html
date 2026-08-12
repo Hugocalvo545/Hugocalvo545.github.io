@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FENELS — Primer drop. Solo 50 unidades.</title>
-  <meta name="description" content="FENELS. Streetwear de calle. Primer drop: camiseta negra oversize, solo 50 unidades. Apúntate gratis a la lista y te avisamos cuando salga.">
-  <meta property="og:title" content="FENELS — Primer drop. Solo 50 unidades.">
-  <meta property="og:description" content="Reserva gratis tu aviso. Cuando salga el drop, te enteras el primero.">
+  <title>FENELS — Primer drop. Objetivo: 300 reservas.</title>
+  <meta name="description" content="FENELS. Streetwear de calle. Primer drop: camiseta negra oversize. Objetivo: 300 reservas — si llegamos, se fabrica. Apúntate gratis y te avisamos.">
+  <meta property="og:title" content="FENELS — Primer drop. Objetivo: 300 reservas.">
+  <meta property="og:description" content="Reserva gratis tu aviso. Si llegamos a 300, se fabrica el drop. Los 50 primeros tendrán acceso prioritario.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0a0a0a">
 
@@ -35,7 +35,7 @@
         </svg>
       </h1>
 
-      <p class="hero-claim">Primer drop. <strong>Solo 50 unidades.</strong><br>Si no estás en la lista, te lo pierdes.</p>
+      <p class="hero-claim">Primer drop. <strong>Objetivo: 300 reservas.</strong><br>Si llegamos, se fabrica. Si no estás en la lista, te lo pierdes.</p>
 
       <!-- Formulario de reserva -->
       <form id="waitlist-form" class="form" novalidate>
@@ -76,6 +76,8 @@
         </button>
 
         <p class="form-error" id="form-error" role="alert" hidden></p>
+
+        <p class="priority-note">⚡ Los 50 primeros tendrán acceso prioritario.</p>
 
         <p class="legal">
           Reservar es gratis y no te obliga a nada. Solo usamos tus datos para avisarte del
@@ -133,13 +135,13 @@
       </li>
       <li class="step reveal">
         <span class="step-num">02</span>
-        <h3>Te avisamos del drop</h3>
-        <p>Cuando salga la camiseta, te llega un email antes que a nadie.</p>
+        <h3>Si somos 300, fabricamos</h3>
+        <p>Cuando la lista llegue a 300 reservas, el drop se manda a fabricar.</p>
       </li>
       <li class="step reveal">
         <span class="step-num">03</span>
-        <h3>Tú decides</h3>
-        <p>Si te mola, la pillas. Si no, no pasa nada. Sin letra pequeña.</p>
+        <h3>Te avisamos y tú decides</h3>
+        <p>Te llega un email y compras si quieres. Si no, no pasa nada. Sin letra pequeña.</p>
       </li>
     </ol>
   </section>
@@ -147,11 +149,26 @@
   <!-- ============ ESCASEZ ============ -->
   <section class="section" id="lista">
     <div class="scarcity reveal">
-      <p class="counter-line">
-        <span class="counter" id="counter" aria-live="polite">—</span>
-        <span class="counter-label">personas ya están en la lista</span>
-      </p>
-      <p class="scarcity-note">Y solo habrá <strong class="units">50 unidades</strong>.<br>Echa cuentas.</p>
+
+      <!-- Progreso hacia el objetivo: solo se enseña con suficientes reservas
+           reales (CONFIG.REVEAL_COUNT_AT). Nunca se muestran cifras inventadas. -->
+      <div id="progress-block" hidden>
+        <p class="counter-line">
+          <span class="counter" id="counter" aria-live="polite">0</span>
+          <span class="counter-label">reservas de 300</span>
+        </p>
+        <div class="progress" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="300" aria-valuenow="0" aria-label="Progreso hacia las 300 reservas">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="scarcity-note">Objetivo: <strong class="units">300 reservas</strong>.<br>Si llegamos, se fabrica el drop.</p>
+      </div>
+
+      <!-- Acceso prioritario: lo que se ve por debajo del umbral o si el endpoint falla -->
+      <div id="priority-block">
+        <p class="priority-title">SÉ DE LOS PRIMEROS <span aria-hidden="true">⚡</span></p>
+        <p class="scarcity-note">Los <strong class="units">50 primeros</strong> de la lista tendrán acceso prioritario al drop.<br>Objetivo: 300 reservas — si llegamos, se fabrica.</p>
+      </div>
+
       <a href="#top" class="btn btn-ghost">QUIERO MI AVISO</a>
     </div>
   </section>
