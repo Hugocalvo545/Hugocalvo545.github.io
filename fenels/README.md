@@ -50,14 +50,21 @@ Si prefieres no tocar Redis:
 | `BASE_COUNT` | Número que se suma al contador real (para arrancar con base) |
 | `FALLBACK_COUNT` | Contador mostrado si el endpoint no responde (vista local / Formspree) |
 
-## Sustituir los placeholders de producto
+## Fotos del producto
 
-En `index.html`, sección `#camiseta`: cambia cada `<div class="shot-ph">…</div>` por
-`<img src="img/frontal.jpg" alt="Camiseta FENELS, vista frontal" loading="lazy">`.
-Las fotos van en **ratio 4:5 vertical** (ej. 1080×1350, el formato de post de Instagram).
+La galería de `#camiseta` espera estos dos archivos en `img/`:
+
+| Archivo | Qué es | Ratio |
+|---|---|---|
+| `img/fenels-conjunto.jpg` | Las dos camisetas juntas, delantera y trasera (la protagonista, a ancho completo) | ~1402×1122 |
+| `img/fenels-detalle.jpg` | Detalle del lettering trasero (secundaria, más pequeña y centrada) | ~550×430 |
+
+Se muestran **siempre completas, sin recorte**: cada contenedor usa el ratio natural
+de su foto con `object-fit: contain`, y el fondo es el mismo negro `#0a0a0a` de las
+fotos, así que si el ratio no coincide exactamente las bandas no se notan.
+Si tus archivos se llaman distinto, ajusta los `src` en `index.html`.
 
 ## Pendiente de personalizar
 
 - Enlaces reales de Instagram y TikTok en el footer.
 - Email de contacto (`hola@fenels.com`) en el texto legal y el footer.
-- Fotos del producto.
