@@ -52,19 +52,16 @@ Si prefieres no tocar Redis:
 
 ## Fotos del producto
 
-La galería de `#camiseta` espera estos dos archivos en `img/`:
+La sección `#camiseta` muestra una única imagen: `img/fenels-conjunto.jpg`
+(las dos camisetas juntas, delantera y trasera, ~1402×1122).
 
-| Archivo | Qué es | Ratio |
-|---|---|---|
-| `img/fenels-conjunto.jpg` | Las dos camisetas juntas, delantera y trasera (la protagonista, a ancho completo) | ~1402×1122 |
-| `img/fenels-detalle.jpg` | Detalle del lettering trasero (secundaria, más pequeña y centrada) | ~550×430 |
+Se muestra **siempre completa, sin recorte**: el contenedor usa el ratio natural
+de la foto con `object-fit: contain`, y el fondo es el mismo negro `#0a0a0a` de la
+foto, así que si el ratio no coincide exactamente las bandas no se notan.
+Si tu archivo se llama distinto, ajusta el `src` en `index.html`.
 
-Se muestran **siempre completas, sin recorte**: cada contenedor usa el ratio natural
-de su foto con `object-fit: contain`, y el fondo es el mismo negro `#0a0a0a` de las
-fotos, así que si el ratio no coincide exactamente las bandas no se notan.
-Si tus archivos se llaman distinto, ajusta los `src` en `index.html`.
+## Contacto y redes
 
-## Pendiente de personalizar
-
-- Enlaces reales de Instagram y TikTok en el footer.
-- Email de contacto (`hola@fenels.com`) en el texto legal y el footer.
+- Instagram: [@fenels_oficial](https://instagram.com/fenels_oficial) — también es la vía
+  para pedir el borrado de datos (por DM), mientras no exista email ni dominio propio.
+- Canal de WhatsApp: enlazado en el footer.
