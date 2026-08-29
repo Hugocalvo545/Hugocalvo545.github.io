@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /design/
+Disallow: /gracias.html
+
+Sitemap: https://hugocalvo.dev/sitemap.xml
