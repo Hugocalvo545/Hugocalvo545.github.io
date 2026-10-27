@@ -899,7 +899,7 @@ img {
 /* Products section (featured SaaS / client platforms) */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
 }
 
@@ -968,6 +968,18 @@ img {
 .product-links a[aria-disabled="true"] {
     opacity: 0.55;
     pointer-events: none;
+}
+
+.product-status {
+    display: inline-flex;
+    min-height: 2.45rem;
+    align-items: center;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 0 0.9rem;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 800;
 }
 
 /* Secondary academic projects (collapsible) */

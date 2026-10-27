@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Hugo Calvo García: productos SaaS propios (GEOPilot, Gestolio) y plataformas a medida para clientes reales, con pagos, IA y despliegue en producción.">
+    <meta name="description" content="Portfolio de Hugo Calvo García: productos propios (GEOPilot, Gestolio, Hostiva y DadoManía), IA aplicada, ciberseguridad y despliegue en producción.">
     <meta name="theme-color" content="#0d0f12">
     <title>Hugo Calvo García | Portfolio de productos</title>
     <script>
@@ -17,6 +17,7 @@
     </script>
     <link rel="stylesheet" href="css/portfolio_Hugo.css">
     <script src="js/portfolio.js?v=3" defer></script>
+    <script src="../assets/js/particulas.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -55,11 +56,11 @@
     <main id="contenido">
         <section id="inicio" class="hero section-observed">
             <div class="hero-content reveal-section">
-                <p class="eyebrow">Desarrollador full-stack · Fundador de productos SaaS</p>
+                <p class="eyebrow">Desarrollador full-stack · IA aplicada · Máster en Ciberseguridad (en curso)</p>
                 <h1>Hugo Calvo García</h1>
-                <p class="hero-subtitle">Construyo y comercializo productos SaaS propios y plataformas a medida para clientes reales, del producto al soporte.</p>
+                <p class="hero-subtitle">Construyo y lanzo productos propios y aplicaciones web de principio a fin, del producto al soporte.</p>
                 <p class="hero-rotator" aria-live="polite">
-                    <span id="role-rotator" data-phrases="SaaS propios en producción|Pagos y suscripciones con Stripe|Integración de IA y LLMs|Del producto al soporte">SaaS propios en producción</span>
+                    <span id="role-rotator" data-phrases="Productos propios en producción|Suscripciones integradas con Stripe|IA aplicada y sistemas de agentes|Seguridad en aplicaciones web">Productos propios en producción</span>
                 </p>
                 <div class="hero-actions">
                     <a href="#productos" class="button button-primary">Ver productos</a>
@@ -76,13 +77,13 @@
         <section id="productos" class="section section-observed">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Productos</p>
-                <h2>Tres productos en producción, con usuarios y pagos reales.</h2>
+                <h2>Productos propios en producción y en desarrollo.</h2>
             </div>
             <div class="products-grid">
                 <article class="product-card reveal-section">
                     <span class="product-badge">SaaS propio · En producción</span>
                     <h3>GEOPilot</h3>
-                    <p>Plataforma SaaS de generación de contenido optimizado para SEO y GEO (Generative Engine Optimization). Pipeline de generación de artículos con IA, calculadora de costes real basada en tokens, calendario editorial con publicación programada y módulo de visibilidad en motores de IA.</p>
+                    <p>Plataforma SaaS de generación de contenido optimizado para SEO y GEO (Generative Engine Optimization). Pipeline de generación de artículos con IA, calculadora de costes real basada en tokens, calendario editorial con publicación programada y módulo de visibilidad en motores de IA. Validado con un producto propio: Gestolio aparece citado como fuente en las respuestas de la IA de Google y de Perplexity sobre el Modelo 303, medido con el módulo de visibilidad de GEOPilot.</p>
                     <div class="tag-list"><span>Next.js</span><span>Firebase</span><span>Gemini + Claude</span><span>Stripe</span><span>Vercel</span></div>
                     <div class="product-links"><a href="https://geopilot.es" target="_blank" rel="noopener noreferrer">Ver en producción ↗</a></div>
                 </article>
@@ -90,17 +91,25 @@
                 <article class="product-card reveal-section">
                     <span class="product-badge">SaaS propio · En producción</span>
                     <h3>Gestolio</h3>
-                    <p>PWA de gestión fiscal para autónomos españoles: facturación, gastos, cálculo de IVA e IRPF, resúmenes trimestrales (Modelos 303 y 130), calendario fiscal y asistente con IA. Modelo freemium con suscripciones Stripe.</p>
+                    <p>PWA de gestión fiscal para autónomos españoles: facturación, gastos, cálculo de IVA e IRPF, resúmenes trimestrales (Modelos 303 y 130), calendario fiscal y asistente con IA. Modelo freemium con suscripciones Stripe y acceso sin contraseña con passkeys (WebAuthn).</p>
                     <div class="tag-list"><span>Next.js 14</span><span>Supabase</span><span>Stripe</span><span>WebAuthn</span><span>PWA</span></div>
                     <div class="product-links"><a href="https://gestolio.com" target="_blank" rel="noopener noreferrer">Ver en producción ↗</a></div>
                 </article>
 
                 <article class="product-card reveal-section">
-                    <span class="product-badge">Plataforma a medida · Cliente real</span>
-                    <h3>Tu Casa en Jerez</h3>
-                    <p>Plataforma completa de reservas vacacionales multi-propiedad para un cliente real: motor de reservas con pagos Stripe, cumplimiento del registro de viajeros (SES Hospedajes), chat cliente-anfitrión, sistema de fidelización y reseñas, y panel de administración. Entregada y en producción.</p>
-                    <div class="tag-list"><span>JavaScript</span><span>Firebase</span><span>Stripe</span><span>Google Maps</span><span>WordPress</span></div>
-                    <div class="product-links"><a href="https://jla-demo.web.app/multi/" target="_blank" rel="noopener noreferrer">Ver demo ↗</a></div>
+                    <span class="product-badge">Plataforma propia · En desarrollo (fase 1 completada)</span>
+                    <h3>Hostiva</h3>
+                    <p>Plataforma de reservas directas, check-in online y registro de viajeros (SES Hospedajes) para pisos turísticos, diseñada con la seguridad como requisito: autenticación en dos pasos con TOTP, aislamiento de datos entre propietarios con Row Level Security, cifrado de los datos de check-in, suscripciones con Stripe, tests y revisión de seguridad.</p>
+                    <div class="tag-list"><span>Supabase</span><span>Row Level Security</span><span>2FA TOTP</span><span>Stripe</span><span>Cifrado</span></div>
+                    <div class="product-links"><span class="product-status">Demo bajo petición</span></div>
+                </article>
+
+                <article class="product-card reveal-section">
+                    <span class="product-badge">Juego propio · En producción</span>
+                    <h3>DadoManía</h3>
+                    <p>Juego web de estrategia y defensa con dados, con usuarios reales jugando. Progresión por cofres, tienda con moneda del juego y entorno de pruebas separado de producción (proyecto de Supabase y rama de despliegue propios) para validar cada versión antes de publicarla.</p>
+                    <div class="tag-list"><span>Supabase</span><span>Vercel</span></div>
+                    <div class="product-links"><a href="https://dadomania.com" target="_blank" rel="noopener noreferrer">Ver en producción ↗</a></div>
                 </article>
             </div>
         </section>
@@ -108,12 +117,12 @@
         <section id="sobre-mi" class="section section-observed">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Perfil</p>
-                <h2>No hago demos: construyo software que se usa y se cobra.</h2>
+                <h2>Del producto al soporte: construyo y lanzo software de principio a fin.</h2>
             </div>
             <div class="about-grid">
                 <div class="about-copy reveal-section">
                     <p>
-                        Soy desarrollador full-stack y autónomo. Diseño, desarrollo y comercializo mis propios productos SaaS y plataformas a medida para clientes reales, asumiendo el ciclo completo: producto, código, pasarela de pagos, despliegue, facturación y soporte.
+                        Soy desarrollador full-stack y autónomo. Diseño y desarrollo mis propios productos web y plataformas a medida, asumiendo el ciclo completo: producto, código, suscripciones con Stripe, seguridad, despliegue y soporte.
                     </p>
                     <p>
                         Trabajo con Next.js, Firebase, Supabase y Stripe, e integro modelos de lenguaje (LLMs) en flujos de producto reales. Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (2026).
@@ -123,12 +132,12 @@
                     <article>
                         <span>01</span>
                         <h3>Ownership completo</h3>
-                        <p>De la idea a usuarios que pagan: producto, desarrollo, pagos, despliegue y soporte.</p>
+                        <p>De la idea a producción: producto, desarrollo, seguridad, despliegue y soporte.</p>
                     </article>
                     <article>
                         <span>02</span>
-                        <h3>Pagos reales</h3>
-                        <p>Suscripciones y cobros con Stripe, modelos freemium y facturación en producción.</p>
+                        <h3>Seguridad y suscripciones</h3>
+                        <p>Autenticación con passkeys (WebAuthn) y 2FA TOTP, Row Level Security y suscripciones con Stripe.</p>
                     </article>
                     <article>
                         <span>03</span>
@@ -157,7 +166,7 @@
                 </article>
                 <article class="stack-card reveal-section">
                     <h3>Producto y negocio</h3>
-                    <p>Pagos, despliegue, PWA y visibilidad para que el producto llegue y se cobre.</p>
+                    <p>Suscripciones, despliegue, PWA y visibilidad para llevar el producto a producción.</p>
                     <div class="tag-list"><span>Stripe</span><span>Vercel</span><span>PWA</span><span>SEO/GEO</span><span>Analítica</span></div>
                 </article>
                 <article class="stack-card reveal-section">
@@ -203,7 +212,7 @@
         <section id="proceso" class="section section-observed surface-band">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Proceso</p>
-                <h2>Cómo llevo un producto de la idea al cobro.</h2>
+                <h2>Cómo llevo un producto de la idea a producción.</h2>
             </div>
             <div class="process-grid">
                 <article class="process-step reveal-section">
@@ -218,8 +227,8 @@
                 </article>
                 <article class="process-step reveal-section">
                     <span>03</span>
-                    <h3>Pagos</h3>
-                    <p>Implemento suscripciones y cobros con Stripe, con planes freemium y facturación.</p>
+                    <h3>Suscripciones y seguridad</h3>
+                    <p>Integro suscripciones con Stripe, autenticación 2FA/passkeys y aislamiento de datos.</p>
                 </article>
                 <article class="process-step reveal-section">
                     <span>04</span>
@@ -243,7 +252,7 @@
                     </div>
                     <ul class="social-list">
                         <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                         <li><a href="../Curriculum_Hugo_Calvo.pdf" download="Curriculum_Hugo_Calvo.pdf" data-theme-pdf data-pdf-light="../Curriculum_Hugo_Calvo.pdf" data-pdf-dark="../Curriculum_Hugo_Calvo_Dark.pdf">CV PDF</a></li>
                     </ul>
                 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hugo Calvo García portfolio: own SaaS products (GEOPilot, Gestolio) and custom platforms for real clients, with payments, AI and production deployment.">
+    <meta name="description" content="Hugo Calvo García portfolio: own products (GEOPilot, Gestolio, Hostiva and DadoManía), applied AI, cybersecurity and production deployment.">
     <meta name="theme-color" content="#0d0f12">
     <title>Hugo Calvo García | Product portfolio</title>
     <script>
@@ -17,6 +17,7 @@
     </script>
     <link rel="stylesheet" href="css/portfolio_Hugo.css">
     <script src="js/portfolio.js?v=3" defer></script>
+    <script src="../assets/js/particulas.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -55,11 +56,11 @@
     <main id="content">
         <section id="home" class="hero section-observed">
             <div class="hero-content reveal-section">
-                <p class="eyebrow">Full-stack developer · SaaS product founder</p>
+                <p class="eyebrow">Full-stack developer · Applied AI · Cybersecurity Master's (in progress)</p>
                 <h1>Hugo Calvo García</h1>
-                <p class="hero-subtitle">I build and commercialize my own SaaS products and custom platforms for real clients, from product to support.</p>
+                <p class="hero-subtitle">I build and ship my own products and web applications from start to finish, from product to support.</p>
                 <p class="hero-rotator" aria-live="polite">
-                    <span id="role-rotator" data-phrases="Own SaaS in production|Payments and subscriptions with Stripe|AI and LLM integration|From product to support">Own SaaS in production</span>
+                    <span id="role-rotator" data-phrases="Own products in production|Stripe subscriptions integrated|Applied AI and agent systems|Web application security">Own products in production</span>
                 </p>
                 <div class="hero-actions">
                     <a href="#products" class="button button-primary">View products</a>
@@ -76,13 +77,13 @@
         <section id="products" class="section section-observed">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Products</p>
-                <h2>Three products in production, with real users and payments.</h2>
+                <h2>Own products in production and in development.</h2>
             </div>
             <div class="products-grid">
                 <article class="product-card reveal-section">
                     <span class="product-badge">Own SaaS · In production</span>
                     <h3>GEOPilot</h3>
-                    <p>SaaS platform for SEO and GEO (Generative Engine Optimization) content generation. AI article-generation pipeline, real token-based cost calculator, editorial calendar with scheduled publishing, and an AI visibility checker module.</p>
+                    <p>SaaS platform for SEO and GEO (Generative Engine Optimization) content generation. AI article-generation pipeline, real token-based cost calculator, editorial calendar with scheduled publishing, and an AI visibility checker module. Validated with my own product: Gestolio is cited as a source in Google AI and Perplexity answers about Spain's Form 303 VAT return, measured with GEOPilot's visibility module.</p>
                     <div class="tag-list"><span>Next.js</span><span>Firebase</span><span>Gemini + Claude</span><span>Stripe</span><span>Vercel</span></div>
                     <div class="product-links"><a href="https://geopilot.es" target="_blank" rel="noopener noreferrer">View in production ↗</a></div>
                 </article>
@@ -90,17 +91,25 @@
                 <article class="product-card reveal-section">
                     <span class="product-badge">Own SaaS · In production</span>
                     <h3>Gestolio</h3>
-                    <p>Fiscal management PWA for Spanish freelancers: invoicing, expenses, VAT and income-tax calculations, quarterly tax summaries, fiscal calendar and an AI assistant. Freemium model with Stripe subscriptions.</p>
+                    <p>Fiscal management PWA for Spanish freelancers: invoicing, expenses, VAT and income-tax calculations, quarterly tax summaries, fiscal calendar and an AI assistant. Freemium model with Stripe subscriptions and passwordless sign-in with passkeys (WebAuthn).</p>
                     <div class="tag-list"><span>Next.js 14</span><span>Supabase</span><span>Stripe</span><span>WebAuthn</span><span>PWA</span></div>
                     <div class="product-links"><a href="https://gestolio.com" target="_blank" rel="noopener noreferrer">View in production ↗</a></div>
                 </article>
 
                 <article class="product-card reveal-section">
-                    <span class="product-badge">Custom platform · Real client</span>
-                    <h3>Tu Casa en Jerez</h3>
-                    <p>Full multi-property vacation rental platform for a real client: booking engine with Stripe payments, guest registration compliance (Spanish SES), guest-host chat, loyalty and reviews system, and admin panel. Delivered and in production.</p>
-                    <div class="tag-list"><span>JavaScript</span><span>Firebase</span><span>Stripe</span><span>Google Maps</span><span>WordPress</span></div>
-                    <div class="product-links"><a href="https://jla-demo.web.app/multi/" target="_blank" rel="noopener noreferrer">View demo ↗</a></div>
+                    <span class="product-badge">Own platform · In development (phase 1 completed)</span>
+                    <h3>Hostiva</h3>
+                    <p>Direct booking, online check-in and guest registration (Spanish SES Hospedajes) platform for tourist apartments, designed with security as a requirement: two-factor authentication with TOTP, tenant data isolation with Row Level Security, encrypted check-in data, Stripe subscriptions, tests and security review.</p>
+                    <div class="tag-list"><span>Supabase</span><span>Row Level Security</span><span>2FA TOTP</span><span>Stripe</span><span>Encryption</span></div>
+                    <div class="product-links"><span class="product-status">Demo on request</span></div>
+                </article>
+
+                <article class="product-card reveal-section">
+                    <span class="product-badge">Own game · In production</span>
+                    <h3>DadoManía</h3>
+                    <p>Web strategy and dice defense game with real players. Chest progression, in-game currency shop and a staging environment separated from production (dedicated Supabase project and deployment branch) to validate every release before publishing.</p>
+                    <div class="tag-list"><span>Supabase</span><span>Vercel</span></div>
+                    <div class="product-links"><a href="https://dadomania.com" target="_blank" rel="noopener noreferrer">View in production ↗</a></div>
                 </article>
             </div>
         </section>
@@ -108,12 +117,12 @@
         <section id="about" class="section section-observed">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Profile</p>
-                <h2>I don't build demos: I ship software that gets used and paid for.</h2>
+                <h2>From product to support: I build and ship software from start to finish.</h2>
             </div>
             <div class="about-grid">
                 <div class="about-copy reveal-section">
                     <p>
-                        I'm a full-stack developer and freelancer. I design, build and commercialize my own SaaS products and custom platforms for real clients, owning the full cycle: product, code, payment gateway, deployment, billing and support.
+                        I'm a full-stack developer and freelancer. I design and build my own web products and custom platforms, owning the full cycle: product, code, Stripe subscriptions, security, deployment and support.
                     </p>
                     <p>
                         I work with Next.js, Firebase, Supabase and Stripe, and I integrate large language models (LLMs) into real product flows. Higher Technician in Multiplatform Application Development (2026).
@@ -123,12 +132,12 @@
                     <article>
                         <span>01</span>
                         <h3>Full ownership</h3>
-                        <p>From idea to paying users: product, development, payments, deployment and support.</p>
+                        <p>From idea to production: product, development, security, deployment and support.</p>
                     </article>
                     <article>
                         <span>02</span>
-                        <h3>Real payments</h3>
-                        <p>Subscriptions and charges with Stripe, freemium models and billing in production.</p>
+                        <h3>Security and subscriptions</h3>
+                        <p>Authentication with passkeys (WebAuthn) and 2FA TOTP, Row Level Security and Stripe subscriptions.</p>
                     </article>
                     <article>
                         <span>03</span>
@@ -157,7 +166,7 @@
                 </article>
                 <article class="stack-card reveal-section">
                     <h3>Product and business</h3>
-                    <p>Payments, deployment, PWA and visibility so the product ships and gets paid.</p>
+                    <p>Subscriptions, deployment, PWA and visibility to take the product to production.</p>
                     <div class="tag-list"><span>Stripe</span><span>Vercel</span><span>PWA</span><span>SEO/GEO</span><span>Analytics</span></div>
                 </article>
                 <article class="stack-card reveal-section">
@@ -203,7 +212,7 @@
         <section id="process" class="section section-observed surface-band">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Process</p>
-                <h2>How I take a product from idea to payment.</h2>
+                <h2>How I take a product from idea to production.</h2>
             </div>
             <div class="process-grid">
                 <article class="process-step reveal-section">
@@ -218,8 +227,8 @@
                 </article>
                 <article class="process-step reveal-section">
                     <span>03</span>
-                    <h3>Payments</h3>
-                    <p>I implement subscriptions and charges with Stripe, with freemium plans and billing.</p>
+                    <h3>Subscriptions and security</h3>
+                    <p>I integrate Stripe subscriptions, 2FA/passkey authentication and data isolation.</p>
                 </article>
                 <article class="process-step reveal-section">
                     <span>04</span>
@@ -243,7 +252,7 @@
                     </div>
                     <ul class="social-list">
                         <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                         <li><a href="../Resume_Hugo_Calvo_Eng.pdf" download="Resume_Hugo_Calvo_Eng.pdf" data-theme-pdf data-pdf-light="../Resume_Hugo_Calvo_Eng.pdf" data-pdf-dark="../Resume_Hugo_Calvo_Eng_Dark.pdf">Resume PDF</a></li>
                     </ul>
                 </div>
