@@ -763,7 +763,6 @@ button {
   .profile-card,
   .panel-section,
   .intro-section,
-  .content-section,
   .project-card,
   .skill-group,
   .timeline li,
@@ -771,8 +770,28 @@ button {
   .achievement-box {
     box-shadow: none !important;
     break-inside: avoid;
+    margin-bottom: 0.7rem;
+    background: #fff !important;
+  }
+
+  .content-section {
+    box-shadow: none !important;
     margin-bottom: 0.8rem;
     background: #fff !important;
+  }
+
+  .profile-photo {
+    width: 6.5rem;
+    margin-bottom: 0.75rem;
+    filter: none !important;
+  }
+
+  .intro-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .section-heading h2 {
+    font-size: 1.3rem;
   }
 }
 
