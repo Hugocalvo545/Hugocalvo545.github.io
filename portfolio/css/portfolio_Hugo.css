@@ -862,18 +862,15 @@ h3 {
 .js [data-stagger] > * {
     opacity: 0;
     translate: 0 36px;
-    scale: 0.97;
     transition:
         opacity 700ms var(--ease-out) var(--stagger-delay, 0ms),
         translate 900ms var(--ease-out) var(--stagger-delay, 0ms),
-        scale 900ms var(--ease-out) var(--stagger-delay, 0ms),
         border-color 220ms ease;
 }
 
 .js [data-stagger] > .is-in {
     opacity: 1;
     translate: none;
-    scale: none;
 }
 
 .product-badge {
@@ -1071,6 +1068,202 @@ h3 {
     color: var(--text);
 }
 
+/* ---------- Cifras ---------- */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    border-top: 1px solid var(--line-strong);
+    padding-top: 1rem;
+}
+
+.stat dd {
+    font-family: var(--display);
+    font-size: clamp(3rem, 7vw, 4.6rem);
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Ancho fijo: el número cambia sin mover nada */
+.stat dd span {
+    display: inline-block;
+    min-width: 1ch;
+}
+
+.stat dt {
+    max-width: 22ch;
+    color: var(--muted);
+}
+
+/* ---------- Trayectoria: línea de tiempo ---------- */
+.timeline {
+    --line-x: 10.5rem;
+    position: relative;
+    max-width: 58rem;
+}
+
+.timeline-track {
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    left: var(--line-x);
+    width: 2px;
+    margin-left: -1px;
+    border-radius: 2px;
+    background: var(--line);
+    overflow: hidden;
+}
+
+/* Estado final por defecto: sin animación la línea se ve entera */
+.timeline-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+    transform-origin: 50% 0;
+}
+
+.timeline-label {
+    position: relative;
+    margin: 0 0 1.2rem calc(var(--line-x) + 2rem);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.timeline-list + .timeline-label {
+    margin-top: 2.6rem;
+}
+
+.timeline-list {
+    display: grid;
+    gap: 1.8rem;
+    list-style: none;
+}
+
+.timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--line-x) minmax(0, 1fr);
+    column-gap: 2rem;
+}
+
+.timeline-date {
+    padding-right: 1.4rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.88rem;
+    text-align: right;
+    line-height: 1.9;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 0.45rem;
+    left: var(--line-x);
+    width: 0.95rem;
+    height: 0.95rem;
+    margin-left: -0.475rem;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg);
+}
+
+/* Halo del punto cuando la línea llega a él */
+.timeline-dot::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent), transparent 55%), transparent);
+}
+
+.timeline-body h4 {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.timeline-body p {
+    margin-top: 0.35rem;
+    color: var(--muted);
+}
+
+/* ---------- Cinta con el stack ---------- */
+.marquee {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 clamp(1.6rem, 4vw, 2.4rem);
+    padding: 0.4rem 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 48s linear infinite;
+    will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee ul {
+    display: flex;
+    flex-shrink: 0;
+    list-style: none;
+}
+
+.marquee li {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 1.6rem 0 0;
+    color: var(--text);
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.marquee li::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 1.6rem;
+    border-radius: 2px;
+    background: var(--grad);
+    transform: rotate(45deg);
+}
+
+.marquee li:nth-child(3n + 2) {
+    color: var(--muted);
+}
+
+@keyframes marquee {
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
 /* Aparición genérica al entrar en pantalla (alternativa en JS) */
 .js .reveal-section {
     opacity: 0;
@@ -1081,6 +1274,132 @@ h3 {
 .js .reveal-section.is-visible {
     opacity: 1;
     transform: none;
+}
+
+/* Alternativa en JS para la línea de tiempo (navegadores sin scroll-driven animations) */
+.sd-fallback .timeline-dot,
+.sd-fallback .timeline-dot::after,
+.sd-fallback .timeline-date,
+.sd-fallback .timeline-body {
+    transition: opacity 500ms var(--ease-out), transform 600ms var(--ease-out);
+}
+
+.sd-fallback .timeline-item:not(.is-reached) .timeline-dot {
+    opacity: 0.5;
+    transform: scale(0.55);
+}
+
+.sd-fallback .timeline-item:not(.is-reached) .timeline-dot::after {
+    opacity: 0;
+}
+
+.sd-fallback .timeline-item:not(.is-reached) .timeline-date,
+.sd-fallback .timeline-item:not(.is-reached) .timeline-body {
+    opacity: 0.2;
+    transform: translateX(14px);
+}
+
+/* Animaciones ligadas al scroll donde hay soporte (Chrome, Edge...) */
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .js .reveal-section {
+            opacity: 1;
+            transform: none;
+            transition: none;
+            animation: sd-reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 85%;
+        }
+
+        .scroll-progress span {
+            animation: sd-progress linear both;
+            animation-timeline: scroll(root block);
+        }
+
+        /* La línea se dibuja cuando la lista cruza el 65 % de la ventana */
+        .timeline {
+            view-timeline: --trayectoria block;
+            view-timeline-inset: 0% 35%;
+        }
+
+        .js .timeline-fill {
+            animation: sd-fill linear both;
+            animation-timeline: --trayectoria;
+            animation-range: entry-crossing 0% entry-crossing 100%;
+        }
+
+        .timeline-item {
+            view-timeline: --hito block;
+            view-timeline-inset: 0% 35%;
+        }
+
+        .js .timeline-dot {
+            animation: sd-dot linear both;
+            animation-timeline: --hito;
+            animation-range: entry-crossing 0% entry-crossing 30%;
+        }
+
+        .js .timeline-dot::after {
+            animation: sd-halo linear both;
+            animation-timeline: --hito;
+            animation-range: entry-crossing 0% entry-crossing 45%;
+        }
+
+        .js .timeline-date,
+        .js .timeline-body {
+            animation: sd-item linear both;
+            animation-timeline: --hito;
+            animation-range: entry-crossing 0% entry-crossing 70%;
+        }
+    }
+}
+
+@keyframes sd-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(48px);
+    }
+}
+
+@keyframes sd-progress {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes sd-fill {
+    from {
+        transform: scaleY(0);
+    }
+
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes sd-dot {
+    from {
+        opacity: 0.5;
+        transform: scale(0.55);
+    }
+}
+
+@keyframes sd-halo {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+@keyframes sd-item {
+    from {
+        opacity: 0.2;
+        transform: translateX(14px);
+    }
 }
 
 /* ---------- Responsive ---------- */
@@ -1226,8 +1545,39 @@ h3 {
 
     .products-grid,
     .stack-grid,
-    .process-grid {
+    .process-grid,
+    .stats {
         grid-template-columns: 1fr;
+    }
+
+    .stat {
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+    .stat dd {
+        flex: 0 0 3.2rem;
+        font-size: 3.2rem;
+    }
+
+    .timeline {
+        --line-x: 0.5rem;
+    }
+
+    .timeline-label {
+        margin-left: 2rem;
+    }
+
+    .timeline-item {
+        grid-template-columns: minmax(0, 1fr);
+        padding-left: 2rem;
+    }
+
+    .timeline-date {
+        padding-right: 0;
+        text-align: left;
     }
 
     .surface-band {
@@ -1257,6 +1607,24 @@ h3 {
     }
 
     .hero-rotator .caret {
+        display: none;
+    }
+
+    /* La cinta queda quieta y muestra todo el stack en varias líneas */
+    .marquee {
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .marquee-track,
+    .marquee ul:first-child {
+        width: auto;
+        flex-shrink: 1;
+        flex-wrap: wrap;
+        row-gap: 0.4rem;
+    }
+
+    .marquee ul + ul {
         display: none;
     }
 }

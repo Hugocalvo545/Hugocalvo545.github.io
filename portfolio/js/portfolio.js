@@ -15,6 +15,10 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 // Efectos de cursor solo con ratón o trackpad (nunca en pantallas táctiles)
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const isEnglish = root.lang === "en";
+// Animaciones ligadas al scroll en CSS; si no hay soporte, JS ligero hace lo mismo
+const supportsScrollTimeline = Boolean(window.CSS && CSS.supports("animation-timeline: view()") && CSS.supports("animation-timeline: scroll()"));
+const cssScrollAnimations = () => supportsScrollTimeline && !reducedMotion.matches;
+if (!supportsScrollTimeline) root.classList.add("sd-fallback");
 
 /* ---------- Tema ---------- */
 const readStoredTheme = () => {
@@ -75,6 +79,10 @@ document.addEventListener("keydown", (event) => {
 let progressQueued = false;
 const updateProgress = () => {
   progressQueued = false;
+  if (cssScrollAnimations()) {
+    progressBar.style.transform = "";
+    return;
+  }
   const maxScroll = root.scrollHeight - window.innerHeight;
   const progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
   progressBar.style.transform = `scaleX(${progress.toFixed(4)})`;
@@ -93,7 +101,10 @@ if (progressBar) {
 /* ---------- Aparición de secciones ---------- */
 const revealItems = document.querySelectorAll(".reveal-section");
 
-if ("IntersectionObserver" in window && !reducedMotion.matches) {
+if (cssScrollAnimations()) {
+  // CSS se encarga (animation-timeline: view())
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+} else if ("IntersectionObserver" in window && !reducedMotion.matches) {
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -164,8 +175,15 @@ if (rotator) {
   let charCount = phrases[0] ? phrases[0].length : 0;
   let deleting = true;
   let timer = 0;
+  let heroOnScreen = true;
+  let paused = false;
 
   const step = () => {
+    // Fuera de pantalla no se escribe: se retoma al volver
+    if (!heroOnScreen) {
+      paused = true;
+      return;
+    }
     const phrase = phrases[phraseIndex];
     if (deleting) {
       charCount -= 1;
@@ -199,6 +217,16 @@ if (rotator) {
     // Empieza tras la entrada del hero con la primera frase ya escrita
     timer = window.setTimeout(step, 2600);
   };
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      heroOnScreen = entries[0].isIntersecting;
+      if (heroOnScreen && paused) {
+        paused = false;
+        timer = window.setTimeout(step, 400);
+      }
+    }).observe(rotator.closest(".hero") || rotator);
+  }
 
   reducedMotion.addEventListener?.("change", start);
   start();
@@ -356,6 +384,88 @@ const setupTilt = () => {
 };
 
 setupTilt();
+
+/* ---------- Línea de tiempo: alternativa sin scroll-driven animations ---------- */
+const timeline = document.querySelector("[data-timeline]");
+
+if (timeline && !supportsScrollTimeline) {
+  const fill = timeline.querySelector(".timeline-fill");
+  const items = [...timeline.querySelectorAll(".timeline-item")];
+
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+    items.forEach((item) => item.classList.add("is-reached"));
+  } else {
+    // La línea crece con el scroll mientras la lista cruza el 65 % de la ventana
+    let queued = false;
+    let active = false;
+    const draw = () => {
+      queued = false;
+      const rect = timeline.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (window.innerHeight * 0.65 - rect.top) / rect.height));
+      fill.style.transform = `scaleY(${progress.toFixed(4)})`;
+    };
+    const onScroll = () => {
+      if (!active || queued) return;
+      queued = true;
+      window.requestAnimationFrame(draw);
+    };
+    new IntersectionObserver((entries) => {
+      active = entries[0].isIntersecting;
+      if (active) onScroll();
+    }).observe(timeline);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    draw();
+
+    // Cada hito se enciende al cruzar la misma línea (y se apaga al volver a subir)
+    const itemObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const passed = entry.isIntersecting || entry.boundingClientRect.top < 0;
+        entry.target.classList.toggle("is-reached", passed);
+      });
+    }, { rootMargin: "0px 0px -35% 0px", threshold: 0 });
+    items.forEach((item) => itemObserver.observe(item));
+  }
+}
+
+/* ---------- Cifras que cuentan hacia arriba ---------- */
+const counters = [...document.querySelectorAll("[data-count-to]")];
+
+if (counters.length && "IntersectionObserver" in window && !reducedMotion.matches) {
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+  const run = (el) => {
+    const target = Number(el.dataset.countTo) || 0;
+    const duration = 1400 + target * 60;
+    let start = 0;
+    let shown = -1;
+    const frame = (now) => {
+      if (!start) start = now;
+      const t = Math.min(1, (now - start) / duration);
+      const value = Math.round(easeOut(t) * target);
+      // Solo se toca el DOM cuando cambia la cifra
+      if (value !== shown) {
+        shown = value;
+        el.textContent = String(value);
+      }
+      if (t < 1) window.requestAnimationFrame(frame);
+    };
+    window.requestAnimationFrame(frame);
+  };
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      counterObserver.unobserve(entry.target);
+      run(entry.target);
+    });
+  }, { threshold: 0.6 });
+
+  counters.forEach((el) => {
+    // Sin JS se ve la cifra final; con JS empieza en 0 y cuenta al aparecer
+    el.textContent = "0";
+    counterObserver.observe(el);
+  });
+}
 
 /* ---------- Contacto ---------- */
 document.querySelectorAll("[data-copy]").forEach((button) => {
