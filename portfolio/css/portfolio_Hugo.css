@@ -353,6 +353,7 @@ h3 {
     display: none;
     width: 2.6rem;
     height: 2.6rem;
+    align-content: center;
 }
 
 .nav-toggle span {
@@ -364,8 +365,9 @@ h3 {
     transition: transform 180ms ease, opacity 180ms ease;
 }
 
+/* 2 px de línea + 3 px de hueco: coincide con el translateY(5px) de la X */
 .nav-toggle span + span {
-    margin-top: 0.23rem;
+    margin-top: 3px;
 }
 
 .site-header.is-open .nav-toggle span:nth-child(1) {
