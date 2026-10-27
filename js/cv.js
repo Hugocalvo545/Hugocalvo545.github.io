@@ -3,21 +3,10 @@ const themeToggle = document.querySelector(".theme-toggle");
 const storedTheme = localStorage.getItem("hugo-cv-theme");
 const preferredTheme = "dark";
 
-const updatePdfLinks = (theme) => {
-  document.querySelectorAll("[data-theme-pdf]").forEach((link) => {
-    const nextPdf = theme === "dark" ? link.dataset.pdfDark : link.dataset.pdfLight;
-
-    if (!nextPdf) return;
-    link.href = nextPdf;
-    link.download = nextPdf.split("/").pop();
-  });
-};
-
 const setTheme = (theme) => {
   root.dataset.theme = theme;
   localStorage.setItem("hugo-cv-theme", theme);
   themeToggle?.setAttribute("aria-pressed", String(theme === "dark"));
-  updatePdfLinks(theme);
 };
 
 setTheme(storedTheme || preferredTheme);
