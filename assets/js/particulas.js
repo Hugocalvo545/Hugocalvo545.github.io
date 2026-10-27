@@ -74,6 +74,9 @@
   let warp = 0;
   let warpTarget = 0;
   let scrolled = 0;
+  // Cuánto suben además los elementos del hero (la foto) durante la salida
+  let warpOffset = 0;
+  let zonesStale = false;
   if (warpEnabled) {
     // Borde inferior difuminado: las estelas no se cortan en seco al bajar
     const mask = "linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%)";
@@ -142,6 +145,9 @@
         bottom: rect.bottom - heroRect.top + 10
       });
     });
+
+    // Con la salida en marcha los elementos están desplazados: se volverá a medir arriba del todo
+    if (warpEnabled && hero.warpState && hero.warpState.p > 0) zonesStale = true;
 
     avoidZones = [];
     hero.querySelectorAll("[data-particles-avoid]").forEach((node) => {
@@ -309,8 +315,10 @@
     const warpFade = w <= 0.55 ? 1 : Math.max(0, 1 - ((w - 0.55) / 0.45) ** 2 * (3 - 2 * ((w - 0.55) / 0.45)));
     const stretchK = isMobile ? 0.16 : 0.26;
     const maxStretch = isMobile ? 90 : 170;
-    // El campo baja la mitad de lo que sube el hero para que el centro siga a la vista
-    const shiftY = warpEnabled && !staticMode ? scrolled * 0.5 : 0;
+    // Portada: el campo baja la mitad de lo que sube el hero para que el centro siga a la vista.
+    // Con el centro en una foto (portfolio), el campo sigue a la foto: las estelas salen de ella.
+    let shiftY = 0;
+    if (warpEnabled && !staticMode) shiftY = centerOnAvoid ? warpOffset : scrolled * 0.5;
     if (warpFade <= 0.01) return;
 
     ctx.lineCap = "round";
@@ -356,7 +364,8 @@
         if (px < -len - margin || px > width + len + margin || py < -len - margin || py > height + len + margin) continue;
       }
       const att = textAttenuation(px, py);
-      const clear = avoidZones.length ? avoidAttenuation(px, py) : 1;
+      // Las zonas libres se mueven con el campo (siguen a la foto)
+      const clear = avoidZones.length ? avoidAttenuation(px, py - shiftY) : 1;
       if (clear <= 0) continue;
       const alpha = (0.14 + 0.86 * size) * theme.alphaMax * (att + (1 - att) * w) * warpFade * clear;
       if (alpha < 0.02) continue;
@@ -454,22 +463,28 @@
     resizeTimer = window.setTimeout(resize, 120);
   }, { passive: true });
 
-  const onScroll = () => {
-    const h = hero.offsetHeight || 1;
-    scrolled = Math.min(h, Math.max(0, window.scrollY));
-    if (!warpEnabled) return;
-    const p = Math.min(1, Math.max(0, window.scrollY / (h * 0.7)));
+  // El progreso del salto lo calcula transicion-hero.js (un solo cálculo para el contenido y las partículas)
+  const onWarp = () => {
+    const state = hero.warpState;
+    if (!warpEnabled || !state) return;
+    scrolled = state.scrolled;
+    warpOffset = state.offset || 0;
     if (reducedMotionQuery.matches) {
       // Sin transición: solo un fundido simple del fondo
       warpTarget = 0;
       warp = 0;
-      canvas.style.opacity = Math.max(0, 1 - p * 1.4).toFixed(3);
+      canvas.style.opacity = Math.max(0, 1 - state.p * 1.4).toFixed(3);
     } else {
-      warpTarget = p;
+      warpTarget = state.p;
       canvas.style.opacity = "";
     }
+    // Las zonas medidas con el hero ya desplazado se corrigen al volver arriba
+    if (state.p === 0 && zonesStale) {
+      zonesStale = false;
+      window.setTimeout(remeasure, 60);
+    }
   };
-  window.addEventListener("scroll", onScroll, { passive: true });
+  if (warpEnabled) hero.addEventListener("warp:progress", onWarp);
 
   // Pausa la animación cuando el hero sale de pantalla
   if ("IntersectionObserver" in window) {
@@ -484,7 +499,7 @@
   }
 
   const onMotionChange = () => {
-    onScroll();
+    onWarp();
     if (reducedMotionQuery.matches) {
       stopLoop();
       center.x = center.restX;
@@ -523,7 +538,7 @@
   }
   document.addEventListener("particulas:medir", remeasure);
 
-  onScroll();
+  onWarp();
   warp = warpTarget;
   resize();
   startLoop();
