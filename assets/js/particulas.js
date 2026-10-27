@@ -35,6 +35,7 @@
   let textBoxes = [];
   let rafId = 0;
   let isRunning = false;
+  let heroVisible = true;
 
   const pointer = {
     x: 0,
@@ -318,7 +319,7 @@
   };
 
   const startLoop = () => {
-    if (reducedMotionQuery.matches || document.hidden || isRunning) return;
+    if (reducedMotionQuery.matches || document.hidden || !heroVisible || isRunning) return;
     isRunning = true;
     rafId = window.requestAnimationFrame(tick);
   };
@@ -401,6 +402,18 @@
   });
 
   window.addEventListener("resize", resize, { passive: true });
+
+  // Pausa la animación cuando el hero sale de pantalla
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      heroVisible = entries[0].isIntersecting;
+      if (heroVisible) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    }).observe(hero);
+  }
 
   reducedMotionQuery.addEventListener("change", () => {
     if (reducedMotionQuery.matches) {
