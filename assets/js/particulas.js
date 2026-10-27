@@ -133,7 +133,7 @@
   const measureTextZones = () => {
     const heroRect = hero.getBoundingClientRect();
     const baseX = originX;
-    const nodes = hero.querySelectorAll("h1, .lead, .welcome__tagline, .hero-subtitle, .hero-rotator, .cta, .hero-actions, .eyebrow, .note, .hero-facts");
+    const nodes = hero.querySelectorAll("h1, .lead, .welcome__name, .welcome__role, .welcome__tagline, .hero-subtitle, .hero-rotator, .cta, .hero-actions, .eyebrow, .note, .hero-facts");
     textBoxes = [];
     nodes.forEach((node) => {
       const rect = node.getBoundingClientRect();

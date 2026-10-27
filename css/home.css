@@ -189,9 +189,24 @@ header {
   text-align: center;
 }
 .welcome__content { max-width: 760px; }
-.welcome__name { font-size: clamp(40px, 10vw, 84px); line-height: 1.02; letter-spacing: -0.02em; }
+/* El nombre no es el h1, pero conserva el aspecto de titular */
+.welcome__name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(40px, 10vw, 84px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+.welcome__role {
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
 .welcome__tagline {
   margin-top: 16px;
+  letter-spacing: normal;
   font-family: var(--display);
   font-weight: 600;
   font-size: clamp(20px, 4.2vw, 30px);
