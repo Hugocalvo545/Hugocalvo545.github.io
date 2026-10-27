@@ -1,3 +1,8 @@
+/*
+ * Campo de partículas del hero (canvas 2D, sin librerías).
+ * Guiones cortos con puntas redondeadas, orientados hacia un centro que sigue al puntero.
+ * El color depende del ángulo alrededor del centro; el tamaño y la opacidad, de la distancia.
+ */
 (() => {
   const hero = document.querySelector(".hero");
   if (!hero) return;
@@ -9,16 +14,15 @@
   canvas.setAttribute("aria-hidden", "true");
   Object.assign(canvas.style, {
     position: "absolute",
-    inset: "0",
-    width: "100%",
+    top: "0",
+    left: "0",
     height: "100%",
     pointerEvents: "none",
     zIndex: "-1",
     display: "block"
   });
 
-  const computedHeroPos = window.getComputedStyle(hero).position;
-  if (computedHeroPos === "static") {
+  if (window.getComputedStyle(hero).position === "static") {
     hero.style.position = "relative";
   }
   hero.style.isolation = "isolate";
@@ -27,143 +31,143 @@
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
+  // Paleta propia: verde de la marca, cian, azul, violeta, rosa y ámbar (en círculo)
+  const PALETTE_DARK = ["#3ddc97", "#22d3ee", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"];
+  const PALETTE_LIGHT = ["#0f766e", "#0891b2", "#2563eb", "#7c3aed", "#db2777", "#d97706"];
+  const LUT_SIZE = 180;
+  const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+  const TAU = Math.PI * 2;
+
   let width = 0;
   let height = 0;
   let dpr = 1;
   let isMobile = false;
   let particles = [];
   let textBoxes = [];
+  let colorLut = [];
+  let theme = { light: false, alphaMax: 0.9, textMin: 0.22 };
   let rafId = 0;
   let isRunning = false;
   let heroVisible = true;
+  let lastTime = 0;
+  let elapsed = 0;
+  let rotation = 0;
+  let builtWidth = 0;
+  let builtHeight = 0;
+  // Posición del borde izquierdo del canvas respecto a la ventana
+  let originX = 0;
+  let heroTop = 0;
 
-  const pointer = {
-    x: 0,
-    y: 0,
-    active: false,
-    lastMove: 0
+  const pointer = { x: 0, y: 0, active: false };
+  const center = { x: 0, y: 0, restX: 0, restY: 0 };
+  const field = { ringR: 200, ringW: 120, wavelength: 150, maxR: 400 };
+
+  const hexToRgb = (hex) => {
+    const h = hex.replace("#", "");
+    const full = h.length === 3 ? h.split("").map((ch) => ch + ch).join("") : h;
+    const n = parseInt(full, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
   };
 
-  const center = {
-    x: 0,
-    y: 0,
-    restX: 0,
-    restY: 0
-  };
-
-  let palette = {
-    primary: [45, 212, 191],
-    secondary: [249, 115, 22],
-    baseAlpha: 0.72,
-    textMinAlpha: 0.16
-  };
-
-  const parseHexOrRgb = (raw, fallback) => {
+  const parseColor = (raw) => {
     const val = (raw || "").trim();
-    if (val.startsWith("#")) {
-      const hex = val.slice(1);
-      if (hex.length === 3) {
-        return [
-          parseInt(hex[0] + hex[0], 16),
-          parseInt(hex[1] + hex[1], 16),
-          parseInt(hex[2] + hex[2], 16)
-        ];
-      }
-      if (hex.length === 6) {
-        return [
-          parseInt(hex.slice(0, 2), 16),
-          parseInt(hex.slice(2, 4), 16),
-          parseInt(hex.slice(4, 6), 16)
-        ];
-      }
-    }
-    const match = val.match(/\d+/g);
-    if (match && match.length >= 3) {
-      return [Number(match[0]), Number(match[1]), Number(match[2])];
-    }
-    return fallback;
+    if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(val)) return hexToRgb(val);
+    const m = val.match(/\d+(\.\d+)?/g);
+    return m && m.length >= 3 ? [Number(m[0]), Number(m[1]), Number(m[2])] : null;
   };
 
-  const updateThemePalette = () => {
+  const updateTheme = () => {
     const rootStyle = window.getComputedStyle(document.documentElement);
-    const isLight = document.documentElement.dataset.theme === "light";
+    const bg = parseColor(rootStyle.getPropertyValue("--bg"));
+    const luminance = bg ? (0.2126 * bg[0] + 0.7152 * bg[1] + 0.0722 * bg[2]) / 255 : 0;
+    const light = luminance > 0.5;
 
-    const accentRaw = rootStyle.getPropertyValue("--accent");
-    const warmRaw = rootStyle.getPropertyValue("--warm");
+    const stops = (light ? PALETTE_LIGHT : PALETTE_DARK).map(hexToRgb);
+    // El primer color es el acento de la página si existe
+    const accent = parseColor(rootStyle.getPropertyValue("--accent"));
+    if (accent) stops[0] = accent;
 
-    const defaultPrimary = isLight ? [15, 118, 110] : [61, 220, 151];
-    const defaultSecondary = isLight ? [234, 88, 12] : [56, 189, 248];
+    colorLut = new Array(LUT_SIZE);
+    for (let i = 0; i < LUT_SIZE; i += 1) {
+      const pos = (i / LUT_SIZE) * stops.length;
+      const a = stops[Math.floor(pos) % stops.length];
+      const b = stops[(Math.floor(pos) + 1) % stops.length];
+      const t = pos - Math.floor(pos);
+      const s = t * t * (3 - 2 * t);
+      colorLut[i] = `rgb(${Math.round(a[0] + (b[0] - a[0]) * s)}, ${Math.round(a[1] + (b[1] - a[1]) * s)}, ${Math.round(a[2] + (b[2] - a[2]) * s)})`;
+    }
 
-    palette = {
-      primary: parseHexOrRgb(accentRaw, defaultPrimary),
-      secondary: warmRaw.trim()
-        ? parseHexOrRgb(warmRaw, defaultSecondary)
-        : defaultSecondary,
-      baseAlpha: isLight ? 0.62 : 0.76,
-      textMinAlpha: isLight ? 0.14 : 0.18
+    theme = {
+      light,
+      alphaMax: light ? 0.85 : 0.92,
+      textMin: light ? 0.18 : 0.24
     };
   };
 
   const measureTextZones = () => {
     const heroRect = hero.getBoundingClientRect();
-    const selectors = "h1, .lead, .hero-subtitle, .cta, .hero-actions, .ai, .hero-facts";
-    const nodes = hero.querySelectorAll(selectors);
+    const baseX = originX;
+    const nodes = hero.querySelectorAll("h1, .lead, .hero-subtitle, .hero-rotator, .cta, .hero-actions, .eyebrow, .note, .hero-facts");
     textBoxes = [];
-
     nodes.forEach((node) => {
       const rect = node.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) return;
       textBoxes.push({
-        left: rect.left - heroRect.left - 18,
-        top: rect.top - heroRect.top - 14,
-        right: rect.right - heroRect.left + 18,
-        bottom: rect.bottom - heroRect.top + 14
+        left: rect.left - baseX - 14,
+        top: rect.top - heroRect.top - 10,
+        right: rect.right - baseX + 14,
+        bottom: rect.bottom - heroRect.top + 10
       });
     });
   };
 
+  // Pseudoaleatorio con semilla: al reconstruir, el campo queda igual
+  const seeded = (seed) => () => {
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296;
+  };
+
   const buildParticles = () => {
-    particles = [];
-    const minDim = Math.min(width, height);
-    const maxRadius = Math.max(width, height) * (isMobile ? 0.56 : 0.52);
-    const minRadius = Math.max(38, minDim * 0.11);
-    const ringCount = isMobile ? 5 : 9;
+    // Círculo alrededor del punto de giro que cubre todas las esquinas aunque el campo gire
+    field.maxR = Math.hypot(
+      Math.max(center.restX, width - center.restX),
+      Math.max(center.restY, height - center.restY)
+    ) + 24;
+    const circleArea = Math.PI * field.maxR * field.maxR;
+    const visibleShare = Math.min(1, (width * height) / circleArea);
+    const visibleTarget = isMobile ? 300 : 1050;
+    const total = Math.min(isMobile ? 900 : 3200, Math.round(visibleTarget / visibleShare));
 
-    for (let r = 0; r < ringCount; r += 1) {
-      const ringNorm = ringCount > 1 ? r / (ringCount - 1) : 0;
-      const radius = minRadius + ringNorm * (maxRadius - minRadius);
-      const count = isMobile
-        ? 11 + r * 4
-        : 16 + Math.round(r * 5.5);
-
-      for (let i = 0; i < count; i += 1) {
-        const angleOffset = (r % 2) * (Math.PI / count);
-        const baseAngle = (i / count) * Math.PI * 2 + angleOffset;
-        const colorMix = Math.min(
-          1,
-          Math.max(0, ringNorm * 0.75 + (Math.sin(baseAngle * 2) * 0.5 + 0.5) * 0.25)
-        );
-
-        particles.push({
-          ringIndex: r,
-          ringNorm,
-          baseRadius: radius,
-          baseAngle,
-          length: isMobile ? 9 + ringNorm * 5 : 11 + ringNorm * 8,
-          thickness: isMobile ? 1.8 : 2.1,
-          colorMix,
-          dx: 0,
-          dy: 0,
-          vx: 0,
-          vy: 0
-        });
-      }
+    const rand = seeded(20261027);
+    particles = new Array(total);
+    for (let i = 0; i < total; i += 1) {
+      // Espiral de Vogel con algo de ruido: reparto uniforme de borde a borde
+      const r = field.maxR * Math.sqrt((i + 0.5) / total) * (0.97 + rand() * 0.06);
+      const a = i * GOLDEN_ANGLE + (rand() - 0.5) * 0.35;
+      particles[i] = {
+        r,
+        a,
+        jitter: 0.8 + rand() * 0.4,
+        hueOffset: (rand() - 0.5) * 0.06
+      };
     }
+
+    const minDim = Math.min(width, height);
+    field.ringR = minDim * (isMobile ? 0.34 : 0.42);
+    field.ringW = field.ringR * 0.62;
+    field.wavelength = isMobile ? 110 : 150;
+    builtWidth = width;
+    builtHeight = height;
   };
 
   const resize = () => {
     const rect = hero.getBoundingClientRect();
-    width = Math.max(1, Math.round(rect.width));
+    // El canvas ocupa todo el ancho de la ventana aunque el hero sea más estrecho (sin scroll horizontal)
+    const viewportW = document.documentElement.clientWidth || rect.width;
+    originX = 0;
+    canvas.style.left = `${-Math.round(rect.left)}px`;
+    canvas.style.width = `${viewportW}px`;
+    width = Math.max(1, Math.round(viewportW));
     height = Math.max(1, Math.round(rect.height));
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     isMobile = window.innerWidth < 768;
@@ -172,155 +176,127 @@
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    center.restX = isMobile ? width * 0.5 : width * 0.52;
-    center.restY = isMobile ? height * 0.38 : height * 0.48;
+    center.restX = width * (isMobile ? 0.5 : 0.62);
+    center.restY = height * (isMobile ? 0.42 : 0.5);
     if (!center.x && !center.y) {
       center.x = center.restX;
       center.y = center.restY;
     }
 
-    updateThemePalette();
+    updateTheme();
     measureTextZones();
-    buildParticles();
-
-    if (reducedMotionQuery.matches) {
-      renderFrame(0, true);
+    // En móvil la barra del navegador cambia la altura al hacer scroll: solo se reconstruye si cambia mucho
+    if (width !== builtWidth || Math.abs(height - builtHeight) > 120 || !particles.length) {
+      buildParticles();
+    }
+    if (reducedMotionQuery.matches || !isRunning) {
+      renderFrame(true);
     }
   };
 
-  const getTextAttenuation = (x, y) => {
+  const textAttenuation = (x, y) => {
     for (let i = 0; i < textBoxes.length; i += 1) {
       const box = textBoxes[i];
       if (x >= box.left && x <= box.right && y >= box.top && y <= box.bottom) {
-        const edgeDist = Math.min(
-          x - box.left,
-          box.right - x,
-          y - box.top,
-          box.bottom - y
-        );
-        const fadeZone = 32;
-        if (edgeDist >= fadeZone) {
-          return palette.textMinAlpha;
-        }
-        const t = Math.max(0, edgeDist / fadeZone);
-        return palette.baseAlpha * (1 - t) + palette.textMinAlpha * t;
+        const edge = Math.min(x - box.left, box.right - x, y - box.top, box.bottom - y);
+        const t = Math.min(1, edge / 24);
+        return 1 - (1 - theme.textMin) * t;
       }
     }
-    return palette.baseAlpha;
+    return 1;
   };
 
-  const renderFrame = (timestamp, staticMode = false) => {
+  const renderFrame = (staticMode) => {
     ctx.clearRect(0, 0, width, height);
 
-    const now = performance.now();
-    const pointerIdle = now - pointer.lastMove > 2200;
-    const isPointerEngaged = pointer.active && !pointerIdle && !staticMode;
-
-    const targetCenterX = isPointerEngaged
-      ? center.restX + (pointer.x - center.restX) * 0.28
-      : center.restX;
-    const targetCenterY = isPointerEngaged
-      ? center.restY + (pointer.y - center.restY) * 0.28
-      : center.restY;
-
-    if (staticMode) {
-      center.x = center.restX;
-      center.y = center.restY;
-    } else {
-      center.x += (targetCenterX - center.x) * 0.065;
-      center.y += (targetCenterY - center.y) * 0.065;
-    }
-
-    const repulseRadius = isMobile ? 95 : 135;
-    const repulseRadiusSq = repulseRadius * repulseRadius;
+    const cx = center.x;
+    const cy = center.y;
+    const pivotX = center.restX;
+    const pivotY = center.restY;
+    const cosR = Math.cos(rotation);
+    const sinR = Math.sin(rotation);
+    const waveT = staticMode ? 0 : elapsed * 1.6;
+    const huePhase = staticMode ? 0 : elapsed * 0.012;
+    const ringR = field.ringR;
+    const invRingW = 1 / field.ringW;
+    const waveK = TAU / field.wavelength;
+    const lutScale = LUT_SIZE / TAU;
+    const margin = 12;
 
     ctx.lineCap = "round";
 
     for (let i = 0; i < particles.length; i += 1) {
       const p = particles[i];
 
-      const breathOffset = staticMode
-        ? 0
-        : Math.sin(timestamp * 0.0017 - p.ringNorm * 1.6) * (isMobile ? 8 : 14);
-      const angleDrift = staticMode
-        ? 0
-        : Math.sin(timestamp * 0.00055 + p.ringIndex * 0.45) * 0.07;
+      // Posición base: gira despacio alrededor del centro de reposo
+      const bx = Math.cos(p.a) * p.r;
+      const by = Math.sin(p.a) * p.r;
+      let px = pivotX + bx * cosR - by * sinR;
+      let py = pivotY + bx * sinR + by * cosR;
+      if (px < -margin || px > width + margin || py < -margin || py > height + margin) continue;
 
-      const currentRadius = p.baseRadius + breathOffset;
-      const currentAngle = p.baseAngle + angleDrift;
+      // Distancia y dirección hacia el centro que sigue al puntero
+      let dx = cx - px;
+      let dy = cy - py;
+      let d = Math.sqrt(dx * dx + dy * dy) || 0.001;
+      let ux = dx / d;
+      let uy = dy / d;
 
-      const homeX = center.x + Math.cos(currentAngle) * currentRadius;
-      const homeY = center.y + Math.sin(currentAngle) * currentRadius;
+      // Onda que recorre los anillos hacia fuera
+      const wave = Math.sin(d * waveK - waveT);
+      px -= ux * wave * 2.2;
+      py -= uy * wave * 2.2;
 
-      if (!staticMode) {
-        if (isPointerEngaged) {
-          const curX = homeX + p.dx;
-          const curY = homeY + p.dy;
-          const distX = curX - pointer.x;
-          const distY = curY - pointer.y;
-          const distSq = distX * distX + distY * distY;
+      // Profundidad: máximo en un anillo intermedio, diminutos cerca y lejos del centro
+      const off = (d - ringR) * invRingW;
+      const depth = Math.exp(-off * off);
+      const size = Math.max(0, Math.min(1, (0.08 + 0.92 * depth) * (0.78 + 0.22 * wave) * p.jitter));
 
-          if (distSq < repulseRadiusSq && distSq > 0.01) {
-            const dist = Math.sqrt(distSq);
-            const force = (1 - dist / repulseRadius) * (isMobile ? 2.1 : 2.8);
-            p.vx += (distX / dist) * force;
-            p.vy += (distY / dist) * force;
-          }
-        }
+      const len = 9 * size;
+      const thick = 1.1 + 2.4 * size;
+      const alpha = (0.14 + 0.86 * size) * theme.alphaMax * textAttenuation(px, py);
+      if (alpha < 0.02) continue;
 
-        // Elastic spring back to home position
-        p.vx += -p.dx * 0.075;
-        p.vy += -p.dy * 0.075;
-        p.vx *= 0.84;
-        p.vy *= 0.84;
-        p.dx += p.vx;
-        p.dy += p.vy;
-      }
+      // Color según el ángulo alrededor del centro
+      let angle = Math.atan2(-dy, -dx) + Math.PI + (p.hueOffset + huePhase) * TAU;
+      let idx = Math.floor(angle * lutScale) % LUT_SIZE;
+      if (idx < 0) idx += LUT_SIZE;
 
-      const px = homeX + p.dx;
-      const py = homeY + p.dy;
-
-      // Orient each elongated dash toward the field center
-      const orientAngle = Math.atan2(center.y - py, center.x - px);
-      const halfLen = p.length * 0.5;
-      const cosA = Math.cos(orientAngle) * halfLen;
-      const sinA = Math.sin(orientAngle) * halfLen;
-
-      const x1 = px - cosA;
-      const y1 = py - sinA;
-      const x2 = px + cosA;
-      const y2 = py + sinA;
-
-      const r = Math.round(
-        palette.primary[0] + (palette.secondary[0] - palette.primary[0]) * p.colorMix
-      );
-      const g = Math.round(
-        palette.primary[1] + (palette.secondary[1] - palette.primary[1]) * p.colorMix
-      );
-      const b = Math.round(
-        palette.primary[2] + (palette.secondary[2] - palette.primary[2]) * p.colorMix
-      );
-
-      const alpha = getTextAttenuation(px, py) * (0.55 + (1 - p.ringNorm) * 0.45);
-
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(3)})`;
-      ctx.lineWidth = p.thickness;
+      const hx = ux * len * 0.5;
+      const hy = uy * len * 0.5;
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = colorLut[idx];
+      ctx.lineWidth = thick;
       ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
+      ctx.moveTo(px - hx, py - hy);
+      ctx.lineTo(px + hx, py + hy);
       ctx.stroke();
     }
+    ctx.globalAlpha = 1;
   };
 
-  const tick = (timestamp) => {
+  const tick = (now) => {
     if (!isRunning) return;
-    renderFrame(timestamp, false);
+    const dt = Math.min(0.05, lastTime ? (now - lastTime) / 1000 : 0.016);
+    lastTime = now;
+    elapsed += dt;
+    rotation += dt * 0.025;
+
+    // El centro sigue al puntero con inercia; sin puntero, vuelve al reposo
+    const targetX = pointer.active ? pointer.x : center.restX;
+    const targetY = pointer.active ? pointer.y : center.restY;
+    const ease = 1 - Math.pow(0.04, dt);
+    center.x += (targetX - center.x) * ease;
+    center.y += (targetY - center.y) * ease;
+
+    renderFrame(false);
     rafId = window.requestAnimationFrame(tick);
   };
 
   const startLoop = () => {
     if (reducedMotionQuery.matches || document.hidden || !heroVisible || isRunning) return;
     isRunning = true;
+    lastTime = 0;
     rafId = window.requestAnimationFrame(tick);
   };
 
@@ -332,66 +308,32 @@
     }
   };
 
-  const updatePointerFromEvent = (clientX, clientY) => {
+  const updatePointer = (clientX, clientY) => {
     const rect = hero.getBoundingClientRect();
-    if (
-      clientX < rect.left ||
-      clientX > rect.right ||
-      clientY < rect.top ||
-      clientY > rect.bottom
-    ) {
+    heroTop = rect.top;
+    if (clientX < originX || clientX > originX + width || clientY < rect.top || clientY > rect.bottom) {
       pointer.active = false;
       return;
     }
-    pointer.x = clientX - rect.left;
-    pointer.y = clientY - rect.top;
+    pointer.x = clientX - originX;
+    pointer.y = clientY - heroTop;
     pointer.active = true;
-    pointer.lastMove = performance.now();
   };
 
-  window.addEventListener(
-    "mousemove",
-    (e) => {
-      updatePointerFromEvent(e.clientX, e.clientY);
-    },
-    { passive: true }
-  );
-
-  hero.addEventListener(
-    "mouseleave",
-    () => {
-      pointer.active = false;
-    },
-    { passive: true }
-  );
-
-  hero.addEventListener(
-    "touchstart",
-    (e) => {
-      if (e.touches.length > 0) {
-        updatePointerFromEvent(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    },
-    { passive: true }
-  );
-
-  hero.addEventListener(
-    "touchmove",
-    (e) => {
-      if (e.touches.length > 0) {
-        updatePointerFromEvent(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    },
-    { passive: true }
-  );
-
-  hero.addEventListener(
-    "touchend",
-    () => {
-      pointer.active = false;
-    },
-    { passive: true }
-  );
+  window.addEventListener("pointermove", (e) => updatePointer(e.clientX, e.clientY), { passive: true });
+  // El ratón sale de la ventana
+  document.documentElement.addEventListener("mouseleave", () => {
+    pointer.active = false;
+  }, { passive: true });
+  hero.addEventListener("touchstart", (e) => {
+    if (e.touches.length) updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  hero.addEventListener("touchmove", (e) => {
+    if (e.touches.length) updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  hero.addEventListener("touchend", () => {
+    pointer.active = false;
+  }, { passive: true });
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
@@ -401,7 +343,11 @@
     }
   });
 
-  window.addEventListener("resize", resize, { passive: true });
+  let resizeTimer = 0;
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(resize, 120);
+  }, { passive: true });
 
   // Pausa la animación cuando el hero sale de pantalla
   if ("IntersectionObserver" in window) {
@@ -415,26 +361,31 @@
     }).observe(hero);
   }
 
-  reducedMotionQuery.addEventListener("change", () => {
+  const onMotionChange = () => {
     if (reducedMotionQuery.matches) {
       stopLoop();
-      renderFrame(0, true);
+      center.x = center.restX;
+      center.y = center.restY;
+      renderFrame(true);
     } else {
       startLoop();
     }
-  });
+  };
+  if (reducedMotionQuery.addEventListener) {
+    reducedMotionQuery.addEventListener("change", onMotionChange);
+  } else if (reducedMotionQuery.addListener) {
+    reducedMotionQuery.addListener(onMotionChange);
+  }
 
-  const themeObserver = new MutationObserver(() => {
-    updateThemePalette();
-    if (reducedMotionQuery.matches) {
-      renderFrame(0, true);
-    }
-  });
+  new MutationObserver(() => {
+    updateTheme();
+    if (!isRunning) renderFrame(reducedMotionQuery.matches);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
-  themeObserver.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"]
-  });
+  // Las fuentes cambian el tamaño de los textos: se vuelven a medir al cargar
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(measureTextZones);
+  }
 
   resize();
   startLoop();
