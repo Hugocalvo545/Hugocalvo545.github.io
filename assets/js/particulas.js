@@ -2,6 +2,7 @@
  * Campo de partículas del hero (canvas 2D, sin librerías).
  * Guiones cortos con puntas redondeadas, orientados hacia un centro que sigue al puntero.
  * El color depende del ángulo alrededor del centro; el tamaño y la opacidad, de la distancia.
+ * Con data-warp en el hero, al bajar los guiones se estiran hacia fuera y se desvanecen (salto al hiperespacio).
  */
 (() => {
   const hero = document.querySelector(".hero");
@@ -31,9 +32,9 @@
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  // Paleta propia: verde de la marca, cian, azul, violeta, rosa y ámbar (en círculo)
-  const PALETTE_DARK = ["#3ddc97", "#22d3ee", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"];
-  const PALETTE_LIGHT = ["#0f766e", "#0891b2", "#2563eb", "#7c3aed", "#db2777", "#d97706"];
+  // Paleta de la marca (en círculo): verde, verdes azulados, cianes y algún azul
+  const PALETTE_DARK = ["#3ddc97", "#34d3b0", "#2dd4bf", "#22d3ee", "#38bdf8", "#3b82f6", "#22d3ee", "#14b8a6"];
+  const PALETTE_LIGHT = ["#0f766e", "#0d9488", "#0e7490", "#0891b2", "#0284c7", "#2563eb", "#0891b2", "#0f766e"];
   const LUT_SIZE = 180;
   const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
   const TAU = Math.PI * 2;
@@ -57,6 +58,22 @@
   // Posición del borde izquierdo del canvas respecto a la ventana
   let originX = 0;
   let heroTop = 0;
+
+  // Centro de reposo del campo (fracciones del ancho y alto), configurable con data-particles-center="x,y"
+  const centerAttr = (hero.dataset.particlesCenter || "").split(",").map(Number);
+  const customCenter = centerAttr.length === 2 && centerAttr.every((n) => n >= 0 && n <= 1) ? centerAttr : null;
+
+  // Salto al hiperespacio controlado por el scroll
+  const warpEnabled = hero.hasAttribute("data-warp");
+  let warp = 0;
+  let warpTarget = 0;
+  let scrolled = 0;
+  if (warpEnabled) {
+    // Borde inferior difuminado: las estelas no se cortan en seco al bajar
+    const mask = "linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%)";
+    canvas.style.webkitMaskImage = mask;
+    canvas.style.maskImage = mask;
+  }
 
   const pointer = { x: 0, y: 0, active: false };
   const center = { x: 0, y: 0, restX: 0, restY: 0 };
@@ -107,7 +124,7 @@
   const measureTextZones = () => {
     const heroRect = hero.getBoundingClientRect();
     const baseX = originX;
-    const nodes = hero.querySelectorAll("h1, .lead, .hero-subtitle, .hero-rotator, .cta, .hero-actions, .eyebrow, .note, .hero-facts");
+    const nodes = hero.querySelectorAll("h1, .lead, .welcome__tagline, .hero-subtitle, .hero-rotator, .cta, .hero-actions, .eyebrow, .note, .hero-facts");
     textBoxes = [];
     nodes.forEach((node) => {
       const rect = node.getBoundingClientRect();
@@ -176,8 +193,13 @@
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    center.restX = width * (isMobile ? 0.5 : 0.62);
-    center.restY = height * (isMobile ? 0.42 : 0.5);
+    if (customCenter) {
+      center.restX = width * customCenter[0];
+      center.restY = height * customCenter[1];
+    } else {
+      center.restX = width * (isMobile ? 0.5 : 0.62);
+      center.restY = height * (isMobile ? 0.42 : 0.5);
+    }
     if (!center.x && !center.y) {
       center.x = center.restX;
       center.y = center.restY;
@@ -223,6 +245,16 @@
     const lutScale = LUT_SIZE / TAU;
     const margin = 12;
 
+    // Hiperespacio: w va de 0 (reposo) a 1 (salto completo)
+    const w = staticMode ? 0 : warp;
+    const w2 = w * w;
+    const warpFade = w <= 0.55 ? 1 : Math.max(0, 1 - ((w - 0.55) / 0.45) ** 2 * (3 - 2 * ((w - 0.55) / 0.45)));
+    const stretchK = isMobile ? 0.16 : 0.26;
+    const maxStretch = isMobile ? 90 : 170;
+    // El campo baja la mitad de lo que sube el hero para que el centro siga a la vista
+    const shiftY = warpEnabled && !staticMode ? scrolled * 0.5 : 0;
+    if (warpFade <= 0.01) return;
+
     ctx.lineCap = "round";
 
     for (let i = 0; i < particles.length; i += 1) {
@@ -232,12 +264,12 @@
       const bx = Math.cos(p.a) * p.r;
       const by = Math.sin(p.a) * p.r;
       let px = pivotX + bx * cosR - by * sinR;
-      let py = pivotY + bx * sinR + by * cosR;
-      if (px < -margin || px > width + margin || py < -margin || py > height + margin) continue;
+      let py = pivotY + shiftY + bx * sinR + by * cosR;
+      if (w === 0 && (px < -margin || px > width + margin || py < -margin || py > height + margin)) continue;
 
       // Distancia y dirección hacia el centro que sigue al puntero
       let dx = cx - px;
-      let dy = cy - py;
+      let dy = cy + shiftY - py;
       let d = Math.sqrt(dx * dx + dy * dy) || 0.001;
       let ux = dx / d;
       let uy = dy / d;
@@ -250,11 +282,23 @@
       // Profundidad: máximo en un anillo intermedio, diminutos cerca y lejos del centro
       const off = (d - ringR) * invRingW;
       const depth = Math.exp(-off * off);
-      const size = Math.max(0, Math.min(1, (0.08 + 0.92 * depth) * (0.78 + 0.22 * wave) * p.jitter));
+      let size = Math.max(0, Math.min(1, (0.08 + 0.92 * depth) * (0.78 + 0.22 * wave) * p.jitter));
 
-      const len = 9 * size;
-      const thick = 1.1 + 2.4 * size;
-      const alpha = (0.14 + 0.86 * size) * theme.alphaMax * textAttenuation(px, py);
+      let len = 9 * size;
+      let thick = 1.1 + 2.4 * size;
+      let tail = 0.5;
+      if (w > 0) {
+        // Al bajar: todos se convierten en estelas que salen disparadas hacia fuera, cada vez más rápido
+        size = size + (0.55 + 0.45 * size - size) * w;
+        px -= ux * d * w2 * 1.5;
+        py -= uy * d * w2 * 1.5;
+        len = 9 * size + Math.min(maxStretch, (d * stretchK + 14) * w2 * 2.2);
+        thick = (1.1 + 2.4 * size) * (1 + 0.25 * w);
+        tail = 0.5 + 0.5 * w;
+        if (px < -len - margin || px > width + len + margin || py < -len - margin || py > height + len + margin) continue;
+      }
+      const att = textAttenuation(px, py);
+      const alpha = (0.14 + 0.86 * size) * theme.alphaMax * (att + (1 - att) * w) * warpFade;
       if (alpha < 0.02) continue;
 
       // Color según el ángulo alrededor del centro
@@ -262,14 +306,13 @@
       let idx = Math.floor(angle * lutScale) % LUT_SIZE;
       if (idx < 0) idx += LUT_SIZE;
 
-      const hx = ux * len * 0.5;
-      const hy = uy * len * 0.5;
+      // La cabeza apunta hacia fuera y la estela queda hacia el centro
       ctx.globalAlpha = alpha;
       ctx.strokeStyle = colorLut[idx];
       ctx.lineWidth = thick;
       ctx.beginPath();
-      ctx.moveTo(px - hx, py - hy);
-      ctx.lineTo(px + hx, py + hy);
+      ctx.moveTo(px - ux * len * (1 - tail), py - uy * len * (1 - tail));
+      ctx.lineTo(px + ux * len * tail, py + uy * len * tail);
       ctx.stroke();
     }
     ctx.globalAlpha = 1;
@@ -288,6 +331,8 @@
     const ease = 1 - Math.pow(0.04, dt);
     center.x += (targetX - center.x) * ease;
     center.y += (targetY - center.y) * ease;
+    warp += (warpTarget - warp) * (1 - Math.pow(0.0004, dt));
+    if (Math.abs(warpTarget - warp) < 0.001) warp = warpTarget;
 
     renderFrame(false);
     rafId = window.requestAnimationFrame(tick);
@@ -349,6 +394,23 @@
     resizeTimer = window.setTimeout(resize, 120);
   }, { passive: true });
 
+  const onScroll = () => {
+    const h = hero.offsetHeight || 1;
+    scrolled = Math.min(h, Math.max(0, window.scrollY));
+    if (!warpEnabled) return;
+    const p = Math.min(1, Math.max(0, window.scrollY / (h * 0.7)));
+    if (reducedMotionQuery.matches) {
+      // Sin transición: solo un fundido simple del fondo
+      warpTarget = 0;
+      warp = 0;
+      canvas.style.opacity = Math.max(0, 1 - p * 1.4).toFixed(3);
+    } else {
+      warpTarget = p;
+      canvas.style.opacity = "";
+    }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+
   // Pausa la animación cuando el hero sale de pantalla
   if ("IntersectionObserver" in window) {
     new IntersectionObserver((entries) => {
@@ -362,6 +424,7 @@
   }
 
   const onMotionChange = () => {
+    onScroll();
     if (reducedMotionQuery.matches) {
       stopLoop();
       center.x = center.restX;
@@ -387,6 +450,8 @@
     document.fonts.ready.then(measureTextZones);
   }
 
+  onScroll();
+  warp = warpTarget;
   resize();
   startLoop();
 })();
