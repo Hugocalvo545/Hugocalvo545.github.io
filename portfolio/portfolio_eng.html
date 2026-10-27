@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hugo Calvo García portfolio: own SaaS products (GEOPilot, Gestolio) and custom platforms for real clients, with payments, AI and production deployment.">
-    <meta name="theme-color" content="#0d0f12">
+    <meta name="description" content="Hugo Calvo García portfolio: own products (GEOPilot, Gestolio, Hostiva and DadoManía), applied AI, cybersecurity and production deployment.">
+    <meta name="theme-color" content="#0e1117">
     <title>Hugo Calvo García | Product portfolio</title>
     <script>
       (function () {
@@ -15,8 +15,12 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="css/portfolio_Hugo.css">
-    <script src="js/portfolio.js?v=3" defer></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e1117%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27monospace%27 font-size=%2722%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%233ddc97%27%3EHCG%3C/text%3E%3C/svg%3E">
+    <link rel="preload" href="../fonts/Poppins-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/portfolio_Hugo.css?v=5">
+    <script src="js/portfolio.js?v=5" defer></script>
+    <script src="../assets/js/particulas.js" defer></script>
+    <script src="../assets/js/transicion-hero.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -38,6 +42,7 @@
             <ul class="nav-links" id="nav-menu">
                 <li><a class="nav-link" href="#products">Products</a></li>
                 <li><a class="nav-link" href="#about">Profile</a></li>
+                <li><a class="nav-link" href="#journey">Journey</a></li>
                 <li><a class="nav-link" href="#stack">Stack</a></li>
                 <li><a class="nav-link" href="#academic">Projects</a></li>
                 <li><a class="nav-link" href="#contact">Contact</a></li>
@@ -53,54 +58,71 @@
     </header>
 
     <main id="content">
-        <section id="home" class="hero section-observed">
-            <div class="hero-content reveal-section">
-                <p class="eyebrow">Full-stack developer · SaaS product founder</p>
-                <h1>Hugo Calvo García</h1>
-                <p class="hero-subtitle">I build and commercialize my own SaaS products and custom platforms for real clients, from product to support.</p>
-                <p class="hero-rotator" aria-live="polite">
-                    <span id="role-rotator" data-phrases="Own SaaS in production|Payments and subscriptions with Stripe|AI and LLM integration|From product to support">Own SaaS in production</span>
-                </p>
-                <div class="hero-actions">
-                    <a href="#products" class="button button-primary">View products</a>
-                    <a href="../curriculum_english.html" class="button button-secondary">View resume</a>
+        <section id="home" class="hero section-observed" data-particles-center="avoid" data-warp data-warp-next="#products" data-warp-mobile="ligera">
+            <div class="hero-inner" data-warp-rise>
+                <figure class="hero-photo" data-particles-avoid="44">
+                    <div class="photo-frame">
+                        <span class="photo-ring" aria-hidden="true"></span>
+                        <img src="img/porfile.jpg" alt="Photo of Hugo Calvo García" width="600" height="600" fetchpriority="high" decoding="async">
+                    </div>
+                </figure>
+                <div class="hero-content">
+                    <p class="eyebrow hero-in" style="--d: 0">Full-stack developer · Applied AI · Cybersecurity Master's (in progress)</p>
+                    <h1 data-split-letters>Hugo Calvo García</h1>
+                    <p class="hero-subtitle hero-in" style="--d: 650">I build and ship my own products and web applications from start to finish, from product to support.</p>
+                    <p class="hero-rotator hero-in" style="--d: 800">
+                        <span class="sr-only">Own products in production. Stripe subscriptions integrated. Applied AI and agent systems. Web application security.</span>
+                        <span aria-hidden="true"><span class="prompt">&gt;</span><span id="role-rotator" data-phrases="Own products in production|Stripe subscriptions integrated|Applied AI and agent systems|Web application security">Own products in production</span><span class="caret"></span></span>
+                    </p>
+                    <div class="hero-actions hero-in" style="--d: 950">
+                        <a href="#products" class="button button-primary" data-magnetic><span>View products</span></a>
+                        <a href="../curriculum_english.html" class="button button-secondary" data-magnetic><span>View resume</span></a>
+                    </div>
+                    <dl class="hero-facts hero-in" style="--d: 1100" aria-label="Summary">
+                        <div><dt>Base</dt><dd>Madrid</dd></div>
+                        <div><dt>Languages</dt><dd>ES / EN C1</dd></div>
+                        <div><dt>Focus</dt><dd>Own SaaS products</dd></div>
+                    </dl>
                 </div>
-                <dl class="hero-facts" aria-label="Summary">
-                    <div><dt>Base</dt><dd>Madrid</dd></div>
-                    <div><dt>Languages</dt><dd>ES / EN C1</dd></div>
-                    <div><dt>Focus</dt><dd>Own SaaS products</dd></div>
-                </dl>
             </div>
         </section>
 
         <section id="products" class="section section-observed">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Products</p>
-                <h2>Three products in production, with real users and payments.</h2>
+                <h2>Own products in production and in development.</h2>
             </div>
-            <div class="products-grid">
-                <article class="product-card reveal-section">
+            <div class="products-grid" data-stagger>
+                <article class="product-card">
                     <span class="product-badge">Own SaaS · In production</span>
                     <h3>GEOPilot</h3>
-                    <p>SaaS platform for SEO and GEO (Generative Engine Optimization) content generation. AI article-generation pipeline, real token-based cost calculator, editorial calendar with scheduled publishing, and an AI visibility checker module.</p>
+                    <p>SaaS platform for SEO and GEO (Generative Engine Optimization) content generation. AI article-generation pipeline, real token-based cost calculator, editorial calendar with scheduled publishing, and an AI visibility checker module. Validated with my own product: Gestolio is cited as a source in Google AI and Perplexity answers about Spain's Form 303 VAT return, measured with GEOPilot's visibility module.</p>
                     <div class="tag-list"><span>Next.js</span><span>Firebase</span><span>Gemini + Claude</span><span>Stripe</span><span>Vercel</span></div>
                     <div class="product-links"><a href="https://geopilot.es" target="_blank" rel="noopener noreferrer">View in production ↗</a></div>
                 </article>
 
-                <article class="product-card reveal-section">
+                <article class="product-card">
                     <span class="product-badge">Own SaaS · In production</span>
                     <h3>Gestolio</h3>
-                    <p>Fiscal management PWA for Spanish freelancers: invoicing, expenses, VAT and income-tax calculations, quarterly tax summaries, fiscal calendar and an AI assistant. Freemium model with Stripe subscriptions.</p>
+                    <p>Fiscal management PWA for Spanish freelancers: invoicing, expenses, VAT and income-tax calculations, quarterly tax summaries, fiscal calendar and an AI assistant. Freemium model with Stripe subscriptions and passwordless sign-in with passkeys (WebAuthn).</p>
                     <div class="tag-list"><span>Next.js 14</span><span>Supabase</span><span>Stripe</span><span>WebAuthn</span><span>PWA</span></div>
                     <div class="product-links"><a href="https://gestolio.com" target="_blank" rel="noopener noreferrer">View in production ↗</a></div>
                 </article>
 
-                <article class="product-card reveal-section">
-                    <span class="product-badge">Custom platform · Real client</span>
-                    <h3>Tu Casa en Jerez</h3>
-                    <p>Full multi-property vacation rental platform for a real client: booking engine with Stripe payments, guest registration compliance (Spanish SES), guest-host chat, loyalty and reviews system, and admin panel. Delivered and in production.</p>
-                    <div class="tag-list"><span>JavaScript</span><span>Firebase</span><span>Stripe</span><span>Google Maps</span><span>WordPress</span></div>
-                    <div class="product-links"><a href="https://jla-demo.web.app/multi/" target="_blank" rel="noopener noreferrer">View demo ↗</a></div>
+                <article class="product-card">
+                    <span class="product-badge">Own platform · In development (phase 1 completed)</span>
+                    <h3>Hostiva</h3>
+                    <p>Direct booking, online check-in and guest registration (Spanish SES Hospedajes) platform for tourist apartments, designed with security as a requirement: two-factor authentication with TOTP, tenant data isolation with Row Level Security, encrypted check-in data, Stripe subscriptions, tests and security review.</p>
+                    <div class="tag-list"><span>Supabase</span><span>Row Level Security</span><span>2FA TOTP</span><span>Stripe</span><span>Encryption</span></div>
+                    <div class="product-links"><span class="product-status">Demo on request</span></div>
+                </article>
+
+                <article class="product-card">
+                    <span class="product-badge">Own game · In production</span>
+                    <h3>DadoManía</h3>
+                    <p>Web strategy and dice defense game with real players. Chest progression, in-game currency shop and a staging environment separated from production (dedicated Supabase project and deployment branch) to validate every release before publishing.</p>
+                    <div class="tag-list"><span>Supabase</span><span>Vercel</span></div>
+                    <div class="product-links"><a href="https://dadomania.com" target="_blank" rel="noopener noreferrer">View in production ↗</a></div>
                 </article>
             </div>
         </section>
@@ -108,27 +130,27 @@
         <section id="about" class="section section-observed">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Profile</p>
-                <h2>I don't build demos: I ship software that gets used and paid for.</h2>
+                <h2>From product to support: I build and ship software from start to finish.</h2>
             </div>
             <div class="about-grid">
                 <div class="about-copy reveal-section">
                     <p>
-                        I'm a full-stack developer and freelancer. I design, build and commercialize my own SaaS products and custom platforms for real clients, owning the full cycle: product, code, payment gateway, deployment, billing and support.
+                        I'm a full-stack developer and freelancer. I design and build my own web products and custom platforms, owning the full cycle: product, code, Stripe subscriptions, security, deployment and support.
                     </p>
                     <p>
                         I work with Next.js, Firebase, Supabase and Stripe, and I integrate large language models (LLMs) into real product flows. Higher Technician in Multiplatform Application Development (2026).
                     </p>
                 </div>
-                <div class="impact-list reveal-section">
+                <div class="impact-list" data-stagger>
                     <article>
                         <span>01</span>
                         <h3>Full ownership</h3>
-                        <p>From idea to paying users: product, development, payments, deployment and support.</p>
+                        <p>From idea to production: product, development, security, deployment and support.</p>
                     </article>
                     <article>
                         <span>02</span>
-                        <h3>Real payments</h3>
-                        <p>Subscriptions and charges with Stripe, freemium models and billing in production.</p>
+                        <h3>Security and subscriptions</h3>
+                        <p>Authentication with passkeys (WebAuthn) and 2FA TOTP, Row Level Security and Stripe subscriptions.</p>
                     </article>
                     <article>
                         <span>03</span>
@@ -137,6 +159,75 @@
                     </article>
                 </div>
             </div>
+            <dl class="stats" data-stagger aria-label="Key figures">
+                <div class="stat"><dt>Own products</dt><dd><span data-count-to="4">4</span></dd></div>
+                <div class="stat"><dt>In production</dt><dd><span data-count-to="3">3</span></dd></div>
+                <div class="stat"><dt>AI engines that have cited Gestolio as a source (October 2026)</dt><dd><span data-count-to="2">2</span></dd></div>
+            </dl>
+        </section>
+
+        <section id="journey" class="section section-observed">
+            <div class="section-header reveal-section">
+                <p class="eyebrow">Journey</p>
+                <h2>Experience and education.</h2>
+            </div>
+            <div class="timeline" data-timeline>
+                <div class="timeline-track" aria-hidden="true"><span class="timeline-fill"></span></div>
+                <h3 class="timeline-label">Experience</h3>
+                <ol class="timeline-list">
+                    <li class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <span class="timeline-date">2025 - Present</span>
+                        <div class="timeline-body">
+                            <h4>Full-stack developer and founder (freelance)</h4>
+                            <p>Design and development of my own SaaS products and custom platforms. Full cycle: product, development, Stripe subscriptions, deployment and support. Design of a custom AI agent system with a human approval queue to automate marketing for my products.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <span class="timeline-date">2024 - 2025</span>
+                        <div class="timeline-body">
+                            <h4>Web developer at a design and marketing agency</h4>
+                            <p>Web development for clients: HTML/CSS layout, HTML email signatures, WordPress.</p>
+                        </div>
+                    </li>
+                </ol>
+                <h3 class="timeline-label">Education</h3>
+                <ol class="timeline-list">
+                    <li class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <span class="timeline-date">2026 - 2027</span>
+                        <div class="timeline-body">
+                            <h4>Cybersecurity Master's · Digitech FP · In progress</h4>
+                            <p>Offensive and defensive security, with a focus on web applications.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <span class="timeline-date">2024 - 2026</span>
+                        <div class="timeline-body">
+                            <h4>Dual Higher Degree in Multiplatform Application Development</h4>
+                            <p>Higher Technician degree completed in 2026. Training focused on programming, databases, web development, mobile development and systems.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <span class="timeline-date">2023 - 2024</span>
+                        <div class="timeline-body">
+                            <h4>Rey Juan Carlos University</h4>
+                            <p>Degree in Science, Management and Service Engineering. Early university experience with technology, management and teamwork.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <span class="timeline-date">2022 - 2023</span>
+                        <div class="timeline-body">
+                            <h4>Salmon Arm Secondary, Canada</h4>
+                            <p>Scientific baccalaureate studied in English, with academic and cultural immersion.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </section>
 
         <section id="stack" class="section section-observed surface-band">
@@ -144,23 +235,29 @@
                 <p class="eyebrow">Stack</p>
                 <h2>Tools organized by the type of problem they solve.</h2>
             </div>
-            <div class="stack-grid">
-                <article class="stack-card reveal-section">
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <ul><li>Next.js</li><li>React</li><li>JavaScript</li><li>HTML5</li><li>CSS</li><li>Node.js</li><li>Firebase</li><li>Supabase</li><li>SQL</li><li>Stripe</li><li>Vercel</li><li>PWA</li><li>SEO/GEO</li><li>WebAuthn</li><li>2FA TOTP</li><li>Row Level Security</li><li>Gemini</li><li>Claude</li></ul>
+                    <ul><li>Next.js</li><li>React</li><li>JavaScript</li><li>HTML5</li><li>CSS</li><li>Node.js</li><li>Firebase</li><li>Supabase</li><li>SQL</li><li>Stripe</li><li>Vercel</li><li>PWA</li><li>SEO/GEO</li><li>WebAuthn</li><li>2FA TOTP</li><li>Row Level Security</li><li>Gemini</li><li>Claude</li></ul>
+                </div>
+            </div>
+            <div class="stack-grid" data-stagger>
+                <article class="stack-card">
                     <h3>Frontend</h3>
                     <p>Responsive, accessible interfaces with a modern component architecture.</p>
                     <div class="tag-list"><span>HTML5</span><span>Responsive CSS</span><span>JavaScript</span><span>React</span><span>Next.js</span></div>
                 </article>
-                <article class="stack-card reveal-section">
+                <article class="stack-card">
                     <h3>Backend and data</h3>
                     <p>APIs, authentication and persistence on managed services and SQL.</p>
                     <div class="tag-list"><span>Node.js</span><span>Firebase</span><span>Supabase</span><span>SQL</span><span>REST APIs</span></div>
                 </article>
-                <article class="stack-card reveal-section">
+                <article class="stack-card">
                     <h3>Product and business</h3>
-                    <p>Payments, deployment, PWA and visibility so the product ships and gets paid.</p>
+                    <p>Subscriptions, deployment, PWA and visibility to take the product to production.</p>
                     <div class="tag-list"><span>Stripe</span><span>Vercel</span><span>PWA</span><span>SEO/GEO</span><span>Analytics</span></div>
                 </article>
-                <article class="stack-card reveal-section">
+                <article class="stack-card">
                     <h3>AI</h3>
                     <p>LLM integration and content-generation pipelines in a real product.</p>
                     <div class="tag-list"><span>Anthropic API</span><span>Gemini</span><span>Content pipelines</span><span>Prompt engineering</span></div>
@@ -203,25 +300,25 @@
         <section id="process" class="section section-observed surface-band">
             <div class="section-header reveal-section">
                 <p class="eyebrow">Process</p>
-                <h2>How I take a product from idea to payment.</h2>
+                <h2>How I take a product from idea to production.</h2>
             </div>
-            <div class="process-grid">
-                <article class="process-step reveal-section">
+            <div class="process-grid" data-stagger>
+                <article class="process-step">
                     <span>01</span>
                     <h3>Product</h3>
                     <p>I define the problem, the scope and the business model before writing code.</p>
                 </article>
-                <article class="process-step reveal-section">
+                <article class="process-step">
                     <span>02</span>
                     <h3>Development</h3>
                     <p>I build with Next.js, Firebase/Supabase and APIs, integrating AI when it adds value.</p>
                 </article>
-                <article class="process-step reveal-section">
+                <article class="process-step">
                     <span>03</span>
-                    <h3>Payments</h3>
-                    <p>I implement subscriptions and charges with Stripe, with freemium plans and billing.</p>
+                    <h3>Subscriptions and security</h3>
+                    <p>I integrate Stripe subscriptions, 2FA/passkey authentication and data isolation.</p>
                 </article>
-                <article class="process-step reveal-section">
+                <article class="process-step">
                     <span>04</span>
                     <h3>Deployment and support</h3>
                     <p>I ship on Vercel, measure with analytics and maintain the product with real users.</p>
@@ -238,12 +335,12 @@
                 <div class="contact-copy reveal-section">
                     <p>I'm open to freelance projects, custom platforms and collaborations where I can contribute product thinking, full-stack development and AI integration.</p>
                     <div class="contact-actions">
-                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary">Send email</a>
-                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com">Copy email</button>
+                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary" data-magnetic><span>Send email</span></a>
+                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com" data-magnetic><span>Copy email</span></button>
                     </div>
                     <ul class="social-list">
                         <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                         <li><a href="../Resume_Hugo_Calvo_Eng.pdf" download="Resume_Hugo_Calvo_Eng.pdf" data-theme-pdf data-pdf-light="../Resume_Hugo_Calvo_Eng.pdf" data-pdf-dark="../Resume_Hugo_Calvo_Eng_Dark.pdf">Resume PDF</a></li>
                     </ul>
                 </div>
@@ -260,7 +357,7 @@
                         <span>Message</span>
                         <textarea name="mensaje" rows="5" required></textarea>
                     </label>
-                    <button type="submit" class="button button-primary">Send message</button>
+                    <button type="submit" class="button button-primary"><span>Send message</span></button>
                     <input type="hidden" name="_next" value="https://hugocalvo.dev/portfolio/portfolio_eng.html#contact">
                     <input type="hidden" name="_captcha" value="false">
                 </form>

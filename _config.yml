@@ -1,0 +1,4 @@
+# GitHub Pages (Jekyll): carpetas internas que no se publican en hugocalvo.dev
+exclude:
+  - docs/
+  - tools/

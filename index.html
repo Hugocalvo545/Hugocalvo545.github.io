@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hugo Calvo | Webs, software y visibilidad en ChatGPT para tu negocio</title>
-    <meta name="description" content="Webs, apps a medida y automatizaciones con IA para pymes, y visibilidad para que tu negocio aparezca en ChatGPT, Gemini y Google. Presupuesto cerrado en 48 h.">
+    <meta name="description" content="Webs, apps a medida y automatizaciones con IA para pymes, y trabajo para mejorar la visibilidad de tu negocio en ChatGPT, Gemini y Google. Presupuesto cerrado en 48 h.">
     <meta name="theme-color" content="#0e1117">
     <link rel="canonical" href="https://hugocalvo.dev/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hugocalvo.dev/">
     <meta property="og:title" content="Hugo Calvo | Webs, software y visibilidad en ChatGPT para tu negocio">
-    <meta property="og:description" content="Webs, apps a medida y automatizaciones con IA para pymes, y visibilidad para que tu negocio aparezca en ChatGPT, Gemini y Google.">
+    <meta property="og:description" content="Webs, apps a medida y automatizaciones con IA para pymes, y trabajo para mejorar la visibilidad de tu negocio en ChatGPT, Gemini y Google.">
     <meta property="og:image" content="https://hugocalvo.dev/img/og.png">
     <meta property="og:locale" content="es_ES">
     <meta name="twitter:card" content="summary_large_image">
@@ -19,9 +19,12 @@
     <meta name="twitter:description" content="Webs, apps a medida y automatizaciones con IA para pymes, y visibilidad en ChatGPT, Gemini y Google.">
     <meta name="twitter:image" content="https://hugocalvo.dev/img/og.png">
 
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e1117%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27monospace%27 font-size=%2722%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%233ddc97%27%3EHCG%3C/text%3E%3C/svg%3E">
     <link rel="preload" href="fonts/Poppins-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/home.css">
     <script src="js/home.js" defer></script>
+    <script src="assets/js/particulas.js" defer></script>
+    <script src="assets/js/transicion-hero.js" defer></script>
 
     <script type="application/ld+json">
     {
@@ -41,7 +44,7 @@
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "Hugo Calvo — Desarrollo web y visibilidad en IA",
+      "name": "Hugo Calvo · Desarrollo web y visibilidad en IA",
       "url": "https://hugocalvo.dev/",
       "telephone": "+34638091795",
       "email": "hugocgarciat@gmail.com",
@@ -78,7 +81,7 @@
         {
           "@type": "Question",
           "name": "¿Qué es eso de aparecer en ChatGPT?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Cada vez más gente pregunta a ChatGPT, Gemini o Perplexity qué negocio elegir. Trabajo tu web y tu contenido para que las IAs te citen cuando alguien pregunta por lo que vendes. Empiezo con una auditoría gratuita en la que ves si apareces hoy." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Cada vez más gente pregunta a ChatGPT, Gemini o Perplexity qué negocio elegir. Trabajo tu web y tu contenido para que las IAs tengan más motivos para citarte cuando alguien pregunta por lo que vendes. Empiezo con una auditoría gratuita en la que ves si apareces hoy." }
         }
       ]
     }
@@ -106,25 +109,31 @@
 
 <main id="contenido">
 
-<div class="wrap hero">
-  <div>
-    <p class="eyebrow">Desarrollador full-stack · Madrid</p>
-    <h1>Webs, software y visibilidad en ChatGPT para tu negocio.</h1>
-    <p class="lead">Construyo la web o la app que necesitas y hago que las IAs recomienden tu negocio cuando alguien pregunta por lo que vendes. Todo con una sola persona al otro lado: yo.</p>
+<section class="hero welcome" id="inicio" aria-labelledby="welcome-title" data-particles-center="0.5,0.5" data-warp data-warp-next="#ejemplo-ia">
+  <div class="welcome__content" data-warp-rise>
+    <p class="welcome__name">Hugo Calvo García</p>
+    <p class="welcome__role">Desarrollador full-stack en Madrid</p>
+    <h1 id="welcome-title" class="welcome__tagline">Webs, software y visibilidad en IA para tu negocio.</h1>
+    <p class="lead">Construyo la web o la app que necesitas y trabajo tu presencia online para que los buscadores de IA conozcan mejor tu negocio y tengan más motivos para citarlo. Todo con una sola persona al otro lado: yo.</p>
     <div class="cta">
       <a class="btn primary" href="#contacto">Pedir presupuesto</a>
       <a class="btn ghost" href="https://geopilot.es" target="_blank" rel="noopener">Auditoría IA gratis →</a>
     </div>
     <p class="note">Presupuesto sin compromiso · respuesta en 24 h</p>
   </div>
+  <a class="welcome__scroll" data-warp-hint href="#ejemplo-ia" aria-label="Bajar a la siguiente sección">
+    <span aria-hidden="true"></span>
+  </a>
+</section>
 
-  <div class="ai" aria-label="Ejemplo real de una IA recomendando Gestolio, mi producto">
+<div class="wrap intro-ai" id="ejemplo-ia">
+  <div class="ai" aria-label="Ejemplo de una IA recomendando Gestolio, mi producto">
     <div class="bar"><span class="dot"></span> ChatGPT · Gemini · Perplexity</div>
     <p class="q">Pregunta de un cliente: <b>«¿Qué app me recomiendas para llevar las facturas y el IVA como autónomo en España?»</b></p>
     <div class="a">
       Una opción muy completa es <mark>Gestolio</mark>, pensada para autónomos españoles: facturación, gastos, modelos 303 y 130, calendario fiscal y asistente con IA. Tiene plan gratuito y puedes empezar sin tarjeta<span class="cursor"></span>
     </div>
-    <p class="foot">Gestolio es mío y ya aparece en ChatGPT. Tu negocio puede ser el siguiente.</p>
+    <p class="foot">Gestolio es mío y aparece citado en respuestas de IA sobre el Modelo 303.</p>
   </div>
 </div>
 
@@ -144,7 +153,7 @@
       <article class="card star">
         <span class="tag">Punto fuerte</span>
         <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></div>
-        <h3>Que tu negocio aparezca en ChatGPT, Gemini y Google</h3>
+        <h3>Mejorar la visibilidad de tu negocio en ChatGPT, Gemini y Google</h3>
         <p>Auditoría de visibilidad en IA, contenido optimizado para GEO y SEO, y seguimiento mensual de en qué respuestas apareces.</p>
         <div class="price"><span>Auditoría gratis</span><b>desde 200 €/mes</b></div>
       </article>
@@ -181,11 +190,43 @@
   </div>
 </section>
 
+<section id="caso-real" aria-labelledby="caso-real-title">
+  <div class="wrap">
+    <p class="eyebrow">Caso real</p>
+    <h2 id="caso-real-title">Mi propio producto, citado por la IA de Google y por Perplexity</h2>
+    <p class="lead">Apliqué mi método de posicionamiento en IA a Gestolio, mi app de gestión fiscal para autónomos. Hoy aparece como fuente en las respuestas de la IA de Google y de Perplexity sobre el Modelo 303, y lo mido con GEOPilot, mi herramienta de visibilidad en IA.</p>
+
+    <div class="grid two case-gallery">
+      <button type="button" class="case-shot" data-lightbox-src="assets/casos/gestolio-google-ia.png" data-lightbox-alt="Modo IA de Google respondiendo qué significa que el Modelo 303 salga negativo con gestolio.com como fuente">
+        <img src="assets/casos/gestolio-google-ia.png" alt="Modo IA de Google respondiendo qué significa que el Modelo 303 salga negativo con gestolio.com como fuente" loading="lazy">
+        <span>Modo IA de Google · Modelo 303 negativo (gestolio.com citado)</span>
+      </button>
+      <button type="button" class="case-shot" data-lightbox-src="assets/casos/gestolio-google-fuente.png" data-lightbox-alt="Modo IA de Google respondiendo en qué casillas se compensa el IVA de trimestres anteriores con gestolio.com entre las fuentes">
+        <img src="assets/casos/gestolio-google-fuente.png" alt="Modo IA de Google respondiendo en qué casillas se compensa el IVA de trimestres anteriores con gestolio.com entre las fuentes" loading="lazy">
+        <span>Modo IA de Google · Compensación de IVA (gestolio.com entre las fuentes)</span>
+      </button>
+      <button type="button" class="case-shot" data-lightbox-src="assets/casos/gestolio-perplexity.png" data-lightbox-alt="Perplexity citando gestolio.com como fuente, medido con GEOPilot">
+        <img src="assets/casos/gestolio-perplexity.png" alt="Perplexity citando gestolio.com como fuente, medido con GEOPilot" loading="lazy">
+        <span>Perplexity · gestolio.com citado entre las fuentes</span>
+      </button>
+      <button type="button" class="case-shot" data-lightbox-src="assets/casos/gestolio-geopilot-medicion.png" data-lightbox-alt="Informe de GEOPilot mostrando gestolio.com citado por 2 de 3 IAs consultadas">
+        <img src="assets/casos/gestolio-geopilot-medicion.png" alt="Informe de GEOPilot mostrando gestolio.com citado por 2 de 3 IAs consultadas" loading="lazy">
+        <span>Informe de GEOPilot · Citado en 2 de 3 IAs</span>
+      </button>
+    </div>
+
+    <p class="section-note">Caso propio, octubre de 2026. Las respuestas de las IA cambian con el tiempo, y cada web y cada sector son distintos, así que no se garantizan resultados.</p>
+    <div class="case-cta">
+      <a class="btn primary" href="#contacto">Consultar visibilidad en IA para mi web</a>
+    </div>
+  </div>
+</section>
+
 <section id="productos" aria-labelledby="productos-title">
   <div class="wrap">
     <p class="eyebrow">Productos</p>
     <h2 id="productos-title">Lo que he construido y está en producción.</h2>
-    <p class="lead">No demos: tres productos con usuarios y pagos reales, hechos de principio a fin.</p>
+    <p class="lead">Productos propios en producción, hechos de principio a fin: producto, código, seguridad y despliegue.</p>
 
     <div class="grid three prod">
       <article class="card">
@@ -203,11 +244,11 @@
         <a class="more" href="https://gestolio.com" target="_blank" rel="noopener">gestolio.com →</a>
       </article>
       <article class="card">
-        <p class="meta">Cliente real</p>
-        <h3>Tu Casa en Jerez</h3>
-        <p>Plataforma de reservas vacacionales multi-propiedad con pagos, registro de viajeros y panel de gestión.</p>
-        <div class="stack"><span>JavaScript</span><span>Firebase</span><span>Stripe</span><span>Maps</span></div>
-        <a class="more" href="https://jla-demo.web.app/multi/" target="_blank" rel="noopener">Ver plataforma →</a>
+        <p class="meta">Juego propio</p>
+        <h3>DadoManía</h3>
+        <p>Juego web de estrategia y defensa con dados, con usuarios reales jugando, progresión por cofres y entorno de pruebas separado de producción.</p>
+        <div class="stack"><span>Supabase</span><span>Vercel</span></div>
+        <a class="more" href="https://dadomania.com" target="_blank" rel="noopener">dadomania.com →</a>
       </article>
     </div>
   </div>
@@ -248,7 +289,7 @@
       </details>
       <details>
         <summary>¿Qué es eso de aparecer en ChatGPT?</summary>
-        <p>Cada vez más gente pregunta a ChatGPT, Gemini o Perplexity qué negocio elegir. Trabajo tu web y tu contenido para que las IAs te citen cuando alguien pregunta por lo que vendes. Empiezo con una auditoría gratuita en la que ves si apareces hoy.</p>
+        <p>Cada vez más gente pregunta a ChatGPT, Gemini o Perplexity qué negocio elegir. Trabajo tu web y tu contenido para que las IAs tengan más motivos para citarte cuando alguien pregunta por lo que vendes. Empiezo con una auditoría gratuita en la que ves si apareces hoy.</p>
       </details>
     </div>
   </div>
@@ -263,7 +304,7 @@
     <div>
       <p class="eyebrow">Sobre mí</p>
       <h2 id="sobre-mi-title">Hugo Calvo García</h2>
-      <p class="lead">Desarrollador full-stack y fundador de productos SaaS. Llevo un proyecto desde la idea hasta usuarios que pagan: producto, código, pagos, despliegue y soporte. Técnico Superior en DAM (2026), inglés C1.</p>
+      <p class="lead">Desarrollador full-stack. Construyo y lanzo productos propios de principio a fin: producto, código, suscripciones con Stripe, seguridad, despliegue y soporte. Técnico Superior en DAM (2026) y Máster en Ciberseguridad (en curso), inglés C1.</p>
       <div class="stats">
         <div><b>3</b><span>productos en producción</span></div>
         <div><b>2</b><span>SaaS propios</span></div>
@@ -317,6 +358,13 @@
   <a class="btn ghost" href="https://wa.me/34638091795">WhatsApp</a>
   <a class="btn primary" href="#contacto">Presupuesto</a>
 </div>
+
+<dialog class="case-lightbox" id="case-lightbox" aria-label="Vista ampliada de captura">
+  <div class="case-lightbox__inner">
+    <button type="button" class="case-lightbox__close" aria-label="Cerrar imagen">Cerrar ×</button>
+    <img src="" alt="" id="case-lightbox-img">
+  </div>
+</dialog>
 
 </body>
 </html>

@@ -50,7 +50,7 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
     try {
       await navigator.clipboard.writeText(value);
       button.dataset.copied = "true";
-      button.textContent = "Email copiado";
+      button.textContent = document.documentElement.lang === "en" ? "Email copied" : "Email copiado";
 
       window.setTimeout(() => {
         button.dataset.copied = "false";
@@ -61,3 +61,36 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
     }
   });
 });
+
+const lightbox = document.getElementById("image-lightbox");
+const lightboxImg = document.getElementById("image-lightbox-img");
+const lightboxClose = lightbox?.querySelector(".image-lightbox__close");
+
+if (lightbox && lightboxImg) {
+  document.querySelectorAll("[data-lightbox-src]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      lightboxImg.src = trigger.dataset.lightboxSrc;
+      lightboxImg.alt = trigger.dataset.lightboxAlt || "";
+      if (typeof lightbox.showModal === "function") {
+        lightbox.showModal();
+      } else {
+        lightbox.setAttribute("open", "");
+      }
+    });
+  });
+
+  const closeLightbox = () => {
+    if (typeof lightbox.close === "function") {
+      lightbox.close();
+    } else {
+      lightbox.removeAttribute("open");
+    }
+  };
+
+  lightboxClose?.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+}
