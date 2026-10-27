@@ -178,6 +178,10 @@ if (rotator) {
   let heroOnScreen = true;
   let paused = false;
 
+  // Fuente monoespaciada: el ancho de la frase más larga se conoce en ch (más el prompt y el cursor)
+  const longest = Math.max(...phrases.map((p) => p.length), 0);
+  rotator.parentElement?.style.setProperty("--rotator-width", `${longest + 3}ch`);
+
   const step = () => {
     // Fuera de pantalla no se escribe: se retoma al volver
     if (!heroOnScreen) {

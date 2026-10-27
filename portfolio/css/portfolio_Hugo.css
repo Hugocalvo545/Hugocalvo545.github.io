@@ -461,6 +461,13 @@ h3 {
     font-weight: 500;
 }
 
+/* Ancho fijo (la frase más larga): al escribir no se mueve nada aunque el texto esté centrado */
+.hero-rotator > [aria-hidden] {
+    display: inline-block;
+    width: min(100%, var(--rotator-width, 100%));
+    text-align: left;
+}
+
 .hero-rotator .prompt {
     color: var(--accent);
     margin-right: 0.55ch;
