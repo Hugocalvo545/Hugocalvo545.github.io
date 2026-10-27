@@ -714,36 +714,8 @@ button {
 }
 
 @media print {
-  @page {
-    size: A4;
-    margin: 9mm 10mm;
-  }
-
-  :root,
-  :root[data-theme="dark"] {
-    color-scheme: light;
-    --bg: #ffffff;
-    --surface: #ffffff;
-    --surface-strong: #f8fafc;
-    --text: #101820;
-    --muted: #3d4757;
-    --line: #d0d5dd;
-    --accent: #0f766e;
-    --accent-strong: #115e59;
-    --accent-soft: #f0fdf9;
-    --warm: #c2410c;
-    --shadow: none;
-  }
-
-  html {
-    font-size: 9.3pt;
-  }
-
   body {
-    min-height: 0;
-    background: #fff !important;
-    color: #101820 !important;
-    line-height: 1.38;
+    background: #fff;
   }
 
   body::before,
@@ -752,23 +724,7 @@ button {
   .skip-link,
   .achievement-thumbs,
   .image-lightbox {
-    display: none !important;
-  }
-
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  /* Sin letter-spacing: el texto extraído del PDF (ATS) no parte las palabras */
-  .eyebrow,
-  .section-kicker,
-  .project-type,
-  .panel-section h2,
-  .contact-list span,
-  .language-item span {
-    letter-spacing: 0 !important;
+    display: none;
   }
 
   .page-shell {
@@ -777,247 +733,17 @@ button {
     padding: 0;
   }
 
-  /* Cabecera: foto, nombre y titular; contacto e idiomas en fila */
   .profile-panel {
     position: static;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-    gap: 0.35rem 1.2rem;
-    margin-bottom: 0.6rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--line);
   }
 
-  .profile-card {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 5.4rem minmax(0, 1fr);
-    column-gap: 0.9rem;
-    align-items: center;
-    padding: 0;
-    border: 0;
-    background: none !important;
-  }
-
-  .profile-photo {
-    grid-row: 1 / span 3;
-    width: 5.4rem;
-    margin: 0;
-    filter: none !important;
-  }
-
-  .profile-card .eyebrow {
-    font-size: 0.82rem;
-  }
-
-  .profile-card h1 {
-    margin-top: 0.1rem;
-    font-size: 2.1rem;
-    line-height: 1.05;
-  }
-
-  .role {
-    margin-top: 0.2rem;
-    font-size: 1rem;
-  }
-
-  .panel-section {
-    padding: 0;
-    border: 0;
-    background: none !important;
-  }
-
-  .panel-section h2 {
-    margin-bottom: 0.25rem;
-    font-size: 0.85rem;
-  }
-
-  .contact-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.15rem 1rem;
-  }
-
-  .contact-list li,
-  .language-item {
-    display: flex;
-    gap: 0.35rem;
-    align-items: baseline;
-  }
-
-  .language-item {
-    padding: 0 0 0.15rem;
-    border: 0;
-  }
-
-  .contact-list span,
-  .language-item span {
-    font-size: 0.75rem;
-  }
-
-  .contact-list a,
-  .copy-link {
-    min-height: 0;
-    padding: 0;
-    font-weight: 700;
-  }
-
-  /* Contenido principal */
-  .cv-main {
-    display: block;
-  }
-
+  .profile-card,
+  .panel-section,
   .intro-section,
   .content-section {
-    margin: 0 0 0.6rem;
-    padding: 0;
-    border: 0;
-    box-shadow: none !important;
-    background: none !important;
-  }
-
-  .intro-section h2 {
-    max-width: none;
-    margin-top: 0.1rem;
-    font-size: 1.45rem;
-    line-height: 1.15;
-  }
-
-  .lead {
-    max-width: none;
-    margin-top: 0.3rem;
-    font-size: 1rem;
-  }
-
-  .hero-metrics {
-    gap: 0.45rem;
-    margin-top: 0.45rem;
-  }
-
-  .hero-metrics article {
-    padding: 0.4rem 0.6rem;
-  }
-
-  .hero-metrics strong {
-    font-size: 1.4rem;
-  }
-
-  .hero-metrics span {
-    margin-top: 0.15rem;
-    font-size: 0.88rem;
-  }
-
-  .section-heading {
-    max-width: none;
-    gap: 0.05rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .section-heading h2 {
-    font-size: 1.2rem;
-    line-height: 1.2;
-  }
-
-  .projects-grid,
-  .skill-groups,
-  .traits-grid {
-    gap: 0.45rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .skill-groups,
-  .traits-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .hero-metrics article,
-  .project-card,
-  .skill-group,
-  .timeline li,
-  .traits-grid article,
-  .achievement-box {
+    box-shadow: none;
     break-inside: avoid;
-    margin: 0;
-    box-shadow: none !important;
-    background: #fff !important;
-  }
-
-  .project-card {
-    gap: 0.4rem;
-    padding: 0.55rem 0.65rem;
-  }
-
-  .project-card h3,
-  .skill-group h3,
-  .timeline h3,
-  .traits-grid h3 {
-    margin-bottom: 0.2rem;
-    font-size: 1.05rem;
-  }
-
-  .card-footer {
-    gap: 0.35rem;
-  }
-
-  .project-card a,
-  .card-status {
-    min-height: 0;
-    padding: 0.1rem 0.45rem;
-    font-size: 0.85rem;
-  }
-
-  .achievement-box {
-    grid-column: 1 / -1;
-    gap: 0;
-    padding: 0.5rem 0.65rem;
-  }
-
-  .achievement-copy h3 {
-    margin: 0.1rem 0 0.15rem;
-    font-size: 1.05rem;
-  }
-
-  .skill-group,
-  .traits-grid article {
-    padding: 0.5rem 0.6rem;
-  }
-
-  .tag-list,
-  .mini-tags {
-    gap: 0.25rem;
-  }
-
-  .tag-list span,
-  .mini-tags span {
-    padding: 0.05rem 0.4rem;
-    font-size: 0.8rem;
-  }
-
-  .timeline {
-    gap: 0.4rem;
-  }
-
-  /* Sin posicionar: así el texto del PDF sale en orden de lectura */
-  .timeline li {
-    position: static;
-    padding: 0.45rem 0.65rem 0.45rem 2.4rem;
-  }
-
-  .timeline li::before {
-    position: static;
-    float: left;
-    margin: 0.05rem 0 0 -1.8rem;
-    width: 1.3rem;
-    height: 1.3rem;
-    font-size: 0.65rem;
-  }
-
-  .timeline span {
-    margin-bottom: 0.05rem;
-    font-size: 0.82rem;
+    margin-bottom: 0.8rem;
   }
 }
 
