@@ -220,6 +220,10 @@
 
     const minDim = Math.min(width, height);
     field.ringR = minDim * (isMobile ? 0.34 : 0.42);
+    // Con el centro en una zona libre, el anillo más visible queda siempre fuera de ella
+    if (centerOnAvoid && avoidZones.length) {
+      field.ringR = Math.max(field.ringR, avoidZones[0].r * 1.35);
+    }
     field.ringW = field.ringR * 0.62;
     field.wavelength = isMobile ? 110 : 150;
     builtWidth = width;
