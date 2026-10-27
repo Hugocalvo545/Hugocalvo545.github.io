@@ -298,8 +298,9 @@ def draw_contact_card(pdf, x, y, width, height, data, theme):
         (data["phone_label"], "+34 638 091 795", LINKS["phone"]),
         ("Email", "hugocgarciat@gmail.com", LINKS["email"]),
         (data["location_label"], data["location"], None),
+        (data["mobility_label"], data["mobility"], None),
     ]
-    yy = top - 27
+    yy = top - 26
     for label, value, url in entries:
         draw_upper(pdf, label, px, yy, theme, size=7)
         pdf.setFont("Helvetica-Bold", 9.8)
@@ -307,7 +308,7 @@ def draw_contact_card(pdf, x, y, width, height, data, theme):
         pdf.drawString(px, yy - 15, value)
         if url:
             pdf.linkURL(url, (px, yy - 18, px + stringWidth(value, "Helvetica-Bold", 9.8), yy - 4), relative=0)
-        yy -= 32
+        yy -= 29
 
     draw_upper(pdf, "Links", px, yy, theme, size=7)
     link_y = yy - 15
@@ -470,7 +471,7 @@ def page_one(pdf, data, theme):
     main_w = width - main_x - margin
     top = height - margin
 
-    profile_h = 365
+    profile_h = 350
     draw_profile_sidebar(pdf, margin, top - profile_h, side_w, profile_h, data, theme)
     draw_contact_card(pdf, margin, margin, side_w, top - profile_h - margin - 18, data, theme)
     draw_topbar(pdf, main_x, top - 52, main_w, data, theme)
@@ -593,6 +594,8 @@ SPANISH = {
     "phone_label": "Tel",
     "location_label": "Ubicación",
     "location": "Madrid, España",
+    "mobility_label": "Movilidad",
+    "mobility": "Carné de conducir B y vehículo propio",
     "portfolio_label": "Ver portfolio",
     "pdf_label": "Descargar PDF",
     "web": LINKS["web_es"],
@@ -682,6 +685,8 @@ ENGLISH = {
     "phone_label": "Phone",
     "location_label": "Location",
     "location": "Madrid, Spain",
+    "mobility_label": "Mobility",
+    "mobility": "Driving licence (B) and own car",
     "portfolio_label": "View portfolio",
     "pdf_label": "Download PDF",
     "web": LINKS["web_en"],
