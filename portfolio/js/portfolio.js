@@ -255,6 +255,108 @@ const setupMagnets = () => {
 
 setupMagnets();
 
+/* ---------- Entrada escalonada ---------- */
+// Los elementos que entran juntos en pantalla aparecen uno detrás de otro
+const staggerItems = [...document.querySelectorAll("[data-stagger] > *")];
+
+if ("IntersectionObserver" in window && !reducedMotion.matches) {
+  const staggerObserver = new IntersectionObserver((entries) => {
+    const entering = entries
+      .filter((entry) => entry.isIntersecting)
+      .map((entry) => entry.target)
+      .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+
+    entering.forEach((item, order) => {
+      item.style.setProperty("--stagger-delay", `${order * 110}ms`);
+      item.classList.add("is-in");
+      staggerObserver.unobserve(item);
+      // Sin retraso después, para que los efectos de cursor respondan al momento
+      window.setTimeout(() => item.style.removeProperty("--stagger-delay"), 1000 + order * 110);
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -5% 0px" });
+
+  staggerItems.forEach((item) => staggerObserver.observe(item));
+} else {
+  staggerItems.forEach((item) => item.classList.add("is-in"));
+}
+
+/* ---------- Tarjetas: inclinación 3D y brillo que sigue al cursor ---------- */
+const setupTilt = () => {
+  if (!finePointer.matches || reducedMotion.matches) return;
+
+  document.querySelectorAll(".product-card").forEach((card) => {
+    const spot = document.createElement("span");
+    spot.className = "card-spotlight";
+    spot.setAttribute("aria-hidden", "true");
+    card.prepend(spot);
+    card.classList.add("is-tilt");
+
+    const state = { rx: 0, ry: 0, trx: 0, try: 0, sx: 0, sy: 0, raf: 0, rect: null };
+
+    const loop = () => {
+      state.rx += (state.trx - state.rx) * 0.14;
+      state.ry += (state.try - state.ry) * 0.14;
+      const lift = Math.min(1, (Math.abs(state.rx) + Math.abs(state.ry)) / 6);
+      card.style.transform = `perspective(1100px) rotateX(${state.rx.toFixed(3)}deg) rotateY(${state.ry.toFixed(3)}deg) scale(${(1 + lift * 0.015).toFixed(4)})`;
+      spot.style.transform = `translate3d(${state.sx.toFixed(1)}px, ${state.sy.toFixed(1)}px, 0)`;
+
+      const settled = Math.abs(state.trx - state.rx) < 0.01 && Math.abs(state.try - state.ry) < 0.01;
+      if (settled && state.trx === 0 && state.try === 0) {
+        card.style.transform = "";
+        card.style.willChange = "";
+        state.raf = 0;
+        return;
+      }
+      state.raf = window.requestAnimationFrame(loop);
+    };
+
+    const kick = () => {
+      if (!state.raf) state.raf = window.requestAnimationFrame(loop);
+    };
+
+    card.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse") return;
+      // Se mide una vez al entrar: nada de lecturas de maquetación en cada movimiento
+      state.rect = card.getBoundingClientRect();
+      card.style.willChange = "transform";
+      card.classList.add("is-hot");
+    });
+
+    card.addEventListener("pointermove", (event) => {
+      if (event.pointerType !== "mouse") return;
+      if (!state.rect) state.rect = card.getBoundingClientRect();
+      const x = event.clientX - state.rect.left;
+      const y = event.clientY - state.rect.top;
+      const nx = x / state.rect.width - 0.5;
+      const ny = y / state.rect.height - 0.5;
+      state.trx = -ny * 7;
+      state.try = nx * 9;
+      state.sx = x;
+      state.sy = y;
+      kick();
+    });
+
+    card.addEventListener("tilt:remeasure", () => {
+      state.rect = null;
+    });
+
+    card.addEventListener("pointerleave", () => {
+      state.trx = 0;
+      state.try = 0;
+      state.rect = null;
+      card.classList.remove("is-hot");
+      kick();
+    });
+  });
+
+  // Al hacer scroll la tarjeta se mueve bajo el cursor: se vuelve a medir
+  window.addEventListener("scroll", () => {
+    document.querySelectorAll(".product-card.is-hot").forEach((card) => card.dispatchEvent(new Event("tilt:remeasure")));
+  }, { passive: true });
+};
+
+setupTilt();
+
 /* ---------- Contacto ---------- */
 document.querySelectorAll("[data-copy]").forEach((button) => {
   button.addEventListener("click", async () => {

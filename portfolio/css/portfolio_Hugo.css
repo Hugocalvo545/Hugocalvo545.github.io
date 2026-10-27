@@ -805,6 +805,77 @@ h3 {
     border-color: color-mix(in srgb, var(--accent), var(--line) 40%);
 }
 
+/* Inclinación 3D y brillo (los activa portfolio.js solo con ratón) */
+.product-card.is-tilt {
+    overflow: hidden;
+    transform-origin: 50% 50%;
+}
+
+.product-card.is-tilt > :not(.card-spotlight) {
+    position: relative;
+    z-index: 1;
+}
+
+.card-spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 30rem;
+    height: 30rem;
+    margin: -15rem 0 0 -15rem;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent-2), transparent 80%), color-mix(in srgb, var(--accent), transparent 92%) 45%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 320ms ease;
+    will-change: transform, opacity;
+}
+
+.product-card.is-hot .card-spotlight {
+    opacity: 1;
+}
+
+/* Borde de degradado que aparece al pasar o al enfocar con teclado */
+.product-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--grad);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 320ms ease;
+}
+
+.product-card.is-hot::before,
+.product-card:focus-within::before {
+    opacity: 1;
+}
+
+/* Entrada escalonada: usa translate/scale para dejar transform libre a la inclinación */
+.js [data-stagger] > * {
+    opacity: 0;
+    translate: 0 36px;
+    scale: 0.97;
+    transition:
+        opacity 700ms var(--ease-out) var(--stagger-delay, 0ms),
+        translate 900ms var(--ease-out) var(--stagger-delay, 0ms),
+        scale 900ms var(--ease-out) var(--stagger-delay, 0ms),
+        border-color 220ms ease;
+}
+
+.js [data-stagger] > .is-in {
+    opacity: 1;
+    translate: none;
+    scale: none;
+}
+
 .product-badge {
     align-self: flex-start;
     border: 1px solid color-mix(in srgb, var(--accent), transparent 60%);
@@ -1177,9 +1248,12 @@ h3 {
         transition-duration: 0.01ms !important;
     }
 
-    .js .reveal-section {
+    .js .reveal-section,
+    .js [data-stagger] > * {
         opacity: 1;
         transform: none;
+        translate: none;
+        scale: none;
     }
 
     .hero-rotator .caret {
