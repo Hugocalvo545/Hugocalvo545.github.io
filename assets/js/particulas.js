@@ -59,9 +59,15 @@
   let originX = 0;
   let heroTop = 0;
 
-  // Centro de reposo del campo (fracciones del ancho y alto), configurable con data-particles-center="x,y"
+  // Centro de reposo del campo (fracciones del ancho y alto), configurable con data-particles-center="x,y".
+  // Con data-particles-center="avoid" el centro es el de la primera zona libre (por ejemplo, una foto).
   const centerAttr = (hero.dataset.particlesCenter || "").split(",").map(Number);
   const customCenter = centerAttr.length === 2 && centerAttr.every((n) => n >= 0 && n <= 1) ? centerAttr : null;
+  const centerOnAvoid = hero.dataset.particlesCenter === "avoid";
+
+  // Zonas libres: elementos con data-particles-avoid="margen en px" por donde no pasan partículas
+  let avoidZones = [];
+  const AVOID_FEATHER = 28;
 
   // Salto al hiperespacio controlado por el scroll
   const warpEnabled = hero.hasAttribute("data-warp");
@@ -136,6 +142,49 @@
         bottom: rect.bottom - heroRect.top + 10
       });
     });
+
+    avoidZones = [];
+    hero.querySelectorAll("[data-particles-avoid]").forEach((node) => {
+      // offsetWidth/offsetHeight no dependen de las animaciones de entrada (transform)
+      const rect = node.getBoundingClientRect();
+      const w = node.offsetWidth;
+      const h = node.offsetHeight;
+      if (!w || !h) return;
+      const pad = Number(node.dataset.particlesAvoid) || 40;
+      // Radio que cubre un cuadrado redondeado más el margen
+      const r = (Math.max(w, h) / 2) * 1.12 + pad;
+      avoidZones.push({
+        x: rect.left + rect.width / 2 - baseX,
+        y: rect.top + rect.height / 2 - heroRect.top,
+        r,
+        outer: r + AVOID_FEATHER
+      });
+    });
+  };
+
+  const placeCenterOnAvoid = () => {
+    if (!centerOnAvoid || !avoidZones.length) return false;
+    const zone = avoidZones[0];
+    const moved = Math.abs(center.restX - zone.x) > 1 || Math.abs(center.restY - zone.y) > 1;
+    center.restX = zone.x;
+    center.restY = zone.y;
+    return moved;
+  };
+
+  // Atenuación por zonas libres: 0 dentro, 1 fuera, con un borde suave
+  const avoidAttenuation = (x, y) => {
+    for (let i = 0; i < avoidZones.length; i += 1) {
+      const z = avoidZones[i];
+      const dx = x - z.x;
+      const dy = y - z.y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < z.outer * z.outer) {
+        const d = Math.sqrt(d2);
+        if (d <= z.r) return 0;
+        return (d - z.r) / AVOID_FEATHER;
+      }
+    }
+    return 1;
   };
 
   // Pseudoaleatorio con semilla: al reconstruir, el campo queda igual
@@ -207,8 +256,13 @@
 
     updateTheme();
     measureTextZones();
+    const recentered = placeCenterOnAvoid();
+    if (recentered && !pointer.active) {
+      center.x = center.restX;
+      center.y = center.restY;
+    }
     // En móvil la barra del navegador cambia la altura al hacer scroll: solo se reconstruye si cambia mucho
-    if (width !== builtWidth || Math.abs(height - builtHeight) > 120 || !particles.length) {
+    if (recentered || width !== builtWidth || Math.abs(height - builtHeight) > 120 || !particles.length) {
       buildParticles();
     }
     if (reducedMotionQuery.matches || !isRunning) {
@@ -298,7 +352,9 @@
         if (px < -len - margin || px > width + len + margin || py < -len - margin || py > height + len + margin) continue;
       }
       const att = textAttenuation(px, py);
-      const alpha = (0.14 + 0.86 * size) * theme.alphaMax * (att + (1 - att) * w) * warpFade;
+      const clear = avoidZones.length ? avoidAttenuation(px, py) : 1;
+      if (clear <= 0) continue;
+      const alpha = (0.14 + 0.86 * size) * theme.alphaMax * (att + (1 - att) * w) * warpFade * clear;
       if (alpha < 0.02) continue;
 
       // Color según el ángulo alrededor del centro
@@ -445,10 +501,23 @@
     if (!isRunning) renderFrame(reducedMotionQuery.matches);
   }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
-  // Las fuentes cambian el tamaño de los textos: se vuelven a medir al cargar
+  // Las fuentes cambian el tamaño de los textos: se vuelven a medir al cargar.
+  // La página también puede pedir otra medición (por ejemplo, al acabar su animación de entrada).
+  const remeasure = () => {
+    measureTextZones();
+    if (placeCenterOnAvoid()) {
+      if (!pointer.active) {
+        center.x = center.restX;
+        center.y = center.restY;
+      }
+      buildParticles();
+    }
+    if (!isRunning) renderFrame(reducedMotionQuery.matches);
+  };
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(measureTextZones);
+    document.fonts.ready.then(remeasure);
   }
+  document.addEventListener("particulas:medir", remeasure);
 
   onScroll();
   warp = warpTarget;

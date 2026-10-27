@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hugo Calvo García portfolio: own products (GEOPilot, Gestolio, Hostiva and DadoManía), applied AI, cybersecurity and production deployment.">
-    <meta name="theme-color" content="#0d0f12">
+    <meta name="theme-color" content="#0e1117">
     <title>Hugo Calvo García | Product portfolio</title>
     <script>
       (function () {
@@ -15,8 +15,10 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="css/portfolio_Hugo.css">
-    <script src="js/portfolio.js?v=4" defer></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e1117%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27monospace%27 font-size=%2722%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%233ddc97%27%3EHCG%3C/text%3E%3C/svg%3E">
+    <link rel="preload" href="../fonts/Poppins-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/portfolio_Hugo.css?v=5">
+    <script src="js/portfolio.js?v=5" defer></script>
     <script src="../assets/js/particulas.js" defer></script>
 </head>
 <body>
@@ -54,23 +56,32 @@
     </header>
 
     <main id="content">
-        <section id="home" class="hero section-observed">
-            <div class="hero-content reveal-section">
-                <p class="eyebrow">Full-stack developer · Applied AI · Cybersecurity Master's (in progress)</p>
-                <h1>Hugo Calvo García</h1>
-                <p class="hero-subtitle">I build and ship my own products and web applications from start to finish, from product to support.</p>
-                <p class="hero-rotator" aria-live="polite">
-                    <span id="role-rotator" data-phrases="Own products in production|Stripe subscriptions integrated|Applied AI and agent systems|Web application security">Own products in production</span>
-                </p>
-                <div class="hero-actions">
-                    <a href="#products" class="button button-primary">View products</a>
-                    <a href="../curriculum_english.html" class="button button-secondary">View resume</a>
+        <section id="home" class="hero section-observed" data-particles-center="avoid">
+            <div class="hero-inner">
+                <figure class="hero-photo" data-particles-avoid="44">
+                    <div class="photo-frame">
+                        <span class="photo-ring" aria-hidden="true"></span>
+                        <img src="img/porfile.jpg" alt="Photo of Hugo Calvo García" width="600" height="600" fetchpriority="high" decoding="async">
+                    </div>
+                </figure>
+                <div class="hero-content">
+                    <p class="eyebrow hero-in" style="--d: 0">Full-stack developer · Applied AI · Cybersecurity Master's (in progress)</p>
+                    <h1 data-split-letters>Hugo Calvo García</h1>
+                    <p class="hero-subtitle hero-in" style="--d: 650">I build and ship my own products and web applications from start to finish, from product to support.</p>
+                    <p class="hero-rotator hero-in" style="--d: 800">
+                        <span class="sr-only">Own products in production. Stripe subscriptions integrated. Applied AI and agent systems. Web application security.</span>
+                        <span aria-hidden="true"><span class="prompt">&gt;</span><span id="role-rotator" data-phrases="Own products in production|Stripe subscriptions integrated|Applied AI and agent systems|Web application security">Own products in production</span><span class="caret"></span></span>
+                    </p>
+                    <div class="hero-actions hero-in" style="--d: 950">
+                        <a href="#products" class="button button-primary" data-magnetic><span>View products</span></a>
+                        <a href="../curriculum_english.html" class="button button-secondary" data-magnetic><span>View resume</span></a>
+                    </div>
+                    <dl class="hero-facts hero-in" style="--d: 1100" aria-label="Summary">
+                        <div><dt>Base</dt><dd>Madrid</dd></div>
+                        <div><dt>Languages</dt><dd>ES / EN C1</dd></div>
+                        <div><dt>Focus</dt><dd>Own SaaS products</dd></div>
+                    </dl>
                 </div>
-                <dl class="hero-facts" aria-label="Summary">
-                    <div><dt>Base</dt><dd>Madrid</dd></div>
-                    <div><dt>Languages</dt><dd>ES / EN C1</dd></div>
-                    <div><dt>Focus</dt><dd>Own SaaS products</dd></div>
-                </dl>
             </div>
         </section>
 
@@ -247,8 +258,8 @@
                 <div class="contact-copy reveal-section">
                     <p>I'm open to freelance projects, custom platforms and collaborations where I can contribute product thinking, full-stack development and AI integration.</p>
                     <div class="contact-actions">
-                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary">Send email</a>
-                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com">Copy email</button>
+                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary" data-magnetic><span>Send email</span></a>
+                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com" data-magnetic><span>Copy email</span></button>
                     </div>
                     <ul class="social-list">
                         <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -269,7 +280,7 @@
                         <span>Message</span>
                         <textarea name="mensaje" rows="5" required></textarea>
                     </label>
-                    <button type="submit" class="button button-primary">Send message</button>
+                    <button type="submit" class="button button-primary"><span>Send message</span></button>
                     <input type="hidden" name="_next" value="https://hugocalvo.dev/portfolio/portfolio_eng.html#contact">
                     <input type="hidden" name="_captcha" value="false">
                 </form>

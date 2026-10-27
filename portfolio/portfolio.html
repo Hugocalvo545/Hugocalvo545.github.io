@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio de Hugo Calvo García: productos propios (GEOPilot, Gestolio, Hostiva y DadoManía), IA aplicada, ciberseguridad y despliegue en producción.">
-    <meta name="theme-color" content="#0d0f12">
+    <meta name="theme-color" content="#0e1117">
     <title>Hugo Calvo García | Portfolio de productos</title>
     <script>
       (function () {
@@ -15,8 +15,10 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="css/portfolio_Hugo.css">
-    <script src="js/portfolio.js?v=4" defer></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e1117%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27monospace%27 font-size=%2722%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%233ddc97%27%3EHCG%3C/text%3E%3C/svg%3E">
+    <link rel="preload" href="../fonts/Poppins-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/portfolio_Hugo.css?v=5">
+    <script src="js/portfolio.js?v=5" defer></script>
     <script src="../assets/js/particulas.js" defer></script>
 </head>
 <body>
@@ -54,23 +56,32 @@
     </header>
 
     <main id="contenido">
-        <section id="inicio" class="hero section-observed">
-            <div class="hero-content reveal-section">
-                <p class="eyebrow">Desarrollador full-stack · IA aplicada · Máster en Ciberseguridad (en curso)</p>
-                <h1>Hugo Calvo García</h1>
-                <p class="hero-subtitle">Construyo y lanzo productos propios y aplicaciones web de principio a fin, del producto al soporte.</p>
-                <p class="hero-rotator" aria-live="polite">
-                    <span id="role-rotator" data-phrases="Productos propios en producción|Suscripciones integradas con Stripe|IA aplicada y sistemas de agentes|Seguridad en aplicaciones web">Productos propios en producción</span>
-                </p>
-                <div class="hero-actions">
-                    <a href="#productos" class="button button-primary">Ver productos</a>
-                    <a href="../curriculum.html" class="button button-secondary">Ver CV</a>
+        <section id="inicio" class="hero section-observed" data-particles-center="avoid">
+            <div class="hero-inner">
+                <figure class="hero-photo" data-particles-avoid="44">
+                    <div class="photo-frame">
+                        <span class="photo-ring" aria-hidden="true"></span>
+                        <img src="img/porfile.jpg" alt="Foto de Hugo Calvo García" width="600" height="600" fetchpriority="high" decoding="async">
+                    </div>
+                </figure>
+                <div class="hero-content">
+                    <p class="eyebrow hero-in" style="--d: 0">Desarrollador full-stack · IA aplicada · Máster en Ciberseguridad (en curso)</p>
+                    <h1 data-split-letters>Hugo Calvo García</h1>
+                    <p class="hero-subtitle hero-in" style="--d: 650">Construyo y lanzo productos propios y aplicaciones web de principio a fin, del producto al soporte.</p>
+                    <p class="hero-rotator hero-in" style="--d: 800">
+                        <span class="sr-only">Productos propios en producción. Suscripciones integradas con Stripe. IA aplicada y sistemas de agentes. Seguridad en aplicaciones web.</span>
+                        <span aria-hidden="true"><span class="prompt">&gt;</span><span id="role-rotator" data-phrases="Productos propios en producción|Suscripciones integradas con Stripe|IA aplicada y sistemas de agentes|Seguridad en aplicaciones web">Productos propios en producción</span><span class="caret"></span></span>
+                    </p>
+                    <div class="hero-actions hero-in" style="--d: 950">
+                        <a href="#productos" class="button button-primary" data-magnetic><span>Ver productos</span></a>
+                        <a href="../curriculum.html" class="button button-secondary" data-magnetic><span>Ver CV</span></a>
+                    </div>
+                    <dl class="hero-facts hero-in" style="--d: 1100" aria-label="Resumen">
+                        <div><dt>Base</dt><dd>Madrid</dd></div>
+                        <div><dt>Idiomas</dt><dd>ES / EN C1</dd></div>
+                        <div><dt>Foco</dt><dd>Productos SaaS propios</dd></div>
+                    </dl>
                 </div>
-                <dl class="hero-facts" aria-label="Resumen">
-                    <div><dt>Base</dt><dd>Madrid</dd></div>
-                    <div><dt>Idiomas</dt><dd>ES / EN C1</dd></div>
-                    <div><dt>Foco</dt><dd>Productos SaaS propios</dd></div>
-                </dl>
             </div>
         </section>
 
@@ -247,8 +258,8 @@
                 <div class="contact-copy reveal-section">
                     <p>Estoy abierto a proyectos freelance, plataformas a medida y colaboraciones donde pueda aportar producto, desarrollo full-stack e integración de IA.</p>
                     <div class="contact-actions">
-                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary">Enviar email</a>
-                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com">Copiar email</button>
+                        <a href="mailto:hugocgarciat@gmail.com" class="button button-primary" data-magnetic><span>Enviar email</span></a>
+                        <button class="button button-secondary copy-email" type="button" data-copy="hugocgarciat@gmail.com" data-magnetic><span>Copiar email</span></button>
                     </div>
                     <ul class="social-list">
                         <li><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -269,7 +280,7 @@
                         <span>Mensaje</span>
                         <textarea name="mensaje" rows="5" required></textarea>
                     </label>
-                    <button type="submit" class="button button-primary">Enviar mensaje</button>
+                    <button type="submit" class="button button-primary"><span>Enviar mensaje</span></button>
                     <input type="hidden" name="_next" value="https://hugocalvo.dev/portfolio/portfolio.html#contacto">
                     <input type="hidden" name="_captcha" value="false">
                 </form>
