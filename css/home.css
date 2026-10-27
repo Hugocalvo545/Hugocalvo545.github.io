@@ -1,4 +1,4 @@
-/* hugocalvo.dev — landing de clientes. Mobile-first, breakpoints 760px y 1080px. */
+/* hugocalvo.dev · landing de clientes. Mobile-first, breakpoints 760px y 1080px. */
 
 @font-face {
   font-family: "Poppins";
@@ -262,6 +262,80 @@ header {
 .prod .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
 .prod .stack span { font-family: var(--mono); font-size: 14px; color: var(--muted); border: 1px solid var(--line); padding: 3px 8px; border-radius: 6px; }
 .prod a.more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; color: var(--accent); font-weight: 500; font-size: 14px; }
+
+/* ---------- caso real ---------- */
+.case-gallery { margin-top: 28px; }
+.case-shot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.case-shot:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.case-shot img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+.case-shot span {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+.case-cta { margin-top: 22px; }
+.case-lightbox {
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  max-width: min(94vw, 1080px);
+  max-height: 90vh;
+}
+.case-lightbox::backdrop {
+  background: rgba(8, 10, 14, 0.85);
+  backdrop-filter: blur(4px);
+}
+.case-lightbox__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+.case-lightbox__close {
+  align-self: flex-end;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 13px;
+  cursor: pointer;
+}
+.case-lightbox__inner img {
+  max-width: 100%;
+  max-height: calc(90vh - 70px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 8px;
+}
 
 /* ---------- proceso ---------- */
 .steps { counter-reset: s; display: grid; gap: 14px; margin-top: 32px; }

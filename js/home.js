@@ -29,4 +29,34 @@
       { threshold: 0.12 }
     ).observe(contact);
   }
+  const lightbox = document.getElementById("case-lightbox");
+  const lightboxImg = document.getElementById("case-lightbox-img");
+  const lightboxClose = lightbox?.querySelector(".case-lightbox__close");
+
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll("[data-lightbox-src]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        lightboxImg.src = btn.dataset.lightboxSrc;
+        lightboxImg.alt = btn.dataset.lightboxAlt || "";
+        if (typeof lightbox.showModal === "function") {
+          lightbox.showModal();
+        } else {
+          lightbox.setAttribute("open", "");
+        }
+      });
+    });
+
+    const closeLightbox = () => {
+      if (typeof lightbox.close === "function") {
+        lightbox.close();
+      } else {
+        lightbox.removeAttribute("open");
+      }
+    };
+
+    lightboxClose?.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
 })();
