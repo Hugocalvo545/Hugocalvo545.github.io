@@ -38,3 +38,4 @@ Fecha: 2026-10-27
 - Revisada la paridad de contenido entre `curriculum.html` y `curriculum_english.html`.
 - Comprobada la ausencia de menciones a `Tu Casa en Jerez`, `pagos reales`, `usuarios que pagan` y guiones largos en los archivos actualizados.
 - Verificadas las rutas y atributos `alt` / `loading="lazy"` de las cuatro imágenes en `assets/casos/`.
+- Ajuste final de textos en `index.html`: actualizado el subtítulo del hero (`trabajo tu presencia online para que los buscadores de IA conozcan mejor tu negocio y tengan más motivos para citarlo`) y el subtítulo de `#productos` (`Productos propios en producción, hechos de principio a fin: producto, código, seguridad y despliegue.`).
