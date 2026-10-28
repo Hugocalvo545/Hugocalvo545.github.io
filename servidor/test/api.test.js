@@ -97,16 +97,18 @@ test("webhook: pago válido avisa por ntfy sin datos de pago y envía dos correo
   const ntfy = llamadas.filter((l) => l.url.includes("ntfy"));
   assert.equal(ntfy.length, 1);
   assert.deepEqual(Object.keys(ntfy[0].body).sort(), ["message", "priority", "tags", "title", "topic"]);
-  assert.equal(ntfy[0].body.title, "Pago: Auditoría de visibilidad en IA");
-  assert.equal(ntfy[0].body.message, "Empresa: Clínica López SL");
+  assert.equal(ntfy[0].body.title, "Nuevo pago: Auditoría de visibilidad en IA");
+  assert.equal(ntfy[0].body.message, "Detalle en el correo.");
   const textoNtfy = JSON.stringify(ntfy[0].body);
-  for (const prohibido of ["422", "maria@", "B12345678", "pi_1", "cs_test", "María"]) assert.ok(!textoNtfy.includes(prohibido), prohibido);
+  for (const prohibido of ["422", "maria@", "B12345678", "pi_1", "cs_test", "María", "Clínica"]) assert.ok(!textoNtfy.includes(prohibido), prohibido);
   const correos = llamadas.filter((l) => l.url.includes("resend"));
   assert.equal(correos.length, 2);
   assert.deepEqual(correos[0].body.to, ["hugo@example.com"]);
   assert.match(correos[0].body.text, /Web a auditar: clinica\.es/);
   assert.match(correos[0].body.text, /NIF: B12345678/);
   assert.match(correos[0].body.text, /Importe: 422,29 EUR/);
+  assert.match(correos[0].body.text, /emitir la factura en Gestolio/);
+  assert.match(correos[1].body.text, /factura con el IVA desglosado te la envío yo/);
   assert.deepEqual(correos[1].body.to, ["maria@clinica.es"]);
 });
 
@@ -172,7 +174,7 @@ const peticionForm = (ruta, datos, origen = ORIGEN) =>
     body: JSON.stringify(datos),
   });
 
-test("solicitud válida: Turnstile, ntfy con tipo/servicio/empresa y dos correos", async () => {
+test("solicitud válida: Turnstile, ntfy solo con tipo y servicio y dos correos", async () => {
   const { POST } = await import("../api/solicitud.js");
   const r = await POST(peticionForm("solicitud", solicitudValida));
   assert.equal(r.status, 200);
@@ -180,9 +182,9 @@ test("solicitud válida: Turnstile, ntfy con tipo/servicio/empresa y dos correos
   assert.equal(r.headers.get("access-control-allow-origin"), ORIGEN);
   assert.equal(llamadas[0].body.secret, "0x-secreto-real");
   const ntfy = llamadas.find((l) => l.url.includes("ntfy")).body;
-  assert.equal(ntfy.title, "Solicitud: Mantenimiento, hosting y SEO técnico");
-  assert.equal(ntfy.message, "Empresa: Clínica López");
-  assert.ok(!JSON.stringify(ntfy).includes("maria@"));
+  assert.equal(ntfy.title, "Nueva solicitud: Mantenimiento, hosting y SEO técnico");
+  assert.equal(ntfy.message, "Detalle en el correo.");
+  for (const prohibido of ["maria@", "Clínica", "María"]) assert.ok(!JSON.stringify(ntfy).includes(prohibido), prohibido);
   const correos = llamadas.filter((l) => l.url.includes("resend"));
   assert.equal(correos.length, 2);
   assert.equal(correos[0].body.reply_to, "maria@clinica.es");
@@ -194,8 +196,7 @@ test("briefing válido: etiquetas legibles en el correo", async () => {
   const r = await POST(peticionForm("briefing", briefingValido));
   assert.equal(r.status, 200);
   const ntfy = llamadas.find((l) => l.url.includes("ntfy")).body;
-  assert.equal(ntfy.title, "Solicitud: Webs y landings (briefing)");
-  assert.equal(ntfy.message, "Empresa: sin indicar");
+  assert.equal(ntfy.title, "Nueva solicitud: Webs y landings (briefing)");
   const aHugo = llamadas.find((l) => l.url.includes("resend")).body;
   assert.match(aHugo.text, /Funcionalidades: Reservas o citas, Blog/);
   assert.match(aHugo.text, /Presupuesto orientativo: De 1\.000 a 2\.500 €/);
@@ -310,7 +311,7 @@ test("webhook: pago sin metadato de servicio avisa a Hugo pero no escribe al cli
   const correos = llamadas.filter((l) => l.url.includes("resend"));
   assert.equal(correos.length, 1);
   assert.deepEqual(correos[0].body.to, ["hugo@example.com"]);
-  assert.equal(llamadas.find((l) => l.url.includes("ntfy")).body.title, "Pago: Pago con Stripe");
+  assert.equal(llamadas.find((l) => l.url.includes("ntfy")).body.title, "Nuevo pago: servicio sin identificar");
 });
 
 test("webhook: error inesperado tras marcar la sesión la desmarca y pide reintento", async () => {

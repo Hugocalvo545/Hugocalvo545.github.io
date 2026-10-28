@@ -55,13 +55,13 @@ const avisar = async (sesion, marca) => {
   const enlace = d.pago ? `https://dashboard.stripe.com/payments/${encodeURIComponent(d.pago)}` : "https://dashboard.stripe.com/payments";
 
   const [ntfy, aHugo] = await Promise.allSettled([
-    avisarNtfy({ tipo: "pago", servicio: d.servicio, empresa: d.empresa }),
+    avisarNtfy({ tipo: "pago", servicio: d.servicio }),
     enviarCorreo({
       to: correoHugo(),
       replyTo: d.email || undefined,
       subject: `Pago recibido: ${d.servicio} · ${d.empresa || d.nombre}`,
-      html: `<h2 style="font-family:Arial,sans-serif">Pago recibido: ${escapar(d.servicio)}</h2>${tablaHtml(resumen)}<p style="font-family:Arial,sans-serif"><a href="${escapar(enlace)}">Ver el pago en Stripe</a></p>`,
-      text: `Pago recibido: ${d.servicio}\n\n${tablaTexto(resumen)}\n\n${enlace}`,
+      html: `<h2 style="font-family:Arial,sans-serif">Pago recibido: ${escapar(d.servicio)}</h2>${tablaHtml(resumen)}<p style="font-family:Arial,sans-serif"><a href="${escapar(enlace)}">Ver el pago en Stripe</a></p><p style="font-family:Arial,sans-serif"><b>Pendiente:</b> emitir la factura en Gestolio y enviársela al cliente.</p>`,
+      text: `Pago recibido: ${d.servicio}\n\n${tablaTexto(resumen)}\n\n${enlace}\n\nPendiente: emitir la factura en Gestolio y enviársela al cliente.`,
       idempotencia: `pago-hugo-${sesion.id}`,
     }),
   ]);
@@ -81,9 +81,9 @@ const avisar = async (sesion, marca) => {
         replyTo: correoHugo(),
         subject: `Pago recibido: ${d.servicio}`,
         html: `<p style="font-family:Arial,sans-serif;font-size:15px">Hola${d.nombre ? `, ${escapar(d.nombre)}` : ""}:</p>
-<p style="font-family:Arial,sans-serif;font-size:15px">He recibido tu pago de <b>${escapar(d.servicio)}</b>. Te escribo en menos de 24 h laborables para arrancar y pedirte lo que necesito.</p>
+<p style="font-family:Arial,sans-serif;font-size:15px">He recibido tu pago de <b>${escapar(d.servicio)}</b>. Te escribo en menos de 24 h laborables para arrancar y pedirte lo que necesito. La factura con el IVA desglosado te la envío yo por correo.</p>
 <p style="font-family:Arial,sans-serif;font-size:15px">Si quieres adelantarme algo (las preguntas que te importan o los competidores que conoces), responde a este correo.</p>${pie}`,
-        text: `Hola${d.nombre ? `, ${d.nombre}` : ""}:\n\nHe recibido tu pago de ${d.servicio}. Te escribo en menos de 24 h laborables para arrancar y pedirte lo que necesito.\n\nSi quieres adelantarme algo, responde a este correo.\n\nHugo Calvo García · hugocalvo.dev`,
+        text: `Hola${d.nombre ? `, ${d.nombre}` : ""}:\n\nHe recibido tu pago de ${d.servicio}. Te escribo en menos de 24 h laborables para arrancar y pedirte lo que necesito. La factura con el IVA desglosado te la envío yo por correo.\n\nSi quieres adelantarme algo, responde a este correo.\n\nHugo Calvo García · hugocalvo.dev`,
         idempotencia: `pago-cliente-${sesion.id}`,
       });
     } catch (e) {

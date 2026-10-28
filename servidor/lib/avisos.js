@@ -5,8 +5,9 @@ export const TIEMPO_MAX_MS = 8000;
 
 const NTFY_SERVER = () => (process.env.NTFY_SERVER || "https://ntfy.sh").replace(/\/$/, "");
 
-// El aviso de ntfy lleva solo el tipo (pago o solicitud), el servicio y la empresa. Nunca datos de pago.
-export const avisarNtfy = async ({ tipo, servicio, empresa }) => {
+// El aviso de ntfy lleva solo el tipo (pago o solicitud) y el servicio. Ni empresa, ni datos personales, ni datos de pago:
+// ntfy.sh es un servicio público sin garantías de protección de datos. El detalle va solo por correo.
+export const avisarNtfy = async ({ tipo, servicio }) => {
   const topic = process.env.NTFY_TOPIC;
   if (!topic) throw new Error("Falta NTFY_TOPIC");
   // Publicación JSON: admite tildes en el título sin codificar cabeceras
@@ -16,8 +17,8 @@ export const avisarNtfy = async ({ tipo, servicio, empresa }) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       topic,
-      title: `${tipo === "pago" ? "Pago" : "Solicitud"}: ${servicio}`,
-      message: `Empresa: ${empresa || "sin indicar"}`,
+      title: `${tipo === "pago" ? "Nuevo pago" : "Nueva solicitud"}: ${servicio}`,
+      message: "Detalle en el correo.",
       tags: [tipo === "pago" ? "moneybag" : "incoming_envelope"],
       priority: 4,
     }),

@@ -32,7 +32,7 @@ export const datosSesion = (s) => {
   const campo = (s.custom_fields || []).find((c) => /web/i.test(c.key) || /web/i.test(c.label?.custom || ""));
   const servicioId = s.metadata?.servicio;
   return {
-    servicio: SERVICIOS[servicioId]?.nombre || "Pago con Stripe",
+    servicio: SERVICIOS[servicioId]?.nombre || "servicio sin identificar",
     conocido: Boolean(SERVICIOS[servicioId]),
     empresa: det.business_name || s.collected_information?.business_name || "",
     nombre: det.individual_name || det.name || s.collected_information?.individual_name || "",

@@ -25,7 +25,10 @@
     return (dec === "00" ? miles : `${miles},${dec}`) + " €";
   };
   const conIva = (base, iva) => Math.round(base * (100 + iva)) / 100;
-  const precio = (p) => `${p.desde ? "desde " : ""}${eur(p.precio)}${p.unidad.startsWith("/") ? p.unidad : ""}`;
+  const unidad = (p) => (p.unidad.startsWith("/") ? p.unidad : "");
+  const precio = (p) => `${p.desde ? "desde " : ""}${eur(p.precio)}${unidad(p)}`;
+  // Todos los precios se muestran también con IVA: puede contratar un particular
+  const precioIva = (p) => `${p.desde ? "desde " : ""}${eur(conIva(p.precio, datos.iva))}${unidad(p)}`;
 
   // Crea elementos sin innerHTML para el texto
   const h = (tag, attrs = {}, ...hijos) => {
@@ -49,7 +52,10 @@
   const precioTarjeta = (s) => {
     const p = s.paquetes.reduce((a, b) => (b.precio < a.precio ? b : a));
     const desde = s.paquetes.length > 1 || p.desde ? "desde " : "";
-    return `${desde}${eur(p.precio)}${p.unidad.startsWith("/") ? p.unidad : ""}`;
+    return [
+      `${desde}${eur(p.precio)}${unidad(p)} sin IVA`,
+      h("small", { class: "price__iva" }, `${eur(conIva(p.precio, datos.iva))}${unidad(p)} con IVA`),
+    ];
   };
 
   const tarjeta = (s) => {
@@ -69,7 +75,7 @@
         )
       ),
       h("div", { class: "svc__body" }, h("h3", {}, s.nombre), h("p", {}, s.resumen)),
-      h("div", { class: "price" }, h("span", {}, s.nota_tarjeta || ""), h("b", {}, precioTarjeta(s))),
+      h("div", { class: "price" }, h("span", {}, s.nota_tarjeta || ""), h("b", {}, ...precioTarjeta(s))),
       h(
         "button",
         {
@@ -97,7 +103,9 @@
         "span",
         { class: "pkg__price" },
         h("b", {}, precio(p)),
-        p.unidad && !p.unidad.startsWith("/") ? ` · ${p.unidad}` : ""
+        " sin IVA",
+        p.unidad && !p.unidad.startsWith("/") ? ` · ${p.unidad}` : "",
+        h("span", { class: "pkg__iva" }, `${precioIva(p)} con IVA`)
       )
     );
     const detalle = p.detalle?.length ? h("ul", {}, p.detalle.map((d) => h("li", {}, d))) : null;
@@ -327,7 +335,7 @@
         "label",
         {},
         "Plan",
-        h("select", { name: "paquete", required: true }, s.paquetes.map((x) => h("option", { value: x.id, selected: x.id === p.id }, `${x.nombre} · ${precio(x)}`)))
+        h("select", { name: "paquete", required: true }, s.paquetes.map((x) => h("option", { value: x.id, selected: x.id === p.id }, `${x.nombre} · ${precio(x)} sin IVA (${precioIva(x)} con IVA)`)))
       ),
       campoWeb("Tu web", true),
       campoArea({
@@ -509,10 +517,10 @@
       const botones = h("div", { class: "sd__botones" });
       if (link) {
         botones.append(h("a", { class: "btn primary", href: link, rel: "noopener" }, `${s.pago.boton} · ${eur(total)}`));
-        caja.append(h("p", { class: "sd__aviso" }, "Pago seguro en Stripe. Después del pago te escribo en menos de 24 h laborables."));
+        caja.append(h("p", { class: "sd__aviso" }, "Pago seguro en Stripe. Después del pago te escribo en menos de 24 h laborables y te envío la factura."));
       } else {
         botones.append(h("button", { type: "button", class: "btn primary", onclick: () => irAContacto(s, p) }, "Pedir la auditoría"));
-        caja.append(h("p", {}, "Escríbeme y te envío el enlace de pago con tarjeta. Recibes la factura con el IVA desglosado."));
+        caja.append(h("p", {}, "Escríbeme y te envío el enlace de pago con tarjeta. La factura con el IVA desglosado te la envío yo por correo."));
       }
       caja.append(botones);
       return caja;
@@ -624,7 +632,7 @@
     return h(
       "li",
       { class: "cmp" },
-      h("div", { class: "cmp__head" }, h("span", { class: "cmp__concepto" }, c.concepto), h("span", { class: "cmp__mio" }, `Mi precio: ${rangoEur(c.mio, c.unidad)}`)),
+      h("div", { class: "cmp__head" }, h("span", { class: "cmp__concepto" }, c.concepto), h("span", { class: "cmp__mio" }, `Mi precio: ${rangoEur(c.mio, c.unidad)} sin IVA`)),
       h(
         "div",
         { class: "cmp__barra", "aria-hidden": "true" },

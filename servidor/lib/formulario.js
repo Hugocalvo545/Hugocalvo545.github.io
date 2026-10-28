@@ -221,7 +221,7 @@ const procesar = async (tipo, request, origen) => {
 
     const { hugo, cliente } = correos(tipo, v);
     const [ntfy, aHugo] = await Promise.allSettled([
-      avisarNtfy({ tipo: "solicitud", servicio: tipo === "briefing" ? `${v.servicio} (briefing)` : v.servicio, empresa: v.empresa }),
+      avisarNtfy({ tipo: "solicitud", servicio: tipo === "briefing" ? `${v.servicio} (briefing)` : v.servicio }),
       enviarCorreo(hugo),
     ]);
     if (ntfy.status === "rejected") console.error("ntfy:", ntfy.reason?.message);

@@ -5,7 +5,7 @@
   "niveles": {
     "pago-directo": {
       "etiqueta": "Pago directo",
-      "descripcion": "Pagas con tarjeta en Stripe y arrancamos. Recibes la factura con el IVA desglosado."
+      "descripcion": "Pagas con tarjeta en Stripe y arrancamos. Te envío la factura con el IVA desglosado por correo."
     },
     "solicitar": {
       "etiqueta": "Solicitar y luego pagar",
@@ -30,7 +30,7 @@
       "Aplico el mismo método que uso en mis propios productos. La prueba es Gestolio, mi app para autónomos, que hoy aparece citada por la IA de Google y por Perplexity.",
       "Eso no significa que pueda prometerte resultados: las respuestas de las IA cambian y cada sector es distinto. Lo que sí te aseguro es el trabajo que describe cada servicio, hecho con cuidado y medido con datos."
     ],
-    "nota": "Rangos orientativos del mercado español, consultados en octubre de 2026.",
+    "nota": "Rangos orientativos del mercado español, consultados en octubre de 2026. Todos los precios y rangos de este bloque son sin IVA.",
     "sin_rango": "Las apps y plataformas a medida no aparecen porque cada proyecto es distinto y no hay un rango comparable fiable."
   },
   "servicios": [
@@ -67,9 +67,9 @@
         "Una web por auditoría."
       ],
       "plazo": "5 días laborables desde que recibo los datos.",
-      "forma_pago": "Pago único por adelantado con tarjeta en Stripe. Recibes la factura con el IVA desglosado.",
+      "forma_pago": "Pago único por adelantado con tarjeta en Stripe. Te envío la factura con el IVA desglosado por correo.",
       "notas": [
-        "Si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, te descuento los 349 €."
+        "Si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, te descuento los 349 € (422,29 € con IVA)."
       ],
       "pago": {
         "payment_link": "",
@@ -120,12 +120,13 @@
       ],
       "limites": [
         "Permanencia mínima de 3 meses. Después, se cancela mes a mes.",
+        "Si cancelas antes de cumplir los 3 meses, se cobran los meses que falten hasta completarlos.",
         "Los artículos y preguntas que no se usan en un mes no se acumulan."
       ],
       "plazo": "Arrancamos cuando reviso tu caso, confirmo que encaja y recibo el pago del primer mes.",
-      "forma_pago": "Mensual por adelantado. Te envío el enlace de pago cuando confirmo que tu caso encaja.",
+      "forma_pago": "Mensual por adelantado, con permanencia mínima de 3 meses. Te envío el enlace de pago cuando confirmo que tu caso encaja.",
       "notas": [
-        "Si antes has hecho la auditoría, te descuento los 349 € si contratas en los 30 días siguientes a la entrega."
+        "Si antes has hecho la auditoría, te descuento los 349 € (422,29 € con IVA) si contratas en los 30 días siguientes a la entrega."
       ],
       "mercado": [
         {"concepto": "GEO mensual", "mio": [297, 797], "mercado": [299, 1500], "unidad": "/mes", "rango": "de unos 299 €/mes en perfiles boutique a 1.500 €/mes en agencias consolidadas", "fuente": "geotoolbox.ai", "url": "https://geotoolbox.ai/es/blog/agencia-geo"}
@@ -172,7 +173,7 @@
       "no_incluye": [
         "Tienda online.",
         "Fotos profesionales.",
-        "Rondas de cambios extra (40 €/h)."
+        "Rondas de cambios extra (40 €/h sin IVA; 48,40 €/h con IVA)."
       ],
       "limites": [
         "Número de páginas según el paquete.",
@@ -240,14 +241,14 @@
           "nombre": "Bolsa de 10 h",
           "precio": 450,
           "unidad": "",
-          "detalle": ["Sale a 45 €/h", "Caduca a los 6 meses"]
+          "detalle": ["Sale a 45 €/h sin IVA", "Caduca a los 6 meses"]
         },
         {
           "id": "bolsa-20",
           "nombre": "Bolsa de 20 h",
           "precio": 850,
           "unidad": "",
-          "detalle": ["Sale a 42,50 €/h", "Caduca a los 6 meses"]
+          "detalle": ["Sale a 42,50 €/h sin IVA", "Caduca a los 6 meses"]
         }
       ],
       "incluye": [

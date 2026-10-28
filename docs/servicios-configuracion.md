@@ -6,66 +6,52 @@ Comprobado en la documentación oficial el 28/10/2026. Los nombres de los botone
 
 ## 1. Stripe: Payment Link de la auditoría
 
-### 1.1 Antes de crear el enlace
+### 1.1 Decisión: Stripe cobra, la factura la emites tú desde Gestolio
 
-1. **Datos públicos** (Configuración > Empresa > Datos públicos):
-   - Nombre legal: Hugo Calvo García.
-   - Dirección y correo de soporte.
-   - URL de la política de privacidad: `https://hugocalvo.dev/privacidad.html`, cuando esté publicada.
-   - URL de las condiciones: `https://hugocalvo.dev/condiciones.html`, cuando estén publicadas.
-2. **NIF del vendedor en las facturas** (Configuración > Facturación > Facturas > Información fiscal de la factura):
-   - Añade tu NIF.
-   - Márcalo como predeterminado.
-3. **Serie propia de facturas** (Configuración > Facturación > Facturas > Numeración):
-   - Elige numeración **por cuenta**, con un prefijo propio. Ejemplo: `HCSTRIPE`.
-   - Las facturas saldrán como `HCSTRIPE-0001`, `HCSTRIPE-0002`… y no se mezclan con tu numeración habitual.
-   - Reglas del prefijo:
-     - De 1 a 12 caracteres, solo mayúsculas y números, sin guiones.
-     - No puede coincidir con un prefijo de cliente.
-     - Si lo cambias, solo afecta a las facturas futuras.
-   - Con numeración por cuenta solo hay una serie de Stripe a la vez.
-   - Confirma con tu gestor que puedes usar una serie aparte para estas facturas y cómo encaja con VeriFactu (ver 1.3).
+- El Payment Link cobra **422,29 €** (349 € + 21 % de IVA) **sin Stripe Tax y sin factura automática de Stripe**. Coste extra en Stripe: 0 €.
+- Stripe solo envía al cliente el justificante del pago (recibo). El recibo no es una factura.
+- **La factura con el IVA desglosado la emites tú desde Gestolio**, con tu serie y tu numeración habituales. Los datos que necesitas llegan en el correo de aviso del pago: nombre, empresa, NIF (si lo ha puesto), email, web e importe.
+- Así toda tu facturación queda en una sola serie, dentro de tu programa de facturación.
 
-### 1.2 Crear el Payment Link
+### 1.2 Antes de crear el enlace
 
-En Catálogo de productos, crea el producto **Auditoría de visibilidad en IA**, con precio único de **422,29 EUR**.
+**Datos públicos** (Configuración > Empresa > Datos públicos). Salen en la página de pago y en el recibo:
+
+- Nombre legal: Hugo Calvo García.
+- Dirección y correo de soporte.
+- URL de la política de privacidad: `https://hugocalvo.dev/privacidad.html`, cuando esté publicada.
+- URL de las condiciones: `https://hugocalvo.dev/condiciones.html`, cuando estén publicadas.
+
+**No actives Stripe Tax** ni configures nada de facturación de Stripe (Invoicing).
+
+### 1.3 Crear el Payment Link
+
+En Catálogo de productos, crea el producto **Auditoría de visibilidad en IA** con precio único de **422,29 EUR**. Al no usar Stripe Tax, el precio es el importe final que paga el cliente.
 
 En Payment Links, crea un enlace con ese producto y estas opciones:
 
 | Opción | Valor |
 |---|---|
 | Cantidad | Fija en 1 (sin permitir que el cliente la cambie) |
+| Recoger impuestos automáticamente (Stripe Tax) | **No** |
 | Recoger nombre del cliente | Sí, obligatorio |
 | Recoger nombre de la empresa | Sí, obligatorio |
 | Permitir que las empresas indiquen su número fiscal | Sí. Es opcional para el cliente, así que el NIF queda opcional |
 | Campo personalizado 1 | Tipo texto, etiqueta `Web a auditar`, obligatorio, máximo 255 caracteres |
 | Email | Stripe lo pide siempre |
-| Crear factura tras el pago | Según la opción de IVA elegida (ver 1.3) |
+| Crear factura tras el pago | **No**. La factura la emites tú desde Gestolio |
 | Después del pago | No mostrar la página de confirmación. Redirigir a `https://hugocalvo.dev/gracias.html?servicio=auditoria` |
 | Aceptación de condiciones | Actívala cuando las condiciones estén publicadas. Requiere su URL en Datos públicos |
 | Metadatos | `servicio` = `auditoria-ia`. Así el aviso dice qué servicio se ha pagado |
 
 Payment Links admite como máximo 3 campos personalizados. Aquí solo se usa uno.
 
-Copia la URL pública del enlace (`https://buy.stripe.com/...`) en `assets/data/servicios.json`, en el campo `servicios[auditoria-ia].pago.payment_link`. Es el único dato de Stripe que va en el repo, y es público. Mientras esté vacío, el panel muestra «Pedir la auditoría» y lleva al formulario de contacto.
+Copia la URL pública del enlace (`https://buy.stripe.com/...`) en `assets/data/servicios.json`, en el campo `servicios[auditoria-ia].pago.payment_link`.
 
-### 1.3 IVA desglosado en la factura: opciones
+- Es el único dato de Stripe que va en el repo, y es público.
+- Mientras esté vacío, el panel muestra «Pedir la auditoría» y lleva al formulario de contacto.
 
-**Un Payment Link no admite tipos impositivos manuales.** La opción «el precio incluye impuestos» solo calcula IVA si activas Stripe Tax con tu registro de España. Sin Stripe Tax, la factura sale sin línea de IVA.
-
-| Opción | Coste extra por venta de 422,29 € | IVA desglosado |
-|---|---|---|
-| **A. Payment Link sin factura de Stripe.** Emites tú la factura con tu herramienta y tu serie habitual a partir del aviso (nombre, empresa, NIF y email llegan en el correo de aviso) | 0 € | Sí, en tu factura |
-| **B. Stripe Tax.** Registro de España en Stripe Tax, precio con impuestos incluidos y «Crear factura tras el pago» activado | 0,5 % de Stripe Tax + 0,4 % de factura ≈ 3,80 € | Sí, en la factura de Stripe |
-| **C. Checkout creado desde `servidor/`** con un tipo de IVA manual del 21 % inclusivo y factura tras el pago | 0,4 % de factura ≈ 1,69 € | Sí, en la factura de Stripe |
-
-Coste de la factura tras el pago: 0,4 % del total, con un tope de unos 2 USD por factura. No está incluido en el plan Invoicing Starter.
-
-- **La más barata:** A.
-- **La más sencilla con factura automática de Stripe:** B. Activa Stripe Tax > Registros > España (IVA) y deja el precio del producto como «incluye impuestos».
-- **C** cambia el botón de pago por una llamada a la API. Es más barata que B, pero añade código. No está hecha. Pídemela si la quieres.
-
-**VeriFactu:** Stripe no genera registros VeriFactu (ni hash encadenado, ni QR, ni envío a la AEAT). Confírmalo con tu gestor y revisa las fechas de obligatoriedad en la AEAT. Si tu herramienta de facturación ya cumple VeriFactu, la opción A mantiene todo en una sola serie.
+**Después de cada pago:** emite en Gestolio la factura de 349 € + 21 % de IVA (422,29 €) con los datos del correo de aviso y envíasela al cliente. La web y los correos automáticos ya le dicen al cliente que la factura se la envías tú.
 
 ### 1.4 Webhook (después de desplegar `servidor/`)
 
@@ -139,7 +125,7 @@ Coste de la factura tras el pago: 0,4 % del total, con un tope de unos 2 USD por
 
 1. Instala la app ntfy (Android o iOS).
 2. Suscríbete al tema que hayas puesto en `NTFY_TOPIC`, en el servidor `ntfy.sh`.
-3. Los temas de ntfy.sh son públicos para quien conozca el nombre. Por eso el nombre es largo y aleatorio, y el aviso solo lleva el tipo, el servicio y la empresa.
+3. Los temas de ntfy.sh son públicos para quien conozca el nombre. Por eso el nombre es largo y aleatorio, y el aviso solo lleva el tipo y el servicio (por ejemplo «Nuevo pago: Auditoría de visibilidad en IA»). El detalle llega solo por correo.
 
 ## 6. Activar los formularios en producción
 
@@ -163,8 +149,8 @@ El formulario de contacto general (FormSubmit) ya existía y tampoco enlaza la p
 ## 7. Prueba completa antes de anunciarlo
 
 1. **Stripe en modo de prueba:** paga el Payment Link con la tarjeta `4242 4242 4242 4242`. Tienen que llegar:
-   - el aviso de ntfy, con «Pago: Auditoría de visibilidad en IA» y la empresa;
-   - el correo con el resumen;
+   - el aviso de ntfy, con «Nuevo pago: Auditoría de visibilidad en IA»;
+   - el correo con el resumen y el recordatorio de emitir la factura en Gestolio;
    - el correo al cliente;
    - la redirección a `gracias.html?servicio=auditoria`.
 2. **Formularios:** envía una solicitud y un briefing desde la web publicada. Comprueba que llegan el aviso, los dos correos y la redirección a gracias.

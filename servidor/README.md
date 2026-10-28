@@ -10,7 +10,7 @@ Funciones serverless de Vercel para la zona de servicios de la web estática:
 
 - Sin dependencias: Node 22 con `fetch` y `crypto` nativos.
 - La firma de Stripe se verifica a mano (HMAC-SHA256 con tolerancia de 5 minutos).
-- El aviso de ntfy lleva solo el tipo (pago o solicitud), el servicio y la empresa. Nunca lleva datos de pago.
+- El aviso de ntfy lleva solo el tipo (pago o solicitud) y el servicio, por ejemplo «Nuevo pago: Auditoría de visibilidad en IA». Ni empresa, ni datos personales, ni datos de pago: el detalle va solo por correo.
 - Ningún secreto vive en el repo: todos van en variables de entorno de Vercel.
 
 ## Variables de entorno (Vercel > Project > Settings > Environment Variables, entorno Production)

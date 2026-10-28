@@ -1,7 +1,7 @@
 # Condiciones de contratación (BORRADOR)
 
 > **Borrador para revisar. No está publicado ni enlazado desde la web.**
-> Los datos entre corchetes los tienes que completar tú.
+> Faltan tu domicilio completo y tu NIF: están marcados como [DOMICILIO] y [NIF].
 > Conviene que lo revise un asesor antes de publicarlo, sobre todo los apartados 7 y 11.
 > Las notas para Hugo van en bloques como este y se quitan al publicar.
 
@@ -11,7 +11,7 @@
 
 - Titular: Hugo Calvo García, profesional autónomo.
 - NIF: [NIF].
-- Domicilio: [dirección postal completa], Madrid (España).
+- Domicilio: [DOMICILIO].
 - Email: hugocgarciat@gmail.com.
 - Teléfono y WhatsApp: +34 638 091 795.
 - Web: https://hugocalvo.dev.
@@ -29,7 +29,7 @@ Hay tres formas, según el servicio:
 1. **Pago directo** (Auditoría de visibilidad en IA):
    - Pagas con tarjeta en la pasarela de Stripe.
    - El contrato queda celebrado cuando se completa el pago.
-   - Recibes la confirmación del pago por correo.
+   - Stripe te envía el justificante del pago por correo. La factura te la envío yo (apartado 4).
 2. **Solicitar y luego pagar** (Visibilidad en IA mensual y Mantenimiento, hosting y SEO técnico):
    - Envías una solicitud y yo reviso tu caso.
    - Si encaja, te envío por correo el enlace de pago del primer periodo.
@@ -45,11 +45,11 @@ Hay tres formas, según el servicio:
 
 ## 4. Precios e impuestos
 
-- Los precios de la web se muestran **sin IVA**. Se les suma el IVA vigente, hoy del 21 %.
-- En el pago directo se muestra también el precio final con IVA. Por ejemplo, la auditoría cuesta 349 € + 21 % de IVA = 422,29 €.
+- En la web cada precio aparece **sin IVA y con IVA**. El IVA aplicable es el vigente, hoy del 21 %. Por ejemplo, la auditoría cuesta 349 € sin IVA, es decir, 422,29 € con IVA.
+- Los importes de estas condiciones son **sin IVA**, salvo que se indique otra cosa.
 - Los precios de la web son los vigentes en el momento de contratar.
 - En los servicios con presupuesto, manda el precio del presupuesto aceptado.
-- Recibes factura de cada pago.
+- Recibes factura de cada pago, con el IVA desglosado. La emito yo con mi programa de facturación y te la envío por correo. Stripe solo cobra y te envía el justificante del pago, que no es una factura.
 
 ## 5. Servicios: qué incluyen
 
@@ -147,9 +147,8 @@ No todos los casos encajan con lo que hago. Antes de empezar reviso el tuyo: la 
   - Permanencia mínima de 3 meses desde el primer pago.
   - Después se renueva cada mes hasta que la canceles.
   - Para cancelar, avísame por correo antes de la fecha del siguiente pago. La baja tiene efecto al final del mes ya pagado.
-  - Si cancelas antes de cumplir los 3 meses, se pagan los meses que falten hasta completarlos.
+  - **Si cancelas antes de cumplir los 3 meses, se cobran los meses que falten hasta completarlos.** Por ejemplo, si cancelas al terminar el primer mes del plan Esencial, se cobran los 2 meses restantes: 594 € sin IVA (718,74 € con IVA).
   - Esto no afecta al derecho de desistimiento de los consumidores (apartado 7).
-  > **Nota para Hugo:** confirma que quieres cobrar los meses pendientes.
 - **Mantenimiento:**
   - Sin permanencia: se cancela mes a mes con un correo antes de la fecha del siguiente pago.
   - Al cancelar, te ayudo a llevar la web y el dominio a donde me digas.
@@ -189,7 +188,7 @@ No todos los casos encajan con lo que hago. Antes de empezar reviso el tuyo: la 
 
 ## 13. Protección de datos
 
-Trato tus datos según la [política de privacidad](https://hugocalvo.dev/privacidad.html).
+Trato tus datos según la [política de privacidad](https://hugocalvo.dev/privacidad.html). Los datos del titular y las condiciones de uso de la web están en el [aviso legal](https://hugocalvo.dev/aviso-legal.html).
 
 ## 14. Cambios en estas condiciones
 
@@ -210,7 +209,7 @@ Estas condiciones se rigen por la ley española.
 
 (Solo debes rellenarlo y enviarlo si eres consumidor y quieres desistir del contrato.)
 
-- A la atención de Hugo Calvo García, [dirección postal], hugocgarciat@gmail.com:
+- A la atención de Hugo Calvo García, [DOMICILIO], hugocgarciat@gmail.com:
 - Por la presente le comunico que desisto de mi contrato de prestación del siguiente servicio: [servicio].
 - Contratado el: [fecha].
 - Nombre del consumidor: [nombre].
