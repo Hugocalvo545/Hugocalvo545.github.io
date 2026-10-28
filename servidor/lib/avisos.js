@@ -1,5 +1,8 @@
 // Avisos: notificación push con ntfy y correos con Resend.
 
+// Ninguna llamada externa puede colgar la función: Stripe reintenta si no respondemos a tiempo
+export const TIEMPO_MAX_MS = 8000;
+
 const NTFY_SERVER = () => (process.env.NTFY_SERVER || "https://ntfy.sh").replace(/\/$/, "");
 
 // El aviso de ntfy lleva solo el tipo (pago o solicitud), el servicio y la empresa. Nunca datos de pago.
@@ -9,6 +12,7 @@ export const avisarNtfy = async ({ tipo, servicio, empresa }) => {
   // Publicación JSON: admite tildes en el título sin codificar cabeceras
   const r = await fetch(NTFY_SERVER(), {
     method: "POST",
+    signal: AbortSignal.timeout(TIEMPO_MAX_MS),
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       topic,
@@ -45,6 +49,7 @@ export const enviarCorreo = async ({ to, subject, html, text, replyTo, idempoten
   if (!clave) throw new Error("Falta RESEND_API_KEY");
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
+    signal: AbortSignal.timeout(TIEMPO_MAX_MS),
     headers: {
       Authorization: `Bearer ${clave}`,
       "Content-Type": "application/json",

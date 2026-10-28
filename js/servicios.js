@@ -88,7 +88,7 @@
   const listaItems = (items, tipo) => h("ul", { class: `sd__lista sd__lista--${tipo}` }, items.map((t) => h("li", {}, t)));
   const bloque = (titulo, ...contenido) => h("section", {}, h("h3", {}, titulo), ...contenido);
 
-  const paqueteCard = (s, p, multiple, i) => {
+  const paqueteCard = (s, p, multiple, marcado) => {
     const cabecera = h(
       "span",
       { class: "pkg__head" },
@@ -105,7 +105,7 @@
     return h(
       "label",
       { class: "pkg" },
-      h("input", { type: "radio", name: "sd-paquete", value: p.id, checked: i === 0 }),
+      h("input", { type: "radio", name: "sd-paquete", value: p.id, checked: p.id === marcado }),
       cabecera,
       detalle
     );
@@ -118,6 +118,7 @@
 
   // Hasta que los formularios estén activos, las solicitudes van al formulario de contacto
   const irAContacto = (s, p) => {
+    opener = null;
     cerrar();
     const form = document.querySelector("#contacto form");
     const mensaje = form?.querySelector("textarea");
@@ -179,7 +180,7 @@
     const input = lbl.querySelector("input");
     input.addEventListener("input", () => {
       const v = input.value.trim();
-      const ok = !v || /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i.test(v);
+      const ok = !v || /^(https?:\/\/)?([\p{L}\p{N}-]+\.)+[\p{L}]{2,}(\/\S*)?$/iu.test(v);
       input.setCustomValidity(ok ? "" : "Escribe una dirección web válida, por ejemplo tunegocio.es");
     });
     return lbl;
@@ -223,7 +224,7 @@
   const cabeceraForm = (s, titulo, intro) => [
     h(
       "button",
-      { type: "button", class: "sd__volver", onclick: () => mostrarDetalle(s) },
+      { type: "button", class: "sd__volver", onclick: () => mostrarDetalle(s, sdBody.querySelector('[name="paquete"]')?.value, true) },
       h("span", { "aria-hidden": "true" }, "← "),
       "Volver al detalle"
     ),
@@ -231,13 +232,34 @@
     h("p", { class: "sd__resumen" }, intro),
   ];
 
+  let widgetTurnstile = null;
+  const quitarTurnstile = () => {
+    if (widgetTurnstile != null) window.turnstile?.remove(widgetTurnstile);
+    widgetTurnstile = null;
+  };
+
   const montarTurnstile = async (form) => {
     const caja = form.querySelector(".turnstile");
     const clave = sitekey();
     if (!caja || !clave) return;
     try {
       const ts = await cargarTurnstile();
-      form._turnstile = ts.render(caja, { sitekey: clave, theme: "dark", language: "es", action: form.dataset.tipo });
+      if (!caja.isConnected) return; // el usuario ya ha salido del formulario
+      quitarTurnstile();
+      const avisar = (texto) => {
+        const estado = form.querySelector(".form-estado");
+        estado.className = "form-estado form-error";
+        estado.textContent = texto;
+      };
+      widgetTurnstile = ts.render(caja, {
+        sitekey: clave,
+        theme: "dark",
+        language: "es",
+        action: form.dataset.tipo,
+        "error-callback": () => avisar("La verificación anti-spam ha fallado. Recarga la página o escríbeme por WhatsApp."),
+        "expired-callback": () => avisar("La verificación anti-spam ha caducado. Espera a que se renueve y vuelve a pulsar Enviar."),
+      });
+      form._turnstile = widgetTurnstile;
     } catch {
       caja.replaceChildren(h("p", { class: "form-error" }, "No se ha podido cargar la verificación anti-spam. Recarga la página o escríbeme por WhatsApp."));
     }
@@ -463,6 +485,7 @@
   };
 
   const mostrarFormulario = (s, p) => {
+    quitarTurnstile();
     sdBody.replaceChildren(...(s.nivel === "solicitar" ? formSolicitud(s, p) : formBriefing(s, p)));
     sdBody.scrollTop = 0;
     montarTurnstile(sdBody.querySelector("form"));
@@ -481,7 +504,7 @@
       const link = s.pago?.payment_link;
       caja.append(
         h("p", { class: "sd__iva" }, `${eur(p.precio)} + ${datos.iva} % de IVA = `, h("b", {}, `${eur(total)} con IVA`)),
-        h("p", {}, nivel.descripcion)
+        link && h("p", {}, nivel.descripcion)
       );
       const botones = h("div", { class: "sd__botones" });
       if (link) {
@@ -489,7 +512,7 @@
         caja.append(h("p", { class: "sd__aviso" }, "Pago seguro en Stripe. Después del pago te escribo en menos de 24 h laborables."));
       } else {
         botones.append(h("button", { type: "button", class: "btn primary", onclick: () => irAContacto(s, p) }, "Pedir la auditoría"));
-        caja.append(h("p", { class: "sd__aviso" }, "El pago con tarjeta estará disponible muy pronto. Mientras, escríbeme y te envío el enlace de pago."));
+        caja.append(h("p", {}, "Escríbeme y te envío el enlace de pago con tarjeta. Recibes la factura con el IVA desglosado."));
       }
       caja.append(botones);
       return caja;
@@ -507,9 +530,9 @@
     return caja;
   };
 
-  const detalle = (s) => {
+  const detalle = (s, marcado = s.paquetes[0].id) => {
     const multiple = s.paquetes.length > 1;
-    const paquetes = s.paquetes.map((p, i) => paqueteCard(s, p, multiple, i));
+    const paquetes = s.paquetes.map((p) => paqueteCard(s, p, multiple, marcado));
     const pkgs = h("div", { class: `pkgs n${s.paquetes.length}` }, paquetes);
     const datosClave = h(
       "dl",
@@ -531,9 +554,16 @@
     ].filter(Boolean);
   };
 
-  const mostrarDetalle = (s) => {
-    sdBody.replaceChildren(...detalle(s));
-    sdBody.scrollTop = 0;
+  const mostrarDetalle = (s, marcado, enfocarAccion = false) => {
+    quitarTurnstile();
+    sdBody.replaceChildren(...detalle(s, marcado));
+    if (enfocarAccion) {
+      const boton = sdBody.querySelector(".sd__accion .btn");
+      boton?.scrollIntoView({ block: "center" });
+      boton?.focus({ preventScroll: true });
+    } else {
+      sdBody.scrollTop = 0;
+    }
   };
 
   const abrir = (s, desde) => {
@@ -552,12 +582,28 @@
   };
 
   // Escape lo gestiona el propio <dialog>; aquí devolvemos el foco a la tarjeta
+  const hayDatos = () =>
+    [...sdBody.querySelectorAll(".sd__form input:not([type=hidden]):not([type=radio]):not([type=checkbox]), .sd__form textarea")].some((c) => c.value.trim());
+
+  dialog.addEventListener("cancel", (e) => {
+    if (hayDatos() && !window.confirm("¿Cerrar el formulario? Se perderá lo que has escrito.")) e.preventDefault();
+  });
+
   dialog.addEventListener("close", () => {
+    quitarTurnstile();
     if (opener && document.contains(opener)) opener.focus({ preventScroll: true });
     if (location.hash.startsWith("#detalle-")) history.replaceState(null, "", location.pathname + location.search);
   });
+  // El fondo solo cierra si el clic empieza y acaba en él (no al soltar fuera tras seleccionar texto)
+  let pulsadoEnFondo = false;
+  dialog.addEventListener("pointerdown", (e) => {
+    pulsadoEnFondo = e.target === dialog;
+  });
   dialog.addEventListener("click", (e) => {
-    if (e.target === dialog || e.target.closest("[data-sd-close]")) cerrar();
+    const fondo = e.target === dialog && pulsadoEnFondo;
+    if (!fondo && !e.target.closest("[data-sd-close]")) return;
+    if (hayDatos() && !window.confirm("¿Cerrar el formulario? Se perderá lo que has escrito.")) return;
+    cerrar();
   });
 
   // Enlace directo a un panel: hugocalvo.dev/#detalle-auditoria-ia

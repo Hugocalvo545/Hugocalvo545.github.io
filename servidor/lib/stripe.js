@@ -33,6 +33,7 @@ export const datosSesion = (s) => {
   const servicioId = s.metadata?.servicio;
   return {
     servicio: SERVICIOS[servicioId]?.nombre || "Pago con Stripe",
+    conocido: Boolean(SERVICIOS[servicioId]),
     empresa: det.business_name || s.collected_information?.business_name || "",
     nombre: det.individual_name || det.name || s.collected_information?.individual_name || "",
     email: det.email || "",

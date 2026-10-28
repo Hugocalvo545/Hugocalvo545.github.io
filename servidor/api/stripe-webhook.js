@@ -30,7 +30,17 @@ export async function POST(request) {
   // Stripe reintenta los eventos: solo avisamos una vez por sesión
   const marca = `stripe:sesion:${sesion.id}`;
   if (!(await primeraVez(marca))) return responder(200, { received: true, duplicado: true });
+  try {
+    return await avisar(sesion, marca);
+  } catch (e) {
+    // Error inesperado: sin marca, para que el reintento de Stripe vuelva a avisar
+    console.error("Webhook:", e);
+    await olvidar(marca);
+    return responder(500, { error: "interno" });
+  }
+}
 
+const avisar = async (sesion, marca) => {
   const d = datosSesion(sesion);
   const resumen = [
     ["Servicio", d.servicio],
@@ -63,7 +73,8 @@ export async function POST(request) {
     return responder(500, { error: "avisos" });
   }
 
-  if (d.email) {
+  // Al cliente solo si el pago es de un servicio conocido (metadato servicio en el Payment Link)
+  if (d.email && d.conocido) {
     try {
       await enviarCorreo({
         to: d.email,
@@ -80,4 +91,4 @@ export async function POST(request) {
     }
   }
   return responder(200);
-}
+};

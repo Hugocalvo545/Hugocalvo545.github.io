@@ -10,6 +10,7 @@ export const redisConfigurado = () => Boolean(URL_REDIS() && TOKEN_REDIS());
 const pipeline = async (comandos) => {
   const r = await fetch(`${URL_REDIS()}/pipeline`, {
     method: "POST",
+    signal: AbortSignal.timeout(5000),
     headers: { Authorization: `Bearer ${TOKEN_REDIS()}`, "Content-Type": "application/json" },
     body: JSON.stringify(comandos),
   });

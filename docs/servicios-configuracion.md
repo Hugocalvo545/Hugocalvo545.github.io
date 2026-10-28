@@ -153,6 +153,13 @@ Para activarlos:
 4. Comprueba que la API responde en `api.hugocalvo.dev`.
 5. Pon `formularios.activos: true`.
 
+El botón de pago de la auditoría no depende de `formularios.activos`: aparece en cuanto rellenas `pago.payment_link`.
+
+- Stripe recoge nombre, empresa, NIF y web.
+- Rellena el enlace cuando la política de privacidad y las condiciones estén publicadas y su URL figure en Datos públicos de Stripe.
+
+El formulario de contacto general (FormSubmit) ya existía y tampoco enlaza la política. Conviene añadirle el mismo texto legal al publicarla.
+
 ## 7. Prueba completa antes de anunciarlo
 
 1. **Stripe en modo de prueba:** paga el Payment Link con la tarjeta `4242 4242 4242 4242`. Tienen que llegar:

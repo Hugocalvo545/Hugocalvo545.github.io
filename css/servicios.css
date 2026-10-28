@@ -383,8 +383,7 @@ select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-col
 .trampa { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .turnstile:empty { display: none; }
 .turnstile { min-height: 65px; }
-.form-estado { font-size: 14px; color: var(--muted); min-height: 1em; }
-.form-estado:empty { display: none; }
+.form-estado { font-size: 14px; color: var(--muted); }
 .form-error { color: #f5a3a3; }
 
 /* Briefing por pasos */

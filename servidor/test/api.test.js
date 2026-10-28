@@ -247,3 +247,86 @@ test("formularios: cuerpo demasiado grande devuelve 413", async () => {
   const r = await POST(peticionForm("briefing", { ...briefingValido, objetivo: "x".repeat(30000) }));
   assert.equal(r.status, 413);
 });
+
+// ---------- arreglos tras la revisión ----------
+test("correo al cliente: sin texto libre ni nombre (no sirve para mandar mensajes a terceros)", async () => {
+  const { POST } = await import("../api/solicitud.js");
+  const cebo = "Verifique su cuenta en https://phish.example";
+  await POST(peticionForm("solicitud", { ...solicitudValida, necesidad: cebo, nombre: cebo.slice(0, 40), empresa: cebo.slice(0, 40) }));
+  const [aHugo, aCliente] = llamadas.filter((l) => l.url.includes("resend")).map((l) => l.body);
+  assert.match(aHugo.text, /phish\.example/, "Hugo sí recibe todo");
+  assert.ok(!aCliente.html.includes("phish") && !aCliente.text.includes("phish"), "el cliente no recibe el texto libre");
+  assert.match(aCliente.text, /Plan: Pro/);
+});
+
+test("web con tildes o ñ se acepta", async () => {
+  const { POST } = await import("../api/solicitud.js");
+  const r = await POST(peticionForm("solicitud", { ...solicitudValida, web: "peluqueríamaría.es" }));
+  assert.equal(r.status, 200);
+});
+
+test("límite por IP: los envíos inválidos no gastan intentos", async () => {
+  process.env.KV_REST_API_URL = "https://redis.example";
+  process.env.KV_REST_API_TOKEN = "t";
+  let incr = 0;
+  const base = globalThis.fetch;
+  globalThis.fetch = async (url, o) => {
+    if (String(url).startsWith("https://redis.example")) {
+      incr++;
+      return Response.json([{ result: incr }, { result: 1 }]);
+    }
+    return base(url, o);
+  };
+  const { POST } = await import("../api/solicitud.js");
+  for (let i = 0; i < 3; i++) await POST(peticionForm("solicitud", { ...solicitudValida, email: "mal" }));
+  assert.equal(incr, 0);
+  await POST(peticionForm("solicitud", solicitudValida));
+  assert.equal(incr, 1);
+});
+
+test("Turnstile caído (5xx) responde 503, no «eres un robot»", async () => {
+  const { POST } = await import("../api/briefing.js");
+  const base = globalThis.fetch;
+  globalThis.fetch = async (url, o) => (String(url).includes("turnstile") ? new Response("<html>", { status: 502 }) : base(url, o));
+  const r = await POST(peticionForm("briefing", briefingValido));
+  assert.equal(r.status, 503);
+});
+
+test("error inesperado en un formulario mantiene CORS", async () => {
+  const { POST } = await import("../api/briefing.js");
+  globalThis.fetch = async () => {
+    throw new Error("boom");
+  };
+  respuestaTurnstile = null;
+  const r = await POST(peticionForm("briefing", briefingValido));
+  assert.ok([500, 503].includes(r.status));
+  assert.equal(r.headers.get("access-control-allow-origin"), ORIGEN);
+});
+
+test("webhook: pago sin metadato de servicio avisa a Hugo pero no escribe al cliente", async () => {
+  const { POST } = await import("../api/stripe-webhook.js");
+  const r = await POST(peticionWebhook({ id: "evt_5", type: "checkout.session.completed", data: { object: { ...sesionPagada, id: "cs_otro", metadata: {} } } }));
+  assert.equal(r.status, 200);
+  const correos = llamadas.filter((l) => l.url.includes("resend"));
+  assert.equal(correos.length, 1);
+  assert.deepEqual(correos[0].body.to, ["hugo@example.com"]);
+  assert.equal(llamadas.find((l) => l.url.includes("ntfy")).body.title, "Pago: Pago con Stripe");
+});
+
+test("webhook: error inesperado tras marcar la sesión la desmarca y pide reintento", async () => {
+  process.env.KV_REST_API_URL = "https://redis.example";
+  process.env.KV_REST_API_TOKEN = "t";
+  const comandos = [];
+  globalThis.fetch = async (url, o) => {
+    if (String(url).startsWith("https://redis.example")) {
+      comandos.push(JSON.parse(o.body)[0][0]);
+      return Response.json([{ result: "OK" }]);
+    }
+    throw new Error("red caída");
+  };
+  const { POST } = await import("../api/stripe-webhook.js");
+  // custom_fields roto: datosSesion lanza después de marcar
+  const r = await POST(peticionWebhook({ id: "evt_6", type: "checkout.session.completed", data: { object: { ...sesionPagada, id: "cs_roto", custom_fields: 42 } } }));
+  assert.equal(r.status, 500);
+  assert.deepEqual(comandos, ["SET", "DEL"]);
+});

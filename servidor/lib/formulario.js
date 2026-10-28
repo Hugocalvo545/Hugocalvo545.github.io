@@ -2,10 +2,10 @@
 import { SERVICIOS, PROYECTOS, FUNCIONALIDADES, PLAZOS, PRESUPUESTOS } from "./catalogo.js";
 import { json, preflight, origenPermitido, ipCliente, leerTexto, hostnamesPermitidos } from "./http.js";
 import { dentroDelLimite } from "./redis.js";
-import { avisarNtfy, enviarCorreo, correoHugo, tablaHtml, tablaTexto, escapar, pie } from "./avisos.js";
+import { avisarNtfy, enviarCorreo, correoHugo, tablaHtml, tablaTexto, escapar, pie, TIEMPO_MAX_MS } from "./avisos.js";
 
 const EMAIL_RE = /^[^\s@<>()]+@[^\s@<>()]+\.[^\s@<>()]{2,}$/;
-const WEB_RE = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i;
+const WEB_RE = /^(https?:\/\/)?([\p{L}\p{N}-]+\.)+[\p{L}]{2,}(\/\S*)?$/iu; // admite dominios con tildes o ñ
 const TEL_RE = /^[0-9 +().-]{6,30}$/;
 const TIEMPO_MINIMO_MS = 2000; // un envío más rápido que esto es de un bot
 
@@ -79,10 +79,13 @@ const verificarTurnstile = async (token, ip) => {
   if (typeof token !== "string" || !token || token.length > 2048) return false;
   const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
+    signal: AbortSignal.timeout(TIEMPO_MAX_MS),
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ secret: secreto, response: token, remoteip: ip }),
   });
-  const res = await r.json().catch(() => ({}));
+  // Un fallo de Cloudflare no es culpa del usuario: lanza para responder 503, no "eres un robot"
+  if (!r.ok) throw new Error(`siteverify HTTP ${r.status}`);
+  const res = await r.json();
   if (!res.success) return false;
   // Las claves de prueba de Cloudflare no devuelven el dominio real
   const esPrueba = secreto.startsWith("1x0000000000000000000000000000000");
@@ -116,8 +119,25 @@ const filasContacto = (v) => [
   ["Teléfono", v.telefono],
 ];
 
+// Para el cliente: solo valores de listas cerradas. El texto libre (nombre, web, necesidad...) no se reenvía
+// a la dirección indicada, para que nadie use el formulario para enviar mensajes a terceros desde hugocalvo.dev.
+const filasCliente = (tipo, v) =>
+  tipo === "solicitud"
+    ? [
+        ["Servicio", v.servicio],
+        ["Plan", v.paquete],
+      ]
+    : [
+        ["Servicio", v.servicio],
+        ["Tipo de proyecto", v.proyecto],
+        ["Funcionalidades", v.funcionalidades.join(", ")],
+        ["Plazo", v.plazo],
+        ["Presupuesto orientativo", v.presupuesto],
+      ];
+
 const correos = (tipo, v) => {
   const resumen = [...filas(tipo, v), ...filasContacto(v)];
+  const resumenCliente = filasCliente(tipo, v);
   const titulo = tipo === "solicitud" ? "Solicitud de alta" : "Briefing";
   const respuesta =
     tipo === "solicitud"
@@ -135,12 +155,13 @@ const correos = (tipo, v) => {
       to: v.email,
       replyTo: correoHugo(),
       subject: `He recibido tu ${tipo === "solicitud" ? "solicitud" : "briefing"}: ${v.servicio}`,
-      html: `<p style="font-family:Arial,sans-serif;font-size:15px">Hola, ${escapar(v.nombre)}:</p>
+      html: `<p style="font-family:Arial,sans-serif;font-size:15px">Hola:</p>
 <p style="font-family:Arial,sans-serif;font-size:15px">Gracias por escribirme. ${escapar(respuesta)}</p>
-<p style="font-family:Arial,sans-serif;font-size:15px">Este es el resumen de lo que me has enviado:</p>
-${tablaHtml(resumen)}
-<p style="font-family:Arial,sans-serif;font-size:15px">Si quieres añadir algo, responde a este correo.</p>${pie}`,
-      text: `Hola, ${v.nombre}:\n\nGracias por escribirme. ${respuesta}\n\nResumen:\n${tablaTexto(resumen)}\n\nSi quieres añadir algo, responde a este correo.\n\nHugo Calvo García · hugocalvo.dev`,
+<p style="font-family:Arial,sans-serif;font-size:15px">Resumen de tu ${tipo === "solicitud" ? "solicitud" : "briefing"}:</p>
+${tablaHtml(resumenCliente)}
+<p style="font-family:Arial,sans-serif;font-size:15px">Tengo también lo que me has contado en el formulario. Si quieres añadir algo, responde a este correo.</p>
+<p style="font-family:Arial,sans-serif;font-size:13px;color:#666">Si no has enviado tú este formulario, ignora este correo.</p>${pie}`,
+      text: `Hola:\n\nGracias por escribirme. ${respuesta}\n\nResumen:\n${tablaTexto(resumenCliente)}\n\nTengo también lo que me has contado en el formulario. Si quieres añadir algo, responde a este correo.\n\nSi no has enviado tú este formulario, ignora este correo.\n\nHugo Calvo García · hugocalvo.dev`,
     },
   };
 };
@@ -151,6 +172,16 @@ export const manejador = (tipo) => ({
   POST: async (request) => {
     const origen = origenPermitido(request);
     if (!origen) return json({ ok: false, error: "Origen no permitido." }, 403);
+    try {
+      return await procesar(tipo, request, origen);
+    } catch (e) {
+      console.error(`${tipo}:`, e);
+      return json({ ok: false, error: "No se ha podido enviar." }, 500, origen);
+    }
+  },
+});
+
+const procesar = async (tipo, request, origen) => {
 
     const crudo = await leerTexto(request);
     if (crudo == null) return json({ ok: false, error: "El mensaje es demasiado largo." }, 413, origen);
@@ -165,17 +196,18 @@ export const manejador = (tipo) => ({
     // Campo trampa o envío instantáneo: respondemos ok sin hacer nada
     if (d.website || Number(d.ms) < TIEMPO_MINIMO_MS) return json({ ok: true }, 200, origen);
 
-    const ip = ipCliente(request);
-    if (!(await dentroDelLimite(`rl:${tipo}:${ip}`))) {
-      return json({ ok: false, error: "Has enviado varias solicitudes seguidas. Espera un rato." }, 429, origen);
-    }
-
     let v;
     try {
       v = validar(tipo, d);
     } catch (e) {
       if (e instanceof ErrorValidacion) return json({ ok: false, error: e.message }, 400, origen);
       throw e;
+    }
+
+    // Solo cuentan los envíos válidos: corregir un campo no agota los intentos
+    const ip = ipCliente(request);
+    if (!(await dentroDelLimite(`rl:${tipo}:${ip}`))) {
+      return json({ ok: false, error: "Has enviado varias solicitudes seguidas. Espera un rato." }, 429, origen);
     }
 
     try {
@@ -204,5 +236,4 @@ export const manejador = (tipo) => ({
       console.error("Correo al cliente:", e.message);
     }
     return json({ ok: true }, 200, origen);
-  },
-});
+};
