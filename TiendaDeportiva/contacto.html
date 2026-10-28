@@ -68,15 +68,14 @@
       <p>Estamos aquí para resolver tus dudas, asesorarte y ayudarte en tu experiencia de compra deportiva.</p>
     </section>
     <section class="contacto-formulario">
-      <form id="contacto-form" action="https://formsubmit.co/digiperplexity@gmail.com" method="POST">
+      <form id="contacto-form" onsubmit="return false;" aria-describedby="aviso-demo">
+        <p class="aviso-demo" id="aviso-demo" role="note" style="margin:0 0 14px;padding:10px 14px;border:2px solid #d97706;border-radius:8px;background:#fff7ed;color:#7c2d12;font-weight:700;line-height:1.4;">Proyecto de demostración: este formulario está desactivado.</p>
         <input type="text" name="Nombre" id="nombre-contacto" placeholder="Nombre completo" required>
         <input type="email" name="Email" id="email-contacto" placeholder="Correo electrónico" required>
         <input type="text" name="Asunto" id="asunto-contacto" placeholder="Asunto" required>
         <textarea name="Mensaje" id="mensaje" rows="6" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
-        <button type="submit" class="btn-cta">Enviar mensaje</button>
+        <button type="submit" disabled style="opacity:.55;cursor:not-allowed;" class="btn-cta">Enviar mensaje</button>
 
-        <input type="hidden" name="_next" value="https://hugoynicolas.github.io/contacto.html">
-        <input type="hidden" name="_captcha" value="false">
       </form>
       <div class="contacto-info">
         <h3>Atención al cliente</h3>

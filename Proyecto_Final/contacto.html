@@ -35,7 +35,8 @@
         </nav>
     </header>
     <section id="contact">  
-        <form id="contacto-form" action="https://formsubmit.co/hugocgarciat@gmail.com" method="POST" class="contenido">
+        <form id="contacto-form" class="contenido" onsubmit="return false;" aria-describedby="aviso-demo">
+            <p class="aviso-demo" id="aviso-demo" role="note" style="margin:0 0 14px;padding:10px 14px;border:2px solid #d97706;border-radius:8px;background:#fff7ed;color:#7c2d12;font-weight:700;line-height:1.4;">Proyecto de demostración: este formulario está desactivado.</p>
             <h2>Contáctanos</h2>
             <p>Para cualquier consulta, no dudes en contactar con nosotros.</p>
             <div class="form-group">
@@ -78,11 +79,9 @@
                 <input type="radio" name="Motor" value="Eléctrico"> Eléctrico
                 <input type="radio" name="Motor" value="Gasolina"> Gasolina
             </div>
-            <button type="submit" class="cta-button">Enviar</button>
+            <button type="submit" disabled style="opacity:.55;cursor:not-allowed;" class="cta-button">Enviar</button>
             <button type="reset" class="cta-button">Reset</button>
 
-            <input type="hidden" name="_next" value="https://hugocalvo.dev/Proyecto_Final/contacto.html">
-            <input type="hidden" name="_captcha" value="false">
         </form>
 
         <footer>
