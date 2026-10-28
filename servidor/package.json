@@ -1,0 +1,12 @@
+{
+  "name": "hugocalvo-api",
+  "private": true,
+  "description": "API de hugocalvo.dev: webhook de Stripe y formularios de servicios (avisos por ntfy y correo con Resend).",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

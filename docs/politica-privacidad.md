@@ -1,0 +1,110 @@
+# Política de privacidad: versión completa para la fase 2 (BORRADOR)
+
+> **Versión completa para la fase 2.** La publicada hoy en `privacidad.html` (28/10/2026) es la de la fase 1: solo cubre el contacto por email o WhatsApp, GitHub Pages y Gmail.
+> Esta versión añade formularios, pagos y avisos. Hay que publicarla en `privacidad.html`, sustituyendo la de la fase 1, antes de activar los formularios o el pago (ver `docs/servicios-configuracion.md`, sección 6).
+> Los datos entre corchetes que quedan (fecha y región de Upstash) los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
+> Conviene que la revise un asesor. Revisa especialmente las transferencias internacionales y los plazos de conservación.
+
+Última actualización: [fecha de publicación]
+
+## 1. Responsable
+
+- Responsable: Hugo Calvo García.
+- NIF: 02304970W.
+- Domicilio: Calle Molino Viejo 14B, 4ºB, 28032 Madrid (España).
+- Email: hugocgarciat@gmail.com.
+- Teléfono: +34 638 091 795.
+
+## 2. Qué datos trato y para qué
+
+| Cuándo | Datos | Finalidad | Base jurídica |
+|---|---|---|---|
+| Contacto por email o WhatsApp | Los que me envíes: normalmente nombre, email o teléfono y tu mensaje | Responderte y, si lo pides, enviarte un presupuesto | Medidas precontractuales a petición tuya (art. 6.1.b RGPD) |
+| Formulario «Solicitar alta» | Servicio y plan, tu web, qué necesitas, nombre, empresa (opcional), email y teléfono (opcional) | Revisar si tu caso encaja, responderte y, si encaja, enviarte el enlace de pago | Medidas precontractuales (art. 6.1.b RGPD) |
+| Briefing | Tipo de proyecto, objetivo, funcionalidades, plazo, presupuesto orientativo, web (opcional) y datos de contacto | Preparar y enviarte un presupuesto | Medidas precontractuales (art. 6.1.b RGPD) |
+| Pago de la auditoría (Stripe) | Nombre, empresa, email, NIF (opcional), web a auditar e importe. **No recibo los datos de tu tarjeta**: los trata Stripe | Prestar el servicio contratado y emitir la factura, que hago yo con mi programa de facturación | Ejecución del contrato (art. 6.1.b) y obligaciones fiscales (art. 6.1.c RGPD) |
+| Clientes | Los anteriores, más los que hagan falta para el servicio | Prestar el servicio, facturar y atender incidencias | Ejecución del contrato (art. 6.1.b) y obligación legal (art. 6.1.c RGPD) |
+| Protección contra spam y abusos | Dirección IP y la señal de verificación de Cloudflare Turnstile | Evitar envíos automáticos y limitar el número de envíos por hora | Interés legítimo en proteger la web y el servicio (art. 6.1.f RGPD) |
+
+**Datos obligatorios.** Los campos marcados como obligatorios hacen falta para atender tu solicitud. Si no los facilitas, no puedo responderte por esa vía. Siempre puedes escribirme por email o por WhatsApp.
+
+**Sin decisiones automatizadas.** Reviso cada solicitud personalmente.
+
+**Sin publicidad.** No uso tus datos para enviarte publicidad ni los cedo a terceros con ese fin.
+
+## 3. Cuánto tiempo los conservo
+
+- **Solicitudes que no acaban en contrato:** 12 meses desde el último contacto, por si retomamos la conversación. Después los borro.
+- **Clientes:**
+  - Mientras dure la relación.
+  - Después, durante los plazos legales: 6 años para la documentación contable y las facturas (art. 30 del Código de Comercio) y 4 años a efectos fiscales.
+  - Para posibles responsabilidades, hasta 5 años.
+- **Registros de protección contra abusos** (IP en el límite de envíos): 1 hora.
+- **Avisos internos en el móvil:** hasta 12 horas en el servidor de avisos.
+- Pasados los plazos, los datos se bloquean y se suprimen según el art. 32 de la LOPDGDD.
+
+> **Nota para Hugo:** confirma con tu asesor los plazos de clientes.
+
+## 4. Con quién se comparten
+
+No vendo tus datos. Para prestar el servicio uso estos proveedores, que tratan los datos solo para eso:
+
+| Proveedor | Para qué | Ubicación y garantías |
+|---|---|---|
+| Vercel Inc. | Servidor que recibe los formularios y los avisos de pago | EE. UU. Adherido al Marco de Privacidad de Datos UE-EE. UU. (DPF) |
+| Resend | Envío de los correos de aviso y de confirmación | EE. UU. Adherido al DPF |
+| Cloudflare, Inc. (Turnstile) | Verificación contra robots en los formularios | EE. UU. DPF y cláusulas contractuales tipo |
+| Upstash, Inc. | Límite de envíos por hora (guarda la IP 1 hora) y control de avisos duplicados | [región elegida]. Cláusulas contractuales tipo del DPA |
+| ntfy.sh | Aviso a mi móvil de que ha llegado una solicitud o un pago. **Solo recibe el tipo de aviso y el servicio** (por ejemplo «Nuevo pago: Auditoría de visibilidad en IA»), **ningún dato personal** | No aplica: no recibe datos personales |
+| Gestolio (mi programa de facturación), alojado en Supabase | Emitir y guardar las facturas | Reino Unido (Londres, región eu-west-2). Transferencia a un país con decisión de adecuación de la Comisión Europea (art. 45 RGPD) |
+| Stripe Payments Europe, Ltd. | Pasarela de pago de la auditoría | Irlanda (UE). Para el pago y la prevención del fraude, Stripe actúa como responsable independiente según su propia política de privacidad |
+| Google LLC (Gmail) | Mi buzón de correo, donde recibo los avisos y respondo | EE. UU. Adherido al DPF |
+| WhatsApp Ireland Limited | Solo si me escribes por WhatsApp: el servicio de mensajería | Irlanda (UE). Trata los mensajes según su propia política de privacidad |
+| GitHub, Inc. (GitHub Pages) | Alojamiento de la web | EE. UU. Adherido al DPF |
+
+También puedo comunicar datos a la Agencia Tributaria y a otras administraciones cuando lo exige la ley.
+
+> **Notas para Hugo:**
+> - Comprueba en https://www.dataprivacyframework.gov/list que Vercel, Resend, Cloudflare y GitHub siguen activos.
+> - No he encontrado certificación DPF de Upstash. Si creas la base de datos en una región de la UE, indícalo.
+> - ntfy.sh no publica entidad jurídica, DPA ni ubicación de servidores (https://docs.ntfy.sh/privacy/). Por eso el aviso no lleva ningún dato personal: solo el tipo y el servicio.
+> - Gestolio: Supabase, región eu-west-2 (Londres). La decisión de adecuación del Reino Unido se renovó el 19/12/2025 y vence el 27/12/2031: revisa entonces si sigue vigente. Conviene tener firmado el DPA de Supabase.
+
+## 5. Tus derechos
+
+Puedes ejercer en cualquier momento estos derechos escribiendo a hugocgarciat@gmail.com:
+
+- **Acceso:** saber qué datos tuyos trato.
+- **Rectificación:** corregirlos.
+- **Supresión:** pedir que los borre.
+- **Oposición:** oponerte al tratamiento.
+- **Limitación:** pedir que limite su uso.
+- **Portabilidad:** recibirlos en un formato que puedas llevarte.
+
+Te respondo en un mes como máximo.
+
+Si crees que no he tratado bien tus datos, puedes reclamar ante la Agencia Española de Protección de Datos (https://www.aepd.es).
+
+## 6. Seguridad
+
+- Los formularios viajan cifrados (HTTPS).
+- Las claves de los servicios están guardadas fuera del código.
+- Solo yo accedo a tus datos.
+
+## 7. Más información
+
+Los datos del titular y las condiciones de uso de la web están en el [aviso legal](https://hugocalvo.dev/aviso-legal.html).
+
+## 8. Cookies y almacenamiento en el navegador
+
+La web no usa cookies ni herramientas de publicidad o de analítica. Cloudflare Turnstile puede usar datos técnicos del navegador solo para comprobar que no eres un robot. En el currículum y en el portfolio, si eliges el tema claro u oscuro, tu navegador guarda esa preferencia para la próxima visita.
+
+> **Nota para Hugo:** si añades analítica, crea una política de cookies y un banner.
+
+---
+
+## Texto corto para debajo de los formularios (primera capa, art. 11 LOPDGDD)
+
+Ya está en `js/servicios.js`:
+
+> Responsable: Hugo Calvo García. Uso tus datos solo para responder a tu solicitud y, si encaja, preparar la propuesta. Puedes acceder a ellos, corregirlos o pedir que los borre cuando quieras. Más información en la política de privacidad.

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje recibido | hugocalvo.dev</title>
-    <meta name="description" content="Tu mensaje se ha enviado correctamente. Te respondo en menos de 24 horas.">
+    <title>Gracias | hugocalvo.dev</title>
+    <meta name="description" content="Hemos recibido tu mensaje, tu solicitud o tu pago. Te respondo en menos de 24 horas laborables.">
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#0e1117">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230e1117%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27monospace%27 font-size=%2722%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%233ddc97%27%3EHCG%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/servicios.css">
 </head>
 <body>
 
@@ -19,12 +20,52 @@
 </header>
 
 <main id="contenido">
-  <section style="border-top: 0; min-height: 60vh; display: grid; align-items: center;">
-    <div class="wrap" style="max-width: 640px; text-align: center;">
-      <p class="eyebrow">Mensaje recibido</p>
-      <h1 style="font-size: clamp(28px, 5vw, 40px); margin-top: 14px;">Gracias, tu mensaje ya está en mi bandeja.</h1>
-      <p class="lead" style="margin: 18px auto 28px;">Te respondo en menos de 24 horas con una primera idea de alcance y precio. Si es urgente, escríbeme por WhatsApp.</p>
-      <div class="cta" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+  <section class="gracias">
+    <div class="wrap gracias__wrap">
+      <!-- Mensaje por defecto: formulario de contacto -->
+      <div data-gracias="contacto">
+        <p class="eyebrow">Mensaje recibido</p>
+        <h1>Gracias, tu mensaje ya está en mi bandeja.</h1>
+        <p class="lead">Te respondo en menos de 24 horas con una primera idea de alcance y precio. Si es urgente, escríbeme por WhatsApp.</p>
+      </div>
+
+      <!-- Pago de la auditoría: Stripe redirige a gracias.html?servicio=auditoria -->
+      <div data-gracias="auditoria" hidden>
+        <p class="eyebrow">Pago recibido</p>
+        <h1>Gracias, tu auditoría está en marcha.</h1>
+        <p class="lead">Te escribo en menos de 24 h laborables para arrancar.</p>
+        <ol class="gracias__pasos">
+          <li><strong>Justificante y factura.</strong> Stripe te envía el justificante del pago al correo que has usado. La factura con el IVA desglosado te la envío yo por correo.</li>
+          <li><strong>Te escribo yo.</strong> En menos de 24 h laborables te pido lo que necesito: las preguntas que te importan, los competidores que conoces y el acceso a tu web si hace falta.</li>
+          <li><strong>Entrega.</strong> Tienes la auditoría en 5 días laborables desde que recibo los datos y la repasamos en una videollamada de 45 minutos.</li>
+        </ol>
+      </div>
+
+      <!-- Formulario "Solicitar alta" -->
+      <div data-gracias="solicitud" hidden>
+        <p class="eyebrow">Solicitud recibida</p>
+        <h1>Gracias, ya tengo tu solicitud.</h1>
+        <p class="lead">Te respondo en menos de 24 h laborables.</p>
+        <ol class="gracias__pasos">
+          <li><strong>Reviso tu caso.</strong> Miro tu web y lo que me cuentas para confirmar que puedo ayudarte.</li>
+          <li><strong>Si encaja,</strong> te envío el enlace de pago del primer mes y arrancamos. Si no encaja, te lo digo y no pagas nada.</li>
+          <li><strong>Resumen en tu correo.</strong> Te he enviado una copia de lo que me has contado.</li>
+        </ol>
+      </div>
+
+      <!-- Formulario "Briefing" -->
+      <div data-gracias="briefing" hidden>
+        <p class="eyebrow">Briefing recibido</p>
+        <h1>Gracias, ya tengo tu briefing.</h1>
+        <p class="lead">En 48 h laborables tienes un presupuesto cerrado por escrito.</p>
+        <ol class="gracias__pasos">
+          <li><strong>Lo estudio.</strong> Si me falta algo, te escribo o te propongo una llamada corta.</li>
+          <li><strong>Presupuesto cerrado.</strong> Alcance, plazo y precio fijo por escrito.</li>
+          <li><strong>Resumen en tu correo.</strong> Te he enviado una copia de lo que me has contado.</li>
+        </ol>
+      </div>
+
+      <div class="cta gracias__cta">
         <a class="btn primary" href="/">Volver al inicio</a>
         <a class="btn ghost" href="https://wa.me/34638091795">WhatsApp</a>
       </div>
@@ -32,9 +73,22 @@
   </section>
 </main>
 
+<script>
+  // Muestra el mensaje según ?servicio= (auditoria, solicitud o briefing)
+  (() => {
+    const tipo = new URLSearchParams(location.search).get("servicio");
+    const bloque = tipo && document.querySelector(`[data-gracias="${CSS.escape(tipo)}"]`);
+    if (!bloque) return;
+    document.querySelector('[data-gracias="contacto"]').hidden = true;
+    bloque.hidden = false;
+    document.title = `${bloque.querySelector("h1").textContent} | hugocalvo.dev`;
+  })();
+</script>
+
 <footer>
   <div class="wrap row">
     <span>© 2026 Hugo Calvo García · Madrid</span>
+    <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></span>
   </div>
 </footer>
 

@@ -490,16 +490,6 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
   });
 });
 
-document.querySelectorAll(".contact-form").forEach((form) => {
-  form.addEventListener("submit", () => {
-    const submitButton = form.querySelector("button[type='submit']");
-    if (!submitButton) return;
-    const label = submitButton.querySelector("span") || submitButton;
-    label.textContent = isEnglish ? "Sending..." : "Enviando...";
-    submitButton.setAttribute("aria-busy", "true");
-  });
-});
-
 document.querySelectorAll("[data-current-year]").forEach((item) => {
   item.textContent = new Date().getFullYear();
 });
