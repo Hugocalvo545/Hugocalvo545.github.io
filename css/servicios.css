@@ -1,0 +1,250 @@
+/* hugocalvo.dev · zona de servicios: catálogo, panel de detalle, precios de mercado y formularios.
+   Solo usa las variables de css/home.css. Mobile-first, breakpoints 760px y 1080px. */
+
+/* ---------- niveles de contratación ---------- */
+.niveles {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 22px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.niveles li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.nivel {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+.nivel[data-nivel="pago-directo"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.nivel[data-nivel="solicitar"] { border-color: var(--accent); color: var(--accent); background: transparent; }
+
+/* ---------- tarjetas del catálogo ---------- */
+.servicios-lista { margin-top: 26px; }
+.servicios-cargando { color: var(--muted); font-family: var(--mono); font-size: 14px; }
+.svc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.svc:hover { transform: translateY(-2px); border-color: var(--accent); }
+.svc__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+.svc__top .icon { margin-bottom: 0; }
+.svc__flags { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: flex-start; gap: 6px; }
+.svc__tag {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: var(--surface-2);
+  color: var(--accent);
+  white-space: nowrap;
+}
+.svc h3 { font-size: 18px; }
+.svc .price { margin-top: auto; }
+.svc__body { flex: 1; }
+.svc__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+}
+/* Toda la tarjeta abre el panel, pero el único elemento enfocable es el botón */
+.svc__more::after { content: ""; position: absolute; inset: 0; border-radius: 14px; }
+.svc__more:focus-visible { outline: none; }
+.svc:has(.svc__more:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- panel de detalle (dialog) ---------- */
+body:has(dialog.sd[open]) { overflow: hidden; }
+.sd {
+  /* En móvil ocupa toda la pantalla; en escritorio, ventana centrada */
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+.sd[open] { display: flex; flex-direction: column; }
+.sd::backdrop { background: rgba(8, 10, 14, 0.85); backdrop-filter: blur(4px); }
+.sd__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 6px 12px;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.sd__nivel { grid-column: 1; }
+.sd__title { grid-column: 1; margin: 0; font-size: clamp(20px, 5vw, 26px); }
+.sd__close {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-height: 44px;
+  padding: 8px 14px;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 14px;
+  cursor: pointer;
+}
+.sd__close:hover { border-color: var(--accent); }
+.sd__body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 16px calc(24px + env(safe-area-inset-bottom));
+}
+.sd__body > * + * { margin-top: 22px; }
+.sd section { padding: 0; border: 0; }
+.sd__resumen { color: var(--muted); font-size: 16px; }
+.sd h3 {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+/* Paquetes: tarjetas; si hay varios, son radios para elegir plan */
+.sd__paquetes { border: 0; min-width: 0; }
+.sd__paquetes legend { padding: 0; }
+.pkgs { display: grid; gap: 10px; }
+.pkg {
+  position: relative;
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 15px;
+}
+label.pkg { cursor: pointer; }
+.pkg input { position: absolute; opacity: 0; pointer-events: none; }
+.pkg:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.pkg:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pkg__head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.pkg__name { font-family: var(--display); font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.pkg__check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+.pkg:has(input:checked) .pkg__check { border-color: var(--accent); }
+.pkg:has(input:checked) .pkg__check::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.pkg__price { font-family: var(--mono); font-size: 15px; }
+.pkg__price b { font-weight: 500; font-size: 17px; }
+.pkg ul { margin-top: 8px; padding-left: 18px; color: var(--muted); }
+.pkg li + li { margin-top: 2px; }
+
+.sd__lista { list-style: none; display: grid; gap: 8px; font-size: 15px; }
+.sd__lista li { position: relative; padding-left: 26px; color: var(--muted); }
+.sd__lista li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  text-align: center;
+  font-family: var(--mono);
+  font-weight: 500;
+}
+.sd__lista--si li::before { content: "✓"; color: var(--accent); }
+.sd__lista--no li::before { content: "×"; color: var(--muted); }
+.sd__lista--info li::before { content: "·"; color: var(--accent); }
+
+.sd__datos { display: grid; gap: 10px; }
+.sd__dato { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.sd__dato dt { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+.sd__dato dd { font-size: 15px; color: var(--text); margin-top: 2px; }
+.sd__nota {
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  background: var(--surface);
+  border-radius: 0 10px 10px 0;
+  font-size: 15px;
+}
+
+/* Bloque de acción al final del panel */
+.sd__accion {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.sd__accion p { color: var(--muted); font-size: 15px; }
+.sd__accion .btn { width: 100%; border: 0; cursor: pointer; font-size: 16px; }
+.sd__accion .btn.ghost { border: 1px solid var(--line); }
+.sd__iva { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.sd__iva b { color: var(--text); font-weight: 500; }
+.sd__aviso { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+/* ---------- ≥760px ---------- */
+@media (min-width: 760px) {
+  .sd {
+    width: min(760px, calc(100vw - 48px));
+    height: auto;
+    max-height: min(88vh, 920px);
+    margin: auto;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .sd__head { padding: 20px 24px 16px; }
+  .sd__body { padding: 22px 24px 28px; }
+  .pkgs.n2 { grid-template-columns: 1fr 1fr; }
+  .pkgs.n3 { grid-template-columns: repeat(3, 1fr); }
+  .pkgs .pkg__head { flex-direction: column; gap: 2px; }
+  .sd__datos { grid-template-columns: 1fr 1fr; }
+  .sd__accion { grid-template-columns: 1fr auto; align-items: center; }
+  .sd__accion .btn { width: auto; }
+  .sd__accion > :not(.btn):not(.sd__botones) { grid-column: 1; }
+  .sd__botones { grid-column: 2; grid-row: 1 / span 3; display: grid; gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc { transition: none; }
+  .svc:hover { transform: none; }
+}
+
+/* El catálogo pasa a 2 columnas en tablet y a 3 en escritorio */
+@media (min-width: 760px) {
+  .grid.three.servicios-lista { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1080px) {
+  .grid.three.servicios-lista { grid-template-columns: repeat(3, 1fr); }
+}

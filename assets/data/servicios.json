@@ -1,0 +1,353 @@
+{
+  "_nota": "Único sitio con los datos de servicios: precios (sin IVA), paquetes, condiciones y enlaces. Lo leen js/servicios.js y gracias.html. Los ids de servicio y de paquete los valida también servidor/lib/catalogo.js: si añades o renombras uno, cámbialo allí.",
+  "actualizado": "2026-10-28",
+  "iva": 21,
+  "niveles": {
+    "pago-directo": {
+      "etiqueta": "Pago directo",
+      "descripcion": "Pagas con tarjeta en Stripe y arrancamos. Recibes la factura con el IVA desglosado."
+    },
+    "solicitar": {
+      "etiqueta": "Solicitar y luego pagar",
+      "descripcion": "Me cuentas tu caso, lo reviso y, si encaja, te envío el enlace de pago. Si no encaja, te lo digo y no pagas nada."
+    },
+    "presupuesto": {
+      "etiqueta": "Briefing y presupuesto",
+      "descripcion": "Rellenas un briefing por pasos y te envío un presupuesto cerrado por escrito."
+    }
+  },
+  "formularios": {
+    "_nota": "activos: false hasta publicar la política de privacidad. Mientras tanto los botones llevan al formulario de contacto. En localhost se pueden probar igualmente.",
+    "activos": false,
+    "endpoint": "https://api.hugocalvo.dev/api",
+    "turnstile_sitekey": "",
+    "privacidad_url": "privacidad.html"
+  },
+  "mercado": {
+    "titulo": "¿Por qué estos precios?",
+    "texto": [
+      "Mis precios están por debajo de la media del mercado a propósito. Estoy construyendo mi cartera de clientes y prefiero empezar con precios ajustados a esperar a tener diez casos publicados.",
+      "No es porque el trabajo valga menos: aplico el mismo método que uso en mis propios productos. La prueba es Gestolio, mi app para autónomos, que hoy aparece como fuente en respuestas de la IA de Google y de Perplexity.",
+      "Eso no significa que pueda prometerte resultados. Las respuestas de las IA cambian y cada sector es distinto. Lo que sí te garantizo es el trabajo que describe cada servicio, hecho con cuidado y medido con datos."
+    ],
+    "nota": "Rangos orientativos del mercado español, consultados en octubre de 2026."
+  },
+  "servicios": [
+    {
+      "id": "auditoria-ia",
+      "nombre": "Auditoría de visibilidad en IA",
+      "nivel": "pago-directo",
+      "icono": "lupa",
+      "destacado": "Para empezar",
+      "nota_tarjeta": "Pago único",
+      "resumen": "Mido cómo te ven hoy ChatGPT, la IA de Google y Perplexity, quién se lleva las citas en tu sector y qué cambiar primero.",
+      "paquetes": [
+        {
+          "id": "auditoria",
+          "nombre": "Auditoría completa",
+          "precio": 349,
+          "unidad": "pago único",
+          "detalle": ["50 preguntas medidas en 3 IA", "Plan de acción a 90 días", "Videollamada de 45 minutos"]
+        }
+      ],
+      "incluye": [
+        "50 preguntas agrupadas por intención (informativas, comparativas y de compra), medidas en ChatGPT, la IA de Google y Perplexity.",
+        "Los 5 competidores más citados y qué páginas suyas les dan las citas.",
+        "Revisión técnica: acceso de los bots de IA, datos estructurados, velocidad y contenido citable.",
+        "Plan de acción a 90 días con 15 a 20 recomendaciones priorizadas.",
+        "5 ideas de artículos, cada una con su título y la pregunta a la que responde.",
+        "Videollamada de 45 minutos para repasar el informe."
+      ],
+      "no_incluye": [
+        "Aplicar los cambios en tu web o escribir los artículos.",
+        "Garantía de aparecer en respuestas de IA ni de mejorar posiciones."
+      ],
+      "limites": [
+        "Una web y un mercado por auditoría.",
+        "50 preguntas en total, repartidas entre las 3 IA."
+      ],
+      "plazo": "5 días laborables desde que recibo los datos.",
+      "forma_pago": "Pago único por adelantado con tarjeta en Stripe. Recibes la factura con el IVA desglosado.",
+      "notas": [
+        "Si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, te descuento los 349 €."
+      ],
+      "pago": {
+        "payment_link": "",
+        "boton": "Pagar la auditoría"
+      },
+      "mercado": {
+        "concepto": "Auditoría GEO",
+        "mio": "349 €",
+        "rango": "1.000 a 2.500 €",
+        "min": 1000,
+        "max": 2500,
+        "valor": 349,
+        "fuente": "GEO Toolbox",
+        "url": "https://geotoolbox.ai/es/blog/agencia-geo"
+      }
+    },
+    {
+      "id": "visibilidad-ia",
+      "nombre": "Visibilidad en IA mensual",
+      "nivel": "solicitar",
+      "icono": "chispa",
+      "nota_tarjeta": "Mínimo 3 meses",
+      "resumen": "Artículos optimizados para buscadores y para IA, medición mensual de preguntas y un informe claro de cómo evoluciona tu presencia.",
+      "paquetes": [
+        {
+          "id": "esencial",
+          "nombre": "Esencial",
+          "precio": 297,
+          "unidad": "/mes",
+          "detalle": ["2 artículos optimizados al mes", "20 preguntas medidas al mes", "Informe mensual"]
+        },
+        {
+          "id": "pro",
+          "nombre": "Pro",
+          "precio": 497,
+          "unidad": "/mes",
+          "detalle": ["4 artículos optimizados al mes", "30 preguntas medidas al mes", "Ajustes técnicos: datos estructurados y preguntas frecuentes", "Informe mensual y llamada de 30 minutos"]
+        },
+        {
+          "id": "avanzado",
+          "nombre": "Avanzado",
+          "precio": 797,
+          "unidad": "/mes",
+          "detalle": ["8 artículos optimizados al mes", "40 preguntas medidas al mes", "Todo lo del Pro", "Análisis trimestral de competencia", "Llamada cada 15 días"]
+        }
+      ],
+      "incluye": [
+        "Artículos optimizados para buscadores y para IA, según el plan.",
+        "Medición mensual de las preguntas acordadas en ChatGPT, la IA de Google y Perplexity.",
+        "Informe mensual con lo publicado, lo medido y los siguientes pasos."
+      ],
+      "no_incluye": [
+        "Rediseños ni cambios de desarrollo en tu web fuera de los ajustes técnicos del plan Pro y Avanzado.",
+        "Garantía de aparecer en respuestas de IA ni de mejorar posiciones."
+      ],
+      "limites": [
+        "Permanencia mínima de 3 meses. Después, se cancela mes a mes.",
+        "Los artículos y preguntas que no se usan en un mes no se acumulan."
+      ],
+      "plazo": "Arrancamos cuando reviso tu caso, confirmo que encaja y recibo el pago del primer mes.",
+      "forma_pago": "Mensual por adelantado. Te envío el enlace de pago cuando confirmo que tu caso encaja.",
+      "notas": [
+        "Si antes has hecho la auditoría, te descuento los 349 € si contratas en los 30 días siguientes a la entrega."
+      ],
+      "mercado": {
+        "concepto": "GEO mensual",
+        "mio": "297 a 797 €/mes",
+        "rango": "unos 299 €/mes (perfiles boutique) a 1.500 €/mes (agencias consolidadas)",
+        "min": 299,
+        "max": 1500,
+        "valor": 297,
+        "fuente": "GEO Toolbox",
+        "url": "https://geotoolbox.ai/es/blog/agencia-geo"
+      }
+    },
+    {
+      "id": "webs",
+      "nombre": "Webs y landings",
+      "nivel": "presupuesto",
+      "icono": "pantalla",
+      "nota_tarjeta": "De 2 a 4 semanas",
+      "resumen": "Web rápida, adaptada al móvil y preparada para captar clientes. Diseño, textos base, formulario, dominio y hosting del primer año incluidos.",
+      "paquetes": [
+        {
+          "id": "landing",
+          "nombre": "Landing",
+          "precio": 690,
+          "unidad": "",
+          "detalle": ["1 página"]
+        },
+        {
+          "id": "corporativa",
+          "nombre": "Web corporativa",
+          "precio": 1490,
+          "unidad": "",
+          "detalle": ["Hasta 5 páginas"]
+        },
+        {
+          "id": "completa",
+          "nombre": "Web completa",
+          "precio": 2490,
+          "unidad": "",
+          "detalle": ["Hasta 10 páginas", "Con blog o en dos idiomas"]
+        }
+      ],
+      "incluye": [
+        "Diseño a medida.",
+        "Textos base.",
+        "Formulario de contacto.",
+        "SEO técnico.",
+        "Dominio y hosting el primer año.",
+        "2 rondas de cambios."
+      ],
+      "no_incluye": [
+        "Tienda online.",
+        "Fotos profesionales.",
+        "Rondas de cambios extra (40 €/h)."
+      ],
+      "limites": [
+        "Número de páginas según el paquete.",
+        "La renovación de dominio y hosting a partir del segundo año va aparte."
+      ],
+      "plazo": "De 2 a 4 semanas desde que recibo los contenidos.",
+      "forma_pago": "50 % al empezar y 50 % al entregar.",
+      "notas": [],
+      "mercado": {
+        "concepto": "Landing y web corporativa",
+        "mio": "Landing 690 €, corporativa 1.490 €",
+        "rango": "landing freelance de 500 a 1.000 €; web corporativa de 5 páginas de 1.500 a 5.000 €",
+        "min": 1500,
+        "max": 5000,
+        "valor": 1490,
+        "fuente": "Método Viral",
+        "url": "https://metodoviral.com/es/blog/desarrollo-de-sitios-web/cuanto-cobra-un-profesional-independiente-por-crear-un-sitio-web-en-2026/"
+      }
+    },
+    {
+      "id": "apps",
+      "nombre": "Apps y plataformas a medida",
+      "nivel": "presupuesto",
+      "icono": "app",
+      "nota_tarjeta": "Pago por hitos",
+      "resumen": "Reservas, paneles de gestión, pagos con Stripe o áreas de cliente. Del diseño al despliegue, con alcance y precio cerrados por escrito.",
+      "paquetes": [
+        {
+          "id": "a-medida",
+          "nombre": "Proyecto a medida",
+          "precio": 4000,
+          "desde": true,
+          "unidad": "",
+          "detalle": ["Alcance, plazo y precio cerrados en la propuesta"]
+        }
+      ],
+      "incluye": [
+        "Análisis y propuesta cerrada por escrito.",
+        "Diseño, desarrollo y despliegue.",
+        "30 días de garantía de corrección de errores desde la entrega."
+      ],
+      "no_incluye": [
+        "Funcionalidades fuera del alcance firmado: se presupuestan aparte.",
+        "Mantenimiento después de la garantía: se contrata aparte."
+      ],
+      "limites": [
+        "El alcance es el que figura en la propuesta aceptada."
+      ],
+      "plazo": "Según el alcance. Se planifica por fases en la propuesta.",
+      "forma_pago": "Por hitos: 40 % al empezar, 30 % a mitad y 30 % al entregar.",
+      "notas": [],
+      "mercado": null
+    },
+    {
+      "id": "automatizaciones",
+      "nombre": "Automatizaciones con IA",
+      "nivel": "presupuesto",
+      "icono": "engranaje",
+      "nota_tarjeta": "Horas o bolsas",
+      "resumen": "Conecto tus herramientas y meto IA donde ahorra horas: respuestas, informes, clasificación de correos o generación de contenido.",
+      "paquetes": [
+        {
+          "id": "hora",
+          "nombre": "Por horas",
+          "precio": 50,
+          "unidad": "/h",
+          "detalle": ["Para tareas pequeñas y puntuales"]
+        },
+        {
+          "id": "bolsa-10",
+          "nombre": "Bolsa de 10 h",
+          "precio": 450,
+          "unidad": "",
+          "detalle": ["Sale a 45 €/h", "Caduca a los 6 meses"]
+        },
+        {
+          "id": "bolsa-20",
+          "nombre": "Bolsa de 20 h",
+          "precio": 850,
+          "unidad": "",
+          "detalle": ["Sale a 42,50 €/h", "Caduca a los 6 meses"]
+        }
+      ],
+      "incluye": [
+        "Definición por escrito de qué se va a automatizar antes de empezar.",
+        "Desarrollo, pruebas y puesta en marcha de la automatización.",
+        "Explicación de cómo funciona y cómo revisarla."
+      ],
+      "no_incluye": [
+        "El coste de las herramientas o servicios de terceros (por ejemplo, el consumo de la API de IA).",
+        "Trabajo fuera de lo definido por escrito: se descuenta de la bolsa o se factura por horas."
+      ],
+      "limites": [
+        "Las bolsas de horas caducan a los 6 meses de la compra.",
+        "Antes de vender una bolsa definimos por escrito qué se va a automatizar."
+      ],
+      "plazo": "Lo fijamos en la definición por escrito, según la automatización.",
+      "forma_pago": "Las bolsas, por adelantado. Las horas sueltas, al entregar.",
+      "notas": [],
+      "mercado": {
+        "concepto": "Freelance de IA",
+        "mio": "50 €/h (bolsas desde 42,50 €/h)",
+        "rango": "40 a 60 €/h perfil junior; 60 a 100 €/h perfil mid",
+        "min": 40,
+        "max": 100,
+        "valor": 50,
+        "fuente": "Javadex",
+        "url": "https://www.javadex.es/blog/cuanto-cobra-consultor-freelance-ia-espana-tarifas-honorarios-2026"
+      }
+    },
+    {
+      "id": "mantenimiento",
+      "nombre": "Mantenimiento, hosting y SEO técnico",
+      "nivel": "solicitar",
+      "icono": "escudo",
+      "nota_tarjeta": "Sin permanencia",
+      "resumen": "Tu web actualizada, con copias de seguridad, vigilancia de caídas y un técnico al que escribir cuando algo falla.",
+      "paquetes": [
+        {
+          "id": "basico",
+          "nombre": "Básico",
+          "precio": 60,
+          "unidad": "/mes",
+          "detalle": ["Hosting", "Actualizaciones", "Copias de seguridad semanales", "Vigilancia de caídas", "1 hora de cambios al mes"]
+        },
+        {
+          "id": "pro",
+          "nombre": "Pro",
+          "precio": 120,
+          "unidad": "/mes",
+          "detalle": ["Todo lo del Básico", "3 horas de cambios al mes", "Revisión mensual de SEO técnico", "Informe mensual"]
+        }
+      ],
+      "incluye": [
+        "Hosting y actualizaciones.",
+        "Copias de seguridad semanales.",
+        "Vigilancia de caídas.",
+        "Horas de cambios al mes según el plan."
+      ],
+      "no_incluye": [
+        "Rediseños.",
+        "Contenido nuevo."
+      ],
+      "limites": [
+        "Sin permanencia: se cancela mes a mes.",
+        "Las horas de cambios que no se usan en un mes no se acumulan.",
+        "Antes de aceptar reviso tu web para confirmar que puedo mantenerla."
+      ],
+      "plazo": "Arrancamos cuando reviso tu web, confirmo que encaja y recibo el pago del primer mes.",
+      "forma_pago": "Mensual por adelantado. Te envío el enlace de pago cuando reviso tu web.",
+      "notas": [],
+      "mercado": {
+        "concepto": "Mantenimiento de una web sencilla",
+        "mio": "60 a 120 €/mes",
+        "rango": "50 a 150 €/mes",
+        "min": 50,
+        "max": 150,
+        "valor": 60,
+        "fuente": "GoDaddy",
+        "url": "https://www.godaddy.com/resources/es/crearweb/cuanto-cuesta-mantenimiento-pagina-web"
+      }
+    }
+  ]
+}
