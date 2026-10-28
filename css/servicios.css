@@ -281,3 +281,38 @@ label.pkg { cursor: pointer; }
 @media (min-width: 760px) {
   .precios { grid-template-columns: 5fr 7fr; gap: 40px; align-items: start; }
 }
+
+/* ---------- gracias.html ---------- */
+.gracias { border-top: 0; min-height: 60vh; display: grid; align-items: center; }
+.gracias__wrap { max-width: 640px; text-align: center; }
+.gracias h1 { font-size: clamp(28px, 5vw, 40px); margin-top: 14px; }
+.gracias .lead { margin: 18px auto 0; }
+.gracias__pasos {
+  list-style: none;
+  counter-reset: g;
+  display: grid;
+  gap: 10px;
+  margin-top: 26px;
+  text-align: left;
+}
+.gracias__pasos li {
+  counter-increment: g;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px 14px 52px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.gracias__pasos li::before {
+  content: counter(g, decimal-leading-zero);
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 14px;
+}
+.gracias__pasos strong { color: var(--text); font-weight: 500; }
+.gracias__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
