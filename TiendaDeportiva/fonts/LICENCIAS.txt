@@ -1,0 +1,8 @@
+Fuentes servidas desde este dominio (antes se cargaban de Google Fonts):
+
+- Montserrat-latin.woff2: Montserrat, de The Montserrat Project Authors. SIL Open Font License 1.1.
+  https://github.com/JulietaUla/Montserrat
+- Roboto-latin.woff2: Roboto, de The Roboto Project Authors. SIL Open Font License 1.1.
+  https://github.com/googlefonts/roboto-3-classic
+
+Texto de la licencia: https://openfontlicense.org

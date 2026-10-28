@@ -1,190 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FENELS — Primer drop. Objetivo: 300 reservas.</title>
-  <meta name="description" content="FENELS. Streetwear de calle. Primer drop: camiseta negra oversize. Objetivo: 300 reservas — si llegamos, se fabrica. Apúntate gratis y te avisamos.">
-  <meta property="og:title" content="FENELS — Primer drop. Objetivo: 300 reservas.">
-  <meta property="og:description" content="Reserva gratis tu aviso. Si llegamos a 300, se fabrica el drop. Los 50 primeros tendrán acceso prioritario.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0a0a0a">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenels se ha mudado</title>
+    <!-- GitHub Pages no admite redirecciones de servidor: redirección en el navegador -->
+    <meta http-equiv="refresh" content="0; url=https://fenels.vercel.app/">
+    <link rel="canonical" href="https://fenels.vercel.app/">
+    <meta name="robots" content="noindex">
+    <style>
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0e1117; color: #f3f4f6; font-family: system-ui, sans-serif; text-align: center; padding: 20px; }
+        a { color: #3ddc97; }
+    </style>
 </head>
 <body>
-
-  <!-- ============ HERO ============ -->
-  <header class="hero" id="top">
-    <div class="hero-inner">
-
-      <p class="hero-tag">DROP 001 · MUY PRONTO</p>
-
-      <h1 class="logo" aria-label="FENELS">
-        <span class="logo-text">FENELS</span>
-        <span class="sparkle sparkle-1" aria-hidden="true">✦</span>
-        <span class="sparkle sparkle-2" aria-hidden="true">✦</span>
-        <span class="sparkle sparkle-3" aria-hidden="true">✧</span>
-        <svg class="logo-underline" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M6 14 C 60 6, 120 20, 170 12 S 270 8, 294 13" fill="none" stroke="#f5b520" stroke-width="7" stroke-linecap="round"/>
-        </svg>
-      </h1>
-
-      <p class="hero-claim">Primer drop. <strong>Objetivo: 300 reservas.</strong><br>Si llegamos, se fabrica. Si no estás en la lista, te lo pierdes.</p>
-
-      <!-- Formulario de reserva -->
-      <form id="waitlist-form" class="form" novalidate>
-        <div class="form-row">
-          <label class="visually-hidden" for="f-nombre">Nombre</label>
-          <input type="text" id="f-nombre" name="nombre" placeholder="Tu nombre (opcional)" autocomplete="name" maxlength="80">
-        </div>
-
-        <div class="form-row">
-          <label class="visually-hidden" for="f-email">Email</label>
-          <input type="email" id="f-email" name="email" placeholder="tu@email.com *" autocomplete="email" required maxlength="120">
-        </div>
-
-        <div class="form-row">
-          <label class="visually-hidden" for="f-talla">Talla que te interesa</label>
-          <select id="f-talla" name="talla">
-            <option value="">Talla que te interesa (opcional)</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
-        </div>
-
-        <!-- Honeypot anti-spam: oculto para humanos -->
-        <div class="hp-field" aria-hidden="true">
-          <label for="f-web">Deja este campo vacío</label>
-          <input type="text" id="f-web" name="web" tabindex="-1" autocomplete="off">
-        </div>
-
-        <label class="check-row">
-          <input type="checkbox" id="f-consent" name="consent" required>
-          <span>Acepto recibir un aviso por email cuando salga el drop. *</span>
-        </label>
-
-        <button type="submit" class="btn" id="submit-btn">
-          APÚNTAME A LA LISTA
-        </button>
-
-        <p class="form-error" id="form-error" role="alert" hidden></p>
-
-        <p class="priority-note">⚡ Los 50 primeros tendrán acceso prioritario.</p>
-
-        <p class="legal">
-          Reservar es gratis y no te obliga a nada. Tus datos solo se usan para avisarte
-          del drop. Puedes pedir que los borremos por DM en
-          <a href="https://instagram.com/fenels_oficial" target="_blank" rel="noopener">@fenels_oficial</a>.
-        </p>
-      </form>
-
-      <!-- Mensaje de éxito (oculto hasta enviar) -->
-      <div class="success" id="success-box" hidden>
-        <p class="success-title">¡ESTÁS DENTRO! <span aria-hidden="true">✦</span></p>
-        <p class="success-text">Te avisamos por email en cuanto caiga el drop.<br>Mientras tanto, corre la voz.</p>
-      </div>
-
-      <a class="scroll-hint" href="#camiseta" aria-label="Bajar para ver la camiseta">▼</a>
-    </div>
-  </header>
-
-  <!-- ============ LA CAMISETA ============ -->
-  <section class="section" id="camiseta">
-    <h2 class="section-title reveal">LA CAMISETA</h2>
-    <p class="section-sub reveal">Negra. Oversize. Sin tonterías.</p>
-
-    <div class="gallery reveal">
-      <figure class="shot shot-main">
-        <img src="img/fenels-conjunto.jpg" alt="Camiseta FENELS negra oversize: delantera con logo pequeño en el pecho y trasera con print grande en spray" loading="lazy">
-        <figcaption>Delante logo pequeño · detrás print a lo grande</figcaption>
-      </figure>
-    </div>
-
-    <ul class="specs reveal">
-      <li><span class="spec-k">Corte</span> Oversize de verdad, caída ancha</li>
-      <li><span class="spec-k">Color</span> Negro profundo</li>
-      <li><span class="spec-k">Print</span> Pequeño delante · grande en la espalda</li>
-      <li><span class="spec-k">Estilo</span> Lettering spray blanco con goteo, subrayado amarillo y destellos dorados</li>
-    </ul>
-
-    <p class="price-note reveal">PVP estimado: 25–30&nbsp;€ · lo confirmamos en el drop</p>
-  </section>
-
-  <!-- ============ CÓMO FUNCIONA ============ -->
-  <section class="section section-alt" id="como-funciona">
-    <h2 class="section-title reveal">CÓMO FUNCIONA</h2>
-    <p class="section-sub reveal">Cero compromiso. Cero pagos ahora.</p>
-
-    <ol class="steps">
-      <li class="step reveal">
-        <span class="step-num">01</span>
-        <h3>Reserva gratis</h3>
-        <p>Dejas tu email y listo. No cuesta nada y no te obliga a nada.</p>
-      </li>
-      <li class="step reveal">
-        <span class="step-num">02</span>
-        <h3>Si somos 300, fabricamos</h3>
-        <p>Cuando la lista llegue a 300 reservas, el drop se manda a fabricar.</p>
-      </li>
-      <li class="step reveal">
-        <span class="step-num">03</span>
-        <h3>Te avisamos y tú decides</h3>
-        <p>Te llega un email y compras si quieres. Si no, no pasa nada. Sin letra pequeña.</p>
-      </li>
-    </ol>
-  </section>
-
-  <!-- ============ ESCASEZ ============ -->
-  <section class="section" id="lista">
-    <div class="scarcity reveal">
-
-      <!-- Progreso hacia el objetivo: solo se enseña con suficientes reservas
-           reales (CONFIG.REVEAL_COUNT_AT). Nunca se muestran cifras inventadas. -->
-      <div id="progress-block" hidden>
-        <p class="counter-line">
-          <span class="counter" id="counter" aria-live="polite">0</span>
-          <span class="counter-label">reservas de 300</span>
-        </p>
-        <div class="progress" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="300" aria-valuenow="0" aria-label="Progreso hacia las 300 reservas">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <p class="scarcity-note">Objetivo: <strong class="units">300 reservas</strong>.<br>Si llegamos, se fabrica el drop.</p>
-      </div>
-
-      <!-- Acceso prioritario: lo que se ve por debajo del umbral o si el endpoint falla -->
-      <div id="priority-block">
-        <p class="priority-title">SÉ DE LOS PRIMEROS <span aria-hidden="true">⚡</span></p>
-        <p class="scarcity-note">Los <strong class="units">50 primeros</strong> de la lista tendrán acceso prioritario al drop.<br>Objetivo: 300 reservas — si llegamos, se fabrica.</p>
-      </div>
-
-      <a href="#top" class="btn btn-ghost">QUIERO MI AVISO</a>
-    </div>
-  </section>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <p class="footer-logo">FENELS</p>
-    <nav class="socials" aria-label="Redes sociales">
-      <a href="https://instagram.com/fenels_oficial" target="_blank" rel="noopener" aria-label="@fenels_oficial en Instagram">@fenels_oficial</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://whatsapp.com/channel/0029VbCqZ8SAO7RN9q1nyb1I" target="_blank" rel="noopener">Canal de WhatsApp</a>
-    </nav>
-    <p class="footer-legal">
-      Tus datos solo se usan para avisarte del drop. Nada de spam.
-      Puedes pedir que los borremos por DM en
-      <a href="https://instagram.com/fenels_oficial" target="_blank" rel="noopener">@fenels_oficial</a>.
-    </p>
-    <p class="footer-copy">© 2026 FENELS. Hecho en la calle.</p>
-  </footer>
-
-  <script src="js/main.js" defer></script>
+    <main>
+        <h1>Fenels se ha mudado</h1>
+        <p>Ahora está en <a href="https://fenels.vercel.app/">fenels.vercel.app</a>.</p>
+    </main>
 </body>
 </html>
