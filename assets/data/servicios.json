@@ -26,11 +26,12 @@
   "mercado": {
     "titulo": "¿Por qué estos precios?",
     "texto": [
-      "Mis precios están por debajo de la media del mercado a propósito. Estoy construyendo mi cartera de clientes y prefiero empezar con precios ajustados a esperar a tener diez casos publicados.",
-      "No es porque el trabajo valga menos: aplico el mismo método que uso en mis propios productos. La prueba es Gestolio, mi app para autónomos, que hoy aparece como fuente en respuestas de la IA de Google y de Perplexity.",
-      "Eso no significa que pueda prometerte resultados. Las respuestas de las IA cambian y cada sector es distinto. Lo que sí te garantizo es el trabajo que describe cada servicio, hecho con cuidado y medido con datos."
+      "Estoy por debajo de la media del mercado a propósito: estoy construyendo mi cartera de clientes. No es porque el trabajo valga menos.",
+      "Aplico el mismo método que uso en mis propios productos. La prueba es Gestolio, mi app para autónomos, que hoy aparece citada por la IA de Google y por Perplexity.",
+      "Eso no significa que pueda prometerte resultados: las respuestas de las IA cambian y cada sector es distinto. Lo que sí te aseguro es el trabajo que describe cada servicio, hecho con cuidado y medido con datos."
     ],
-    "nota": "Rangos orientativos del mercado español, consultados en octubre de 2026."
+    "nota": "Rangos orientativos del mercado español, consultados en octubre de 2026.",
+    "sin_rango": "Las apps y plataformas a medida no aparecen porque cada proyecto es distinto y no hay un rango comparable fiable."
   },
   "servicios": [
     {
@@ -75,16 +76,9 @@
         "payment_link": "",
         "boton": "Pagar la auditoría"
       },
-      "mercado": {
-        "concepto": "Auditoría GEO",
-        "mio": "349 €",
-        "rango": "1.000 a 2.500 €",
-        "min": 1000,
-        "max": 2500,
-        "valor": 349,
-        "fuente": "GEO Toolbox",
-        "url": "https://geotoolbox.ai/es/blog/agencia-geo"
-      }
+      "mercado": [
+        {"concepto": "Auditoría GEO", "mio": [349, 349], "mercado": [1000, 2500], "unidad": "", "rango": "de 1.000 a 2.500 €", "fuente": "geotoolbox.ai", "url": "https://geotoolbox.ai/es/blog/agencia-geo"}
+      ]
     },
     {
       "id": "visibilidad-ia",
@@ -134,16 +128,9 @@
       "notas": [
         "Si antes has hecho la auditoría, te descuento los 349 € si contratas en los 30 días siguientes a la entrega."
       ],
-      "mercado": {
-        "concepto": "GEO mensual",
-        "mio": "297 a 797 €/mes",
-        "rango": "unos 299 €/mes (perfiles boutique) a 1.500 €/mes (agencias consolidadas)",
-        "min": 299,
-        "max": 1500,
-        "valor": 297,
-        "fuente": "GEO Toolbox",
-        "url": "https://geotoolbox.ai/es/blog/agencia-geo"
-      }
+      "mercado": [
+        {"concepto": "GEO mensual", "mio": [297, 797], "mercado": [299, 1500], "unidad": "/mes", "rango": "de unos 299 €/mes en perfiles boutique a 1.500 €/mes en agencias consolidadas", "fuente": "geotoolbox.ai", "url": "https://geotoolbox.ai/es/blog/agencia-geo"}
+      ]
     },
     {
       "id": "webs",
@@ -195,16 +182,10 @@
       "plazo": "De 2 a 4 semanas desde que recibo los contenidos.",
       "forma_pago": "50 % al empezar y 50 % al entregar.",
       "notas": [],
-      "mercado": {
-        "concepto": "Landing y web corporativa",
-        "mio": "Landing 690 €, corporativa 1.490 €",
-        "rango": "landing freelance de 500 a 1.000 €; web corporativa de 5 páginas de 1.500 a 5.000 €",
-        "min": 1500,
-        "max": 5000,
-        "valor": 1490,
-        "fuente": "Método Viral",
-        "url": "https://metodoviral.com/es/blog/desarrollo-de-sitios-web/cuanto-cobra-un-profesional-independiente-por-crear-un-sitio-web-en-2026/"
-      }
+      "mercado": [
+        {"concepto": "Landing", "mio": [690, 690], "mercado": [500, 1000], "unidad": "", "rango": "de 500 a 1.000 € con un freelance", "fuente": "metodoviral.com", "url": "https://metodoviral.com/es/blog/desarrollo-de-sitios-web/cuanto-cobra-un-profesional-independiente-por-crear-un-sitio-web-en-2026/"},
+        {"concepto": "Web corporativa de 5 páginas", "mio": [1490, 1490], "mercado": [1500, 5000], "unidad": "", "rango": "de 1.500 a 5.000 €", "fuente": "metodoviral.com", "url": "https://metodoviral.com/es/blog/desarrollo-de-sitios-web/cuanto-cobra-un-profesional-independiente-por-crear-un-sitio-web-en-2026/"}
+      ]
     },
     {
       "id": "apps",
@@ -238,7 +219,7 @@
       "plazo": "Según el alcance. Se planifica por fases en la propuesta.",
       "forma_pago": "Por hitos: 40 % al empezar, 30 % a mitad y 30 % al entregar.",
       "notas": [],
-      "mercado": null
+      "mercado": []
     },
     {
       "id": "automatizaciones",
@@ -286,16 +267,9 @@
       "plazo": "Lo fijamos en la definición por escrito, según la automatización.",
       "forma_pago": "Las bolsas, por adelantado. Las horas sueltas, al entregar.",
       "notas": [],
-      "mercado": {
-        "concepto": "Freelance de IA",
-        "mio": "50 €/h (bolsas desde 42,50 €/h)",
-        "rango": "40 a 60 €/h perfil junior; 60 a 100 €/h perfil mid",
-        "min": 40,
-        "max": 100,
-        "valor": 50,
-        "fuente": "Javadex",
-        "url": "https://www.javadex.es/blog/cuanto-cobra-consultor-freelance-ia-espana-tarifas-honorarios-2026"
-      }
+      "mercado": [
+        {"concepto": "Freelance de IA por horas", "mio": [42.5, 50], "mercado": [40, 100], "unidad": "/h", "rango": "de 40 a 60 €/h un perfil junior y de 60 a 100 €/h un perfil mid", "fuente": "javadex.es", "url": "https://www.javadex.es/blog/cuanto-cobra-consultor-freelance-ia-espana-tarifas-honorarios-2026"}
+      ]
     },
     {
       "id": "mantenimiento",
@@ -338,16 +312,9 @@
       "plazo": "Arrancamos cuando reviso tu web, confirmo que encaja y recibo el pago del primer mes.",
       "forma_pago": "Mensual por adelantado. Te envío el enlace de pago cuando reviso tu web.",
       "notas": [],
-      "mercado": {
-        "concepto": "Mantenimiento de una web sencilla",
-        "mio": "60 a 120 €/mes",
-        "rango": "50 a 150 €/mes",
-        "min": 50,
-        "max": 150,
-        "valor": 60,
-        "fuente": "GoDaddy",
-        "url": "https://www.godaddy.com/resources/es/crearweb/cuanto-cuesta-mantenimiento-pagina-web"
-      }
+      "mercado": [
+        {"concepto": "Mantenimiento de una web sencilla", "mio": [60, 120], "mercado": [50, 150], "unidad": "/mes", "rango": "de 50 a 150 €/mes", "fuente": "godaddy.com", "url": "https://www.godaddy.com/resources/es/crearweb/cuanto-cuesta-mantenimiento-pagina-web"}
+      ]
     }
   ]
 }

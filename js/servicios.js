@@ -224,6 +224,36 @@
     abrir(s, btn);
   };
 
+  // Bloque "¿Por qué estos precios?": mi precio frente al rango orientativo del mercado
+  const rangoEur = ([a, b], unidad) => (a === b ? `${eur(a)}${unidad}` : `${eur(a).replace(" €", "")} a ${eur(b)}${unidad}`);
+  const comparacion = (c) => {
+    const escala = Math.max(c.mercado[1], c.mio[1]) * 1.08;
+    const pct = (n) => `${((n / escala) * 100).toFixed(2)}%`;
+    return h(
+      "li",
+      { class: "cmp" },
+      h("div", { class: "cmp__head" }, h("span", { class: "cmp__concepto" }, c.concepto), h("span", { class: "cmp__mio" }, `Mi precio: ${rangoEur(c.mio, c.unidad)}`)),
+      h(
+        "div",
+        { class: "cmp__barra", "aria-hidden": "true" },
+        h("span", { class: "cmp__rango", style: `left:${pct(c.mercado[0])};width:${pct(c.mercado[1] - c.mercado[0])}` }),
+        h("span", { class: "cmp__yo", style: `left:${pct(c.mio[0])};width:${pct(c.mio[1] - c.mio[0])}` })
+      ),
+      h("p", { class: "cmp__mercado" }, `Mercado: ${c.rango}.`),
+      h("p", { class: "cmp__fuente" }, "Fuente: ", h("a", { href: c.url, target: "_blank", rel: "noopener" }, c.fuente))
+    );
+  };
+  const pintarPrecios = () => {
+    const caja = document.getElementById("precios-mercado");
+    if (!caja || !datos.mercado) return;
+    const m = datos.mercado;
+    document.getElementById("precios-title").textContent = m.titulo;
+    document.getElementById("precios-texto").replaceChildren(...m.texto.map((t) => h("p", {}, t)));
+    document.getElementById("precios-lista").replaceChildren(...datos.servicios.flatMap((s) => s.mercado || []).map(comparacion));
+    document.getElementById("precios-nota").replaceChildren(m.nota, m.sin_rango ? ` ${m.sin_rango}` : "");
+    caja.hidden = false;
+  };
+
   fetch(DATA_URL)
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -232,6 +262,7 @@
     .then((json) => {
       datos = json;
       lista.replaceChildren(...datos.servicios.map(tarjeta));
+      pintarPrecios();
       abrirDesdeHash();
       window.addEventListener("hashchange", abrirDesdeHash);
     })

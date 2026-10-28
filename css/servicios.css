@@ -248,3 +248,36 @@ label.pkg { cursor: pointer; }
 @media (min-width: 1080px) {
   .grid.three.servicios-lista { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ---------- ¿Por qué estos precios? ---------- */
+.precios {
+  display: grid;
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.precios[hidden] { display: none; }
+.precios__title { font-size: clamp(20px, 3.4vw, 26px); margin-bottom: 12px; }
+.precios__texto p { color: var(--muted); font-size: 16px; max-width: 56ch; }
+.precios__texto p + p { margin-top: 10px; }
+.precios__caso { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: var(--accent); font-weight: 500; font-size: 15px; }
+.precios__caso::after { content: " →"; white-space: pre; }
+.precios__lista { list-style: none; display: grid; gap: 10px; }
+.cmp { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.cmp__head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 12px; flex-wrap: wrap; }
+.cmp__concepto { font-family: var(--display); font-weight: 600; font-size: 15px; }
+.cmp__mio { font-family: var(--mono); font-size: 14px; color: var(--accent); }
+.cmp__mercado { font-size: 14px; color: var(--muted); margin-top: 4px; }
+.cmp__fuente { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.cmp__fuente a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; display: inline-block; padding: 6px 0; }
+.cmp__fuente a:hover { color: var(--accent); }
+/* Barra: franja gris = rango de mercado; marca o franja verde = mi precio. Escala lineal desde 0 */
+.cmp__barra { position: relative; height: 10px; margin: 12px 0 4px; border-radius: 5px; background: var(--surface-2); }
+.cmp__barra span { position: absolute; top: 0; bottom: 0; border-radius: 5px; }
+.cmp__rango { background: var(--muted); opacity: 0.45; }
+.cmp__yo { background: var(--accent); min-width: 6px; }
+
+@media (min-width: 760px) {
+  .precios { grid-template-columns: 5fr 7fr; gap: 40px; align-items: start; }
+}
