@@ -70,7 +70,8 @@
             </div>
             <div class="prueba-reserva">
                 <h3>Reserva tu prueba ahora</h3>
-                <form action="https://formsubmit.co/hugocgarciat@gmail.com" id="reserva-form" method="POST">
+                <form id="reserva-form" onsubmit="return false;" aria-describedby="aviso-demo">
+                    <p class="aviso-demo" id="aviso-demo" role="note" style="margin:0 0 14px;padding:10px 14px;border:2px solid #d97706;border-radius:8px;background:#fff7ed;color:#7c2d12;font-weight:700;line-height:1.4;">Proyecto de demostración: este formulario está desactivado.</p>
                     <input type="text" name="nombre" placeholder="Nombre completo" required>
                     <input type="email" name="email" placeholder="Correo electrónico" required>
                     <input type="tel" name="telefono" placeholder="Teléfono" required>
@@ -82,9 +83,7 @@
                         <option value="16:00">16:00</option>
                         <option value="18:00">18:00</option>
                     </select>
-                    <button type="submit">Reservar prueba</button>
-                    <input type="hidden" name="_next" value="https://hugocalvo.dev/Proyecto_Final/PruebaConducciónFocus.html">
-                    <input type="hidden" name="_captcha" value="false">
+                    <button type="submit" disabled>Reservar prueba</button>
                 </form>
             </div>
         </section>
