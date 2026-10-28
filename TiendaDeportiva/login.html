@@ -71,22 +71,24 @@
           <button id="btn-login" class="active" onclick="switchForm('login')">Iniciar sesión</button>
           <button id="btn-registro" onclick="switchForm('registro')">Registrarse</button>
         </div>
-        <form id="form-login" class="login-form active">
+        <form id="form-login" class="login-form active" onsubmit="return false;" aria-describedby="aviso-demo-login">
           <h2>Iniciar sesión</h2>
+          <p class="aviso-demo" id="aviso-demo-login" role="note" style="margin:0 0 14px;padding:10px 14px;border:2px solid #d97706;border-radius:8px;background:#fff7ed;color:#7c2d12;font-weight:700;line-height:1.4;">Proyecto de demostración: este formulario está desactivado.</p>
           <input type="email" id="login-email" placeholder="Email" required>
           <input type="password" id="login-password" placeholder="Contraseña" required>
-          <button type="submit" class="login-btn">Entrar</button>
+          <button type="submit" class="login-btn" disabled style="opacity:.55;cursor:not-allowed;">Entrar</button>
           <div id="login-error" class="login-error" style="display:none"></div>
           <div class="extra-links">
             ¿No tienes cuenta? <a href="#" onclick="switchForm('registro'); return false;">Regístrate</a>
           </div>
         </form>
-        <form id="form-registro" class="login-form">
+        <form id="form-registro" class="login-form" onsubmit="return false;" aria-describedby="aviso-demo-registro">
           <h2>Registro</h2>
+          <p class="aviso-demo" id="aviso-demo-registro" role="note" style="margin:0 0 14px;padding:10px 14px;border:2px solid #d97706;border-radius:8px;background:#fff7ed;color:#7c2d12;font-weight:700;line-height:1.4;">Proyecto de demostración: este formulario está desactivado.</p>
           <input type="text" id="registro-nombre" placeholder="Nombre" required>
           <input type="email" id="registro-email" placeholder="Email" required>
           <input type="password" id="registro-password" placeholder="Contraseña" required>
-          <button type="submit" class="login-btn">Registrarse</button>
+          <button type="submit" class="login-btn" disabled style="opacity:.55;cursor:not-allowed;">Registrarse</button>
           <div id="registro-error" class="login-error" style="display:none"></div>
           <div class="extra-links">
             ¿Ya tienes cuenta? <a href="#" onclick="switchForm('login'); return false;">Inicia sesión</a>
@@ -96,11 +98,7 @@
       </div>
     </div>
   </main>
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
-  <script src="js/firebase-init.js"></script>
   <script src="js/login.js"></script>
   <script src="js/tienda.js"></script>
   

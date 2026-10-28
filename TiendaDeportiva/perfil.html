@@ -70,32 +70,29 @@
       <div class="perfil-info">
         <div class="perfil-info-item">
           <span>Nombre:</span>
-          <strong id="perfil-nombre"></strong>
+          <strong id="perfil-nombre">Usuario de demostración</strong>
         </div>
         <div class="perfil-info-item">
           <span>Email:</span>
-          <strong id="perfil-email"></strong>
+          <strong id="perfil-email">-</strong>
         </div>
         <div class="perfil-info-item">
           <span>Miembro desde:</span>
-          <strong id="perfil-fecha"></strong>
+          <strong id="perfil-fecha">-</strong>
         </div>
       </div>
-      <form id="form-editar-perfil">
+      <form id="form-editar-perfil" onsubmit="return false;" aria-describedby="aviso-demo">
+        <p class="aviso-demo" id="aviso-demo" role="note" style="margin:0 0 14px;padding:10px 14px;border:2px solid #d97706;border-radius:8px;background:#fff7ed;color:#7c2d12;font-weight:700;line-height:1.4;">Proyecto de demostración: este formulario está desactivado.</p>
         <label for="nuevo-nombre">Nuevo nombre</label>
         <input type="text" id="nuevo-nombre" placeholder="Nuevo nombre">
         <label for="nueva-password">Nueva contraseña</label>
         <input type="password" id="nueva-password" placeholder="Nueva contraseña">
-        <button type="submit" class="btn-guardar">Guardar cambios</button>
+        <button type="submit" class="btn-guardar" disabled style="opacity:.55;cursor:not-allowed;">Guardar cambios</button>
         <div id="perfil-error" class="login-error" style="display:none"></div>
       </form>
-      <button id="btn-cerrar-sesion" class="btn-cerrar-sesion">Cerrar sesión</button>
+      <button id="btn-cerrar-sesion" class="btn-cerrar-sesion" type="button" disabled style="opacity:.55;cursor:not-allowed;">Cerrar sesión</button>
     </section>
   </main>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-  <script src="js/firebase-init.js"></script>
-  <script src="js/perfil.js"></script>
   <script src="js/tienda.js"></script>
 </body>
 </html>
