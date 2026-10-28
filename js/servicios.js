@@ -129,6 +129,348 @@
     form?.querySelector("input:not([type=hidden]):not(.honey)")?.focus({ preventScroll: true });
   };
 
+  // ---------- Formularios: "Solicitar alta" (corto) y "Briefing" (por pasos) ----------
+  // Solo se muestran con formularios.activos en servicios.json (requiere la política de privacidad publicada).
+  // En localhost se pueden probar siempre, con la clave de prueba de Turnstile.
+  const LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname);
+  const TURNSTILE_PRUEBA = "1x00000000000000000000AA"; // clave pública de prueba de Cloudflare: siempre pasa
+  const formsActivos = () => Boolean(datos.formularios?.activos || LOCAL);
+  const sitekey = () => datos.formularios?.turnstile_sitekey || (LOCAL ? TURNSTILE_PRUEBA : "");
+
+  let turnstileCarga = null;
+  const cargarTurnstile = () => {
+    if (window.turnstile) return Promise.resolve(window.turnstile);
+    turnstileCarga ||= new Promise((ok, ko) => {
+      const sc = document.createElement("script");
+      sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      sc.async = true;
+      sc.onload = () => ok(window.turnstile);
+      sc.onerror = () => {
+        turnstileCarga = null;
+        ko(new Error("turnstile"));
+      };
+      document.head.append(sc);
+    });
+    return turnstileCarga;
+  };
+
+  const opcional = (texto, req) => h("span", {}, texto, !req && h("span", { class: "opc" }, " (opcional)"));
+  const campoTexto = ({ etiqueta, name, type = "text", required = false, max = 200, ...resto }) =>
+    h("label", {}, opcional(etiqueta, required), h("input", { type, name, required, maxlength: max, ...resto }));
+  const campoArea = ({ etiqueta, name, required = false, max = 2000, ...resto }) =>
+    h("label", {}, opcional(etiqueta, required), h("textarea", { name, required, maxlength: max, ...resto }));
+  const grupo = ({ legend, name, tipo = "radio", opciones, required = false, valor }) =>
+    h(
+      "fieldset",
+      { class: "opciones" },
+      h("legend", {}, opcional(legend, required)),
+      h(
+        "div",
+        { class: "opciones__lista" },
+        opciones.map(([v, t]) =>
+          h("label", { class: "opcion" }, h("input", { type: tipo, name, value: v, required: tipo === "radio" && required, checked: v === valor }), h("span", {}, t))
+        )
+      )
+    );
+
+  // La web se acepta con o sin https://
+  const campoWeb = (etiqueta, required) => {
+    const lbl = campoTexto({ etiqueta, name: "web", required, max: 200, inputmode: "url", autocomplete: "url", placeholder: "tunegocio.es" });
+    const input = lbl.querySelector("input");
+    input.addEventListener("input", () => {
+      const v = input.value.trim();
+      const ok = !v || /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i.test(v);
+      input.setCustomValidity(ok ? "" : "Escribe una dirección web válida, por ejemplo tunegocio.es");
+    });
+    return lbl;
+  };
+
+  const camposContacto = () => [
+    campoTexto({ etiqueta: "Nombre", name: "nombre", required: true, max: 100, autocomplete: "name", placeholder: "María López" }),
+    campoTexto({ etiqueta: "Empresa o negocio", name: "empresa", max: 120, autocomplete: "organization", placeholder: "Clínica López" }),
+    campoTexto({ etiqueta: "Email", name: "email", type: "email", required: true, max: 160, autocomplete: "email", placeholder: "maria@tunegocio.es" }),
+    campoTexto({ etiqueta: "Teléfono", name: "telefono", type: "tel", max: 30, autocomplete: "tel", placeholder: "600 000 000" }),
+  ];
+
+  const bloqueLegal = () => {
+    const url = datos.formularios?.privacidad_url || "privacidad.html";
+    return [
+      h(
+        "p",
+        { class: "form-legal" },
+        "Responsable: Hugo Calvo García. Uso tus datos solo para responder a tu solicitud y, si encaja, preparar la propuesta. Puedes acceder a ellos, corregirlos o pedir que los borre cuando quieras. ",
+        h("a", { href: url, target: "_blank", rel: "noopener" }, "Más información en la política de privacidad"),
+        "."
+      ),
+      h(
+        "label",
+        { class: "opcion opcion--check" },
+        h("input", { type: "checkbox", name: "privacidad", value: "si", required: true }),
+        h("span", {}, "He leído la ", h("a", { href: url, target: "_blank", rel: "noopener" }, "política de privacidad"), " y acepto el uso de mis datos para responder a mi solicitud.")
+      ),
+      // Campo trampa: invisible para personas; los bots lo rellenan
+      h(
+        "div",
+        { class: "trampa", "aria-hidden": "true" },
+        h("label", {}, "No rellenes este campo", h("input", { type: "text", name: "website", tabindex: "-1", autocomplete: "off" }))
+      ),
+      h("div", { class: "turnstile" }),
+    ];
+  };
+
+  const estadoForm = () => h("p", { class: "form-estado", role: "status", "aria-live": "polite" });
+
+  const cabeceraForm = (s, titulo, intro) => [
+    h(
+      "button",
+      { type: "button", class: "sd__volver", onclick: () => mostrarDetalle(s) },
+      h("span", { "aria-hidden": "true" }, "← "),
+      "Volver al detalle"
+    ),
+    h("h3", { class: "form-titulo", tabindex: "-1" }, titulo),
+    h("p", { class: "sd__resumen" }, intro),
+  ];
+
+  const montarTurnstile = async (form) => {
+    const caja = form.querySelector(".turnstile");
+    const clave = sitekey();
+    if (!caja || !clave) return;
+    try {
+      const ts = await cargarTurnstile();
+      form._turnstile = ts.render(caja, { sitekey: clave, theme: "dark", language: "es", action: form.dataset.tipo });
+    } catch {
+      caja.replaceChildren(h("p", { class: "form-error" }, "No se ha podido cargar la verificación anti-spam. Recarga la página o escríbeme por WhatsApp."));
+    }
+  };
+
+  const recoger = (form) => {
+    const fd = new FormData(form);
+    const out = {};
+    for (const [k, v] of fd.entries()) {
+      if (k === "funcionalidades") (out[k] ||= []).push(v);
+      else out[k] = typeof v === "string" ? v.trim() : v;
+    }
+    out.turnstile = fd.get("cf-turnstile-response") || "";
+    delete out["cf-turnstile-response"];
+    out.privacidad = fd.get("privacidad") === "si";
+    out.ms = Math.round(performance.now() - Number(form.dataset.abierto || 0));
+    return out;
+  };
+
+  const enviar = async (form) => {
+    const estado = form.querySelector(".form-estado");
+    const boton = form.querySelector('button[type="submit"]');
+    if (!form.reportValidity()) return;
+    const datosForm = recoger(form);
+    if (sitekey() && !datosForm.turnstile) {
+      estado.textContent = "Espera a que termine la verificación anti-spam y vuelve a pulsar Enviar.";
+      return;
+    }
+    boton.disabled = true;
+    estado.className = "form-estado";
+    estado.textContent = "Enviando…";
+    try {
+      const r = await fetch(`${datos.formularios.endpoint}/${form.dataset.tipo}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datosForm),
+      });
+      const json = await r.json().catch(() => ({}));
+      if (!r.ok || !json.ok) throw new Error(json.error || "No se ha podido enviar.");
+      location.href = `gracias.html?servicio=${form.dataset.tipo}`;
+    } catch (e) {
+      boton.disabled = false;
+      estado.className = "form-estado form-error";
+      const motivo = e instanceof TypeError ? "No hay conexión con el servidor." : e.message;
+      estado.textContent = `${motivo} Inténtalo de nuevo o escríbeme por WhatsApp al +34 638 091 795.`;
+      if (form._turnstile != null) window.turnstile?.reset(form._turnstile);
+    }
+  };
+
+  const nuevoForm = (tipo) => {
+    const form = h("form", { class: "sd__form", "data-tipo": tipo });
+    form.dataset.abierto = String(performance.now());
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      enviar(form);
+    });
+    return form;
+  };
+
+  const formSolicitud = (s, p) => {
+    const form = nuevoForm("solicitud");
+    form.append(
+      h("input", { type: "hidden", name: "servicio", value: s.id }),
+      h(
+        "label",
+        {},
+        "Plan",
+        h("select", { name: "paquete", required: true }, s.paquetes.map((x) => h("option", { value: x.id, selected: x.id === p.id }, `${x.nombre} · ${precio(x)}`)))
+      ),
+      campoWeb("Tu web", true),
+      campoArea({
+        etiqueta: "¿Qué necesitas?",
+        name: "necesidad",
+        required: true,
+        max: 1500,
+        placeholder:
+          s.id === "mantenimiento"
+            ? "Tengo una web en WordPress y quiero olvidarme de las actualizaciones y las copias."
+            : "Quiero que mi clínica tenga más presencia cuando la gente pregunta a la IA por fisios en Madrid.",
+      }),
+      ...camposContacto(),
+      ...bloqueLegal(),
+      h("button", { type: "submit", class: "btn primary" }, "Enviar solicitud"),
+      estadoForm()
+    );
+    return [
+      ...cabeceraForm(s, `Solicitar alta: ${s.nombre}`, "Lo reviso y te respondo en menos de 24 h laborables. Si encaja, te envío el enlace de pago; si no, te lo digo y no pagas nada."),
+      form,
+    ];
+  };
+
+  const TIPOS_PROYECTO = [
+    ["landing", "Landing (1 página)"],
+    ["corporativa", "Web corporativa (hasta 5 páginas)"],
+    ["completa", "Web completa (hasta 10 páginas)"],
+    ["app", "App o plataforma a medida"],
+    ["automatizacion", "Automatización con IA"],
+    ["otro", "Otra cosa o no lo tengo claro"],
+  ];
+  const tipoInicial = (s, p) => (s.id === "webs" ? p.id : s.id === "apps" ? "app" : s.id === "automatizaciones" ? "automatizacion" : "otro");
+
+  const formBriefing = (s, p) => {
+    const form = nuevoForm("briefing");
+    const pasos = [
+      {
+        titulo: "El proyecto",
+        campos: [
+          grupo({ legend: "Tipo de proyecto", name: "proyecto", opciones: TIPOS_PROYECTO, required: true, valor: tipoInicial(s, p) }),
+          campoArea({ etiqueta: "¿Qué quieres conseguir?", name: "objetivo", required: true, max: 1500, placeholder: "Que los pacientes reserven cita online sin llamar por teléfono." }),
+        ],
+      },
+      {
+        titulo: "Funcionalidades",
+        campos: [
+          grupo({
+            legend: "¿Qué debería tener?",
+            name: "funcionalidades",
+            tipo: "checkbox",
+            opciones: [
+              ["formulario", "Formulario de contacto"],
+              ["blog", "Blog"],
+              ["idiomas", "Varios idiomas"],
+              ["reservas", "Reservas o citas"],
+              ["pagos", "Pagos online"],
+              ["area-clientes", "Área de clientes"],
+              ["panel", "Panel de gestión"],
+              ["integraciones", "Conexión con otras herramientas"],
+              ["ia", "Funciones con IA"],
+            ],
+          }),
+          campoArea({ etiqueta: "Cuéntame más", name: "funcionalidades_detalle", max: 1500, placeholder: "Usamos Google Calendar y querríamos que las citas aparezcan allí." }),
+          campoWeb("Web actual, si tienes", false),
+        ],
+      },
+      {
+        titulo: "Plazo y presupuesto",
+        campos: [
+          grupo({
+            legend: "¿Para cuándo lo necesitas?",
+            name: "plazo",
+            required: true,
+            opciones: [
+              ["urgente", "Lo antes posible"],
+              ["1-mes", "En 1 mes"],
+              ["2-3-meses", "En 2 o 3 meses"],
+              ["sin-prisa", "Sin prisa"],
+            ],
+          }),
+          grupo({
+            legend: "Presupuesto orientativo (sin IVA)",
+            name: "presupuesto",
+            required: true,
+            opciones: [
+              ["menos-1000", "Menos de 1.000 €"],
+              ["1000-2500", "De 1.000 a 2.500 €"],
+              ["2500-5000", "De 2.500 a 5.000 €"],
+              ["5000-10000", "De 5.000 a 10.000 €"],
+              ["mas-10000", "Más de 10.000 €"],
+              ["no-se", "No lo sé todavía"],
+            ],
+          }),
+        ],
+      },
+      { titulo: "Contacto", campos: [...camposContacto(), ...bloqueLegal()] },
+    ];
+    const total = pasos.length;
+    const progreso = h("p", { class: "pasos__progreso", "aria-live": "polite" });
+    const barra = h("div", { class: "pasos__barra", "aria-hidden": "true" }, h("span"));
+    const nodos = pasos.map((paso, i) =>
+      h(
+        "div",
+        { class: "paso", hidden: i !== 0, "data-paso": i },
+        h("h4", { class: "paso__titulo", tabindex: "-1" }, paso.titulo),
+        ...paso.campos,
+        h(
+          "div",
+          { class: "paso__nav" },
+          i > 0 && h("button", { type: "button", class: "btn ghost", "data-paso-anterior": "" }, "Atrás"),
+          i === total - 1
+            ? h("button", { type: "submit", class: "btn primary" }, "Enviar briefing")
+            : h("button", { type: "button", class: "btn primary", "data-paso-siguiente": "" }, "Siguiente")
+        )
+      )
+    );
+    let actual = 0;
+    const pintarProgreso = () => {
+      progreso.textContent = `Paso ${actual + 1} de ${total}: ${pasos[actual].titulo}`;
+      barra.firstChild.style.width = `${((actual + 1) / total) * 100}%`;
+    };
+    const ir = (n) => {
+      nodos[actual].hidden = true;
+      actual = n;
+      nodos[actual].hidden = false;
+      pintarProgreso();
+      nodos[actual].querySelector(".paso__titulo").focus();
+    };
+    const pasoValido = (nodo) => {
+      const invalido = [...nodo.querySelectorAll("input, select, textarea")].find((c) => !c.checkValidity());
+      if (invalido) invalido.reportValidity();
+      return !invalido;
+    };
+    form.addEventListener("click", (e) => {
+      if (e.target.closest("[data-paso-siguiente]") && pasoValido(nodos[actual])) ir(actual + 1);
+      if (e.target.closest("[data-paso-anterior]")) ir(actual - 1);
+    });
+    // Enter en un campo de una línea avanza de paso en lugar de enviar
+    form.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.tagName === "INPUT" && actual < total - 1) {
+        e.preventDefault();
+        if (pasoValido(nodos[actual])) ir(actual + 1);
+      }
+    });
+    pintarProgreso();
+    form.append(
+      h("input", { type: "hidden", name: "servicio", value: s.id }),
+      h("input", { type: "hidden", name: "paquete", value: p.id }),
+      progreso,
+      barra,
+      ...nodos,
+      estadoForm()
+    );
+    return [...cabeceraForm(s, "Briefing del proyecto", "Cuatro pasos cortos. Con esto te envío un presupuesto cerrado por escrito en 48 h laborables."), form];
+  };
+
+  const mostrarFormulario = (s, p) => {
+    sdBody.replaceChildren(...(s.nivel === "solicitar" ? formSolicitud(s, p) : formBriefing(s, p)));
+    sdBody.scrollTop = 0;
+    montarTurnstile(sdBody.querySelector("form"));
+    sdBody.querySelector(".form-titulo").focus();
+  };
+
+  const contratar = (s, p) => (formsActivos() ? mostrarFormulario(s, p) : irAContacto(s, p));
+
   const accion = (s) => {
     const nivel = datos.niveles[s.nivel];
     const caja = h("div", { class: "sd__accion" });
@@ -159,7 +501,7 @@
       h(
         "div",
         { class: "sd__botones" },
-        h("button", { type: "button", class: "btn primary", onclick: () => irAContacto(s, paqueteElegido(s)) }, texto)
+        h("button", { type: "button", class: "btn primary", onclick: () => contratar(s, paqueteElegido(s)) }, texto)
       )
     );
     return caja;
@@ -189,13 +531,17 @@
     ].filter(Boolean);
   };
 
+  const mostrarDetalle = (s) => {
+    sdBody.replaceChildren(...detalle(s));
+    sdBody.scrollTop = 0;
+  };
+
   const abrir = (s, desde) => {
     opener = desde || document.activeElement;
     sdTitle.textContent = s.nombre;
     sdNivel.textContent = datos.niveles[s.nivel].etiqueta;
     sdNivel.dataset.nivel = s.nivel;
-    sdBody.replaceChildren(...detalle(s));
-    sdBody.scrollTop = 0;
+    mostrarDetalle(s);
     if (typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open", "");
   };
