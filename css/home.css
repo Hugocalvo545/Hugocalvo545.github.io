@@ -277,7 +277,7 @@ header {
 .ai .q { color: var(--muted); margin-bottom: 12px; }
 .ai .q b { color: var(--text); font-weight: 500; }
 .ai .a { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; line-height: 1.55; }
-.ai mark { background: rgba(61, 220, 151, 0.15); color: var(--accent); padding: 1px 5px; border-radius: 5px; font-weight: 500; }
+.ai mark { background: rgba(61, 220, 151, 0.15); color: var(--accent); padding: 1px 5px; border-radius: 5px; font-weight: 500; white-space: nowrap; }
 .ai .cursor { display: inline-block; width: 2px; height: 15px; background: var(--accent); vertical-align: -2px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .ai .foot { margin-top: 12px; font-family: var(--mono); font-size: 14px; color: var(--muted); }
