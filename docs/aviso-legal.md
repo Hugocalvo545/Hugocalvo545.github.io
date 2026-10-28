@@ -1,6 +1,7 @@
 # Aviso legal (BORRADOR)
 
-> **Borrador para revisar. No está publicado ni enlazado desde la web.**
+> **Publicado el 28/10/2026 como `aviso-legal.html`** (sin estas notas y sin la referencia a las condiciones de contratación). Si cambias algo, cámbialo en los dos sitios.
+> Cuando publiques `condiciones.html`, añade en el apartado 2 de `aviso-legal.html` la frase sobre las condiciones de contratación que está aquí.
 > Cumple el deber de información del art. 10 de la Ley 34/2002 (LSSI-CE): https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758
 > Es distinto de la política de privacidad y de las condiciones de contratación.
 > Las notas para Hugo van en bloques como este y se quitan al publicar.

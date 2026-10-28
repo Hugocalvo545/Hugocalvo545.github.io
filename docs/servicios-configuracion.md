@@ -133,7 +133,7 @@ Los formularios están apagados (`formularios.activos: false`) hasta que la pol�
 
 Para activarlos:
 
-1. Publica `privacidad.html` a partir de `docs/politica-privacidad.md`, una vez revisada.
+1. Sustituye `privacidad.html`, hoy la versión de la fase 1, por la versión completa de `docs/politica-privacidad.md`, una vez revisada.
 2. Comprueba que `formularios.privacidad_url` apunta a ella.
 3. Pon la site key de Turnstile (sección 4).
 4. Comprueba que la API responde en `api.hugocalvo.dev`.
@@ -144,7 +144,7 @@ El botón de pago de la auditoría no depende de `formularios.activos`: aparece 
 - Stripe recoge nombre, empresa, NIF y web.
 - Rellena el enlace cuando la política de privacidad y las condiciones estén publicadas y su URL figure en Datos públicos de Stripe.
 
-El formulario de contacto general (FormSubmit) ya existía y tampoco enlaza la política. Conviene añadirle el mismo texto legal al publicarla.
+El formulario de contacto con FormSubmit se retiró el 28/10/2026: su política (de 2019) no indica entidad, país ni garantías de protección de datos. Ahora el contacto es directo, por email y por WhatsApp.
 
 ## 7. Prueba completa antes de anunciarlo
 

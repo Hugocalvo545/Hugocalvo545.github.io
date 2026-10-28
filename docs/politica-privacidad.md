@@ -1,7 +1,8 @@
-# Política de privacidad (BORRADOR)
+# Política de privacidad: versión completa para la fase 2 (BORRADOR)
 
-> **Borrador para revisar. No está publicado.** Los formularios de servicios no se pueden activar en producción hasta publicar esta política y enlazarla (ver `docs/servicios-configuracion.md`, sección 6).
-> Los datos entre corchetes que quedan (fechas y ubicaciones por confirmar) los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
+> **Versión completa para la fase 2.** La publicada hoy en `privacidad.html` (28/10/2026) es la de la fase 1: solo cubre el contacto por email o WhatsApp, GitHub Pages y Gmail.
+> Esta versión añade formularios, pagos y avisos. Hay que publicarla en `privacidad.html`, sustituyendo la de la fase 1, antes de activar los formularios o el pago (ver `docs/servicios-configuracion.md`, sección 6).
+> Los datos entre corchetes que quedan (fecha y región de Upstash) los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
 > Conviene que la revise un asesor. Revisa especialmente las transferencias internacionales y los plazos de conservación.
 
 Última actualización: [fecha de publicación]
@@ -18,7 +19,7 @@
 
 | Cuándo | Datos | Finalidad | Base jurídica |
 |---|---|---|---|
-| Formulario de contacto | Nombre, email y mensaje | Responderte y, si lo pides, enviarte un presupuesto | Medidas precontractuales a petición tuya (art. 6.1.b RGPD) |
+| Contacto por email o WhatsApp | Los que me envíes: normalmente nombre, email o teléfono y tu mensaje | Responderte y, si lo pides, enviarte un presupuesto | Medidas precontractuales a petición tuya (art. 6.1.b RGPD) |
 | Formulario «Solicitar alta» | Servicio y plan, tu web, qué necesitas, nombre, empresa (opcional), email y teléfono (opcional) | Revisar si tu caso encaja, responderte y, si encaja, enviarte el enlace de pago | Medidas precontractuales (art. 6.1.b RGPD) |
 | Briefing | Tipo de proyecto, objetivo, funcionalidades, plazo, presupuesto orientativo, web (opcional) y datos de contacto | Preparar y enviarte un presupuesto | Medidas precontractuales (art. 6.1.b RGPD) |
 | Pago de la auditoría (Stripe) | Nombre, empresa, email, NIF (opcional), web a auditar e importe. **No recibo los datos de tu tarjeta**: los trata Stripe | Prestar el servicio contratado y emitir la factura, que hago yo con mi programa de facturación | Ejecución del contrato (art. 6.1.b) y obligaciones fiscales (art. 6.1.c RGPD) |
@@ -57,8 +58,8 @@ No vendo tus datos. Para prestar el servicio uso estos proveedores, que tratan l
 | ntfy.sh | Aviso a mi móvil de que ha llegado una solicitud o un pago. **Solo recibe el tipo de aviso y el servicio** (por ejemplo «Nuevo pago: Auditoría de visibilidad en IA»), **ningún dato personal** | No aplica: no recibe datos personales |
 | Gestolio (mi programa de facturación), alojado en Supabase | Emitir y guardar las facturas | Reino Unido (Londres, región eu-west-2). Transferencia a un país con decisión de adecuación de la Comisión Europea (art. 45 RGPD) |
 | Stripe Payments Europe, Ltd. | Pasarela de pago de la auditoría | Irlanda (UE). Para el pago y la prevención del fraude, Stripe actúa como responsable independiente según su propia política de privacidad |
-| Google (Gmail) | Mi buzón de correo, donde recibo los avisos y respondo | [según tu cuenta de Google] |
-| FormSubmit | Envío del formulario de contacto general a mi correo | [verificar ubicación y garantías] |
+| Google LLC (Gmail) | Mi buzón de correo, donde recibo los avisos y respondo | EE. UU. Adherido al DPF |
+| WhatsApp Ireland Limited | Solo si me escribes por WhatsApp: el servicio de mensajería | Irlanda (UE). Trata los mensajes según su propia política de privacidad |
 | GitHub, Inc. (GitHub Pages) | Alojamiento de la web | EE. UU. Adherido al DPF |
 
 También puedo comunicar datos a la Agencia Tributaria y a otras administraciones cuando lo exige la ley.
@@ -68,7 +69,6 @@ También puedo comunicar datos a la Agencia Tributaria y a otras administracione
 > - No he encontrado certificación DPF de Upstash. Si creas la base de datos en una región de la UE, indícalo.
 > - ntfy.sh no publica entidad jurídica, DPA ni ubicación de servidores (https://docs.ntfy.sh/privacy/). Por eso el aviso no lleva ningún dato personal: solo el tipo y el servicio.
 > - Gestolio: Supabase, región eu-west-2 (Londres). La decisión de adecuación del Reino Unido se renovó el 19/12/2025 y vence el 27/12/2031: revisa entonces si sigue vigente. Conviene tener firmado el DPA de Supabase.
-> - Si dejas de usar FormSubmit para el formulario de contacto, quítalo de la tabla.
 
 ## 5. Tus derechos
 
@@ -95,9 +95,9 @@ Si crees que no he tratado bien tus datos, puedes reclamar ante la Agencia Espa�
 
 Los datos del titular y las condiciones de uso de la web están en el [aviso legal](https://hugocalvo.dev/aviso-legal.html).
 
-## 8. Cookies
+## 8. Cookies y almacenamiento en el navegador
 
-La web no usa cookies de publicidad ni de analítica. Cloudflare Turnstile puede usar datos técnicos del navegador solo para comprobar que no eres un robot.
+La web no usa cookies ni herramientas de publicidad o de analítica. Cloudflare Turnstile puede usar datos técnicos del navegador solo para comprobar que no eres un robot. En el currículum y en el portfolio, si eliges el tema claro u oscuro, tu navegador guarda esa preferencia para la próxima visita.
 
 > **Nota para Hugo:** si añades analítica, crea una política de cookies y un banner.
 
