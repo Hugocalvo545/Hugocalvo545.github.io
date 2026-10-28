@@ -124,18 +124,22 @@
     return s.paquetes.find((p) => p.id === marcado?.value) || s.paquetes[0];
   };
 
-  // Hasta que los formularios estén activos, las solicitudes van al formulario de contacto
+  // Hasta que los formularios estén activos, las solicitudes van al contacto directo:
+  // el email y el WhatsApp salen ya con el servicio y el plan escritos
   const irAContacto = (s, p) => {
     opener = null;
     cerrar();
-    const form = document.querySelector("#contacto form");
-    const mensaje = form?.querySelector("textarea");
-    if (mensaje && !mensaje.value.trim()) {
-      const plan = s.paquetes.length > 1 ? ` (${p.nombre})` : "";
-      mensaje.value = `Me interesa: ${s.nombre}${plan}.\n`;
-    }
+    const plan = s.paquetes.length > 1 ? ` (${p.nombre})` : "";
+    const asunto = `Me interesa: ${s.nombre}${plan}`;
+    const texto = `Hola, Hugo. ${asunto}.\n\n`;
+    const email = document.querySelector('#contacto [data-contacto="email"]');
+    const whatsapp = document.querySelector('#contacto [data-contacto="whatsapp"]');
+    if (email) email.href = `mailto:hugocgarciat@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(texto)}`;
+    if (whatsapp) whatsapp.href = `https://wa.me/34638091795?text=${encodeURIComponent(texto)}`;
+    const preparado = document.getElementById("contacto-preparado");
+    if (preparado) preparado.textContent = `Mensaje preparado: ${asunto}.`;
     document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
-    form?.querySelector("input:not([type=hidden]):not(.honey)")?.focus({ preventScroll: true });
+    email?.focus({ preventScroll: true });
   };
 
   // ---------- Formularios: "Solicitar alta" (corto) y "Briefing" (por pasos) ----------

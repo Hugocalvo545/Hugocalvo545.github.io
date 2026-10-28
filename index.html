@@ -321,18 +321,14 @@
         <a href="mailto:hugocgarciat@gmail.com"><strong>Email</strong><span>hugocgarciat@gmail.com</span></a>
       </div>
     </div>
-    <form action="https://formsubmit.co/hugocgarciat@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Nuevo contacto desde hugocalvo.dev">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://hugocalvo.dev/gracias.html">
-      <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label>Nombre<input type="text" name="nombre" placeholder="María López" autocomplete="name" required></label>
-      <label>Email<input type="email" name="email" placeholder="maria@tunegocio.es" autocomplete="email" required></label>
-      <label>¿Qué necesitas?<textarea name="mensaje" placeholder="Quiero una web para mi clínica y que aparezca cuando la gente pregunta a ChatGPT por fisios en Madrid" required></textarea></label>
-      <button class="btn primary" type="submit">Enviar y recibir presupuesto</button>
-      <small>Sin spam. Solo te escribo yo.</small>
-    </form>
+    <div class="contacto-directo">
+      <h3>Escríbeme directamente</h3>
+      <p>Por email o por WhatsApp, como prefieras. Te contesto yo, sin intermediarios.</p>
+      <p class="contacto-directo__preparado" id="contacto-preparado" aria-live="polite"></p>
+      <a class="btn primary" data-contacto="email" href="mailto:hugocgarciat@gmail.com?subject=Presupuesto%20desde%20hugocalvo.dev">Escribir un email</a>
+      <a class="btn ghost" data-contacto="whatsapp" href="https://wa.me/34638091795">Escribir por WhatsApp</a>
+      <p class="contacto-directo__legal">Trato los datos que me envíes según la <a href="privacidad.html">política de privacidad</a>. Sin spam: solo te escribo yo.</p>
+    </div>
   </div>
 </section>
 
@@ -342,6 +338,7 @@
   <div class="wrap row">
     <span>© 2026 Hugo Calvo García · Madrid</span>
     <span><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329" target="_blank" rel="noopener">LinkedIn</a> · <a href="curriculum_english.html">EN</a></span>
+    <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></span>
   </div>
 </footer>
 

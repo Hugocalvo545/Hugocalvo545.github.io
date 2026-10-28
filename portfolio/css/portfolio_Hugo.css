@@ -1033,6 +1033,27 @@ h3 {
     gap: 0.4rem;
 }
 
+/* Contacto directo (sin formulario de terceros) */
+.contact-direct p {
+    color: var(--muted);
+}
+
+.contact-direct .button {
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+.contact-legal {
+    font-size: 0.85rem;
+}
+
+.contact-legal a,
+.site-footer a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 .contact-form label > span {
     color: var(--muted);
     font-family: var(--mono);
