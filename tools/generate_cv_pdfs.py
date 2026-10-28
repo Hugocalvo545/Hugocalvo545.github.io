@@ -650,8 +650,8 @@ SPANISH = {
         ("2022 - 2023", "Salmon Arm Secondary, Canadá", "Bachillerato científico cursado en inglés, con inmersión académica y cultural."),
     ],
     "traits": [
-        {"title": "Full-stack y fundador (autónomo)", "body": "2025 - Actualidad. Diseño y desarrollo de SaaS propios y plataformas a medida: producto, suscripciones con Stripe, despliegue y soporte. Sistema propio de agentes de IA con aprobación humana para el marketing de mis productos."},
-        {"title": "Desarrollador web en agencia", "body": "2024 - 2025. Desarrollo web para clientes: maquetación HTML/CSS, firmas de email HTML y WordPress."},
+        {"title": "Full-stack y fundador (autónomo)", "body": "2026 - Actualidad. Diseño y desarrollo de SaaS propios y plataformas a medida: producto, suscripciones con Stripe, despliegue y soporte. Sistema propio de agentes de IA con aprobación humana para el marketing de mis productos."},
+        {"title": "Desarrollador web en agencia", "body": "2025 - 2026. Desarrollo web para clientes: maquetación HTML/CSS, firmas de email HTML y WordPress."},
     ],
 }
 
@@ -741,8 +741,8 @@ ENGLISH = {
         ("2022 - 2023", "Salmon Arm Secondary, Canada", "Scientific baccalaureate studied in English, with academic and cultural immersion."),
     ],
     "traits": [
-        {"title": "Full-stack developer and founder (freelance)", "body": "2025 - Present. Design and development of my own SaaS products and custom platforms: product, Stripe subscriptions, deployment and support. Custom AI agent system with human approval to automate marketing for my products."},
-        {"title": "Web developer at an agency", "body": "2024 - 2025. Web development for clients: HTML/CSS layout, HTML email signatures and WordPress."},
+        {"title": "Full-stack developer and founder (freelance)", "body": "2026 - Present. Design and development of my own SaaS products and custom platforms: product, Stripe subscriptions, deployment and support. Custom AI agent system with human approval to automate marketing for my products."},
+        {"title": "Web developer at an agency", "body": "2025 - 2026. Web development for clients: HTML/CSS layout, HTML email signatures and WordPress."},
     ],
 }
 
