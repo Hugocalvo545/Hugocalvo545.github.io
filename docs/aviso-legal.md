@@ -3,7 +3,6 @@
 > **Borrador para revisar. No está publicado ni enlazado desde la web.**
 > Cumple el deber de información del art. 10 de la Ley 34/2002 (LSSI-CE): https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758
 > Es distinto de la política de privacidad y de las condiciones de contratación.
-> Falta el código postal y la localidad del domicilio: están marcados como [código postal y localidad].
 > Las notas para Hugo van en bloques como este y se quitan al publicar.
 
 Última actualización: [fecha de publicación]
@@ -14,7 +13,7 @@ En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad 
 
 - Titular: Hugo Calvo García, profesional autónomo.
 - NIF: 02304970W.
-- Domicilio: Calle Molino Viejo 14B, 4ºB, [código postal y localidad].
+- Domicilio: Calle Molino Viejo 14B, 4ºB, 28032 Madrid (España).
 - Email: hugocgarciat@gmail.com.
 - Teléfono y WhatsApp: +34 638 091 795.
 - Actividad: desarrollo de webs, aplicaciones y automatizaciones, mantenimiento web y servicios de visibilidad en buscadores y en asistentes de IA.

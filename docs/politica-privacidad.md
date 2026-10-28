@@ -1,7 +1,7 @@
 # Política de privacidad (BORRADOR)
 
 > **Borrador para revisar. No está publicado.** Los formularios de servicios no se pueden activar en producción hasta publicar esta política y enlazarla (ver `docs/servicios-configuracion.md`, sección 6).
-> Falta el código postal y la localidad del domicilio: están marcados como [código postal y localidad]. Los demás datos entre corchetes también los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
+> Los datos entre corchetes que quedan (fechas y ubicaciones por confirmar) los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
 > Conviene que la revise un asesor. Revisa especialmente las transferencias internacionales y los plazos de conservación.
 
 Última actualización: [fecha de publicación]
@@ -10,7 +10,7 @@
 
 - Responsable: Hugo Calvo García.
 - NIF: 02304970W.
-- Domicilio: Calle Molino Viejo 14B, 4ºB, [código postal y localidad].
+- Domicilio: Calle Molino Viejo 14B, 4ºB, 28032 Madrid (España).
 - Email: hugocgarciat@gmail.com.
 - Teléfono: +34 638 091 795.
 
