@@ -1,7 +1,7 @@
 # Condiciones de contratación (BORRADOR)
 
 > **Borrador para revisar. No está publicado ni enlazado desde la web.**
-> Faltan tu domicilio completo y tu NIF: están marcados como [DOMICILIO] y [NIF].
+> Falta el código postal y la localidad del domicilio: están marcados como [código postal y localidad].
 > Conviene que lo revise un asesor antes de publicarlo, sobre todo los apartados 7 y 11.
 > Las notas para Hugo van en bloques como este y se quitan al publicar.
 
@@ -10,8 +10,8 @@
 ## 1. Quién presta los servicios
 
 - Titular: Hugo Calvo García, profesional autónomo.
-- NIF: [NIF].
-- Domicilio: [DOMICILIO].
+- NIF: 02304970W.
+- Domicilio: Calle Molino Viejo 14B, 4ºB, [código postal y localidad].
 - Email: hugocgarciat@gmail.com.
 - Teléfono y WhatsApp: +34 638 091 795.
 - Web: https://hugocalvo.dev.
@@ -209,7 +209,7 @@ Estas condiciones se rigen por la ley española.
 
 (Solo debes rellenarlo y enviarlo si eres consumidor y quieres desistir del contrato.)
 
-- A la atención de Hugo Calvo García, [DOMICILIO], hugocgarciat@gmail.com:
+- A la atención de Hugo Calvo García, Calle Molino Viejo 14B, 4ºB, [código postal y localidad], hugocgarciat@gmail.com:
 - Por la presente le comunico que desisto de mi contrato de prestación del siguiente servicio: [servicio].
 - Contratado el: [fecha].
 - Nombre del consumidor: [nombre].

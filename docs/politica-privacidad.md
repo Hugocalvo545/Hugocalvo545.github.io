@@ -1,7 +1,7 @@
 # Política de privacidad (BORRADOR)
 
 > **Borrador para revisar. No está publicado.** Los formularios de servicios no se pueden activar en producción hasta publicar esta política y enlazarla (ver `docs/servicios-configuracion.md`, sección 6).
-> Faltan tu domicilio completo y tu NIF: están marcados como [DOMICILIO] y [NIF]. Los demás datos entre corchetes también los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
+> Falta el código postal y la localidad del domicilio: están marcados como [código postal y localidad]. Los demás datos entre corchetes también los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
 > Conviene que la revise un asesor. Revisa especialmente las transferencias internacionales y los plazos de conservación.
 
 Última actualización: [fecha de publicación]
@@ -9,8 +9,8 @@
 ## 1. Responsable
 
 - Responsable: Hugo Calvo García.
-- NIF: [NIF].
-- Domicilio: [DOMICILIO].
+- NIF: 02304970W.
+- Domicilio: Calle Molino Viejo 14B, 4ºB, [código postal y localidad].
 - Email: hugocgarciat@gmail.com.
 - Teléfono: +34 638 091 795.
 
@@ -55,7 +55,7 @@ No vendo tus datos. Para prestar el servicio uso estos proveedores, que tratan l
 | Cloudflare, Inc. (Turnstile) | Verificación contra robots en los formularios | EE. UU. DPF y cláusulas contractuales tipo |
 | Upstash, Inc. | Límite de envíos por hora (guarda la IP 1 hora) y control de avisos duplicados | [región elegida]. Cláusulas contractuales tipo del DPA |
 | ntfy.sh | Aviso a mi móvil de que ha llegado una solicitud o un pago. **Solo recibe el tipo de aviso y el servicio** (por ejemplo «Nuevo pago: Auditoría de visibilidad en IA»), **ningún dato personal** | No aplica: no recibe datos personales |
-| Gestolio (mi programa de facturación) | Emitir y guardar las facturas | [ubicación de los datos de Gestolio y del proveedor donde se alojan] |
+| Gestolio (mi programa de facturación), alojado en Supabase | Emitir y guardar las facturas | Reino Unido (Londres, región eu-west-2). Transferencia a un país con decisión de adecuación de la Comisión Europea (art. 45 RGPD) |
 | Stripe Payments Europe, Ltd. | Pasarela de pago de la auditoría | Irlanda (UE). Para el pago y la prevención del fraude, Stripe actúa como responsable independiente según su propia política de privacidad |
 | Google (Gmail) | Mi buzón de correo, donde recibo los avisos y respondo | [según tu cuenta de Google] |
 | FormSubmit | Envío del formulario de contacto general a mi correo | [verificar ubicación y garantías] |
@@ -67,7 +67,7 @@ También puedo comunicar datos a la Agencia Tributaria y a otras administracione
 > - Comprueba en https://www.dataprivacyframework.gov/list que Vercel, Resend, Cloudflare y GitHub siguen activos.
 > - No he encontrado certificación DPF de Upstash. Si creas la base de datos en una región de la UE, indícalo.
 > - ntfy.sh no publica entidad jurídica, DPA ni ubicación de servidores (https://docs.ntfy.sh/privacy/). Por eso el aviso no lleva ningún dato personal: solo el tipo y el servicio.
-> - Gestolio es tuyo, pero sus datos se alojan en un proveedor (por ejemplo Supabase). Indica dónde y con qué garantías.
+> - Gestolio: Supabase, región eu-west-2 (Londres). La decisión de adecuación del Reino Unido se renovó el 19/12/2025 y vence el 27/12/2031: revisa entonces si sigue vigente. Conviene tener firmado el DPA de Supabase.
 > - Si dejas de usar FormSubmit para el formulario de contacto, quítalo de la tabla.
 
 ## 5. Tus derechos
