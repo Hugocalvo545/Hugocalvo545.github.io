@@ -407,3 +407,15 @@ select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-col
 @media (prefers-reduced-motion: reduce) {
   .pasos__barra span { transition: none; }
 }
+
+/* ---------- línea para reclutadores ---------- */
+.reclutadores {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--muted);
+}
+.reclutadores a { display: inline-block; padding: 10px 0; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.reclutadores a::after { content: " →"; }
