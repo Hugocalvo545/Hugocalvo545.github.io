@@ -1,10 +1,10 @@
-# Condiciones de contratación (BORRADOR)
+# Condiciones de contratación
 
-> **Borrador para revisar. No está publicado ni enlazado desde la web.**
-> Conviene que lo revise un asesor antes de publicarlo, sobre todo los apartados 7 y 11.
+> **Publicado el 01/11/2026 como `condiciones.html`** (sin estas notas). Si cambias algo, cámbialo en los dos sitios.
+> Conviene que lo revise un asesor, sobre todo los apartados 7 y 11.
 > Las notas para Hugo van en bloques como este y se quitan al publicar.
 
-Última actualización: [fecha de publicación]
+Última actualización: 1 de noviembre de 2026
 
 ## 1. Quién presta los servicios
 
@@ -26,7 +26,7 @@ Si hay un presupuesto o una propuesta aceptada por escrito, lo que diga ese docu
 Hay tres formas, según el servicio:
 
 1. **Pago directo** (Auditoría de visibilidad en IA):
-   - Pagas con tarjeta en la pasarela de Stripe.
+   - Pagas con tarjeta en la pasarela de Stripe, donde aceptas estas condiciones.
    - El contrato queda celebrado cuando se completa el pago.
    - Stripe te envía el justificante del pago por correo. La factura te la envío yo (apartado 4).
 2. **Solicitar y luego pagar** (Visibilidad en IA mensual y Mantenimiento, hosting y SEO técnico):
@@ -44,11 +44,13 @@ Hay tres formas, según el servicio:
 
 ## 4. Precios e impuestos
 
-- En la web cada precio aparece **sin IVA y con IVA**. El IVA aplicable es el vigente, hoy del 21 %. Por ejemplo, la auditoría cuesta 349 € sin IVA, es decir, 422,29 € con IVA.
-- Los importes de estas condiciones son **sin IVA**, salvo que se indique otra cosa.
+- Los precios de la web y los importes de estas condiciones son **sin IVA**, salvo que se indique otra cosa. En el detalle de cada servicio aparece también el importe con el 21 % de IVA.
+- **El IVA se calcula al pagar según tus datos de facturación:**
+  - Si estás en España, se aplica el 21 %. Por ejemplo, la auditoría cuesta 349 € sin IVA, es decir, 422,29 € con IVA.
+  - Si eres empresa de otro país de la UE con número de IVA, se aplica la inversión del sujeto pasivo: no te cobro IVA y lo declaras tú en tu país.
 - Los precios de la web son los vigentes en el momento de contratar.
 - En los servicios con presupuesto, manda el precio del presupuesto aceptado.
-- Recibes factura de cada pago, con el IVA desglosado. La emito yo con mi programa de facturación y te la envío por correo. Stripe solo cobra y te envía el justificante del pago, que no es una factura.
+- **La factura te la envío yo**, con el IVA desglosado o con la mención de inversión del sujeto pasivo, según el caso. La emito con mi programa de facturación y te la envío por correo. Stripe solo cobra y te envía el justificante del pago, que no es una factura.
 
 ## 5. Servicios: qué incluyen
 
@@ -66,15 +68,14 @@ Hay tres formas, según el servicio:
   - Videollamada de 45 minutos.
 - **No incluye:** aplicar los cambios ni escribir los artículos.
 - **Plazo:** 5 días laborables desde que recibo los datos que te pido.
-- **Descuento:** si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, te descuento los 349 € del primer pago o de los primeros pagos.
-  > **Nota para Hugo:** concreta cómo se aplica el descuento.
+- **Descuento:** si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, el importe de la auditoría se descuenta de los primeros pagos mensuales hasta completar los 349 €.
 
 ### 5.2 Visibilidad en IA mensual
 
 - **Planes** (mensuales, por adelantado):
-  - **Esencial, 297 €/mes:** 2 artículos optimizados al mes, 20 preguntas medidas al mes e informe mensual.
-  - **Pro, 497 €/mes:** 4 artículos, 30 preguntas, ajustes técnicos (datos estructurados y preguntas frecuentes), informe y llamada mensual de 30 minutos.
-  - **Avanzado, 797 €/mes:** 8 artículos, 40 preguntas, todo lo del Pro, análisis trimestral de competencia y llamada cada 15 días.
+  - **Inicial, 149 €/mes:** 2 artículos optimizados al mes, 10 preguntas medidas al mes e informe mensual.
+  - **Pro, 297 €/mes:** 4 artículos, 20 preguntas, ajustes técnicos (datos estructurados y preguntas frecuentes), informe y llamada mensual de 30 minutos.
+  - **Avanzado, 497 €/mes:** 8 artículos, 30 preguntas, todo lo del Pro, análisis trimestral de competencia y llamada cada 15 días.
 - **Permanencia mínima:** 3 meses (ver apartado 8).
 - Lo que no se usa en un mes no se acumula.
 
@@ -146,7 +147,7 @@ No todos los casos encajan con lo que hago. Antes de empezar reviso el tuyo: la 
   - Permanencia mínima de 3 meses desde el primer pago.
   - Después se renueva cada mes hasta que la canceles.
   - Para cancelar, avísame por correo antes de la fecha del siguiente pago. La baja tiene efecto al final del mes ya pagado.
-  - **Si cancelas antes de cumplir los 3 meses, se cobran los meses que falten hasta completarlos.** Por ejemplo, si cancelas al terminar el primer mes del plan Esencial, se cobran los 2 meses restantes: 594 € sin IVA (718,74 € con IVA).
+  - **Si cancelas antes de cumplir los 3 meses, se cobran los meses que falten hasta completarlos.** Por ejemplo, si cancelas al terminar el primer mes del plan Inicial, se cobran los 2 meses restantes: 298 € sin IVA (360,58 € con el 21 % de IVA).
   - Esto no afecta al derecho de desistimiento de los consumidores (apartado 7).
 - **Mantenimiento:**
   - Sin permanencia: se cancela mes a mes con un correo antes de la fecha del siguiente pago.

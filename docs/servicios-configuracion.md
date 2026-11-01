@@ -2,56 +2,44 @@
 
 Guía de lo que hay que configurar fuera del repo para la zona de servicios de `index.html`. Ningún secreto va en el repo: los valores se ponen en los paneles de cada servicio.
 
-Comprobado en la documentación oficial el 28/10/2026. Los nombres de los botones del panel pueden variar un poco según el idioma del panel.
+Comprobado en la documentación oficial el 28/10/2026. Sección 1 revisada el 01/11/2026. Los nombres de los botones del panel pueden variar un poco según el idioma del panel.
 
 ## 1. Stripe: Payment Link de la auditoría
 
-### 1.1 Decisión: Stripe cobra, la factura la emites tú desde Gestolio
+### 1.1 Decisión: Stripe cobra y calcula el IVA, la factura la emites tú desde Gestolio
 
-- El Payment Link cobra **422,29 €** (349 € + 21 % de IVA) **sin Stripe Tax y sin factura automática de Stripe**. Coste extra en Stripe: 0 €.
-- Stripe solo envía al cliente el justificante del pago (recibo). El recibo no es una factura.
-- **La factura con el IVA desglosado la emites tú desde Gestolio**, con tu serie y tu numeración habituales. Los datos que necesitas llegan en el correo de aviso del pago: nombre, empresa, NIF (si lo ha puesto), email, web e importe.
-- Así toda tu facturación queda en una sola serie, dentro de tu programa de facturación.
+- El Payment Link cobra **349 € sin IVA** con **Stripe Tax** activado: el IVA se calcula al pagar según los datos de facturación del cliente.
+  - En España, 21 %: el cliente paga 422,29 €.
+  - Empresa de otro país de la UE con número de IVA: inversión del sujeto pasivo, paga 349 €.
+- Stripe no emite factura (creación de factura desactivada). Solo envía al cliente el justificante del pago, que no es una factura.
+- **La factura la emites tú desde Gestolio**, con tu serie y tu numeración habituales: con el IVA desglosado o con la mención de inversión del sujeto pasivo, según lo que haya calculado Stripe.
 
-### 1.2 Antes de crear el enlace
+### 1.2 Enlace publicado (comprobado en Stripe el 01/11/2026)
 
-**Datos públicos** (Configuración > Empresa > Datos públicos). Salen en la página de pago y en el recibo:
+URL: `https://buy.stripe.com/4gMfZj2D31403DUfzncfK09` (`plink_1UWfsLQh3iEjATjOKMB4GwkI`, cuenta GEOPilot, modo real). Está en `assets/data/servicios.json`, en `servicios[auditoria-ia].pago.payment_link`. Es el único enlace de pago de la web: los planes mensuales y las bolsas siguen llevando al contacto.
 
-- Nombre legal: Hugo Calvo García.
-- Dirección y correo de soporte.
-- URL de la política de privacidad: `https://hugocalvo.dev/privacidad.html`, cuando esté publicada.
-- URL de las condiciones: `https://hugocalvo.dev/condiciones.html`, cuando estén publicadas.
-
-**No actives Stripe Tax** ni configures nada de facturación de Stripe (Invoicing).
-
-### 1.3 Crear el Payment Link
-
-En Catálogo de productos, crea el producto **Auditoría de visibilidad en IA** con precio único de **422,29 EUR**. Al no usar Stripe Tax, el precio es el importe final que paga el cliente.
-
-En Payment Links, crea un enlace con ese producto y estas opciones:
-
-| Opción | Valor |
+| Opción | Valor actual |
 |---|---|
-| Cantidad | Fija en 1 (sin permitir que el cliente la cambie) |
-| Recoger impuestos automáticamente (Stripe Tax) | **No** |
-| Recoger nombre del cliente | Sí, obligatorio |
-| Recoger nombre de la empresa | Sí, obligatorio |
-| Permitir que las empresas indiquen su número fiscal | Sí. Es opcional para el cliente, así que el NIF queda opcional |
-| Campo personalizado 1 | Tipo texto, etiqueta `Web a auditar`, obligatorio, máximo 255 caracteres |
-| Email | Stripe lo pide siempre |
-| Crear factura tras el pago | **No**. La factura la emites tú desde Gestolio |
-| Después del pago | No mostrar la página de confirmación. Redirigir a `https://hugocalvo.dev/gracias.html?servicio=auditoria` |
-| Aceptación de condiciones | Actívala cuando las condiciones estén publicadas. Requiere su URL en Datos públicos |
-| Metadatos | `servicio` = `auditoria-ia`. Así el aviso dice qué servicio se ha pagado |
+| Producto | Auditoría de visibilidad en IA, 349 EUR, precio sin impuestos (`tax_behavior: exclusive`) |
+| Stripe Tax | Activado |
+| Dirección de facturación | Obligatoria |
+| Número fiscal (NIF/VAT) | Opcional |
+| Aceptación de condiciones | Obligatoria (requiere `https://hugocalvo.dev/condiciones.html` en Datos públicos) |
+| Crear factura tras el pago | No |
+| Después del pago | Redirige a `https://hugocalvo.dev/gracias.html` |
 
-Payment Links admite como máximo 3 campos personalizados. Aquí solo se usa uno.
+**Pendiente de ajustar en el panel de Stripe** (Payment Links > el enlace > Editar):
 
-Copia la URL pública del enlace (`https://buy.stripe.com/...`) en `assets/data/servicios.json`, en el campo `servicios[auditoria-ia].pago.payment_link`.
+1. **Después del pago:** cambia la URL a `https://hugocalvo.dev/gracias.html?servicio=auditoria`. Sin `?servicio=auditoria`, la página de gracias muestra el mensaje genérico de contacto, no el de la auditoría.
+2. **Campo personalizado:** añade `Web a auditar` (texto, obligatorio, máximo 255 caracteres). Hoy el enlace no lo pide, y la política de privacidad dice que se recoge.
+3. **Nombre de la empresa:** activa «Recoger nombre de la empresa» como opcional. Hoy no se pide.
+4. **Metadatos:** `servicio` = `auditoria-ia`, para que el webhook sepa qué servicio se ha pagado y envíe el correo al cliente.
 
-- Es el único dato de Stripe que va en el repo, y es público.
-- Mientras esté vacío, el panel muestra «Pedir la auditoría» y lleva al formulario de contacto.
+**Datos públicos** (Configuración > Empresa > Datos públicos): nombre legal Hugo Calvo García, dirección y correo de soporte, `https://hugocalvo.dev/privacidad.html` y `https://hugocalvo.dev/condiciones.html`.
 
-**Después de cada pago:** emite en Gestolio la factura de 349 € + 21 % de IVA (422,29 €) con los datos del correo de aviso y envíasela al cliente. La web y los correos automáticos ya le dicen al cliente que la factura se la envías tú.
+### 1.3 Después de cada pago
+
+Emite en Gestolio la factura de 349 € más el IVA que haya calculado Stripe (o con inversión del sujeto pasivo) con los datos del correo de aviso, y envíasela al cliente. La web y los correos automáticos ya le dicen al cliente que la factura se la envías tú.
 
 ### 1.4 Webhook (después de desplegar `servidor/`)
 
@@ -139,10 +127,7 @@ Para activarlos:
 4. Comprueba que la API responde en `api.hugocalvo.dev`.
 5. Pon `formularios.activos: true`.
 
-El botón de pago de la auditoría no depende de `formularios.activos`: aparece en cuanto rellenas `pago.payment_link`.
-
-- Stripe recoge nombre, empresa, NIF y web.
-- Rellena el enlace cuando la política de privacidad y las condiciones estén publicadas y su URL figure en Datos públicos de Stripe.
+El botón de pago de la auditoría no depende de `formularios.activos`: aparece porque `pago.payment_link` está relleno (desde el 01/11/2026, con la privacidad ya ampliada con Stripe y las condiciones publicadas).
 
 El formulario de contacto con FormSubmit se retiró el 28/10/2026: su política (de 2019) no indica entidad, país ni garantías de protección de datos. Ahora el contacto es directo, por email y por WhatsApp.
 

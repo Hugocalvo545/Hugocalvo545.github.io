@@ -11,7 +11,7 @@ export const SERVICIOS = {
   "visibilidad-ia": {
     nombre: "Visibilidad en IA mensual",
     nivel: "solicitar",
-    paquetes: { esencial: "Esencial", pro: "Pro", avanzado: "Avanzado" },
+    paquetes: { inicial: "Inicial", pro: "Pro", avanzado: "Avanzado" },
   },
   webs: {
     nombre: "Webs y landings",

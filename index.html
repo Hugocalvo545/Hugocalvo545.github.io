@@ -52,7 +52,41 @@
       "email": "hugocgarciat@gmail.com",
       "address": { "@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES" },
       "areaServed": ["Madrid", "España"],
-      "priceRange": "€€"
+      "priceRange": "€€",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Visibilidad en IA",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Auditoría de visibilidad en IA",
+            "description": "50 preguntas medidas en ChatGPT, la IA de Google y Perplexity, plan de acción a 90 días y videollamada de 45 minutos. Pago único.",
+            "url": "https://hugocalvo.dev/#detalle-auditoria-ia",
+            "priceSpecification": { "@type": "PriceSpecification", "price": 349, "priceCurrency": "EUR", "valueAddedTaxIncluded": false }
+          },
+          {
+            "@type": "Offer",
+            "name": "Visibilidad en IA mensual · Inicial",
+            "description": "2 artículos optimizados al mes, 10 preguntas medidas al mes e informe mensual. Permanencia mínima de 3 meses.",
+            "url": "https://hugocalvo.dev/#detalle-visibilidad-ia",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": 149, "priceCurrency": "EUR", "valueAddedTaxIncluded": false, "unitCode": "MON", "unitText": "mes" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Visibilidad en IA mensual · Pro",
+            "description": "4 artículos optimizados al mes, 20 preguntas medidas al mes, ajustes técnicos (datos estructurados y preguntas frecuentes), informe y llamada mensual de 30 minutos. Permanencia mínima de 3 meses.",
+            "url": "https://hugocalvo.dev/#detalle-visibilidad-ia",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": 297, "priceCurrency": "EUR", "valueAddedTaxIncluded": false, "unitCode": "MON", "unitText": "mes" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Visibilidad en IA mensual · Avanzado",
+            "description": "8 artículos optimizados al mes, 30 preguntas medidas al mes, todo lo del Pro, análisis trimestral de competencia y llamada cada 15 días. Permanencia mínima de 3 meses.",
+            "url": "https://hugocalvo.dev/#detalle-visibilidad-ia",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": 497, "priceCurrency": "EUR", "valueAddedTaxIncluded": false, "unitCode": "MON", "unitText": "mes" }
+          }
+        ]
+      }
     }
     </script>
     <script type="application/ld+json">
@@ -63,7 +97,7 @@
         {
           "@type": "Question",
           "name": "¿Cómo se paga?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Depende del servicio. La auditoría de visibilidad en IA se paga por adelantado con tarjeta. Las webs, el 50 % al empezar y el 50 % al entregar; las apps a medida, por hitos (40 %, 30 % y 30 %). La visibilidad en IA mensual y el mantenimiento se pagan cada mes por adelantado: la visibilidad con una permanencia mínima de 3 meses y el mantenimiento sin permanencia." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Depende del servicio. La auditoría de visibilidad en IA se paga por adelantado con tarjeta; el IVA se calcula al pagar según tus datos de facturación. Las webs, el 50 % al empezar y el 50 % al entregar; las apps a medida, por hitos (40 %, 30 % y 30 %). La visibilidad en IA mensual y el mantenimiento se pagan cada mes por adelantado: la visibilidad con una permanencia mínima de 3 meses y el mantenimiento sin permanencia." }
         },
         {
           "@type": "Question",
@@ -79,6 +113,11 @@
           "@type": "Question",
           "name": "¿Trabajas fuera de Madrid?",
           "acceptedAnswer": { "@type": "Answer", "text": "Sí, todo el proceso puede ser online. En Madrid también nos podemos ver." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta la visibilidad en IA mensual?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Hay tres planes, sin IVA y con una permanencia mínima de 3 meses. Inicial, 149 €/mes: 2 artículos optimizados al mes, 10 preguntas medidas al mes e informe mensual. Pro, 297 €/mes: 4 artículos, 20 preguntas, ajustes técnicos (datos estructurados y preguntas frecuentes), informe y llamada mensual de 30 minutos. Avanzado, 497 €/mes: 8 artículos, 30 preguntas, todo lo del Pro, análisis trimestral de competencia y llamada cada 15 días." }
         },
         {
           "@type": "Question",
@@ -149,7 +188,7 @@
   <div class="wrap">
     <p class="eyebrow">Servicios</p>
     <h2 id="servicios-title">¿En qué te puedo ayudar?</h2>
-    <p class="lead">Abre cualquier servicio para ver los paquetes, qué incluye y qué no, los plazos y cómo se contrata. Cada precio aparece sin IVA y con el 21 % de IVA incluido.</p>
+    <p class="lead">Abre cualquier servicio para ver los paquetes y sus precios, qué incluye y qué no, los plazos y cómo se contrata.</p>
 
     <ul class="niveles" aria-label="Formas de contratar">
       <li><span class="nivel" data-nivel="pago-directo">Pago directo</span> Pagas con tarjeta y arrancamos.</li>
@@ -163,7 +202,7 @@
     <noscript>
       <p class="section-note">Para ver el detalle de los servicios activa JavaScript o <a href="#contacto">escríbeme</a> y te lo envío.</p>
     </noscript>
-    <p class="section-note">Todos los precios se muestran sin IVA y con IVA (21 %).</p>
+    <p class="section-note">Precios sin IVA. Dentro de cada servicio ves también el precio con el 21 % de IVA. Cada etiqueta compara el precio de entrada con el mínimo del rango de mercado de <a href="#precios-mercado">«¿Por qué estos precios?»</a>. Contratación según las <a href="condiciones.html">condiciones de contratación</a>.</p>
 
     <div class="precios" id="precios-mercado" role="region" aria-labelledby="precios-title" hidden>
       <div class="precios__texto">
@@ -264,7 +303,7 @@
     <div class="faq">
       <details>
         <summary>¿Cómo se paga?</summary>
-        <p>Depende del servicio. La auditoría de visibilidad en IA se paga por adelantado con tarjeta. Las webs, el 50 % al empezar y el 50 % al entregar; las apps a medida, por hitos (40 %, 30 % y 30 %). La visibilidad en IA mensual y el mantenimiento se pagan cada mes por adelantado: la visibilidad con una permanencia mínima de 3 meses y el mantenimiento sin permanencia.</p>
+        <p>Depende del servicio. La auditoría de visibilidad en IA se paga por adelantado con tarjeta; el IVA se calcula al pagar según tus datos de facturación. Las webs, el 50 % al empezar y el 50 % al entregar; las apps a medida, por hitos (40 %, 30 % y 30 %). La visibilidad en IA mensual y el mantenimiento se pagan cada mes por adelantado: la visibilidad con una permanencia mínima de 3 meses y el mantenimiento sin permanencia.</p>
       </details>
       <details>
         <summary>¿Cuánto tarda una web?</summary>
@@ -277,6 +316,10 @@
       <details>
         <summary>¿Trabajas fuera de Madrid?</summary>
         <p>Sí, todo el proceso puede ser online. En Madrid también nos podemos ver.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta la visibilidad en IA mensual?</summary>
+        <p>Hay tres planes, sin IVA y con una permanencia mínima de 3 meses. Inicial, 149 €/mes: 2 artículos optimizados al mes, 10 preguntas medidas al mes e informe mensual. Pro, 297 €/mes: 4 artículos, 20 preguntas, ajustes técnicos (datos estructurados y preguntas frecuentes), informe y llamada mensual de 30 minutos. Avanzado, 497 €/mes: 8 artículos, 30 preguntas, todo lo del Pro, análisis trimestral de competencia y llamada cada 15 días.</p>
       </details>
       <details>
         <summary>¿Qué es eso de aparecer en ChatGPT?</summary>
@@ -338,7 +381,7 @@
   <div class="wrap row">
     <span>© 2026 Hugo Calvo García · Madrid</span>
     <span><a href="https://github.com/Hugocalvo545" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/hugo-calvo-garc%C3%ADa-9b980a329" target="_blank" rel="noopener">LinkedIn</a> · <a href="curriculum_english.html">EN</a></span>
-    <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></span>
+    <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a> · <a href="condiciones.html">Condiciones</a></span>
   </div>
 </footer>
 

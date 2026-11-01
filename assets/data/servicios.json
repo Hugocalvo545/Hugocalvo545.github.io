@@ -1,11 +1,11 @@
 {
   "_nota": "Único sitio con los datos de servicios: precios (sin IVA), paquetes, condiciones y enlaces. Lo leen js/servicios.js y gracias.html. Los ids de servicio y de paquete los valida también servidor/lib/catalogo.js: si añades o renombras uno, cámbialo allí.",
-  "actualizado": "2026-10-28",
+  "actualizado": "2026-11-01",
   "iva": 21,
   "niveles": {
     "pago-directo": {
       "etiqueta": "Pago directo",
-      "descripcion": "Pagas con tarjeta en Stripe y arrancamos. Te envío la factura con el IVA desglosado por correo."
+      "descripcion": "Pagas con tarjeta en Stripe y arrancamos. El IVA se calcula al pagar según tus datos de facturación y la factura te la envío yo por correo."
     },
     "solicitar": {
       "etiqueta": "Solicitar y luego pagar",
@@ -23,6 +23,7 @@
     "turnstile_sitekey": "",
     "privacidad_url": "privacidad.html"
   },
+  "condiciones_url": "condiciones.html",
   "mercado": {
     "titulo": "¿Por qué estos precios?",
     "texto": [
@@ -67,12 +68,12 @@
         "Una web por auditoría."
       ],
       "plazo": "5 días laborables desde que recibo los datos.",
-      "forma_pago": "Pago único por adelantado con tarjeta en Stripe. Te envío la factura con el IVA desglosado por correo.",
+      "forma_pago": "Pago único por adelantado con tarjeta en Stripe. El IVA se calcula al pagar según tus datos de facturación y la factura te la envío yo por correo.",
       "notas": [
-        "Si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, te descuento los 349 € (422,29 € con IVA)."
+        "Si contratas Visibilidad en IA mensual en los 30 días siguientes a la entrega, el importe de la auditoría se descuenta de los primeros pagos mensuales hasta completar los 349 €."
       ],
       "pago": {
-        "payment_link": "",
+        "payment_link": "https://buy.stripe.com/4gMfZj2D31403DUfzncfK09",
         "boton": "Pagar la auditoría"
       },
       "mercado": [
@@ -88,25 +89,25 @@
       "resumen": "Artículos optimizados para buscadores y para IA, medición mensual de preguntas y un informe claro de cómo evoluciona tu presencia.",
       "paquetes": [
         {
-          "id": "esencial",
-          "nombre": "Esencial",
-          "precio": 297,
+          "id": "inicial",
+          "nombre": "Inicial",
+          "precio": 149,
           "unidad": "/mes",
-          "detalle": ["2 artículos optimizados al mes", "20 preguntas medidas al mes", "Informe mensual"]
+          "detalle": ["2 artículos optimizados al mes", "10 preguntas medidas al mes", "Informe mensual"]
         },
         {
           "id": "pro",
           "nombre": "Pro",
-          "precio": 497,
+          "precio": 297,
           "unidad": "/mes",
-          "detalle": ["4 artículos optimizados al mes", "30 preguntas medidas al mes", "Ajustes técnicos: datos estructurados y preguntas frecuentes", "Informe mensual y llamada mensual de 30 minutos"]
+          "detalle": ["4 artículos optimizados al mes", "20 preguntas medidas al mes", "Ajustes técnicos: datos estructurados y preguntas frecuentes", "Informe mensual y llamada mensual de 30 minutos"]
         },
         {
           "id": "avanzado",
           "nombre": "Avanzado",
-          "precio": 797,
+          "precio": 497,
           "unidad": "/mes",
-          "detalle": ["8 artículos optimizados al mes", "40 preguntas medidas al mes", "Todo lo del Pro", "Análisis trimestral de competencia", "Llamada cada 15 días"]
+          "detalle": ["8 artículos optimizados al mes", "30 preguntas medidas al mes", "Todo lo del Pro", "Análisis trimestral de competencia", "Llamada cada 15 días"]
         }
       ],
       "incluye": [
@@ -126,10 +127,10 @@
       "plazo": "Arrancamos cuando reviso tu caso, confirmo que encaja y recibo el pago del primer mes.",
       "forma_pago": "Mensual por adelantado, con permanencia mínima de 3 meses. Te envío el enlace de pago cuando confirmo que tu caso encaja.",
       "notas": [
-        "Si antes has hecho la auditoría, te descuento los 349 € (422,29 € con IVA) si contratas en los 30 días siguientes a la entrega."
+        "Si antes has hecho la auditoría y contratas en los 30 días siguientes a la entrega, su importe se descuenta de los primeros pagos mensuales hasta completar los 349 €."
       ],
       "mercado": [
-        {"concepto": "GEO mensual", "mio": [297, 797], "mercado": [299, 1500], "unidad": "/mes", "rango": "de unos 299 €/mes en perfiles boutique a 1.500 €/mes en agencias consolidadas", "fuente": "geotoolbox.ai", "url": "https://geotoolbox.ai/es/blog/agencia-geo"}
+        {"concepto": "GEO mensual", "mio": [149, 497], "mercado": [299, 1500], "unidad": "/mes", "rango": "de unos 299 €/mes en perfiles boutique a 1.500 €/mes en agencias consolidadas", "fuente": "geotoolbox.ai", "url": "https://geotoolbox.ai/es/blog/agencia-geo"}
       ]
     },
     {

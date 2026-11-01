@@ -258,6 +258,8 @@ label.pkg { cursor: pointer; }
   border-top: 1px solid var(--line);
 }
 .precios[hidden] { display: none; }
+/* Destino de las etiquetas de ahorro: que no quede tapado por la cabecera fija */
+.precios { scroll-margin-top: 80px; }
 .precios__title { font-size: clamp(20px, 3.4vw, 26px); margin-bottom: 12px; }
 .precios__texto p { color: var(--muted); font-size: 16px; max-width: 56ch; }
 .precios__texto p + p { margin-top: 10px; }
@@ -420,8 +422,31 @@ select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-col
 .reclutadores a::after { content: " →"; }
 
 /* ---------- precio con IVA ---------- */
-/* En las tarjetas: nota arriba, precio sin IVA y debajo con IVA, todo alineado a la izquierda */
-.svc .price { flex-direction: column; align-items: flex-start; gap: 4px; }
-.svc .price b { display: grid; gap: 2px; text-align: left; font-size: 16px; }
-.price__iva, .pkg__iva { font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--muted); }
+/* En las tarjetas: etiqueta de ahorro destacada y, debajo y más pequeño, el precio de entrada sin IVA */
+.svc .price { flex-direction: column; align-items: flex-start; gap: 8px; }
+.svc__precio { display: grid; justify-items: start; gap: 6px; }
+.svc__ahorro {
+  /* Por encima de la capa que hace clicable la tarjeta: lleva a "¿Por qué estos precios?" */
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.svc__ahorro:hover { text-decoration: underline; text-underline-offset: 3px; }
+.svc__ahorro:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.card .svc__desde { margin-top: 0; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.svc__nota { font-size: 13px; }
+.sd__condiciones { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.sd__condiciones a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.pkg__iva { font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--muted); }
 .pkg__iva { display: block; margin-top: 2px; }
+.servicios .section-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
