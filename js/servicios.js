@@ -49,13 +49,33 @@
   let datos = null;
   let opener = null;
 
+  // En la tarjeta solo va el precio de entrada; los paquetes y el resto de precios, en el panel
+  const paqueteEntrada = (s) => s.paquetes.reduce((a, b) => (b.precio < a.precio ? b : a));
+
+  // Etiqueta de ahorro: sale del rango de mercado de servicios.json y tiene que poder demostrarse.
+  // Se compara el precio de entrada con el mínimo del rango de su concepto (el de menor precio propio).
+  // Al menos un 30 % por debajo del mínimo: porcentaje redondeado hacia abajo. Si no, "parte baja"
+  // solo si el precio no pasa de la mitad del rango. Sin rango comparable, no hay etiqueta.
+  const etiquetaAhorro = (s) => {
+    const fila = (s.mercado || []).reduce((a, b) => (!a || b.mio[0] < a.mio[0] ? b : a), null);
+    if (!fila) return null;
+    const entrada = paqueteEntrada(s).precio;
+    const [min, max] = fila.mercado;
+    const pct = Math.floor((1 - entrada / min) * 100);
+    if (pct >= 30) return pct === 50 ? "La mitad que el mercado" : `Al menos un ${pct} % por debajo del mercado`;
+    if (entrada <= (min + max) / 2) return "En la parte baja del mercado";
+    return null;
+  };
+
   const precioTarjeta = (s) => {
-    const p = s.paquetes.reduce((a, b) => (b.precio < a.precio ? b : a));
-    const desde = s.paquetes.length > 1 || p.desde ? "desde " : "";
-    return [
-      `${desde}${eur(p.precio)}${unidad(p)} sin IVA`,
-      h("small", { class: "price__iva" }, `${eur(conIva(p.precio, datos.iva))}${unidad(p)} con IVA`),
-    ];
+    const p = paqueteEntrada(s);
+    const ahorro = etiquetaAhorro(s);
+    return h(
+      "div",
+      { class: "svc__precio" },
+      ahorro && h("a", { class: "svc__ahorro", href: "#precios-mercado" }, ahorro),
+      h("p", { class: "svc__desde" }, `Desde ${eur(p.precio)}${unidad(p)} (sin IVA)`)
+    );
   };
 
   const tarjeta = (s) => {
@@ -75,7 +95,7 @@
         )
       ),
       h("div", { class: "svc__body" }, h("h3", {}, s.nombre), h("p", {}, s.resumen)),
-      h("div", { class: "price" }, h("span", {}, s.nota_tarjeta || ""), h("b", {}, ...precioTarjeta(s))),
+      h("div", { class: "price" }, precioTarjeta(s), s.nota_tarjeta && h("span", { class: "svc__nota" }, s.nota_tarjeta)),
       h(
         "button",
         {
@@ -506,6 +526,15 @@
 
   const contratar = (s, p) => (formsActivos() ? mostrarFormulario(s, p) : irAContacto(s, p));
 
+  const avisoCondiciones = () =>
+    h(
+      "p",
+      { class: "sd__condiciones" },
+      "La contratación se rige por las ",
+      h("a", { href: datos.condiciones_url || "condiciones.html", target: "_blank", rel: "noopener" }, "condiciones de contratación"),
+      "."
+    );
+
   const accion = (s) => {
     const nivel = datos.niveles[s.nivel];
     const caja = h("div", { class: "sd__accion" });
@@ -514,19 +543,25 @@
       const p = s.paquetes[0];
       const total = conIva(p.precio, datos.iva);
       const link = s.pago?.payment_link;
+      // Con Stripe Tax el IVA depende de los datos de facturación: el botón no muestra un total cerrado
       caja.append(
-        h("p", { class: "sd__iva" }, `${eur(p.precio)} + ${datos.iva} % de IVA = `, h("b", {}, `${eur(total)} con IVA`)),
+        h(
+          "p",
+          { class: "sd__iva" },
+          h("b", {}, `${eur(p.precio)} sin IVA.`),
+          ` El IVA se calcula al pagar según tus datos de facturación: ${datos.iva} % en España (${eur(total)} en total); si eres empresa de otro país de la UE con número de IVA, se aplica la inversión del sujeto pasivo.`
+        ),
         link && h("p", {}, nivel.descripcion)
       );
       const botones = h("div", { class: "sd__botones" });
       if (link) {
-        botones.append(h("a", { class: "btn primary", href: link, rel: "noopener" }, `${s.pago.boton} · ${eur(total)}`));
+        botones.append(h("a", { class: "btn primary", href: link, rel: "noopener" }, `${s.pago.boton} · ${eur(p.precio)} + IVA`));
         caja.append(h("p", { class: "sd__aviso" }, "Pago seguro en Stripe. Después del pago te escribo en menos de 24 h laborables y te envío la factura."));
       } else {
         botones.append(h("button", { type: "button", class: "btn primary", onclick: () => irAContacto(s, p) }, "Pedir la auditoría"));
         caja.append(h("p", {}, "Escríbeme y te envío el enlace de pago con tarjeta. La factura con el IVA desglosado te la envío yo por correo."));
       }
-      caja.append(botones);
+      caja.append(botones, avisoCondiciones());
       return caja;
     }
 
@@ -537,7 +572,8 @@
         "div",
         { class: "sd__botones" },
         h("button", { type: "button", class: "btn primary", onclick: () => contratar(s, paqueteElegido(s)) }, texto)
-      )
+      ),
+      avisoCondiciones()
     );
     return caja;
   };

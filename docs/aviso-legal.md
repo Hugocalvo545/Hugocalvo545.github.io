@@ -1,12 +1,11 @@
 # Aviso legal (BORRADOR)
 
-> **Publicado el 28/10/2026 como `aviso-legal.html`** (sin estas notas y sin la referencia a las condiciones de contratación). Si cambias algo, cámbialo en los dos sitios.
-> Cuando publiques `condiciones.html`, añade en el apartado 2 de `aviso-legal.html` la frase sobre las condiciones de contratación que está aquí.
+> **Publicado el 28/10/2026 como `aviso-legal.html`** (sin estas notas). El 01/11/2026 se añadió la referencia a las condiciones de contratación, ya publicadas en `condiciones.html`. Si cambias algo, cámbialo en los dos sitios.
 > Cumple el deber de información del art. 10 de la Ley 34/2002 (LSSI-CE): https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758
 > Es distinto de la política de privacidad y de las condiciones de contratación.
 > Las notas para Hugo van en bloques como este y se quitan al publicar.
 
-Última actualización: [fecha de publicación]
+Última actualización: 1 de noviembre de 2026
 
 ## 1. Titular de la web
 
@@ -31,7 +30,7 @@ La contratación de servicios se rige por las [condiciones de contratación](htt
 
 ## 3. Precios
 
-- Los precios de la web aparecen sin IVA y con IVA (21 %).
+- Los precios de la web se indican sin IVA. En el detalle de cada servicio aparece también el importe con el 21 % de IVA. El IVA se calcula al pagar según tus datos de facturación, como explican las [condiciones de contratación](https://hugocalvo.dev/condiciones.html).
 - Los servicios no tienen gastos de envío.
 - Los rangos de mercado que muestro para comparar son orientativos, sin IVA, y citan su fuente y la fecha de consulta.
 

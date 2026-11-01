@@ -1,6 +1,6 @@
 # Política de privacidad: versión completa para la fase 2 (BORRADOR)
 
-> **Versión completa para la fase 2.** La publicada hoy en `privacidad.html` (28/10/2026) es la de la fase 1: solo cubre el contacto por email o WhatsApp, GitHub Pages y Gmail.
+> **Versión completa para la fase 2.** La publicada hoy en `privacidad.html` es la de la fase 1 (28/10/2026), ampliada el 01/11/2026 con el pago de la auditoría en Stripe: cubre el contacto por email o WhatsApp, el pago con Stripe, GitHub Pages y Gmail.
 > Esta versión añade formularios, pagos y avisos. Hay que publicarla en `privacidad.html`, sustituyendo la de la fase 1, antes de activar los formularios o el pago (ver `docs/servicios-configuracion.md`, sección 6).
 > Los datos entre corchetes que quedan (fecha y región de Upstash) los completas tú. Las notas para Hugo van en bloques como este y se quitan al publicar.
 > Conviene que la revise un asesor. Revisa especialmente las transferencias internacionales y los plazos de conservación.
@@ -22,7 +22,7 @@
 | Contacto por email o WhatsApp | Los que me envíes: normalmente nombre, email o teléfono y tu mensaje | Responderte y, si lo pides, enviarte un presupuesto | Medidas precontractuales a petición tuya (art. 6.1.b RGPD) |
 | Formulario «Solicitar alta» | Servicio y plan, tu web, qué necesitas, nombre, empresa (opcional), email y teléfono (opcional) | Revisar si tu caso encaja, responderte y, si encaja, enviarte el enlace de pago | Medidas precontractuales (art. 6.1.b RGPD) |
 | Briefing | Tipo de proyecto, objetivo, funcionalidades, plazo, presupuesto orientativo, web (opcional) y datos de contacto | Preparar y enviarte un presupuesto | Medidas precontractuales (art. 6.1.b RGPD) |
-| Pago de la auditoría (Stripe) | Nombre, empresa, email, NIF (opcional), web a auditar e importe. **No recibo los datos de tu tarjeta**: los trata Stripe | Prestar el servicio contratado y emitir la factura, que hago yo con mi programa de facturación | Ejecución del contrato (art. 6.1.b) y obligaciones fiscales (art. 6.1.c RGPD) |
+| Pago de la auditoría (Stripe) | Nombre, email, empresa (opcional), dirección de facturación, NIF (opcional), web a auditar e importe. **No recibo los datos de tu tarjeta**: los trata Stripe | Prestar el servicio contratado y emitir la factura, que hago yo con mi programa de facturación | Ejecución del contrato (art. 6.1.b) y obligaciones fiscales (art. 6.1.c RGPD) |
 | Clientes | Los anteriores, más los que hagan falta para el servicio | Prestar el servicio, facturar y atender incidencias | Ejecución del contrato (art. 6.1.b) y obligación legal (art. 6.1.c RGPD) |
 | Protección contra spam y abusos | Dirección IP y la señal de verificación de Cloudflare Turnstile | Evitar envíos automáticos y limitar el número de envíos por hora | Interés legítimo en proteger la web y el servicio (art. 6.1.f RGPD) |
 
