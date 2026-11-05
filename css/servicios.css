@@ -122,6 +122,20 @@ body:has(dialog.sd[open]) { overflow: hidden; }
   overscroll-behavior: contain;
   padding: 18px 16px calc(24px + env(safe-area-inset-bottom));
 }
+.sd__body::-webkit-scrollbar { width: 6px; height: 6px; background: transparent; }
+.sd__body::-webkit-scrollbar-track,
+.sd__body::-webkit-scrollbar-corner { background: transparent; }
+.sd__body::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 55%, var(--line));
+  border-radius: 999px;
+}
+.sd__body::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+@supports not selector(::-webkit-scrollbar) {
+  .sd__body {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--muted) 55%, var(--line)) transparent;
+  }
+}
 .sd__body > * + * { margin-top: 22px; }
 .sd section { padding: 0; border: 0; }
 .sd__resumen { color: var(--muted); font-size: 16px; }
